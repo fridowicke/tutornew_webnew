@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tutor.new - Lerne mit einer KI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9f1e8;
+            --text-color: #0e3322;
+            --accent-color: #0e3322;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Patrick Hand', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 40px 20px;
+            background-image: linear-gradient(var(--bg-color) 95%, #e6ddd4 95%);
+            background-size: 100% 2rem; /* Notebook lines effect */
+            box-sizing: border-box;
+        }
+
+        /* Simple Header */
+        header {
+            text-align: left;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: normal;
+            opacity: 0.6;
+            border-bottom: none;
+            display: block;
+            padding: 0;
+            /* Reset centering positioning */
+            position: static;
+            left: auto;
+            transform: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .highlight-box {
+            background-color: #cce5ff; /* Light blue highlight */
+            color: #0e3322;
+            padding: 0 6px;
+            border-radius: 4px;
+            box-shadow: 2px 2px 0px rgba(14, 51, 34, 0.2);
+            display: inline-block;
+            transform: rotate(-2deg);
+            margin: 0 2px;
+        }
+
+        .highlight-underline {
+            background-image: url('stroke.png');
+            background-repeat: no-repeat;
+            background-size: 100% 12px; /* Thinner and firm stroke */
+            background-position: center bottom;
+            padding-bottom: 2px; /* Adjust spacing for stroke */
+            display: inline-block;
+            line-height: 1.2; /* Ensure line height accommodates stroke */
+        }
+        
+        /* Removing the pseudo-element approach which caused visibility issues */
+        .highlight-underline::after {
+            content: none;
+        }
+
+        /* Visual Placeholder */
+        .visual-placeholder {
+            width: 100%;
+            height: auto;
+            border: 3px solid var(--text-color);
+            border-radius: 15px; /* Slightly rounded edges */
+            display: block; /* Changed to block for image */
+            margin-bottom: 3rem;
+            overflow: hidden;
+            /* Irregular hand-drawn border effect */
+            box-shadow: 5px 5px 0px rgba(14, 51, 34, 0.2);
+            transform: rotate(-1deg);
+            background-color: white;
+        }
+        
+        .visual-placeholder img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Steps Flow */
+        .steps-container {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .step {
+            margin-bottom: 2.5rem;
+            padding-left: 20px;
+            border-left: 3px solid var(--text-color);
+            position: relative;
+        }
+        
+        /* Target the second step specifically for dashed line */
+        .step:nth-child(2) {
+            border-left: 3px dashed var(--text-color);
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+            border-left: 3px solid var(--text-color); /* Back to solid for last step (or remove if no line needed after) */
+            /* If the intention is that the line STOPS after step 3, we might want no border on the last child content itself? 
+               But usually flow lines connect items. 
+               Based on "give the dashed one to two", I assume step 2's connector line becomes dashed.
+            */
+        }
+        
+        /* Hand-drawn arrow feel for flow (simplified css) */
+        .step::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            background: var(--bg-color);
+            border: 3px solid var(--text-color);
+            border-radius: 50%;
+        }
+
+        .step-heading {
+            font-weight: bold;
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .step-content {
+            font-size: 1.15rem;
+        }
+
+        /* Additional Examples (Old Situations) */
+        .examples-section {
+            margin-bottom: 4rem;
+            opacity: 0.9;
+        }
+
+        .examples-title {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            text-decoration-color: #003366; /* Dark blue underline */
+        }
+
+        .example-item {
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: flex-start;
+            font-size: 1.1rem;
+        }
+
+        .bullet {
+            margin-right: 10px;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* Pricing */
+        .pricing {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem;
+            border: 3px solid var(--text-color);
+            border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; /* Hand-drawn box feel */
+            transform: rotate(-1deg);
+        }
+
+        .price-highlight {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1rem;
+            opacity: 0.8;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(14, 51, 34, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            h1, .headline-highlight {
+                font-size: 1.5rem;
+            }
+            .container {
+                background-size: 100% 1.8rem; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>tutor.new</header>
+
+        <section class="hero">
+            <h1>Lerne mit der <span class="highlight-box">KI,</span> die <span class="highlight-underline">schöne Notizen</span> erstellt</h1>
+        </section>
+
+        <div class="visual-placeholder">
+            <img src="lesson_physics.png" alt="Beispiel einer Lerneinheit mit Notizen">
+        </div>
+
+        <section class="steps-container">
+            <div class="step">
+                <span class="step-heading">1. Starte dort, wo du es brauchst</span>
+                <div class="step-content">
+                    Lade ein Foto vom Arbeitsblatt oder dem Buch hoch, oder sag der KI, was du nicht gecheckt hast.
+                    Wir erkennen das Thema und helfen dir, genau wo du es brauchst.
+                </div>
+            </div>
+            
+            <div class="step">
+                <span class="step-heading">2. Lern mit der KI</span>
+                <div class="step-content">
+                    Du sprichst im (Voice-)chat mit der KI. Gemeinsam löst ihr Aufgaben (deine mitgebrachten, oder von der KI ausgesuchte), und du erhältst geduldge Erklärungen und Antworten auf all deine Fragen.
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="step-heading">3. Nimm die Mitschrift mit!</span>
+                <div class="step-content">
+                    Während dem Lernen erstellt die KI strukturierte Notizen mit Visualisierungen für dich. Du kannst sie jederzeit bearbeiten und zum Lernen runterladen.
+                </div>
+            </div>
+        </section>
+
+        <section class="examples-section">
+            <div class="examples-title">Wann hilft dir das?</div>
+            <div class="example-item">
+                <span class="bullet">•</span>
+                <div>"Ich versteh die Hausaufgaben nicht" → <strong>Hochladen & gemeinsam lösen</strong></div>
+            </div>
+            <div class="example-item">
+                <span class="bullet">•</span>
+                <div>"Der Test ist morgen" → <strong>Gezielte Vorbereitung</strong></div>
+            </div>
+            <div class="example-item">
+                <span class="bullet">•</span>
+                <div>"Ich will eine Sprache lernen" → <strong>Konversation & Vokabeln üben</strong></div>
+            </div>
+            <div class="example-item">
+                <span class="bullet">•</span>
+                <div>"Ich häng total hinterher" → <strong>Aufholen in deinem Tempo</strong></div>
+            </div>
+        </section>
+
+        <section class="pricing">
+            <div>Gratis testen</div>
+            <span class="price-highlight">Dann 20€/Monat</span>
+            <div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">Jederzeit kündbar</div>
+        </section>
+
+        <footer>
+            Dein Lernraum, immer offen.
+        </footer>
+    </div>
+
+</body>
+</html>
