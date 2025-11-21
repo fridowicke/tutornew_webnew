@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>So funktioniert's - tutor.new</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --accent-color: #4a7a2d; /* Green accent for this page */
+        }
+
+        a {
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            border-bottom: 2px dashed var(--accent-color);
+            display: inline-block;
+            transform: rotate(1deg);
+        }
+
+        .step-card {
+            background-color: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 15px 5px 15px 5px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.2);
+        }
+
+        .step-number {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header><a href="index.html">← Zurück zur Startseite</a></header>
+        
+        <h1>So funktioniert's</h1>
+
+        <div class="step-card" style="transform: rotate(-1deg);">
+            <span class="step-number">Schritt 1: Problem teilen</span>
+            <p>
+                Mach einfach ein Foto von deiner Aufgabe oder tippe deine Frage ein.
+                Egal ob Mathe, Geschichte oder Sprachen - wir sind bereit.
+            </p>
+        </div>
+
+        <div class="step-card" style="transform: rotate(1deg);">
+            <span class="step-number">Schritt 2: Interaktiver Dialog</span>
+            <p>
+                Die KI erklärt dir nicht nur die Lösung, sondern führt dich Schritt für Schritt hin.
+                Du kannst jederzeit nachfragen, wenn du etwas nicht verstehst.
+            </p>
+        </div>
+
+        <div class="step-card" style="transform: rotate(-0.5deg);">
+            <span class="step-number">Schritt 3: Perfekte Notizen</span>
+            <p>
+                Am Ende erhältst du eine wunderschöne, strukturierte Zusammenfassung
+                deiner Lernsession als PDF oder Bild. Perfekt zum Wiederholen!
+            </p>
+        </div>
+    </div>
+</body>
+</html>

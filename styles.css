@@ -1,0 +1,225 @@
+:root {
+    --bg-color: #f9f1e8;
+    --text-color: #0e3322;
+    --main-accent: #0e3322;
+    /* --accent-color is defined in individual pages or defaults to main-accent */
+    --accent-color: var(--main-accent);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Patrick Hand', cursive, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px 20px;
+    background-image: linear-gradient(var(--bg-color) 95%, #e6ddd4 95%);
+    background-size: 100% 2rem; /* Notebook lines effect */
+    box-sizing: border-box;
+    position: relative; /* Ensure menu positioning works relative to container/page */
+}
+
+header {
+    margin-bottom: 2rem;
+    /* opacity: 0.7; REMOVED OPACITY ON HEADER */
+    position: relative; /* For menu positioning */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-btn {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+    opacity: 0.7; /* Moved opacity to the logo itself */
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* Common rotation utilities often used in the design */
+.rotate-1 { transform: rotate(1deg); }
+.rotate-n1 { transform: rotate(-1deg); }
+
+/* Mobile utilities */
+.mobile-br {
+    display: none;
+}
+
+.mobile-only {
+    display: none;
+}
+
+/* Mobile Menu Overlay - Completely separate view */
+.mobile-menu-overlay {
+    display: none; /* Hidden by default */
+}
+
+/* Menu Styles */
+.nav-menu {
+    display: none; /* Hidden by default */
+}
+
+.nav-menu.active {
+    display: flex;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease;
+    display: inline-block;
+    background-color: white; /* Default background */
+}
+
+/* Individual colors for nav links (matching footer) - with increased strength */
+.link-about {
+    color: #1f4c7a; /* Darker Blue */
+    background-color: #e0f0f7;
+    border-color: #1f4c7a;
+    transform: rotate(-1deg);
+}
+
+.link-how {
+    color: #3a6621; /* Darker Green */
+    background-color: #e6f4dc;
+    border-color: #3a6621;
+    transform: rotate(1deg);
+}
+
+.link-faq {
+    color: #7a5c18; /* Darker Yellow/Orange/Brown */
+    background-color: #fff5d6;
+    border-color: #7a5c18;
+    transform: rotate(-0.5deg);
+}
+
+.link-legal {
+    color: #333; /* Darker Grey */
+    background-color: #ededed;
+    border-color: #555;
+    transform: rotate(0.5deg);
+}
+
+/* Desktop Menu Styles */
+@media (min-width: 481px) {
+    header {
+        justify-content: flex-start;
+        flex-wrap: nowrap; /* Prevent wrapping to keep in same row */
+        align-items: center; /* Ensure vertical alignment */
+        height: 30px; /* Fix height to prevent jumping if links are taller */
+    }
+
+    .logo-btn {
+        white-space: nowrap; /* Keep logo on one line */
+        z-index: 10; /* Ensure logo stays clickable/visible */
+        line-height: 1; /* Match default line height or reset to avoid spacing issues */
+    }
+
+    .nav-menu {
+        display: flex; /* Always flex layout for structure, visibility toggled via opacity */
+        flex-direction: row;
+        margin-left: 20px;
+        gap: 15px;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: opacity 0.15s ease-out, transform 0.15s ease-out; /* Faster, snappier animation */
+        pointer-events: none; /* Prevent clicks when hidden */
+        visibility: hidden; /* Fully hide from screen readers/clicks when inactive */
+        align-items: center; /* Vertically center items */
+    }
+
+    .nav-menu.active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+        visibility: visible;
+    }
+
+    .nav-link:hover {
+        transform: scale(1.1);
+    }
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 480px) {
+    .mobile-br {
+        display: inline;
+    }
+    
+    .mobile-only {
+        display: block;
+    }
+
+    /* Hide desktop nav menu on mobile */
+    .nav-menu {
+        display: none !important;
+    }
+
+    /* Mobile Menu Overlay - Entirely new view */
+    .mobile-menu-overlay.active {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #f9f1e8; /* Solid background */
+        background-image: linear-gradient(#f9f1e8 95%, #e6ddd4 95%);
+        background-size: 100% 2rem;
+        z-index: 99999; /* Highest possible */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .mobile-menu-header {
+        position: absolute;
+        top: 40px;
+        left: 20px;
+        font-size: 1rem;
+        opacity: 0.7;
+        cursor: pointer;
+        font-family: 'Patrick Hand', cursive, sans-serif;
+    }
+
+    .mobile-menu-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    .mobile-menu-overlay .nav-link {
+        font-size: 1.5rem;
+        padding: 15px 20px;
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}
