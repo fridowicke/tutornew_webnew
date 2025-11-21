@@ -164,29 +164,73 @@
         /* Additional Examples (Old Situations) */
         .examples-section {
             margin-bottom: 4rem;
-            opacity: 0.9;
+            opacity: 1; /* Increased opacity for better contrast */
         }
 
         .examples-title {
             text-align: center;
             font-size: 1.4rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             text-decoration: underline;
             text-decoration-style: wavy;
             text-decoration-color: #003366; /* Dark blue underline */
         }
 
-        .example-item {
-            margin-bottom: 0.2rem;
-            display: flex;
-            align-items: flex-start;
-            font-size: 1.1rem;
+        .examples-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
         }
 
+        .example-item {
+            margin-bottom: 0; /* Let grid handle spacing */
+            display: flex;
+            flex-direction: column; /* Stack bullet and text vertically for better fit */
+            align-items: center; /* Center content */
+            text-align: center;
+            font-size: 1rem; /* Smaller font */
+            background: white;
+            padding: 0.7rem; /* Reduced padding */
+            border: 2px solid var(--text-color);
+            border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; /* Hand-drawn box feel */
+            box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%; /* Ensure equal heights */
+            justify-content: center;
+        }
+        
+        .example-item:hover {
+            transform: scale(1.05) !important; /* Override rotation slightly on hover */
+            z-index: 10;
+            box-shadow: 6px 6px 0px rgba(14, 51, 34, 0.15);
+        }
+
+        /* Alternating rotations for sticky note feel - applied to grid items */
+        .example-item:nth-child(1) { transform: rotate(-1deg); }
+        .example-item:nth-child(2) { transform: rotate(1deg); }
+        .example-item:nth-child(3) { transform: rotate(0.5deg); }
+        .example-item:nth-child(4) { transform: rotate(-0.5deg); }
+
         .bullet {
-            margin-right: 10px;
-            font-size: 1.5rem;
+            margin-right: 0; /* Reset right margin */
+            margin-bottom: 10px; /* Add bottom margin for vertical stack */
+            font-size: 2.2rem;
             line-height: 1;
+            color: #003366; /* Accent color for bullet */
+        }
+        
+        .example-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .example-highlight {
+            display: block;
+            font-weight: bold;
+            color: #003366;
+            margin-top: 0.5rem;
         }
 
         /* Pricing */
@@ -291,6 +335,11 @@
                 margin-top: 2rem;
                 margin-bottom: 2rem;
             }
+            
+            .examples-grid {
+                grid-template-columns: 1fr; /* Stack vertically on mobile */
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -363,26 +412,40 @@
 
         <section class="examples-section">
             <div class="examples-title">Wann hilft dir das?</div>
-            <div class="example-item">
-                <span class="bullet">•</span>
-                <div>"Ich versteh die Hausaufgaben nicht" <br class="mobile-br"> → <strong>Hochladen & gemeinsam lösen</strong></div>
-            </div>
-            <div class="example-item">
-                <span class="bullet">•</span>
-                <div>"Der Test ist morgen" <br class="mobile-br"> → <strong>Gezielte Vorbereitung</strong></div>
-            </div>
-            <div class="example-item">
-                <span class="bullet">•</span>
-                <div>"Ich will eine Sprache lernen" <br class="mobile-br"> → <strong>Konversation & Vokabeln üben</strong></div>
-            </div>
-            <div class="example-item">
-                <span class="bullet">•</span>
-                <div>"Ich häng total hinterher" <br class="mobile-br"> → <strong>Aufholen in deinem Tempo</strong></div>
+            <div class="examples-grid">
+                <div class="example-item">
+                    <span class="bullet">?</span>
+                    <div class="example-text">
+                        "Ich versteh die Hausaufgaben nicht" 
+                        <span class="example-highlight">→ Hochladen & gemeinsam lösen</span>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <span class="bullet">!</span>
+                    <div class="example-text">
+                        "Der Test ist morgen" 
+                        <span class="example-highlight">→ Gezielte Vorbereitung</span>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <span class="bullet">🗣️</span>
+                    <div class="example-text">
+                        "Ich will eine Sprache lernen" 
+                        <span class="example-highlight">→ Konversation & Vokabeln üben</span>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <span class="bullet">⏳</span>
+                    <div class="example-text">
+                        "Ich häng total hinterher" 
+                        <span class="example-highlight">→ Aufholen in deinem Tempo</span>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="pricing">
-            <a href="#" class="cta-sticker">Gratis testen</a>
+            <a href="https://duck.tutor.new" class="cta-sticker">Gratis testen</a>
             <span class="price-highlight">Dann 20€/Monat</span>
             <div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">Jederzeit kündbar</div>
         </section>
