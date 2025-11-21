@@ -88,9 +88,10 @@
 
         .step {
             margin-bottom: 2.5rem;
-            padding-left: 20px;
+            padding-left: 30px;
             border-left: 3px solid var(--text-color);
             position: relative;
+            z-index: 1;
         }
         
         /* Target the second step specifically for dashed line */
@@ -100,24 +101,51 @@
 
         .step:last-child {
             margin-bottom: 0;
-            border-left: 3px solid var(--text-color); /* Back to solid for last step (or remove if no line needed after) */
-            /* If the intention is that the line STOPS after step 3, we might want no border on the last child content itself? 
-               But usually flow lines connect items. 
-               Based on "give the dashed one to two", I assume step 2's connector line becomes dashed.
-            */
+            border-left: 3px solid var(--text-color);
         }
         
-        /* Hand-drawn arrow feel for flow (simplified css) */
+        /* Animated blue progress line below the border (wider) */
+        .step::after {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: var(--line-progress, 0%);
+            background: linear-gradient(to bottom, #cce5ff, #4a9eff);
+            border-radius: 6px;
+            z-index: 0;
+            opacity: 0.5;
+            transition: none; /* Smooth via JS, not CSS transition */
+            pointer-events: none;
+        }
+        
+        /* Hand-drawn circle for step numbers */
         .step::before {
             content: '';
             position: absolute;
-            left: -9px;
-            top: 0;
-            width: 15px;
-            height: 15px;
+            left: -12px;
+            top: 4px;
+            width: 20px;
+            height: 20px;
             background: var(--bg-color);
             border: 3px solid var(--text-color);
             border-radius: 50%;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            color: transparent;
+        }
+        
+        .step.active::before {
+            content: attr(data-step-number);
+            background: var(--bg-color);
+            transform: scale(1.4);
+            color: var(--text-color);
         }
 
         .step-heading {
@@ -194,6 +222,59 @@
             transform: scale(1.05) rotate(-1deg);
         }
 
+        /* Secondary CTA (with circle) */
+        .cta-button-secondary {
+            display: inline-block;
+            background: none;
+            color: var(--text-color);
+            padding: 0;
+            font-size: 2.2rem;
+            text-decoration: none;
+            font-weight: 900;
+            border: none;
+            transition: all 0.2s ease;
+            font-family: 'Patrick Hand', cursive;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-button-secondary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 170%;
+            background-image: url('circling.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 1;
+        }
+
+        .cta-button-secondary:hover {
+            transform: translateX(5px);
+        }
+
+        .cta-button-secondary:hover::before {
+            transform: translate(-50%, -50%) translateX(5px);
+        }
+
+        /* Desktop scaling */
+        @media (min-width: 481px) {
+            body {
+                zoom: 1.3;
+            }
+            .cta-button-large {
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 480px) {
             h1, .headline-highlight {
@@ -205,6 +286,10 @@
             footer {
                 flex-direction: column;
                 gap: 1rem;
+            }
+            .cta-button-large {
+                margin-top: 2rem;
+                margin-bottom: 2rem;
             }
         }
     </style>
@@ -237,33 +322,44 @@
             <h1>Lerne mit der <span class="highlight-box">KI,</span><br class="mobile-br"> die <span class="highlight-underline">schöne Notizen</span> erstellt</h1>
         </section>
 
-        <div class="visual-placeholder">
+        <div class="visual-placeholder" style="margin-bottom: 1.5rem;">
             <img src="lesson_physics.png" alt="Beispiel einer Lerneinheit mit Notizen">
         </div>
 
+
+        <div style="text-align: center; margin-top: 0.5rem; margin-bottom: 4rem;">
+            <a href="https://duck.tutor.new" class="cta-button-secondary">→ Kostenlos testen</a>
+        </div>
+
+
+        <!-- <div style="text-align: center; margin-bottom: 2rem; margin-top: 0;">
+            <a href="https://duck.tutor.new" class="cta-button-large">Kostenlos testen</a>
+        </div> -->
+
         <section class="steps-container">
-            <div class="step">
-                <span class="step-heading">1. Starte, wo du es brauchst</span>
+            <div class="step" data-step-number="1">
+                <span class="step-heading">Starte, wo du es brauchst</span>
                 <div class="step-content">
                     Lade ein Foto vom Arbeitsblatt oder dem Buch hoch, oder sag der KI, was du nicht gecheckt hast.
                     Wir erkennen das Thema und helfen dir, genau wo du es brauchst.
                 </div>
             </div>
             
-            <div class="step">
-                <span class="step-heading">2. Lern mit der KI</span>
+            <div class="step" data-step-number="2">
+                <span class="step-heading">Lern mit der KI</span>
                 <div class="step-content">
                     Du sprichst im (Voice-)chat mit der KI. Gemeinsam löst ihr Aufgaben (deine mitgebrachten, oder von der KI ausgesuchte), und du erhältst geduldge Erklärungen und Antworten auf all deine Fragen.
                 </div>
             </div>
 
-            <div class="step">
-                <span class="step-heading">3. Nimm die Mitschrift mit!</span>
+            <div class="step" data-step-number="3">
+                <span class="step-heading">Nimm die Mitschrift mit!</span>
                 <div class="step-content">
                     Während dem Lernen erstellt die KI strukturierte Notizen mit Visualisierungen für dich. Du kannst sie jederzeit bearbeiten und zum Lernen runterladen.
                 </div>
             </div>
         </section>
+
 
         <section class="examples-section">
             <div class="examples-title">Wann hilft dir das?</div>
@@ -286,7 +382,7 @@
         </section>
 
         <section class="pricing">
-            <div>Gratis testen</div>
+            <a href="#" class="cta-sticker">Gratis testen</a>
             <span class="price-highlight">Dann 20€/Monat</span>
             <div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">Jederzeit kündbar</div>
         </section>
@@ -314,6 +410,49 @@
                 menu.classList.toggle('active');
             }
         }
+        
+        // Scroll animation for steps
+        function handleStepScroll() {
+            const steps = document.querySelectorAll('.step');
+            const windowHeight = window.innerHeight;
+            
+            steps.forEach((step, index) => {
+                const rect = step.getBoundingClientRect();
+                const stepMiddle = rect.top + (rect.height / 2);
+                const stepTop = rect.top;
+                const stepBottom = rect.bottom;
+                const stepHeight = rect.height;
+                
+                // Circle animation - activate when step reaches lower in viewport
+                if (stepMiddle < windowHeight * 0.85) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+                
+                // Line progress animation - smooth fill based on scroll position
+                let progress = 0;
+                const triggerPoint = windowHeight * 0.75;
+                
+                if (stepBottom < triggerPoint) {
+                    // Fully scrolled past
+                    progress = 100;
+                } else if (stepTop < triggerPoint) {
+                    // Partially scrolled - calculate percentage based on how much is past the trigger
+                    const scrolledAmount = triggerPoint - stepTop;
+                    progress = Math.min(100, Math.max(0, (scrolledAmount / stepHeight) * 100));
+                } else {
+                    // Not yet reached
+                    progress = 0;
+                }
+                
+                step.style.setProperty('--line-progress', progress + '%');
+            });
+        }
+        
+        // Run on scroll and on load
+        window.addEventListener('scroll', handleStepScroll);
+        window.addEventListener('load', handleStepScroll);
     </script>
 </body>
 </html>
