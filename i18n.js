@@ -35,7 +35,7 @@ const translations = {
         
         // Pricing
         cta_sticker: "Gratis testen",
-        price_highlight: "Dann 20€/Monat",
+        price_highlight: "Dann 2.99€/Woche",
         price_sub: "Jederzeit kündbar",
         cta_button_secondary: "→ Kostenlos testen",
         
@@ -113,7 +113,7 @@ const translations = {
         
         // Pricing
         cta_sticker: "Try for free",
-        price_highlight: "Then $20/Month", // Will be replaced with locale-based currency
+        price_highlight: "Then $2.99/Week", // Will be replaced with locale-based currency
         price_sub: "Cancel anytime",
         cta_button_secondary: "→ Try for free",
         
@@ -211,9 +211,9 @@ class I18n {
 
     getPriceText() {
         const currency = this.getCurrency();
-        // Base price is 20, adjust if needed for different currencies
-        // For now, keeping 20 for all currencies (you can adjust conversion rates later)
-        return `Then ${currency}20/Month`;
+        // Base price is 2.99, adjust if needed for different currencies
+        // For now, keeping 2.99 for all currencies (you can adjust conversion rates later)
+        return `Then ${currency}2.99/Week`;
     }
 
     setLanguage(lang) {
