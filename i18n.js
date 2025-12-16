@@ -71,8 +71,135 @@ const translations = {
         // Legal Page
         legal_title: "Rechtliches",
         legal_imprint_heading: "Impressum",
+        legal_imprint_content: `
+            <p><strong>Sophia Edu Labs GmbH</strong><br>
+            Murwiesenstrasse 43<br>
+            8057 Zürich</p>
+            
+            <p><strong>Kontakt:</strong><br>
+            E-Mail: friedrich@tutor.new</p>
+        `,
         legal_terms_heading: "AGB (Terms & Conditions)",
+        legal_terms_content: `
+            <p><strong>1. Einführung</strong></p>
+            <p>Diese Nutzungsbedingungen regeln die Nutzung der Plattform und Dienste von tutor.new. Durch den Zugriff auf unsere Website oder die Nutzung unserer Angebote erklärst du dich mit diesen Bedingungen einverstanden. Bitte lies sie sorgfältig durch. Wenn du nicht einverstanden bist, darfst du unsere Dienste nicht nutzen.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>2. Unsere Dienstleistungen</strong></p>
+            <p>Unsere Leistungen umfassen insbesondere:</p>
+            <ul>
+                <li>Bereitstellung von Online-Nachhilfe für Schüler:innen der Klassen 1–12, Uni und AusbildCung.</li>
+                <li>Organisation von Live-Unterrichtssitzungen per Zoom oder vergleichbaren Tools.</li>
+                <li>Nutzung von KI-gestützten Lernfunktionen, interaktiven Notizen und Lernverläufen.</li>
+                <li>Bereitstellung von Übungen, Lernmaterialien und Lernanalysen.</li>
+                <li>Kommunikation mit Eltern und Schüler:innen zur Koordination des Unterrichts.</li>
+                <li>Archivierung von vergangenen Lernmaterialien und Sessions.</li>
+            </ul>
+            
+            <p>⸻</p>
+            
+            <p><strong>3. Nutzungsbeschränkungen und Jugendschutz</strong></p>
+            <p><strong>Mindestalter und Einwilligung:</strong> Die Nutzung unserer Dienste durch Kinder unter 13 Jahren ist nicht gestattet. Minderjährige zwischen 13 und 17 Jahren dürfen den Dienst nur mit ausdrücklicher Zustimmung eines Erziehungsberechtigten nutzen.</p>
+            
+            <p>⸻</p>
+
+            <p><strong>4. Plattformen und Zugänglichkeit</strong></p>
+            <p>Die Dienste können über verschiedene Plattformen bereitgestellt werden, einschließlich Website, mobilen Diensten, Zoom, WhatsApp oder anderen Kommunikationskanälen. Wir bemühen uns, den Dienst jederzeit verfügbar zu halten, können dies aber nicht garantieren. Gelegentliche Unterbrechungen, Updates oder technische Wartungsarbeiten können auftreten.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>5. Kündigung und Beendigung</strong></p>
+            <p>Die Buchung von wöchentlichen Unterrichtseinheiten kann jederzeit beendet werden. Eltern können Sessions abbestellen oder pausieren.</p>
+        `,
         legal_privacy_heading: "Datenschutzerklärung",
+        legal_privacy_content: `
+            <p><strong>1. Einleitung</strong></p>
+            <p>Wir nehmen den Schutz deiner persönlichen Daten sehr ernst. In dieser Datenschutzerklärung erklären wir, welche Daten wir erheben, zu welchen Zwecken wir sie verwenden und welche Rechte du in Bezug auf deine Daten hast. Wir verarbeiten alle personenbezogenen Daten gemäß der geltenden Datenschutzgesetze, einschließlich der DSGVO.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>2. Verantwortliche Stelle</strong></p>
+            <p>Verantwortlich für die Verarbeitung deiner personenbezogenen Daten ist:</p>
+            <p>tutor.new<br>
+            Murwiesenstrasse 43, 8057 Zürich<br>
+            Kontakt: friedrich@tutor.new</p>
+            <p>Wenn du Fragen zum Datenschutz oder zur Datenverarbeitung hast, kannst du uns jederzeit kontaktieren.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>3. Welche Daten wir erheben</strong></p>
+            <p>Wir verarbeiten je nach Nutzung unserer Dienste insbesondere folgende Daten:</p>
+            <ul>
+                <li>Angaben, die du uns freiwillig zur Verfügung stellst (z. B. Name, E-Mail, Telefonnummer).</li>
+                <li>Daten aus der Nutzung unserer Dienste (z. B. Unterrichtsverlauf, Lernfortschritt, gebuchte Sessions).</li>
+                <li>Technische Daten (z. B. IP-Adresse, Geräteinformationen, Browsertyp).</li>
+                <li>Kommunikationsdaten (z. B. Nachrichten an unseren Support).</li>
+                <li>Abrechnungs- und Zahlungsinformationen, falls du eine kostenpflichtige Leistung buchst.</li>
+            </ul>
+            
+            <p>⸻</p>
+            
+            <p><strong>4. Zwecke der Datenverarbeitung</strong></p>
+            <p>Wir verarbeiten deine Daten zu folgenden Zwecken:</p>
+            <ul>
+                <li>Um dir unsere Lern- und Tutoringleistungen bereitzustellen.</li>
+                <li>Um deine Sessions zu organisieren, zu personalisieren und zu verbessern.</li>
+                <li>Zur Kommunikation mit dir (z. B. Terminbestätigungen, Support).</li>
+                <li>Zur Analyse und Optimierung unserer Plattform.</li>
+                <li>Um gesetzlichen Verpflichtungen nachzukommen.</li>
+                <li>Zum Schutz unserer Systeme und zur Missbrauchserkennung.</li>
+            </ul>
+            
+            <p>⸻</p>
+            
+            <p><strong>5. Rechtsgrundlagen der Verarbeitung</strong></p>
+            <p>Wir verarbeiten personenbezogene Daten ausschließlich auf Grundlage der gesetzlichen Erlaubnistatbestände, insbesondere:</p>
+            <ul>
+                <li>Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung) – z. B. Durchführung von Unterrichtssitzungen.</li>
+                <li>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) – z. B. Analyse-Tools, Newsletter.</li>
+                <li>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) – z. B. Verbesserung des Angebots, IT-Sicherheit.</li>
+                <li>Art. 6 Abs. 1 lit. c DSGVO (rechtliche Verpflichtung) – z. B. steuerliche Aufbewahrungspflichten.</li>
+            </ul>
+            
+            <p>⸻</p>
+            
+            <p><strong>6. Weitergabe von Daten</strong></p>
+            <p>Wir geben personenbezogene Daten nur weiter, wenn dies notwendig ist:</p>
+            <ul>
+                <li>an technische Dienstleister (z. B. Hosting, Videokonferenzen),</li>
+                <li>an Zahlungsdienstleister bei Buchung von Leistungen,</li>
+                <li>an Teammitglieder, die für die Bereitstellung der Lernangebote zuständig sind,</li>
+                <li>wenn gesetzliche Verpflichtungen dies erfordern.</li>
+            </ul>
+            <p>Eine Weitergabe an Dritte zu Werbezwecken findet nicht statt.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>7. Speicherdauer</strong></p>
+            <p>Wir speichern personenbezogene Daten nur so lange, wie dies für die jeweiligen Zwecke erforderlich ist oder wir rechtlich dazu verpflichtet sind. Nach Ablauf der Fristen werden die Daten gelöscht oder anonymisiert.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>8. Deine Rechte</strong></p>
+            <p>Du hast im Rahmen der DSGVO jederzeit folgende Rechte:</p>
+            <ul>
+                <li>Recht auf Auskunft über deine gespeicherten Daten.</li>
+                <li>Recht auf Berichtigung unrichtiger Daten.</li>
+                <li>Recht auf Löschung deiner Daten („Recht auf Vergessenwerden").</li>
+                <li>Recht auf Einschränkung der Verarbeitung.</li>
+                <li>Recht auf Datenübertragbarkeit (Datenexport).</li>
+                <li>Widerspruchsrecht gegen bestimmte Verarbeitungen.</li>
+                <li>Widerrufsrecht für erteilte Einwilligungen.</li>
+            </ul>
+            <p>Um eines dieser Rechte auszuüben, kontaktiere uns bitte direkt.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>9. Kontakt</strong></p>
+            <p>Wenn du Fragen zur Verarbeitung deiner Daten hast oder deine Datenschutzrechte ausüben möchtest, kannst du uns jederzeit unter der folgenden Adresse erreichen:</p>
+            <p>friedrich@tutor.new</p>
+        `,
 
         // Footer/Misc
         footer_copyright: "© 2023 tutor.new" // Example if needed
@@ -149,8 +276,135 @@ const translations = {
         // Legal Page
         legal_title: "Legal",
         legal_imprint_heading: "Imprint",
+        legal_imprint_content: `
+            <p><strong>Sophia Edu Labs GmbH</strong><br>
+            Murwiesenstrasse 43<br>
+            8057 Zürich, Switzerland</p>
+            
+            <p><strong>Contact:</strong><br>
+            Email: friedrich@tutor.new</p>
+        `,
         legal_terms_heading: "Terms & Conditions",
+        legal_terms_content: `
+            <p><strong>1. Introduction</strong></p>
+            <p>These terms and conditions govern the use of the tutor.new platform and services. By accessing our website or using our offerings, you agree to these terms. Please read them carefully. If you do not agree, you must not use our services.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>2. Our Services</strong></p>
+            <p>Our services include in particular:</p>
+            <ul>
+                <li>Provision of online tutoring for students in grades 1–12, university, and vocational training.</li>
+                <li>Organization of live teaching sessions via Zoom or comparable tools.</li>
+                <li>Use of AI-supported learning functions, interactive notes, and learning paths.</li>
+                <li>Provision of exercises, learning materials, and learning analytics.</li>
+                <li>Communication with parents and students to coordinate lessons.</li>
+                <li>Archiving of past learning materials and sessions.</li>
+            </ul>
+            
+            <p>⸻</p>
+            
+            <p><strong>3. Usage Restrictions and Youth Protection</strong></p>
+            <p><strong>Minimum age and consent:</strong> Use of our services by children under 13 is not permitted. Minors between 13 and 17 years of age may only use the service with the <strong>explicit consent</strong> of a parent or guardian.</p>
+            
+            <p>⸻</p>
+
+            <p><strong>4. Platforms and Accessibility</strong></p>
+            <p>The services may be provided via various platforms, including website, mobile services, Zoom, WhatsApp, or other communication channels. We strive to keep the service available at all times but cannot guarantee this. Occasional interruptions, updates, or technical maintenance may occur.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>5. Termination</strong></p>
+            <p>The booking of weekly lessons can be terminated at any time. Parents can cancel or pause sessions.</p>
+        `,
         legal_privacy_heading: "Privacy Policy",
+        legal_privacy_content: `
+            <p><strong>1. Introduction</strong></p>
+            <p>We take the protection of your personal data very seriously. In this privacy policy, we explain what data we collect, for what purposes we use it, and what rights you have regarding your data. We process all personal data in accordance with applicable data protection laws, including the GDPR.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>2. Responsible Body</strong></p>
+            <p>Responsible for the processing of your personal data is:</p>
+            <p>tutor.new<br>
+            Murwiesenstrasse 43, 8057 Zürich, Switzerland<br>
+            Contact: friedrich@tutor.new</p>
+            <p>If you have any questions about data protection or data processing, you can contact us at any time.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>3. Data We Collect</strong></p>
+            <p>Depending on your use of our services, we process the following data in particular:</p>
+            <ul>
+                <li>Information you voluntarily provide to us (e.g., name, email, phone number).</li>
+                <li>Data from the use of our services (e.g., lesson history, learning progress, booked sessions).</li>
+                <li>Technical data (e.g., IP address, device information, browser type).</li>
+                <li>Communication data (e.g., messages to our support).</li>
+                <li>Billing and payment information if you book a paid service.</li>
+            </ul>
+            
+            <p>⸻</p>
+            
+            <p><strong>4. Purposes of Data Processing</strong></p>
+            <p>We process your data for the following purposes:</p>
+            <ul>
+                <li>To provide you with our learning and tutoring services.</li>
+                <li>To organize, personalize, and improve your sessions.</li>
+                <li>To communicate with you (e.g., appointment confirmations, support).</li>
+                <li>To analyze and optimize our platform.</li>
+                <li>To comply with legal obligations.</li>
+                <li>For the protection of our systems and for abuse detection.</li>
+            </ul>
+            
+            <p>⸻</p>
+            
+            <p><strong>5. Legal Basis for Processing</strong></p>
+            <p>We process personal data exclusively based on statutory permission facts, in particular:</p>
+            <ul>
+                <li>Art. 6 (1) lit. b GDPR (Performance of contract) – e.g., conducting teaching sessions.</li>
+                <li>Art. 6 (1) lit. a GDPR (Consent) – e.g., analysis tools, newsletters.</li>
+                <li>Art. 6 (1) lit. f GDPR (Legitimate interest) – e.g., improvement of the offer, IT security.</li>
+                <li>Art. 6 (1) lit. c GDPR (Legal obligation) – e.g., tax retention obligations.</li>
+            </ul>
+            
+            <p>⸻</p>
+            
+            <p><strong>6. Data Sharing</strong></p>
+            <p>We only share personal data if this is necessary:</p>
+            <ul>
+                <li>with technical service providers (e.g., hosting, video conferencing),</li>
+                <li>with payment service providers when booking services,</li>
+                <li>with team members responsible for providing the learning offers,</li>
+                <li>if legal obligations require this.</li>
+            </ul>
+            <p>Data is not passed on to third parties for advertising purposes.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>7. Retention Period</strong></p>
+            <p>We store personal data only as long as necessary for the respective purposes or as legally required. After the deadlines expire, the data is deleted or anonymized.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>8. Your Rights</strong></p>
+            <p>Under the GDPR, you have the following rights at any time:</p>
+            <ul>
+                <li>Right to information about your stored data.</li>
+                <li>Right to correction of incorrect data.</li>
+                <li>Right to deletion of your data ("Right to be forgotten").</li>
+                <li>Right to restriction of processing.</li>
+                <li>Right to data portability (data export).</li>
+                <li>Right to objection against certain processing.</li>
+                <li>Right of withdrawal for given consents.</li>
+            </ul>
+            <p>To exercise any of these rights, please contact us directly.</p>
+            
+            <p>⸻</p>
+            
+            <p><strong>9. Contact</strong></p>
+            <p>If you have questions about the processing of your data or wish to exercise your data protection rights, you can reach us at any time at the following address:</p>
+            <p>friedrich@tutor.new</p>
+        `,
     }
 };
 
