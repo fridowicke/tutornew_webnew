@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preise - tutor.new</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --accent-color: #1f4c7a;
+            --boost-color: #7a5c18;
+            --boost-bg: #fffbeb;
+            --coin-color: #f59e0b;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.1rem;
+            color: var(--text-color);
+            display: inline-block;
+            transform: rotate(-1deg);
+        }
+
+        .pricing-subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Slider Styles */
+        .slider-container {
+            background: white;
+            padding: 1rem;
+            border: 3px solid var(--text-color);
+            border-radius: 15px;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+            transform: rotate(0.5deg);
+        }
+
+        .slider-label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .hours-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+            margin: 0.5rem 0;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 12px;
+            cursor: pointer;
+            background: #e2e8f0;
+            border-radius: 6px;
+            border: 2px solid var(--text-color);
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -11px;
+            border: 3px solid var(--text-color);
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Side-by-side even on mobile */
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-card {
+            background-color: white;
+            border: 3px solid var(--text-color);
+            border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+            padding: 1rem; /* More compact padding */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            box-shadow: 5px 5px 0px rgba(14, 51, 34, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        @media (max-width: 480px) {
+            .option-title {
+                font-size: 1.1rem; /* Smaller font on mobile */
+            }
+            .option-price {
+                font-size: 1.4rem; /* Smaller price on mobile */
+                margin: 0.4rem 0;
+            }
+            .option-period {
+                font-size: 0.8rem;
+            }
+            .coin-text {
+                font-size: 0.8rem;
+            }
+            .coin {
+                width: 16px; /* Smaller coins on mobile */
+                height: 16px;
+            }
+            .coin::after {
+                font-size: 8px;
+            }
+            .explanation-text {
+                font-size: 0.75rem;
+                margin-bottom: 0.8rem;
+            }
+            .cancel-badge {
+                font-size: 0.65rem;
+                padding: 2px 6px;
+            }
+            .option-card.boost div[style*="position: absolute"] {
+                font-size: 0.7rem !important; /* Smaller badge */
+                padding: 3px 8px !important;
+                top: -10px !important;
+                right: -10px !important;
+            }
+            .slider-container {
+                padding: 0.8rem;
+                margin-bottom: 1.5rem;
+            }
+            .hours-display {
+                font-size: 1.6rem;
+            }
+        }
+
+        .option-card.boost {
+            background-color: var(--boost-bg);
+            border-color: var(--boost-color);
+            transform: rotate(1deg);
+        }
+
+        .option-card.standard {
+            transform: rotate(-1deg);
+        }
+
+        .option-title {
+            font-size: 1.3rem; /* Even more compact */
+            margin: 0;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .option-price {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin: 0.3rem 0;
+            color: var(--text-color);
+        }
+
+        .option-period {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: -0.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Coin Visualization */
+        .coin-viz {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px; /* More compact gap */
+            margin-bottom: 0.8rem;
+            min-height: 40px;
+            align-content: center;
+            padding: 8px;
+            background: rgba(255,255,255,0.4);
+            border: 2px dashed rgba(0,0,0,0.1);
+            border-radius: 12px;
+            width: 100%;
+        }
+
+        @media (max-width: 480px) {
+            .coin-viz {
+                gap: 2px; /* Even tighter on mobile */
+                padding: 4px;
+                min-height: 30px;
+            }
+        }
+
+        .coin {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border: 2px solid #b45309;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            box-shadow: 1px 2px 0px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .coin::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 5px;
+            height: 2.5px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            transform: rotate(-45deg);
+        }
+
+        .coin::after {
+            content: '★';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            color: #b45309;
+        }
+
+        .coin:hover {
+            transform: scale(1.2) translateY(-3px);
+            z-index: 10;
+        }
+
+        .coin-text {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .explanation-text {
+            font-size: 0.8rem;
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .cancel-badge {
+            background-color: #e6f4dc;
+            color: #3a6621;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-top: auto;
+        }
+
+        .boost .cancel-badge {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Prepaid Section */
+        .prepaid-section {
+            margin-top: 1.5rem;
+            padding: 1.2rem;
+            background-color: #e0f0f7;
+            border: 2px dashed #1f4c7a;
+            border-radius: 15px;
+            transform: rotate(-0.5deg);
+        }
+
+        .prepaid-title {
+            font-size: 1.2rem;
+            margin: 0 0 0.8rem 0;
+            color: #1f4c7a;
+            text-align: center;
+        }
+
+        .prepaid-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .prepaid-item {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #1f4c7a;
+            box-shadow: 2px 2px 0px rgba(31, 76, 122, 0.2);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.6;
+        }
+
+        .back-link:hover { opacity: 1; }
+
+        .cta-container {
+            text-align: center;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link" data-i18n="nav_back">← Zurück zur Startseite</a>
+        </header>
+        
+        <h1 data-i18n="pricing_title">Preise</h1>
+        <p class="pricing-subtitle" data-i18n="pricing_subtitle">Einfach und transparent. Wähle das passende Paket für dich.</p>
+
+        <div class="comparison-grid">
+            <!-- Standard Card -->
+            <div class="option-card standard">
+                <h2 class="option-title" data-i18n="pricing_regular_title">Standard Abo</h2>
+                <div class="option-price" id="standardPrice">2.99€</div>
+                <div class="option-period">/ <span data-i18n="pricing_per_week">Woche</span></div>
+                
+                <div class="coin-text" data-i18n="pricing_standard_coins">Belohnungssystem</div>
+                <div class="coin-viz" id="standardCoins">
+                    <!-- Coins injected by JS -->
+                </div>
+                
+                <p class="explanation-text" data-i18n="pricing_regular_feature">Inklusive Belohnungen zur Motivation</p>
+                <div class="cancel-badge" data-i18n="pricing_cancel_anytime">Jederzeit kündbar</div>
+            </div>
+
+            <!-- Boost Card -->
+            <div class="option-card boost">
+                <div style="position: absolute; top: -15px; right: -15px; background: #0e3322; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; transform: rotate(15deg); font-size: 0.9rem; box-shadow: 2px 2px 0px rgba(0,0,0,0.2);" data-i18n="pricing_boost_coins">Extra Motivation</div>
+                <h2 class="option-title" data-i18n="pricing_boost_title">Mehr Motivation</h2>
+                <div class="option-price" id="boostPrice">8.99€</div>
+                <div class="option-period">/ <span data-i18n="pricing_per_week">Woche</span></div>
+                
+                <div class="coin-text" data-i18n="pricing_boost_coins">Maximaler Anreiz</div>
+                <div class="coin-viz" id="boostCoins">
+                    <!-- Coins injected by JS -->
+                </div>
+                
+                <p class="explanation-text" data-i18n="pricing_boost_feature">3x so viele Belohnungen für maximale Motivation!</p>
+                <div class="cancel-badge" data-i18n="pricing_cancel_anytime">Jederzeit kündbar</div>
+            </div>
+        </div>
+
+        <!-- Hours Slider -->
+        <div class="slider-container">
+            <label class="slider-label" data-i18n="pricing_slider_label">Wie viele Stunden pro Woche willst du lernen?</label>
+            <div class="hours-display"><span id="hoursValue">1</span> <span data-i18n="pricing_hours">Stunde/Woche</span></div>
+            <input type="range" id="hoursSlider" min="1" max="5" value="1" step="1">
+        </div>
+
+        <p style="text-align: center; font-size: 0.95rem; opacity: 0.9; max-width: 450px; margin: 0 auto 1.5rem; line-height: 1.4; font-style: italic;" data-i18n="pricing_coins_explanation">
+            Dein Kind bekommt kleine Belohnungen pro Lernminute. Mehr Belohnungen = mehr Motivation = längere Lernzeiten.
+        </p>
+
+        <!-- Prepaid Section -->
+        <div class="prepaid-section">
+            <h2 class="prepaid-title" data-i18n="pricing_prepaid_title">Prepaid Lerneinheiten</h2>
+            <div class="prepaid-grid">
+                <div class="prepaid-item">
+                    <div style="font-weight: bold; font-size: 1.1rem;" data-i18n="pricing_prepaid_1h">1 Stunde</div>
+                    <div style="font-size: 1.3rem; margin-top: 0.3rem;">5.00€</div>
+                </div>
+                <div class="prepaid-item">
+                    <div style="font-weight: bold; font-size: 1.1rem;" data-i18n="pricing_prepaid_10h">10 Stunden</div>
+                    <div style="font-size: 1.3rem; margin-top: 0.3rem;">40.00€</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-container">
+            <a href="https://duck.tutor.new" class="cta-button-secondary" data-i18n="cta_button_secondary">→ Kostenlos testen</a>
+        </div>
+    </div>
+    
+    <script src="i18n.js"></script>
+    <script>
+        const slider = document.getElementById('hoursSlider');
+        const hoursValue = document.getElementById('hoursValue');
+        const standardPrice = document.getElementById('standardPrice');
+        const boostPrice = document.getElementById('boostPrice');
+        const standardCoinsContainer = document.getElementById('standardCoins');
+        const boostCoinsContainer = document.getElementById('boostCoins');
+
+        const prices = {
+            standard: [2.99, 4.99, 6.99, 8.99, 10.99],
+            boost: [8.99, 14.99, 20.99, 26.99, 32.99]
+        };
+
+        function updatePricing() {
+            const val = parseInt(slider.value);
+            hoursValue.textContent = val;
+            
+            // Update prices
+            const isDe = document.documentElement.lang === 'de';
+            const currency = window.i18n ? window.i18n.getCurrency() : '€';
+            
+            const formatPrice = (price) => {
+                return isDe ? `${price.toFixed(2)}${currency}` : `${currency}${price.toFixed(2)}`;
+            };
+
+            standardPrice.textContent = formatPrice(prices.standard[val-1]);
+            boostPrice.textContent = formatPrice(prices.boost[val-1]);
+
+            // Update hours label (singular/plural)
+            const hoursLabel = document.querySelector('.hours-display [data-i18n="pricing_hours"]');
+            if (hoursLabel) {
+                if (isDe) {
+                    hoursLabel.textContent = val === 1 ? 'Stunde/Woche' : 'Stunden/Woche';
+                } else {
+                    hoursLabel.textContent = val === 1 ? 'Hour/Week' : 'Hours/Week';
+                }
+            }
+
+            // Update coins visualization
+            updateCoins(val);
+        }
+
+        function updateCoins(hours) {
+            standardCoinsContainer.innerHTML = '';
+            boostCoinsContainer.innerHTML = '';
+            
+            // Standard: 1 coin per hour
+            for(let i=0; i<hours; i++) {
+                const coin = document.createElement('div');
+                coin.className = 'coin';
+                standardCoinsContainer.appendChild(coin);
+            }
+
+            // Boost: 3 coins per hour
+            const boostCount = hours * 3;
+            for(let i=0; i<boostCount; i++) {
+                const coin = document.createElement('div');
+                coin.className = 'coin';
+                boostCoinsContainer.appendChild(coin);
+            }
+        }
+
+        slider.addEventListener('input', updatePricing);
+        
+        // Initial update
+        window.addEventListener('load', () => {
+            // Wait a bit for i18n to initialize if needed
+            setTimeout(updatePricing, 100);
+        });
+    </script>
+</body>
+</html>

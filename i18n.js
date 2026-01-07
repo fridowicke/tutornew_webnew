@@ -38,6 +38,28 @@ const translations = {
         price_highlight: "Dann 2.99€/Woche",
         price_sub: "Jederzeit kündbar",
         cta_button_secondary: "→ Kostenlos testen",
+
+        // Pricing Page
+        pricing_title: "Preise",
+        pricing_subtitle: "Einfach und transparent. Wähle das passende Paket für dich.",
+        pricing_regular_title: "Standard Abo",
+        pricing_regular_subtitle: "Alles Wichtige für den Lernerfolg",
+        pricing_boost_title: "Mehr Motivation & Belohnungen",
+        pricing_boost_subtitle: "Höherer Anreiz für schnellere Fortschritte",
+        pricing_prepaid_title: "Prepaid Lerneinheiten",
+        pricing_prepaid_subtitle: "Einmalig kaufen, flexibel nutzen",
+        pricing_hours: "Stunde/Woche",
+        pricing_cancel_anytime: "Jederzeit kündbar",
+        pricing_prepaid_1h: "1 Stunde",
+        pricing_prepaid_10h: "10 Stunden",
+        pricing_boost_feature: "3x mehr Belohnungen",
+        pricing_regular_feature: "Belohnungen inklusive",
+        pricing_coins_explanation: "Dein Kind bekommt kleine Belohnungen pro Lernminute. Mehr Belohnungen = mehr Motivation = längere Lernzeiten.",
+        pricing_slider_label: "Wie viele Stunden pro Woche soll gelernt werden?",
+        pricing_standard_coins: "Belohnungen für Lernmotivation",
+        pricing_boost_coins: "Extra Motivation",
+        pricing_per_week: "Woche",
+        nav_pricing: "Preise",
         
         // So funktioniert's Page
         how_title: "So funktioniert's",
@@ -243,6 +265,28 @@ const translations = {
         price_highlight: "Then $2.99/Week", // Will be replaced with locale-based currency
         price_sub: "Cancel anytime",
         cta_button_secondary: "→ Try for free",
+
+        // Pricing Page
+        pricing_title: "Pricing",
+        pricing_subtitle: "Simple and transparent. Choose the plan that fits best.",
+        pricing_regular_title: "Standard Plan",
+        pricing_regular_subtitle: "Everything needed for learning success",
+        pricing_boost_title: "More Motivation & Rewards",
+        pricing_boost_subtitle: "Higher incentive for faster progress",
+        pricing_prepaid_title: "Prepaid Lessons",
+        pricing_prepaid_subtitle: "Buy once, use flexibly",
+        pricing_hours: "Hour/Week",
+        pricing_cancel_anytime: "Cancel anytime",
+        pricing_prepaid_1h: "1 Hour",
+        pricing_prepaid_10h: "10 Hours",
+        pricing_boost_feature: "3x more rewards",
+        pricing_regular_feature: "Includes rewards",
+        pricing_coins_explanation: "Your child receives small rewards per learning minute. More rewards = more motivation = longer learning sessions.",
+        pricing_slider_label: "How many hours per week should they learn?",
+        pricing_standard_coins: "Rewards for motivation",
+        pricing_boost_coins: "Extra Motivation",
+        pricing_per_week: "week",
+        nav_pricing: "Pricing",
         
         // So funktioniert's Page
         how_title: "How it works",
@@ -465,8 +509,9 @@ class I18n {
 
     getPriceText() {
         const currency = this.getCurrency();
-        // Base price is 2.99, adjust if needed for different currencies
-        // For now, keeping 2.99 for all currencies (you can adjust conversion rates later)
+        if (this.currentLang === 'de') {
+            return `Dann 2.99${currency}/Woche`;
+        }
         return `Then ${currency}2.99/Week`;
     }
 

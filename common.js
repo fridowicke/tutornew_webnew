@@ -23,6 +23,7 @@ const navigationHTML = {
             <div class="mobile-menu-header" onclick="toggleMenu()">tutor.new</div>
             <div class="mobile-menu-links">
                 <a href="so-funktionierts.html" class="nav-link link-how" data-i18n="nav_how">So funktioniert's</a>
+                <a href="pricing.html" class="nav-link link-faq" data-i18n="nav_pricing" style="background-color: #e0f0f7; color: #1f4c7a; border-color: #1f4c7a;">Preise</a>
                 <a href="faq.html" class="nav-link link-faq" data-i18n="nav_faq">FAQ</a>
                 <a href="ueber-uns.html" class="nav-link link-about" data-i18n="nav_about">Über uns</a>
                 <a href="impressum-agb.html" class="nav-link link-legal" data-i18n="nav_legal">Impressum & AGB</a>
@@ -36,6 +37,7 @@ const navigationHTML = {
             <button class="logo-btn" onclick="toggleMenu()">tutor.new</button>
             <nav class="nav-menu" id="navMenu">
                 <a href="so-funktionierts.html" class="nav-link link-how" data-i18n="nav_how">So funktioniert's</a>
+                <a href="pricing.html" class="nav-link link-faq" data-i18n="nav_pricing" style="background-color: #e0f0f7; color: #1f4c7a; border-color: #1f4c7a;">Preise</a>
                 <a href="faq.html" class="nav-link link-faq" data-i18n="nav_faq">FAQ</a>
                 <a href="ueber-uns.html" class="nav-link link-about" data-i18n="nav_about">Über uns</a>
                 <a href="impressum-agb.html" class="nav-link link-legal" data-i18n="nav_legal">Impressum & AGB</a>
