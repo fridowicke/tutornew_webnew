@@ -1,5 +1,8 @@
 const translations = {
     de: {
+        // Page Title
+        page_title: "tutor.new - Lerne mit der KI, verdiene echte Belohnungen",
+        
         // Navigation
         nav_how: "So funktioniert's",
         nav_faq: "FAQ",
@@ -10,18 +13,22 @@ const translations = {
         // Hero
         hero_title_pre: "Lerne mit der",
         hero_title_highlight: "KI,",
-        hero_subtitle_pre: "die",
-        hero_subtitle_highlight: "schöne Notizen",
-        hero_subtitle_post: "erstellt",
+        hero_subtitle_pre: "verdiene",
+        hero_subtitle_highlight: "echte Belohnungen",
+        hero_subtitle_post: "",
         
         // Steps
         step_1_heading: "Starte, wo du es brauchst",
-        step_1_content: "Lade ein Foto vom Arbeitsblatt oder dem Buch hoch, oder sag der KI, was du nicht gecheckt hast. Wir erkennen das Thema und helfen dir, genau wo du es brauchst.",
-        step_2_heading: "Lern mit der KI",
-        step_2_content: "Du sprichst im (Voice-)chat mit der KI. Gemeinsam löst ihr Aufgaben (deine mitgebrachten, oder von der KI ausgesuchte), und du erhältst geduldge Erklärungen und Antworten auf all deine Fragen.",
-        step_3_heading: "Nimm die Mitschrift mit!",
-        step_3_content: "Während dem Lernen erstellt die KI strukturierte Notizen mit Visualisierungen für dich. Du kannst sie jederzeit bearbeiten und zum Lernen runterladen.",
+        step_1_content: "Lade ein Foto vom Arbeitsblatt hoch oder sag der KI, was du nicht verstehst. Wir helfen dir genau da, wo du gerade hängst.",
+        step_2_heading: "Lern mit der KI & sammle Coins",
+        step_2_content: "Du sprichst im (Voice-)chat mit der KI. Gemeinsam löst ihr Aufgaben und erhältst geduldige Erklärungen. Für jeden Lernfortschritt belohnt dich die KI sofort mit wertvollen Coins.",
+        step_3_heading: "Echte Belohnungen",
+        step_3_content: "Tausche deine gesammelten Coins gegen digitale Awards in der App oder echte Belohnungen ein, die wir dir direkt per Post nach Hause schicken.",
         
+        // Feature Section
+        features_notes_title: "Mitschrift & Übungen",
+        features_notes_content: "Während du lernst, erstellt die KI strukturierte Notizen und generiert automatisch passende Übungsaufgaben zum Download – perfekt für deine Prüfungsvorbereitung.",
+
         // Examples
         examples_title: "Wann hilft dir das?",
         example_1_text: "\"Ich versteh die Hausaufgaben nicht\"",
@@ -227,6 +234,9 @@ const translations = {
         footer_copyright: "© 2023 tutor.new" // Example if needed
     },
     en: {
+        // Page Title
+        page_title: "tutor.new - Learn with our AI, earn real rewards",
+
         // Navigation
         nav_how: "How it works",
         nav_faq: "FAQ",
@@ -235,20 +245,24 @@ const translations = {
         nav_back: "← Back to home",
         
         // Hero
-        hero_title_pre: "Learn with the",
-        hero_title_highlight: "AI",
-        hero_subtitle_pre: "that creates",
-        hero_subtitle_highlight: "beautiful notes",
-        hero_subtitle_post: "", // Empty in English structure if needed, or adjust flow
+        hero_title_pre: "Learn with our",
+        hero_title_highlight: "AI,",
+        hero_subtitle_pre: "earn",
+        hero_subtitle_highlight: "real rewards",
+        hero_subtitle_post: "",
         
         // Steps
         step_1_heading: "Start where you need it",
-        step_1_content: "Upload a photo of your worksheet or book, or tell the AI what you didn't get. We identify the topic and help you exactly where you need it.",
-        step_2_heading: "Learn with the AI",
-        step_2_content: "You talk in (voice) chat with the AI. Together you solve problems (yours or ones picked by the AI), and you get patient explanations and answers to all your questions.",
-        step_3_heading: "Take the notes with you!",
-        step_3_content: "While learning, the AI creates structured notes with visualizations for you. You can edit them anytime and download them to study.",
-        
+        step_1_content: "Upload a photo of your worksheet or tell the AI what you don't understand. We help you exactly where you're stuck.",
+        step_2_heading: "Learn with AI & earn coins",
+        step_2_content: "You talk in (voice) chat with the AI. Together you solve tasks and get patient explanations. For every learning progress, the AI rewards you immediately with valuable coins.",
+        step_3_heading: "Real Rewards",
+        step_3_content: "Exchange your collected coins for digital awards in the app or real rewards sent directly to your home by mail.",
+
+        // Feature Section
+        features_notes_title: "Notes & Exercises",
+        features_notes_content: "While you learn, the AI creates structured notes and automatically generates suitable practice exercises for download – perfect for your exam preparation.",
+
         // Examples
         examples_title: "When does this help?",
         example_1_text: "\"I don't understand the homework\"",
@@ -525,6 +539,11 @@ class I18n {
     }
 
     updateContent() {
+        // Update Document Title
+        if (translations[this.currentLang]['page_title']) {
+            document.title = translations[this.currentLang]['page_title'];
+        }
+
         const elements = document.querySelectorAll('[data-i18n]');
         elements.forEach(element => {
             const key = element.getAttribute('data-i18n');
