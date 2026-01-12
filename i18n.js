@@ -25,26 +25,45 @@ const translations = {
         step_3_heading: "Echte Belohnungen",
         step_3_content: "Tausche deine gesammelten Coins gegen digitale Awards in der App oder echte Belohnungen ein, die wir dir direkt per Post nach Hause schicken.",
         
-        // Feature Section
-        features_notes_title: "Mitschrift & Übungen",
-        features_notes_content: "Während du lernst, erstellt die KI strukturierte Notizen und generiert automatisch passende Übungsaufgaben zum Download – perfekt für deine Prüfungsvorbereitung.",
+        // Why it works section
+        why_works_title: "Warum es funktioniert",
+        why_didactics_title: "Didaktik",
+        why_didactics_text: "Durch einen personalisierten Tutor, interaktive Visualisierungen sowie automatische Mitschriften und Quizze lernt es sich leichter und effektiver.",
+        why_motivation_title: "Motivation",
+        why_motivation_text: "Regelmäßiges Lernen mit Zuspruch, das Sammeln von Coins für gute Leistungen und das Erhalten von echten Belohnungen sorgen für dauerhaften Lernerfolg.",
+        why_learn_more: "Mehr erfahren",
 
         // Examples
-        examples_title: "Wann hilft dir das?",
-        example_1_text: "\"Ich versteh die Hausaufgaben nicht\"",
-        example_1_highlight: "→ Hochladen & gemeinsam lösen",
-        example_2_text: "\"Der Test ist morgen\"",
-        example_2_highlight: "→ Gezielte Vorbereitung",
-        example_3_text: "\"Ich will eine Sprache lernen\"",
-        example_3_highlight: "→ Konversation & Vokabeln üben",
-        example_4_text: "\"Ich häng total hinterher\"",
-        example_4_highlight: "→ Aufholen in deinem Tempo",
+        examples_title: "Wem hilft das?",
+        example_1_text: "Schüler",
+        example_1_highlight: "Erklären, Lernen, Üben",
+        example_2_text: "Eltern",
+        example_2_highlight: "Motivierende Lernbegleitung",
+        example_3_text: "Schulen und Lehrer",
+        example_3_highlight: "Optimale Individualförderung",
+        example_4_text: "Uni, Ausbildung, Sprachen, ...",
+        example_4_highlight: "Leben fürs Lernen",
         
         // Pricing
         cta_sticker: "Gratis testen",
         price_highlight: "Dann 2.99€/Woche",
         price_sub: "Jederzeit kündbar",
         cta_button_secondary: "→ Kostenlos testen",
+        cta_start_now: "Jetzt starten",
+        cta_rewards_learn_more: "Belohnungen entdecken",
+
+        // Pricing Preview (Homepage)
+        pricing_preview_title: "Wähle das passende Paket",
+        plan_prepaid_title: "Prepaid",
+        plan_prepaid_desc: "Volle Flexibilität ohne Bindung",
+        plan_prepaid_price: "ab 5€ / Stunde",
+        plan_standard_title: "Standard Abo",
+        plan_standard_desc: "Wöchentliche Lerneinheit zum Sparpreis",
+        plan_standard_price: "ab 2.99€ / Woche",
+        plan_boost_title: "Boost Abo",
+        plan_boost_desc: "Extra Motivation durch 3x mehr Belohnungen",
+        plan_boost_price: "ab 8.99€ / Woche",
+        pricing_preview_cta: "Alle Preise & Details ansehen →",
 
         // Pricing Page
         pricing_title: "Preise",
@@ -88,6 +107,16 @@ const translations = {
         faq_q4: "Ist die KI immer richtig?",
         faq_a4: "Unsere KI ist sehr fortgeschritten, aber wie auch echte Lehrer können Fehler passieren. Wir arbeiten ständig daran, die Genauigkeit zu verbessern.",
         
+        // Rewards Page
+        rewards_title: "Belohnungen bei tutor.new",
+        rewards_intro: "Lernen zahlt sich aus! Sammle Coins während deiner Lernsitzungen und tausche sie gegen tolle Belohnungen.",
+        rewards_step_1_title: "1. Coins verdienen",
+        rewards_step_1_text: "Für jede Minute, die du konzentriert mit der KI lernst, erhältst du Coins. Je mehr du lernst, desto schneller füllt sich dein Konto.",
+        rewards_step_2_title: "2. Digitale Awards",
+        rewards_step_2_text: "Schalte exklusive Abzeichen und Profilelemente frei. Zeig allen, was du erreicht hast!",
+        rewards_step_3_title: "3. Echte Geschenke",
+        rewards_step_3_text: "Das Beste: Tausche deine Coins gegen echte Belohnungen wie Gutscheine oder kleine Geschenke ein, die wir dir direkt per Post nach Hause schicken.",
+
         // About Page
         about_title: "Über tutor.new",
         about_intro_heading: "Hallo! 👋🏻",
@@ -96,6 +125,12 @@ const translations = {
         about_history_p1: "Wir beide hatten schon immer eine Leidenschaft fürs Unterrichten. Während unseres Studiums an der ETH Zürich stellten wir fest, dass viele Studierende nicht kämpften, weil ihnen die Fähigkeiten fehlten, sondern weil sie personalisierte Aufmerksamkeit und Unterstützung brauchten, die traditionelle Bildungssysteme nicht bieten konnten.",
         about_history_p2: "Wir erkannten, dass KI-Technologie diese Lücke schließen könnte - intelligente Tutoren schaffen, die sich an den einzigartigen Lernstil, das Tempo und die Bedürfnisse jedes Schülers anpassen. So entstand tutor.new.",
         about_history_p3: "Heute sind wir stolz darauf, Schülern aller Bildungsebenen dabei zu helfen, ihre Ziele durch personalisierte KI-Nachhilfe zu erreichen.",
+        
+        // Homepage About Section
+        homepage_about_title: "Über uns",
+        homepage_about_founders: "Wir sind Gero und Friedrich, Mathematiker und Informatiker in Zürich.",
+        homepage_about_goal: "Unser Ziel: Allen Schüler:innen helfen, ihre Talente auszuleben.",
+        homepage_about_media: "Bekannt aus:",
         
         // Legal Page
         legal_title: "Rechtliches",
@@ -259,26 +294,45 @@ const translations = {
         step_3_heading: "Real Rewards",
         step_3_content: "Exchange your collected coins for digital awards in the app or real rewards sent directly to your home by mail.",
 
-        // Feature Section
-        features_notes_title: "Notes & Exercises",
-        features_notes_content: "While you learn, the AI creates structured notes and automatically generates suitable practice exercises for download – perfect for your exam preparation.",
+        // Why it works section
+        why_works_title: "Why it works",
+        why_didactics_title: "Didactics",
+        why_didactics_text: "Learn more effectively with a personalized tutor, interactive visualizations, and automatic lesson notes and quizzes.",
+        why_motivation_title: "Motivation",
+        why_motivation_text: "Achieve long-term success through regular lessons with encouragement, earning coins for performance, and receiving real rewards.",
+        why_learn_more: "Learn more",
 
         // Examples
-        examples_title: "When does this help?",
-        example_1_text: "\"I don't understand the homework\"",
-        example_1_highlight: "→ Upload & solve together",
-        example_2_text: "\"The test is tomorrow\"",
-        example_2_highlight: "→ Targeted preparation",
-        example_3_text: "\"I want to learn a language\"",
-        example_3_highlight: "→ Practice conversation & vocab",
-        example_4_text: "\"I'm totally behind\"",
-        example_4_highlight: "→ Catch up at your own pace",
+        examples_title: "Who does this help?",
+        example_1_text: "Students",
+        example_1_highlight: "Practice, repetition, exam prep",
+        example_2_text: "Parents",
+        example_2_highlight: "Tutoring, motivation, progress",
+        example_3_text: "Schools and Teachers",
+        example_3_highlight: "Individualized support and additional offering",
+        example_4_text: "Uni, vocational training, languages, ...",
+        example_4_highlight: "Life for learning",
         
         // Pricing
         cta_sticker: "Try for free",
         price_highlight: "Then $2.99/Week", // Will be replaced with locale-based currency
         price_sub: "Cancel anytime",
         cta_button_secondary: "→ Try for free",
+        cta_start_now: "Start now",
+        cta_rewards_learn_more: "Discover rewards",
+
+        // Pricing Preview (Homepage)
+        pricing_preview_title: "Choose your plan",
+        plan_prepaid_title: "Prepaid",
+        plan_prepaid_desc: "Full flexibility, no commitment",
+        plan_prepaid_price: "from 5€ / hour",
+        plan_standard_title: "Standard Plan",
+        plan_standard_desc: "Weekly lesson at a better price",
+        plan_standard_price: "from 2.99€ / week",
+        plan_boost_title: "Boost Plan",
+        plan_boost_desc: "Higher motivation through 3x more rewards",
+        plan_boost_price: "from 8.99€ / week",
+        pricing_preview_cta: "View all prices & details →",
 
         // Pricing Page
         pricing_title: "Pricing",
@@ -322,6 +376,16 @@ const translations = {
         faq_q4: "Is the AI always right?",
         faq_a4: "Our AI is very advanced, but like real teachers, mistakes can happen. We are constantly working to improve accuracy.",
         
+        // Rewards Page
+        rewards_title: "Rewards at tutor.new",
+        rewards_intro: "Learning pays off! Collect coins during your study sessions and exchange them for great rewards.",
+        rewards_step_1_title: "1. Earn Coins",
+        rewards_step_1_text: "For every minute you spend focusing on learning with the AI, you receive coins. The more you learn, the faster your account fills up.",
+        rewards_step_2_title: "2. Digital Awards",
+        rewards_step_2_text: "Unlock exclusive badges and profile elements. Show everyone what you've achieved!",
+        rewards_step_3_title: "3. Real Gifts",
+        rewards_step_3_text: "The best part: Exchange your coins for real rewards like vouchers or small gifts that we send directly to your home by mail.",
+
         // About Page
         about_title: "About tutor.new",
         about_intro_heading: "Hello! 👋🏻",
@@ -330,6 +394,12 @@ const translations = {
         about_history_p1: "We both always had a passion for teaching. During our studies at ETH Zurich, we noticed that many students struggled not because they lacked the ability, but because they needed personalized attention and support that traditional education systems couldn't provide.",
         about_history_p2: "We realized that AI technology could bridge this gap - creating intelligent tutors that adapt to each student's unique learning style, pace, and needs. Thus, tutor.new was born.",
         about_history_p3: "Today, we are proud to help students of all education levels achieve their goals through personalized AI tutoring.",
+
+        // Homepage About Section
+        homepage_about_title: "About us",
+        homepage_about_founders: "We are Gero and Friedrich, mathematicians and computer scientists in Zurich.",
+        homepage_about_goal: "Our goal: Helping all students live out their talents.",
+        homepage_about_media: "As seen in:",
 
         // Legal Page
         legal_title: "Legal",
