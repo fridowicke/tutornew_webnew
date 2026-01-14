@@ -7,6 +7,7 @@ const translations = {
         nav_how: "So funktioniert's",
         nav_faq: "FAQ",
         nav_about: "Über uns",
+        nav_didactics: "Didaktik",
         nav_legal: "Impressum & AGB",
         nav_back: "← Zurück zur Startseite",
         
@@ -21,10 +22,22 @@ const translations = {
         step_1_heading: "Starte, wo du es brauchst",
         step_1_content: "Lade ein Foto vom Arbeitsblatt hoch oder sag der KI, was du nicht verstehst. Wir helfen dir genau da, wo du gerade hängst.",
         step_2_heading: "Lern mit der KI & sammle Coins",
-        step_2_content: "Du sprichst im (Voice-)chat mit der KI. Gemeinsam löst ihr Aufgaben und erhältst geduldige Erklärungen. Für jeden Lernfortschritt belohnt dich die KI sofort mit wertvollen Coins.",
+        step_2_content: "Lerne im Voice-Modus und erhalte Coins für gelöste Aufgaben, Fleiß und gute Leistungen. Die KI motiviert dich bei jedem Schritt!",
         step_3_heading: "Echte Belohnungen",
-        step_3_content: "Tausche deine gesammelten Coins gegen digitale Awards in der App oder echte Belohnungen ein, die wir dir direkt per Post nach Hause schicken.",
+        step_3_content: "Tausche deine Coins im Shop gegen coole Belohnungen (z.B. AirPods!) ein. Wir schicken sie dir direkt per Post nach Hause.",
         
+        // Didactics Page
+        didactics_title: "Unsere Didaktik",
+        didactics_subtitle: "Wie wir das Lernen revolutionieren",
+        didactics_1_title: "Personalisiertes Lernmodell",
+        didactics_1_text: "Du wählst einen Tutor. Er verfolgt deine Ziele, Fehler, Stärken und dein Tempo. Jede Sitzung baut auf der letzten auf.",
+        didactics_2_title: "Arbeite an dem, was du wirklich brauchst",
+        didactics_2_text: "Lade Schulbücher, Arbeitsblätter, Prüfungen oder Notizen hoch. Der Tutor unterrichtet direkt mit deinem Material. Kein generischer Lehrplan, nur das, was für dich zählt.",
+        didactics_3_title: "Von der Lektion zur Meisterschaft",
+        didactics_3_text: "Live-Notizen mit klaren Visualisierungen während der Lektion. Ein-Klick-PDFs nach der Sitzung. Automatisch generierte Übungen und Karteikarten. Übe alles direkt in der App.",
+        didactics_4_title: "Forschungsbasierte Didaktik",
+        didactics_4_text: "Entwickelt mit führenden Bildungsforschern und mitgestaltet von Top-Lehrern. Optimiert für echtes Lernen, nicht nur für Bildschirmzeit.",
+
         // Why it works section
         why_works_title: "Warum es funktioniert",
         why_didactics_title: "Didaktik",
@@ -34,15 +47,13 @@ const translations = {
         why_learn_more: "Mehr erfahren",
 
         // Examples
-        examples_title: "Wem hilft das?",
-        example_1_text: "Schüler",
-        example_1_highlight: "Erklären, Lernen, Üben",
-        example_2_text: "Eltern",
-        example_2_highlight: "Motivierende Lernbegleitung",
-        example_3_text: "Schulen und Lehrer",
-        example_3_highlight: "Optimale Individualförderung",
-        example_4_text: "Uni, Ausbildung, Sprachen, ...",
-        example_4_highlight: "Leben fürs Lernen",
+        examples_title: "Willst du mehr wissen?",
+        example_1_text: "Für Schüler",
+        example_2_text: "Für Eltern",
+        example_3_text: "Für Schulen & Lehrer",
+        example_4_text: "Uni & Ausbildung",
+        example_5_text: "Lebenslanges Lernen",
+        example_6_text: "Sprachen lernen",
         
         // Pricing
         cta_sticker: "Gratis testen",
@@ -55,14 +66,15 @@ const translations = {
         // Pricing Preview (Homepage)
         pricing_preview_title: "Wähle das passende Paket",
         plan_prepaid_title: "Prepaid",
-        plan_prepaid_desc: "Volle Flexibilität ohne Bindung",
-        plan_prepaid_price: "ab 5€ / Stunde",
+        plan_prepaid_desc: "Volle Flexibilität",
+        plan_prepaid_price: "4€ / Stunde",
         plan_standard_title: "Standard Abo",
-        plan_standard_desc: "Wöchentliche Lerneinheit zum Sparpreis",
-        plan_standard_price: "ab 2.99€ / Woche",
+        plan_standard_desc: "Wöchentliche Stunden<br>Super Preis",
+        plan_standard_price: "2.99€ / Woche",
         plan_boost_title: "Boost Abo",
-        plan_boost_desc: "Extra Motivation durch 3x mehr Belohnungen",
-        plan_boost_price: "ab 8.99€ / Woche",
+        plan_boost_desc: "Bessere Belohnungen &<br>Höchste Motivation",
+        plan_boost_price: "8.99€ / Woche",
+        pricing_from: "ab",
         pricing_preview_cta: "Alle Preise & Details ansehen →",
 
         // Pricing Page
@@ -109,13 +121,26 @@ const translations = {
         
         // Rewards Page
         rewards_title: "Belohnungen bei tutor.new",
-        rewards_intro: "Lernen zahlt sich aus! Sammle Coins während deiner Lernsitzungen und tausche sie gegen tolle Belohnungen.",
-        rewards_step_1_title: "1. Coins verdienen",
-        rewards_step_1_text: "Für jede Minute, die du konzentriert mit der KI lernst, erhältst du Coins. Je mehr du lernst, desto schneller füllt sich dein Konto.",
-        rewards_step_2_title: "2. Digitale Awards",
-        rewards_step_2_text: "Schalte exklusive Abzeichen und Profilelemente frei. Zeig allen, was du erreicht hast!",
-        rewards_step_3_title: "3. Echte Geschenke",
-        rewards_step_3_text: "Das Beste: Tausche deine Coins gegen echte Belohnungen wie Gutscheine oder kleine Geschenke ein, die wir dir direkt per Post nach Hause schicken.",
+        rewards_tldr_text: "Du kannst in deinen Lektionen Coins verdienen und diese gegen echte Belohnungen eintauschen. Eine tolle Möglichkeit für Schüler, motiviert zu bleiben, und für Eltern, Fleiß direkt zu belohnen – schulische Leistungen zahlen sich endlich aus!",
+        rewards_earn_title: "1. Wie man Coins verdient",
+        rewards_earn_text: "Ganz einfach: Wer im Voice-Modus aktiv mitmacht, Aufgaben löst oder sich sichtlich anstrengt, wird mit Coins belohnt. Wir belohnen nicht nur das richtige Ergebnis, sondern vor allem den Lernprozess und die Motivation.",
+        rewards_subs_prepaid_label: "Prepaid",
+        rewards_subs_prepaid_value: "Keine Coins",
+        rewards_subs_regular_label: "Standard Abo",
+        rewards_subs_regular_value: "1x Coins",
+        rewards_subs_boost_label: "Boost Abo",
+        rewards_subs_boost_value: "3x Coins ✨",
+        rewards_subs_prepaid_info: "Ideal für Gelegenheitslerner. Du kaufst Stunden nach Bedarf, sammelst dabei aber keine Coins für den Shop.",
+        rewards_subs_regular_info: "Der Klassiker. Du lernst regelmäßig und sammelst dabei Coins im normalen Tempo für deine Wunsch-Belohnungen.",
+        rewards_subs_boost_info: "Boost-Abos geben dir 3x so viele Belohnungen für die gleiche Lernzeit. Der ultimative Motivations-Hack für Schüler, um schneller an AirPods oder Gadgets zu kommen!",
+        rewards_spend_title: "2. Belohnungen erhalten",
+        rewards_spend_text: "In unserem Shop kannst du deine Coins gegen coole Belohnungen eintauschen. Diese werden dann direkt als Paket zu dir nach Hause geschickt.",
+        rewards_how_why_title: "3. Wie und warum es funktioniert",
+        rewards_how_why_text: "Das Prinzip ist simpel: Ein Teil der Abo-Kosten fließt als Belohnung direkt an die Lernenden zurück. Die Coins werden für Fleiß und Fortschritt vergeben. Das setzt die richtigen Anreize: Gute Leistungen in der Schule machen Spaß und werden mit coolen Gadgets belohnt!",
+        rewards_gallery_airpods: "Apple AirPods",
+        rewards_gallery_gelpens: "Farbige Gelstifte",
+        rewards_gallery_labelprinter: "Phomemo Etikettendrucker",
+        rewards_gallery_stickynotes: "Coole Haftnotizen",
 
         // About Page
         about_title: "Über tutor.new",
@@ -128,9 +153,10 @@ const translations = {
         
         // Homepage About Section
         homepage_about_title: "Über uns",
-        homepage_about_founders: "Wir sind Gero und Friedrich, Mathematiker und Informatiker in Zürich.",
-        homepage_about_goal: "Unser Ziel: Allen Schüler:innen helfen, ihre Talente auszuleben.",
-        homepage_about_media: "Bekannt aus:",
+        homepage_about_founders: "Wir sind Gero und Friedrich, Mathematiker und Informatiker in Zürich. Mit tutor.new wollen wir Software nutzen, um jedem Schüler, unabhängig von seinem Hintergrund, eine qualitativ hochwertige, personalisierte Bildung zugänglich zu machen.",
+        homepage_about_learn_more: "Mehr erfahren",
+        homepage_about_contact: "E-Mail senden",
+        homepage_about_media: "Über unsere Vision wurde bereits in einigen Medien berichtet:",
         
         // Legal Page
         legal_title: "Rechtliches",
@@ -276,6 +302,7 @@ const translations = {
         nav_how: "How it works",
         nav_faq: "FAQ",
         nav_about: "About us",
+        nav_didactics: "Didactics",
         nav_legal: "Legal & Terms",
         nav_back: "← Back to home",
         
@@ -290,9 +317,21 @@ const translations = {
         step_1_heading: "Start where you need it",
         step_1_content: "Upload a photo of your worksheet or tell the AI what you don't understand. We help you exactly where you're stuck.",
         step_2_heading: "Learn with AI & earn coins",
-        step_2_content: "You talk in (voice) chat with the AI. Together you solve tasks and get patient explanations. For every learning progress, the AI rewards you immediately with valuable coins.",
+        step_2_content: "Learn in voice mode and earn coins for solving tasks, effort, and good performance. The AI motivates you at every step!",
         step_3_heading: "Real Rewards",
-        step_3_content: "Exchange your collected coins for digital awards in the app or real rewards sent directly to your home by mail.",
+        step_3_content: "Exchange your coins in the shop for cool rewards (e.g., AirPods!). We ship them directly to your home by mail.",
+
+        // Didactics Page
+        didactics_title: "Our Didactics",
+        didactics_subtitle: "How we revolutionize learning",
+        didactics_1_title: "Personal learning model",
+        didactics_1_text: "You choose one tutor. It tracks your goals, mistakes, strengths, and pace. Each session builds on the last.",
+        didactics_2_title: "Work on what you actually need",
+        didactics_2_text: "Upload school books, worksheets, exams, notes. Tutor teaches directly from your material. No generic curriculum, only what matters for you.",
+        didactics_3_title: "From lesson to mastery",
+        didactics_3_text: "Live lesson notes with clear visuals. One-click PDFs after the session. Auto-generated exercises and flashcards. Practice everything in the app.",
+        didactics_4_title: "Research-driven didactics",
+        didactics_4_text: "Built with leading education researchers. Co-designed with top teachers. Optimized for real learning, not just screen time.",
 
         // Why it works section
         why_works_title: "Why it works",
@@ -303,15 +342,13 @@ const translations = {
         why_learn_more: "Learn more",
 
         // Examples
-        examples_title: "Who does this help?",
-        example_1_text: "Students",
-        example_1_highlight: "Practice, repetition, exam prep",
-        example_2_text: "Parents",
-        example_2_highlight: "Tutoring, motivation, progress",
-        example_3_text: "Schools and Teachers",
-        example_3_highlight: "Individualized support and additional offering",
-        example_4_text: "Uni, vocational training, languages, ...",
-        example_4_highlight: "Life for learning",
+        examples_title: "Want to know more?",
+        example_1_text: "For Students",
+        example_2_text: "For Parents",
+        example_3_text: "For Schools & Teachers",
+        example_4_text: "Uni & Training",
+        example_5_text: "Lifelong Learning",
+        example_6_text: "Language Learning",
         
         // Pricing
         cta_sticker: "Try for free",
@@ -324,14 +361,15 @@ const translations = {
         // Pricing Preview (Homepage)
         pricing_preview_title: "Choose your plan",
         plan_prepaid_title: "Prepaid",
-        plan_prepaid_desc: "Full flexibility, no commitment",
-        plan_prepaid_price: "from 5€ / hour",
+        plan_prepaid_desc: "Full Flexibility",
+        plan_prepaid_price: "4€ / hour",
         plan_standard_title: "Standard Plan",
-        plan_standard_desc: "Weekly lesson at a better price",
-        plan_standard_price: "from 2.99€ / week",
+        plan_standard_desc: "Weekly lessons<br>at a great price",
+        plan_standard_price: "2.99€ / week",
         plan_boost_title: "Boost Plan",
-        plan_boost_desc: "Higher motivation through 3x more rewards",
-        plan_boost_price: "from 8.99€ / week",
+        plan_boost_desc: "Better rewards &<br>Highest motivation",
+        plan_boost_price: "8.99€ / week",
+        pricing_from: "from",
         pricing_preview_cta: "View all prices & details →",
 
         // Pricing Page
@@ -378,13 +416,26 @@ const translations = {
         
         // Rewards Page
         rewards_title: "Rewards at tutor.new",
-        rewards_intro: "Learning pays off! Collect coins during your study sessions and exchange them for great rewards.",
-        rewards_step_1_title: "1. Earn Coins",
-        rewards_step_1_text: "For every minute you spend focusing on learning with the AI, you receive coins. The more you learn, the faster your account fills up.",
-        rewards_step_2_title: "2. Digital Awards",
-        rewards_step_2_text: "Unlock exclusive badges and profile elements. Show everyone what you've achieved!",
-        rewards_step_3_title: "3. Real Gifts",
-        rewards_step_3_text: "The best part: Exchange your coins for real rewards like vouchers or small gifts that we send directly to your home by mail.",
+        rewards_tldr_text: "Earn coins during your lessons and trade them for real rewards shipped to your home. It’s a powerful way to keep students motivated while giving parents a system that rewards academic effort and progress.",
+        rewards_earn_title: "1. How to earn coins",
+        rewards_earn_text: "Basically, active participation in voice mode, solving exercises, or showing great effort earns you coins. We don't just reward the right answers; we reward the hard work and dedication it takes to get there.",
+        rewards_subs_prepaid_label: "Prepaid",
+        rewards_subs_prepaid_value: "No coins",
+        rewards_subs_regular_label: "Regular subscription",
+        rewards_subs_regular_value: "1x coins",
+        rewards_subs_boost_label: "Boost subscription",
+        rewards_subs_boost_value: "3x coins ✨",
+        rewards_subs_prepaid_info: "Perfect for casual learners. You buy hours as needed but don't collect coins for the shop.",
+        rewards_subs_regular_info: "The classic choice. You learn regularly and earn coins at a steady pace for your favorite rewards.",
+        rewards_subs_boost_info: "Boost subscriptions give you 3x the rewards for the same amount of studying. It's the ultimate motivation hack for students to get those AirPods or gadgets even faster!",
+        rewards_spend_title: "2. Obtaining rewards",
+        rewards_spend_text: "In our shop, you can use your coins to buy cool rewards. They will then be shipped directly as a package to your address.",
+        rewards_how_why_title: "3. How and why it works",
+        rewards_how_why_text: "It works because it aligns incentives: part of the subscription cost is returned to the student in the form of tangible rewards. Coins are awarded based on study time and effort, making academic success both fun and literally rewarding!",
+        rewards_gallery_airpods: "Apple AirPods",
+        rewards_gallery_gelpens: "Premium Gel Pens",
+        rewards_gallery_labelprinter: "Phomemo Label Printer",
+        rewards_gallery_stickynotes: "Cool Sticky Notes",
 
         // About Page
         about_title: "About tutor.new",
@@ -397,9 +448,10 @@ const translations = {
 
         // Homepage About Section
         homepage_about_title: "About us",
-        homepage_about_founders: "We are Gero and Friedrich, mathematicians and computer scientists in Zurich.",
-        homepage_about_goal: "Our goal: Helping all students live out their talents.",
-        homepage_about_media: "As seen in:",
+        homepage_about_founders: "We are Gero and Friedrich, mathematicians and computer scientists in Zurich. With tutor.new, we want to use software to reach our goal of making high-quality, personalized education accessible to every student, regardless of background.",
+        homepage_about_learn_more: "Learn more",
+        homepage_about_contact: "Send an email",
+        homepage_about_media: "Our vision has already been featured in several media outlets:",
 
         // Legal Page
         legal_title: "Legal",
@@ -538,6 +590,7 @@ const translations = {
 
 class I18n {
     constructor() {
+        this.translations = translations;
         this.currentLang = localStorage.getItem('language') || 'de';
         this.currentLocale = this.detectLocale();
         document.documentElement.lang = this.currentLang;
@@ -610,15 +663,15 @@ class I18n {
 
     updateContent() {
         // Update Document Title
-        if (translations[this.currentLang]['page_title']) {
-            document.title = translations[this.currentLang]['page_title'];
+        if (this.translations[this.currentLang]['page_title']) {
+            document.title = this.translations[this.currentLang]['page_title'];
         }
 
         const elements = document.querySelectorAll('[data-i18n]');
         elements.forEach(element => {
             const key = element.getAttribute('data-i18n');
-            if (translations[this.currentLang][key] !== undefined) {
-                let text = translations[this.currentLang][key];
+            if (this.translations[this.currentLang][key] !== undefined) {
+                let text = this.translations[this.currentLang][key];
                 
                 // Special handling for price_highlight to use locale-based currency
                 if (key === 'price_highlight') {
@@ -642,6 +695,13 @@ class I18n {
                 btn.classList.remove('active');
             }
         });
+    }
+
+    t(key) {
+        if (this.translations[this.currentLang] && this.translations[this.currentLang][key] !== undefined) {
+            return this.translations[this.currentLang][key];
+        }
+        return key;
     }
 
     init() {
@@ -705,9 +765,35 @@ class I18n {
     }
 }
 
-const i18n = new I18n();
+window.i18n = new I18n();
+
+window.selectSub = function(type) {
+    // Update UI classes
+    document.querySelectorAll('.sub-item').forEach(c => c.classList.remove('active'));
+    const card = document.getElementById('card-' + type);
+    if (card) card.classList.add('active');
+    
+    // Update info text
+    const infoArea = document.getElementById('sub-info-area');
+    const key = 'rewards_subs_' + type + '_info';
+    
+    // Add special styling for boost
+    if (type === 'boost') {
+        infoArea.classList.add('boost-special');
+    } else {
+        infoArea.classList.remove('boost-special');
+    }
+    
+    if (window.i18n && typeof window.i18n.t === 'function') {
+        const text = window.i18n.t(key);
+        if (text && text !== key) {
+            infoArea.innerHTML = `<span data-i18n="${key}">${text}</span>`;
+        }
+    }
+};
+
 // Initialize after DOM load
 document.addEventListener('DOMContentLoaded', () => {
-    i18n.init();
+    window.i18n.init();
 });
 

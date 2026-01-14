@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Didaktik - tutor.new</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --accent-color: #2d6a4f; /* Green accent for didactics */
+        }
+
+        a {
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+            display: inline-block;
+            transform: rotate(-1deg);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .didactics-card {
+            background-color: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 15px 50px 15px 50px / 50px 15px 50px 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 6px 6px 0px rgba(45, 106, 79, 0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .didactics-card:hover {
+            transform: scale(1.02);
+        }
+
+        .card-title {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.6rem;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 1rem;
+            border-bottom: 2px dashed rgba(45, 106, 79, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        .card-content {
+            font-size: 1.15rem;
+            line-height: 1.5;
+        }
+
+        .card-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            border: 2px solid #eee;
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 480px) {
+            .didactics-card {
+                padding: 1.5rem;
+                border-radius: 15px 30px 15px 30px / 30px 15px 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header><a href="index.html" data-i18n="nav_back">← Zurück zur Startseite</a></header>
+        
+        <h1 data-i18n="didactics_title">Unsere Didaktik</h1>
+        <span class="subtitle" data-i18n="didactics_subtitle">Wie wir das Lernen revolutionieren</span>
+
+        <!-- Section 1: Personal learning model -->
+        <div class="didactics-card" style="transform: rotate(0.5deg); background-color: #f0fff4;">
+            <span class="card-title" data-i18n="didactics_1_title">Personalisiertes Lernmodell</span>
+            <div class="card-content" data-i18n="didactics_1_text">
+                Du wählst einen Tutor. Er verfolgt deine Ziele, Fehler, Stärken und dein Tempo. Jede Sitzung baut auf der letzten auf.
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 1.5rem; justify-content: center;">
+                <img src="tutors/anna.png" alt="Tutor Anna" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #2d6a4f; box-shadow: 3px 3px 0px rgba(45, 106, 79, 0.1);">
+                <img src="tutors/alex.png" alt="Tutor Alex" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #2d6a4f; box-shadow: 3px 3px 0px rgba(45, 106, 79, 0.1);">
+                <img src="tutors/maya.png" alt="Tutor Maya" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #2d6a4f; box-shadow: 3px 3px 0px rgba(45, 106, 79, 0.1);">
+            </div>
+        </div>
+
+        <!-- Section 2: Work on what you actually need -->
+        <div class="didactics-card" style="transform: rotate(-0.5deg);">
+            <span class="card-title" data-i18n="didactics_2_title">Arbeite an dem, was du wirklich brauchst</span>
+            <div class="card-content" data-i18n="didactics_2_text">
+                Lade Schulbücher, Arbeitsblätter, Prüfungen oder Notizen hoch. Der Tutor unterrichtet direkt mit deinem Material. Kein generischer Lehrplan, nur das, was für dich zählt.
+            </div>
+            <img src="didactics_assets/upload_material.png" alt="Your own material" class="card-image">
+        </div>
+
+        <!-- Section 3: From lesson to mastery -->
+        <div class="didactics-card" style="transform: rotate(0.8deg); background-color: #f0f7ff; border-color: #4a9eff; box-shadow: 6px 6px 0px rgba(74, 158, 255, 0.1);">
+            <span class="card-title" data-i18n="didactics_3_title" style="color: #1f4c7a; border-color: rgba(74, 158, 255, 0.2);">Von der Lektion zur Meisterschaft</span>
+            <div class="card-content" data-i18n="didactics_3_text">
+                Live-Notizen mit klaren Visualisierungen während der Lektion. Ein-Klick-PDFs nach der Sitzung. Automatisch generierte Übungen und Karteikarten. Übe alles direkt in der App.
+            </div>
+            <img src="didactics_assets/lecture_notes.png" alt="From lesson to mastery" class="card-image">
+        </div>
+
+        <!-- Section 4: Research-driven didactics -->
+        <div class="didactics-card" style="transform: rotate(-0.3deg);">
+            <span class="card-title" data-i18n="didactics_4_title">Forschungsbasierte Didaktik</span>
+            <div class="card-content" data-i18n="didactics_4_text">
+                Entwickelt mit führenden Bildungsforschern und mitgestaltet von Top-Lehrern. Optimiert für echtes Lernen, nicht nur für Bildschirmzeit.
+            </div>
+            <img src="didactics_assets/mc_quiz.png" alt="Research driven" class="card-image">
+        </div>
+
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <a href="https://duck.tutor.new" class="cta-button-secondary" data-i18n="cta_button_secondary">→ Kostenlos testen</a>
+        </div>
+
+    </div>
+    <script src="i18n.js"></script>
+</body>
+</html>
+

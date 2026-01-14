@@ -236,29 +236,30 @@
         .example-item {
             margin-bottom: 0; /* Let grid handle spacing */
             display: flex;
-            flex-direction: column; /* Stack bullet and text vertically for better fit */
-            align-items: center; /* Center content */
-            text-align: center;
-            font-size: 1rem; /* Smaller font */
+            flex-direction: row; /* Emoji left, text right */
+            align-items: center; /* Center content vertically */
+            text-align: left;
+            font-size: 0.9rem; /* Smaller font */
             background: white;
-            padding: 0.4rem 0.7rem 0.6rem; /* Reduced top padding */
+            padding: 0.5rem 0.8rem; /* Reduced padding */
             border: 2px solid var(--text-color);
             border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; /* Hand-drawn box feel */
             box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
             transition: transform 0.3s ease;
             height: 100%; /* Ensure equal heights */
-            justify-content: flex-start; /* Align to top to accommodate title */
+            justify-content: flex-start; /* Align content to start */
+            gap: 0.8rem; /* Space between emoji and text */
             text-decoration: none;
             color: inherit;
             cursor: pointer;
         }
 
         .example-item h3 {
-            font-size: 1.2rem;
-            margin-top: 0; /* Remove default top margin */
-            margin-bottom: 0.1rem;
+            font-size: 1.1rem;
+            margin: 0;
             font-family: 'Patrick Hand', cursive;
             color: var(--text-color);
+            line-height: 1.1;
         }
         
         .example-item:hover {
@@ -272,13 +273,14 @@
         .example-item:nth-child(2) { transform: rotate(1deg); }
         .example-item:nth-child(3) { transform: rotate(0.5deg); }
         .example-item:nth-child(4) { transform: rotate(-0.5deg); }
+        .example-item:nth-child(5) { transform: rotate(0.8deg); }
+        .example-item:nth-child(6) { transform: rotate(-0.8deg); }
 
         .bullet {
-            margin-right: 0; /* Reset right margin */
-            margin-bottom: 2px; /* Signficantly reduced margin */
-            font-size: 1.8rem; /* Slightly smaller emoji */
+            margin: 0;
+            font-size: 1.5rem; /* Smaller emoji */
             line-height: 1;
-            color: #003366; /* Accent color for bullet */
+            flex-shrink: 0;
         }
         
         .example-text {
@@ -357,6 +359,37 @@
             color: var(--text-color);
         }
 
+        .price-container {
+            margin-top: auto;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 480px) {
+            .price-container {
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        .price-from {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            line-height: 1;
+            margin-bottom: -2px;
+        }
+
+        .price-value {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--text-color);
+            line-height: 1.1;
+            white-space: nowrap;
+        }
+
         .pricing-preview-cta {
             display: inline-block;
             margin-top: 1rem;
@@ -388,7 +421,7 @@
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 2.5rem;
+            gap: 2rem;
             margin-top: 2rem;
         }
 
@@ -403,7 +436,7 @@
         }
 
         .media-grid img {
-            height: 35px;
+            height: 25px;
             width: auto;
             max-width: 180px;
             filter: grayscale(100%);
@@ -600,7 +633,7 @@
         }
 
         .cta-button-main {
-            background-color: #f0fff4; /* Light green */
+            background-color: white;
             box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
             position: relative;
             overflow: hidden;
@@ -661,13 +694,13 @@
             }
             
             .examples-grid {
-                grid-template-columns: 1fr; /* Stack vertically on mobile */
-                gap: 1.5rem;
+                grid-template-columns: 1fr 1fr; /* Keep 2 columns on mobile */
+                gap: 1rem;
             }
             
             .example-item {
-                font-size: 1.1rem; /* Slightly larger text on mobile */
-                padding: 0.8rem; /* Slightly more padding on mobile */
+                font-size: 0.9rem;
+                padding: 0.5rem 0.6rem;
             }
             
             .pricing-preview-grid {
@@ -684,7 +717,7 @@
                 flex-direction: column;
                 align-items: stretch;
                 gap: 1.5rem;
-                padding: 2.5rem 1rem 0 30px;
+                padding: 2.5rem 1rem 2.5rem 0;
                 margin-bottom: 0;
             }
 
@@ -705,7 +738,7 @@
             }
             
             .bullet {
-                font-size: 2.4rem; /* Slightly larger bullet on mobile */
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -718,6 +751,7 @@
             <div class="mobile-menu-header" onclick="toggleMenu()">tutor.new</div>
             <div class="mobile-menu-links">
                 <a href="so-funktionierts.html" class="nav-link link-how" data-i18n="nav_how">So funktioniert's</a>
+                <a href="didaktik.html" class="nav-link link-didactics" data-i18n="nav_didactics">Didaktik</a>
                 <a href="pricing.html" class="nav-link link-faq" data-i18n="nav_pricing" style="background-color: #e0f0f7; color: #1f4c7a; border-color: #1f4c7a;">Preise</a>
                 <a href="faq.html" class="nav-link link-faq" data-i18n="nav_faq">FAQ</a>
                 <a href="ueber-uns.html" class="nav-link link-about" data-i18n="nav_about">Über uns</a>
@@ -729,6 +763,7 @@
             <button class="logo-btn" onclick="toggleMenu()">tutor.new</button>
             <nav class="nav-menu" id="navMenu">
                 <a href="so-funktionierts.html" class="nav-link link-how" data-i18n="nav_how">So funktioniert's</a>
+                <a href="didaktik.html" class="nav-link link-didactics" data-i18n="nav_didactics">Didaktik</a>
                 <a href="pricing.html" class="nav-link link-faq" data-i18n="nav_pricing" style="background-color: #e0f0f7; color: #1f4c7a; border-color: #1f4c7a;">Preise</a>
                 <a href="faq.html" class="nav-link link-faq" data-i18n="nav_faq">FAQ</a>
                 <a href="ueber-uns.html" class="nav-link link-about" data-i18n="nav_about">Über uns</a>
@@ -785,40 +820,6 @@
         </div>
 
 
-        <section class="examples-section">
-            <div class="examples-title" data-i18n="examples_title">Wem hilft das?</div>
-            <div class="examples-grid">
-                <a href="schueler.html" class="example-item">
-                    <h3 data-i18n="example_1_text">Schüler:</h3>
-                    <span class="bullet">🎓</span>
-                    <div class="example-text">
-                        <span class="example-highlight" data-i18n="example_1_highlight"> Erklären, Lernen, Üben</span>
-                    </div>
-                </a>
-                <a href="eltern.html" class="example-item">
-                    <h3 data-i18n="example_2_text">Eltern:</h3>
-                    <span class="bullet">👨‍👩‍👧‍👦</span>
-                    <div class="example-text">
-                        <span class="example-highlight" data-i18n="example_2_highlight"> Nachhilfe, Motivation, Fortschritt</span>
-                    </div>
-                </a>
-                <a href="lehrer.html" class="example-item">
-                    <h3 data-i18n="example_3_text">Schulen und Lehrer:</h3>
-                    <span class="bullet">🏫</span>
-                    <div class="example-text">
-                        <span class="example-highlight" data-i18n="example_3_highlight"> Individualförderung und Zusatzangebot</span>
-                    </div>
-                </a>
-                <a href="lebenslanges-lernen.html" class="example-item">
-                    <h3 data-i18n="example_4_text">Uni, Ausbildung, Sprachen, ...</h3>
-                    <span class="bullet">🌍</span>
-                    <div class="example-text">
-                        <span class="example-highlight" data-i18n="example_4_highlight"> → Leben fürs Lernen</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
         <section class="why-works-section">
             <h2 class="examples-title" data-i18n="why_works_title">Warum es funktioniert</h2>
             <div class="why-works-grid">
@@ -826,7 +827,7 @@
                 <div class="why-col">
                     <h3 data-i18n="why_didactics_title">Didaktik</h3>
                     <p data-i18n="why_didactics_text">Durch einen personalisierten Tutor, interaktive Visualisierungen sowie automatische Mitschriften und Quizze lernt es sich leichter und effektiver.</p>
-                    <a href="so-funktionierts.html" class="why-learn-more" data-i18n="why_learn_more">Mehr erfahren</a>
+                    <a href="didaktik.html" class="why-learn-more" data-i18n="why_learn_more">Mehr erfahren</a>
                 </div>
                 <!-- Motivation -->
                 <div class="why-col">
@@ -837,6 +838,36 @@
             </div>
         </section>
 
+        <section class="examples-section">
+            <div class="examples-title" data-i18n="examples_title">Wem hilft das?</div>
+            <div class="examples-grid">
+                <a href="students.html" class="example-item">
+                    <span class="bullet">🎓</span>
+                    <h3 data-i18n="example_1_text">Für Schüler</h3>
+                </a>
+                <a href="parents.html" class="example-item">
+                    <span class="bullet">👨‍👩‍👧‍👦</span>
+                    <h3 data-i18n="example_2_text">Für Eltern</h3>
+                </a>
+                <a href="teachers.html" class="example-item">
+                    <span class="bullet">🏫</span>
+                    <h3 data-i18n="example_3_text">Für Schulen & Lehrer</h3>
+                </a>
+                <a href="training.html" class="example-item">
+                    <span class="bullet">🏢</span>
+                    <h3 data-i18n="example_4_text">Uni & Ausbildung</h3>
+                </a>
+                <a href="lifelong-learning.html" class="example-item">
+                    <span class="bullet">🌍</span>
+                    <h3 data-i18n="example_5_text">Lebenslanges Lernen</h3>
+                </a>
+                <a href="languages.html" class="example-item">
+                    <span class="bullet">🗣️</span>
+                    <h3 data-i18n="example_6_text">Sprachen lernen</h3>
+                </a>
+            </div>
+        </section>
+
         <section class="pricing">
             <h2 class="examples-title" data-i18n="pricing_preview_title">Wähle das passende Paket</h2>
             <div class="pricing-preview-grid">
@@ -844,25 +875,34 @@
                 <div class="pricing-card">
                     <div>
                         <h3 data-i18n="plan_prepaid_title">Prepaid</h3>
-                        <p data-i18n="plan_prepaid_desc">Volle Flexibilität ohne Bindung</p>
+                        <p data-i18n="plan_prepaid_desc">Volle Flexibilität</p>
                     </div>
-                    <div class="price" data-i18n="plan_prepaid_price">ab 5€ / Stunde</div>
+                    <div class="price-container">
+                        <div class="price-from" data-i18n="pricing_from">ab</div>
+                        <div class="price-value" data-i18n="plan_prepaid_price">4€ / Stunde</div>
+                    </div>
                 </div>
                 <!-- Standard -->
                 <div class="pricing-card">
                     <div>
                         <h3 data-i18n="plan_standard_title">Standard Abo</h3>
-                        <p data-i18n="plan_standard_desc">Wöchentliche Lerneinheit zum Sparpreis</p>
+                        <p data-i18n="plan_standard_desc">Wöchentliche Stunden<br>Super Preis</p>
                     </div>
-                    <div class="price" data-i18n="plan_standard_price">ab 2.99€ / Woche</div>
+                    <div class="price-container">
+                        <div class="price-from" data-i18n="pricing_from">ab</div>
+                        <div class="price-value" data-i18n="plan_standard_price">2.99€ / Woche</div>
+                    </div>
                 </div>
                 <!-- Boost -->
                 <div class="pricing-card">
                     <div>
                         <h3 data-i18n="plan_boost_title">Boost Abo</h3>
-                        <p data-i18n="plan_boost_desc">Extra Motivation durch 3x mehr Belohnungen</p>
+                        <p data-i18n="plan_boost_desc">Bessere Belohnungen &<br>Höchste Motivation</p>
                     </div>
-                    <div class="price" data-i18n="plan_boost_price">ab 8.99€ / Woche</div>
+                    <div class="price-container">
+                        <div class="price-from" data-i18n="pricing_from">ab</div>
+                        <div class="price-value" data-i18n="plan_boost_price">8.99€ / Woche</div>
+                    </div>
                 </div>
             </div>
             <a href="pricing.html" class="pricing-preview-cta" data-i18n="pricing_preview_cta">Alle Preise & Details ansehen →</a>
@@ -870,10 +910,15 @@
 
         <section class="homepage-about">
             <h2 class="examples-title" data-i18n="homepage_about_title">Über uns</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="homepage_about_founders">Wir sind Gero und Friedrich, Mathematiker und Informatiker in Zürich.</p>
-            <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 2rem;" data-i18n="homepage_about_goal">Unser Ziel: Allen Schüler:innen helfen, ihre Talente auszuleben.</p>
+            <div style="max-width: 600px; margin: 0 auto 2.5rem auto; text-align: left;">
+                <p style="font-size: 1.2rem; margin-bottom: 1.5rem;" data-i18n="homepage_about_founders">Wir sind Gero und Friedrich, Mathematiker und Informatiker in Zürich. Mit tutor.new wollen wir Software nutzen, um jedem Schüler, unabhängig von seinem Hintergrund, eine qualitativ hochwertige, personalisierte Bildung zugänglich zu machen.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                    <a href="ueber-uns.html" class="nav-link link-about" data-i18n="homepage_about_learn_more" style="font-size: 1.2rem; flex: 1; text-align: center; min-width: 140px;">Mehr erfahren</a>
+                    <a href="mailto:friedrich@tutor.new" class="nav-link link-legal" data-i18n="homepage_about_contact" style="font-size: 1.2rem; flex: 1; text-align: center; min-width: 140px;">E-Mail senden</a>
+                </div>
+            </div>
             
-            <p style="font-size: 1rem; opacity: 0.8;" data-i18n="homepage_about_media">Bekannt aus:</p>
+            <p style="font-size: 1rem; opacity: 0.8;" data-i18n="homepage_about_media">Über unsere Vision wurde bereits in führenden Medien berichtet:</p>
             <div class="media-grid">
                 <a href="https://www.20min.ch/story/eth-studenten-ki-nachhilfe-fuer-2-franken-pro-stunde-103281970" target="_blank">
                     <img src="media-outlets/20Minuten.svg" alt="20 Minuten">
@@ -898,6 +943,7 @@
 
         <footer>
             <a href="so-funktionierts.html" class="nav-link link-how" data-i18n="nav_how">So funktioniert's</a>
+            <a href="didaktik.html" class="nav-link link-didactics" data-i18n="nav_didactics">Didaktik</a>
             <a href="pricing.html" class="nav-link link-faq" data-i18n="nav_pricing" style="background-color: #e0f0f7; color: #1f4c7a; border-color: #1f4c7a;">Preise</a>
             <a href="faq.html" class="nav-link link-faq" data-i18n="nav_faq">FAQ</a>
             <a href="ueber-uns.html" class="nav-link link-about" data-i18n="nav_about">Über uns</a>
