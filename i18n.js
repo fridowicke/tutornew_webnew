@@ -38,6 +38,14 @@ const translations = {
         didactics_4_title: "Forschungsbasierte Didaktik",
         didactics_4_text: "Entwickelt mit führenden Bildungsforschern und mitgestaltet von Top-Lehrern. Optimiert für echtes Lernen, nicht nur für Bildschirmzeit.",
 
+        // Schools Page
+        schools_title: "Für Schulen",
+        schools_subtitle: "KI-Unterstützung für Bildungseinrichtungen",
+        schools_intro: "Wir unterstützen Schulen dabei, personalisiertes Lernen in den Unterrichtsalltag zu integrieren.",
+        schools_global: "Wir arbeiten bereits erfolgreich mit Schulen auf der ganzen Welt zusammen, um Schülern eine moderne und motivierende Lernumgebung zu bieten.",
+        schools_cta_text: "Haben Sie Interesse an einer Zusammenarbeit oder möchten Sie tutor.new an Ihrer Schule testen?",
+        schools_cta_button: "Schreiben Sie uns eine E-Mail",
+
         // Why it works section
         why_works_title: "Warum es funktioniert",
         why_didactics_title: "Didaktik",
@@ -54,6 +62,18 @@ const translations = {
         example_4_text: "Uni & Ausbildung",
         example_5_text: "Lebenslanges Lernen",
         example_6_text: "Sprachen lernen",
+        
+        // Language Learning Page
+        lang_learning_title: "Sprachen lernen",
+        lang_learning_subtitle: "Meistere jede Sprache mit KI-Unterstützung",
+        lang_learning_1_title: "Eigene Inhalte & Kurse",
+        lang_learning_1_text: "Lade deine eigenen Materialien hoch oder lass dir von der KI einen massgeschneiderten Sprachkurs erstellen. Egal ob Zeitungsartikel, Liedtexte oder Schulbücher.",
+        lang_learning_2_title: "Rundum-Training",
+        lang_learning_2_text: "Übe Vokabeln, Grammatik, Sprechen und Schreiben auf jedem Niveau (A1-C2). Die KI passt sich deinem Tempo an und korrigiert dich sanft.",
+        lang_learning_3_title: "Echte Konversationen",
+        lang_learning_3_text: "Führe natürliche Gespräche im Voice-Modus. Verbessere deine Aussprache und verliere die Angst vor dem Sprechen in einer sicheren Umgebung.",
+        lang_learning_4_title: "Kultureller Kontext",
+        lang_learning_4_text: "Lerne nicht nur Wörter, sondern auch Redewendungen und kulturelle Besonderheiten kennen, damit du dich wie ein Local fühlst.",
         
         // Pricing
         cta_sticker: "Gratis testen",
@@ -151,6 +171,62 @@ const translations = {
         about_history_p2: "Wir erkannten, dass KI-Technologie diese Lücke schließen könnte - intelligente Tutoren schaffen, die sich an den einzigartigen Lernstil, das Tempo und die Bedürfnisse jedes Schülers anpassen. So entstand tutor.new.",
         about_history_p3: "Heute sind wir stolz darauf, Schülern aller Bildungsebenen dabei zu helfen, ihre Ziele durch personalisierte KI-Nachhilfe zu erreichen.",
         
+        // Parents Page
+        parents_title: "Für Eltern",
+        parents_subtitle: "Die beste Unterstützung für Ihr Kind",
+        parents_1_title: "1:1 Betreuung durch KI-Mentor",
+        parents_1_text: "Unser KI-Mentor bietet personalisierte 1:1 Betreuung rund um die Uhr. Er ist geduldig, kennt den Wissensstand Ihres Kindes und erklärt Themen so oft, bis sie wirklich verstanden werden – genau wie ein privater Nachhilfelehrer, aber immer verfügbar.",
+        parents_2_title: "Günstiger & Flexibler",
+        parents_2_text: "Qualitativ hochwertige Nachhilfe muss nicht teuer sein. tutor.new kostet nur einen Bruchteil herkömmlicher Institute. Ohne feste Termine oder Anfahrtswege lernt Ihr Kind genau dann, wenn es am motiviertesten ist.",
+        parents_3_title: "Motivation durch Belohnungen",
+        parents_3_text: "Lernen soll Spaß machen! In unseren Abos sammeln Schüler Coins für Fleiß und Fortschritt. Diese können gegen echte Belohnungen (z. B. AirPods) eingetauscht werden. Das sorgt für konstante Motivation und positive Bestärkung.",
+        parents_4_title: "KI-Unterricht nach neustem Forschungsstand",
+        parents_4_text: "Unsere Methode basiert auf aktuellen Erkenntnissen der Bildungsforschung. Die KI fungiert als Sokratischer Mentor, der nicht nur Lösungen vorgibt, sondern den Denkprozess anregt und nachhaltiges Verständnis fördert.",
+        parents_cta_text: "Geben Sie Ihrem Kind den entscheidenden Vorsprung beim Lernen.",
+        parents_cta_button: "Kostenlos ausprobieren",
+
+        // Students Page
+        students_title: "Für Schüler",
+        students_subtitle: "Deine persönliche KI-Lernunterstützung",
+        students_1_title: "Material hochladen",
+        students_1_text: "Egal ob Foto vom Arbeitsblatt, PDF aus dem Unterricht oder Screenshot vom iPad – lade dein Material einfach hoch und die KI weiß sofort, woran du arbeitest.",
+        students_2_title: "1:1 Erklärungen in deinem Tempo",
+        students_2_text: "Der KI-Tutor erklärt dir alles so oft du willst. Keine Angst vor blöden Fragen – wir führen dich Schritt für Schritt zur Lösung, bis du es wirklich verstanden hast.",
+        students_3_title: "Prüfungsvorbereitung",
+        students_3_text: "Bereite dich gezielt auf deine nächsten Klausuren vor. Die KI erkennt die wichtigsten Themen in deinem Material und übt genau das mit dir, was drankommen könnte.",
+        students_4_title: "Quizze & Karteikarten",
+        students_4_text: "Lass dir automatisch interaktive Quizze und digitale Karteikarten aus deinen Unterlagen erstellen. So macht das Wiederholen fast schon Spaß.",
+        students_cta_text: "Hol dir die Bestnote mit deiner persönlichen KI.",
+        students_cta_button: "Jetzt kostenlos starten",
+
+        // Uni Page
+        uni_title: "Für Uni & Studium",
+        uni_subtitle: "Meistere dein Studium mit KI-Power",
+        uni_1_title: "Vorlesungsmaterial hochladen",
+        uni_1_text: "Lade deine Skripte, Paper oder Übungsblätter hoch. Die KI versteht komplexe akademische Zusammenhänge und hilft dir, auch die schwierigsten Konzepte zu durchdringen.",
+        uni_2_title: "1:1 Erklärungen auf Uni-Niveau",
+        uni_2_text: "Egal ob Analysis, Thermodynamik oder Rechtsphilosophie – dein KI-Mentor steht dir 24/7 zur Seite und erklärt dir komplexe Theorie in deinem individuellen Lerntempo.",
+        uni_3_title: "Effiziente Prüfungsvorbereitung",
+        uni_3_text: "Kein Bulimie-Lernen mehr. Die KI hilft dir, den Stoff zu strukturieren, Zusammenhänge zu verstehen und bereitet dich mit gezielten Übungsfragen auf deine Prüfungen vor.",
+        uni_4_title: "Quizze & Karteikarten aus Skripten",
+        uni_4_text: "Verwandle hunderte Seiten Skript in Sekunden in lernfertige Quizze und Karteikarten. Perfekt optimiert für Active Recall und Spaced Repetition.",
+        uni_cta_text: "Studieren war noch nie so effizient.",
+        uni_cta_button: "Kostenlos ausprobieren",
+
+        // Lifelong Learning Page
+        lifelong_learning_title: "Lebenslanges Lernen",
+        lifelong_learning_subtitle: "Lerne alles, was dich weiterbringt",
+        lifelong_learning_1_title: "Berufliche Weiterbildung",
+        lifelong_learning_1_text: "Mastere neue Software, lerne Programmiersprachen oder vertiefe dein Fachwissen. Die KI hilft dir, am Puls der Zeit zu bleiben.",
+        lifelong_learning_2_title: "Hobbys & Interessen",
+        lifelong_learning_2_text: "Egal ob du Kochen, Geschichte oder Astronomie lernen willst – dein KI-Mentor hat das Wissen und die Geduld, dich in jedes Thema einzuführen.",
+        lifelong_learning_3_title: "Effizientes Wissensmanagement",
+        lifelong_learning_3_text: "Verarbeite Artikel, PDFs und Notizen in Sekunden. Lass dir Zusammenfassungen erstellen und teste dein Wissen mit Quizzen.",
+        lifelong_learning_4_title: "Flexibel in den Alltag integrierbar",
+        lifelong_learning_4_text: "Keine festen Kurszeiten. Lerne in der Mittagspause, in der Bahn oder gemütlich am Abend. Deine KI ist immer für dich da.",
+        lifelong_learning_cta_text: "Lerne heute etwas Neues.",
+        lifelong_learning_cta_button: "Kostenlos ausprobieren",
+
         // Homepage About Section
         homepage_about_title: "Über uns",
         homepage_about_founders: "Wir sind Gero und Friedrich, Mathematiker und Informatiker in Zürich. Mit tutor.new wollen wir Software nutzen, um jedem Schüler, unabhängig von seinem Hintergrund, eine qualitativ hochwertige, personalisierte Bildung zugänglich zu machen.",
@@ -333,6 +409,14 @@ const translations = {
         didactics_4_title: "Research-driven didactics",
         didactics_4_text: "Built with leading education researchers. Co-designed with top teachers. Optimized for real learning, not just screen time.",
 
+        // Schools Page
+        schools_title: "For Schools",
+        schools_subtitle: "AI Support for Educational Institutions",
+        schools_intro: "We help schools integrate personalized learning into their daily classroom routines.",
+        schools_global: "We are already working with schools across the world to provide students with a modern and motivating learning environment.",
+        schools_cta_text: "Are you interested in a partnership or would you like to test tutor.new at your school?",
+        schools_cta_button: "Send us an email",
+
         // Why it works section
         why_works_title: "Why it works",
         why_didactics_title: "Didactics",
@@ -349,7 +433,19 @@ const translations = {
         example_4_text: "Uni & Training",
         example_5_text: "Lifelong Learning",
         example_6_text: "Language Learning",
-        
+
+        // Language Learning Page
+        lang_learning_title: "Language Learning",
+        lang_learning_subtitle: "Master any language with AI support",
+        lang_learning_1_title: "Upload Materials or Create Your Own Course",
+        lang_learning_1_text: "Upload your own materials or have the AI create a custom language course for you. Whether it's newspaper articles, song lyrics, or textbooks.",
+        lang_learning_2_title: "All-Round Training",
+        lang_learning_2_text: "Practice vocabulary, grammar, speaking, and writing at any level (A1-C2). The AI adapts to your pace and corrects you gently.",
+        lang_learning_3_title: "Real Conversations",
+        lang_learning_3_text: "Have natural conversations in voice mode. Improve your pronunciation and lose the fear of speaking in a safe environment.",
+        lang_learning_4_title: "Cultural Context",
+        lang_learning_4_text: "Don't just learn words, but also idioms and cultural peculiarities so that you feel like a local.",
+
         // Pricing
         cta_sticker: "Try for free",
         price_highlight: "Then $2.99/Week", // Will be replaced with locale-based currency
@@ -440,11 +536,67 @@ const translations = {
         // About Page
         about_title: "About tutor.new",
         about_intro_heading: "Hello! 👋🏻",
-        about_intro_text: "We are Gero and Friedrich, a computer scientist and a mathematician. We met while studying at ETH Zurich and quickly realized that we both wanted to use technology to create great learning experiences. That was the beginning of tutor.new ...",
+        about_intro_text: "We are Gero and Friedrich, a computer scientist and a mathematician. we met while studying at ETH Zurich and quickly realized that we both wanted to use technology to create great learning experiences. That was the beginning of tutor.new ...",
         about_history_heading: "Our Story",
         about_history_p1: "We both always had a passion for teaching. During our studies at ETH Zurich, we noticed that many students struggled not because they lacked the ability, but because they needed personalized attention and support that traditional education systems couldn't provide.",
         about_history_p2: "We realized that AI technology could bridge this gap - creating intelligent tutors that adapt to each student's unique learning style, pace, and needs. Thus, tutor.new was born.",
         about_history_p3: "Today, we are proud to help students of all education levels achieve their goals through personalized AI tutoring.",
+
+        // Parents Page
+        parents_title: "For Parents",
+        parents_subtitle: "The best support for your child",
+        parents_1_title: "1:1 Instruction with AI Mentor",
+        parents_1_text: "Our AI mentor provides personalized 1:1 support around the clock. It is patient, knows your child's knowledge level, and explains topics as many times as needed until they are truly understood – just like a private tutor, but always available.",
+        parents_2_title: "Cheaper & More Flexible",
+        parents_2_text: "High-quality tutoring doesn't have to be expensive. tutor.new costs only a fraction of traditional institutes. Without fixed appointments or travel time, your child learns exactly when they are most motivated.",
+        parents_3_title: "Motivation through Rewards",
+        parents_3_text: "Learning should be fun! In our subscriptions, students earn coins for effort and progress. These can be exchanged for real rewards (e.g., AirPods). This ensures constant motivation and positive reinforcement.",
+        parents_4_title: "AI Instruction based on Latest Research",
+        parents_4_text: "Our method is based on current findings in educational research. The AI acts as a Socratic mentor that doesn't just provide solutions but stimulates the thinking process and promotes sustainable understanding.",
+        parents_cta_text: "Give your child the decisive advantage in learning.",
+        parents_cta_button: "Try for free",
+
+        // Students Page
+        students_title: "For Students",
+        students_subtitle: "Your personal AI learning support",
+        students_1_title: "Upload Material",
+        students_1_text: "Whether it's a photo of a worksheet, a PDF from class, or a screenshot from your iPad – just upload your material and the AI immediately knows what you're working on.",
+        students_2_title: "1:1 Explanations at Your Pace",
+        students_2_text: "The AI tutor explains everything as many times as you want. Don't be afraid of 'silly' questions – we guide you step-by-step to the solution until you truly understand it.",
+        students_3_title: "Exam Preparation",
+        students_3_text: "Prepare specifically for your next exams. The AI identifies the most important topics in your material and practices exactly what might come up.",
+        students_4_title: "Quizzes & Flashcards",
+        students_4_text: "Automatically create interactive quizzes and digital flashcards from your documents. This makes reviewing almost fun.",
+        students_cta_text: "Get the best grades with your personal AI.",
+        students_cta_button: "Start now for free",
+
+        // Uni Page
+        uni_title: "For University",
+        uni_subtitle: "Master your studies with AI power",
+        uni_1_title: "Upload Lecture Material",
+        uni_1_text: "Upload your scripts, papers, or exercise sheets. The AI understands complex academic contexts and helps you penetrate even the most difficult concepts.",
+        uni_2_title: "1:1 Explanations at University Level",
+        uni_2_text: "Whether it's calculus, thermodynamics, or legal philosophy – your AI mentor is by your side 24/7, explaining complex theory at your individual learning pace.",
+        uni_3_title: "Efficient Exam Preparation",
+        uni_3_text: "No more cramming. The AI helps you structure the material, understand connections, and prepares you for your exams with targeted practice questions.",
+        uni_4_title: "Quizzes & Flashcards from Scripts",
+        uni_4_text: "Turn hundreds of script pages into ready-to-use quizzes and flashcards in seconds. Perfectly optimized for active recall and spaced repetition.",
+        uni_cta_text: "Studying has never been so efficient.",
+        uni_cta_button: "Try for free",
+
+        // Lifelong Learning Page
+        lifelong_learning_title: "Lifelong Learning",
+        lifelong_learning_subtitle: "Learn anything that moves you forward",
+        lifelong_learning_1_title: "Professional Development",
+        lifelong_learning_1_text: "Master new software, learn programming languages, or deepen your professional knowledge. The AI helps you stay ahead of the curve.",
+        lifelong_learning_2_title: "Hobbies & Interests",
+        lifelong_learning_2_text: "Whether you want to learn cooking, history, or astronomy – your AI mentor has the knowledge and patience to introduce you to any topic.",
+        lifelong_learning_3_title: "Efficient Knowledge Management",
+        lifelong_learning_3_text: "Process articles, PDFs, and notes in seconds. Have summaries created and test your knowledge with quizzes.",
+        lifelong_learning_4_title: "Flexible Integration into Daily Life",
+        lifelong_learning_4_text: "No fixed course times. Learn during your lunch break, on the train, or comfortably in the evening. Your AI is always there for you.",
+        lifelong_learning_cta_text: "Learn something new today.",
+        lifelong_learning_cta_button: "Try for free",
 
         // Homepage About Section
         homepage_about_title: "About us",
