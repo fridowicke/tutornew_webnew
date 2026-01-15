@@ -238,6 +238,10 @@ a {
 
 /* Desktop Menu Styles */
 @media (min-width: 481px) {
+    body {
+        zoom: 1.3;
+    }
+
     header {
         justify-content: flex-start;
         flex-wrap: nowrap; /* Prevent wrapping to keep in same row */
