@@ -9,6 +9,7 @@ const translations = {
         nav_about: "Über uns",
         nav_didactics: "Didaktik",
         nav_legal: "Impressum & AGB",
+        nav_privacy: "Datenschutz",
         nav_back: "← Zurück zur Startseite",
         
         // Hero
@@ -380,6 +381,7 @@ const translations = {
         nav_about: "About us",
         nav_didactics: "Didactics",
         nav_legal: "Legal & Terms",
+        nav_privacy: "Privacy",
         nav_back: "← Back to home",
         
         // Hero

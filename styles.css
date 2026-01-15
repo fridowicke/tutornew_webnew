@@ -122,6 +122,13 @@ a {
     transform: rotate(0.5deg);
 }
 
+.link-privacy {
+    color: #5c3d7a; /* Purple */
+    background-color: #f3e8f7;
+    border-color: #5c3d7a;
+    transform: rotate(-0.8deg);
+}
+
 /* CTAs */
 .cta-button-large {
     display: inline-block;
