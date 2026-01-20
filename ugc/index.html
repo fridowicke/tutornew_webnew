@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="ugc_title">UGC Creators - tutor.new</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        :root {
+            --accent-color: #1f4c7a; /* Blue accent */
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            color: var(--text-color);
+        }
+
+        .ugc-content {
+            text-align: left;
+            margin-bottom: 3rem;
+        }
+
+        .ugc-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border: 2px solid var(--text-color);
+            border-radius: 15px;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.05);
+            transform: rotate(-0.5deg);
+        }
+
+        .ugc-section:nth-child(even) {
+            transform: rotate(0.5deg);
+            background-color: #f0f7ff;
+        }
+
+        .ugc-section h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-family: 'Patrick Hand', cursive;
+            color: var(--accent-color);
+        }
+
+        .ugc-section p, .ugc-section ul {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .ugc-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .ugc-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .apply-box {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: #fff9e6;
+            border: 3px dashed var(--text-color);
+            border-radius: 20px;
+            transform: rotate(-1deg);
+        }
+
+        .email-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            background-color: white;
+            border: 2px solid var(--text-color);
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-link:hover {
+            transform: translateY(-3px) rotate(1deg);
+            box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="background-image: linear-gradient(var(--bg-color) 95%, #e6ddd4 95%);">
+        <header><a href="../index.html" data-i18n="nav_back">← Zurück zur Startseite</a></header>
+        
+        <h1 data-i18n="ugc_hero_title">Looking for UGC creators for a small AI tutoring app</h1>
+        
+        <div class="ugc-content">
+            <div class="ugc-section">
+                <p data-i18n="ugc_intro">Hey everyone 👋 We’re two indie devs building a small AI tutoring app for middle & high school students, and we’re looking for creators who enjoy making short-form videos (TikTok, Reels, Shorts).</p>
+                <p data-i18n="ugc_test_clips">We want to test daily short clips around studying, homework, motivation, “POV student life”, or reacting to the app. Nothing scripted, just natural content.</p>
+            </div>
+
+            <div class="ugc-section">
+                <h2 data-i18n="ugc_offer_title">What we offer</h2>
+                <ul>
+                    <li data-i18n="ugc_offer_1">• $10 per video</li>
+                    <li data-i18n="ugc_offer_2">• Performance-based bonuses for videos that do well</li>
+                    <li data-i18n="ugc_offer_3">• Long-term collab if it’s a good fit</li>
+                </ul>
+            </div>
+
+            <div class="ugc-section">
+                <h2 data-i18n="ugc_do_title">What you’d do</h2>
+                <ul>
+                    <li data-i18n="ugc_do_1">• 1 short video per day (15–60s)</li>
+                    <li data-i18n="ugc_do_2">• Simple stuff: screen recording, POV, reactions, study vibes</li>
+                    <li data-i18n="ugc_do_3">• Content will be used on our own TikTok/Reels accounts (you don’t need to post on your main)</li>
+                </ul>
+                <p data-i18n="ugc_no_follower">No follower requirement — we care about authenticity, not audience size.</p>
+            </div>
+
+            <div class="apply-box">
+                <p data-i18n="ugc_apply_text">If you’re interested, apply by sending an email with your portfolio to:</p>
+                <a href="mailto:friedrich@tutor.new" class="email-link" data-i18n="ugc_apply_button">Email to friedrich@tutor.new</a>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <a href="https://duck.tutor.new" class="cta-button-secondary" data-i18n="cta_button_secondary">→ Kostenlos testen</a>
+        </div>
+    </div>
+    <script src="../i18n.js"></script>
+</body>
+</html>
+

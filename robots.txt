@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# AI Bots
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://tutor.new/sitemap.xml
+
+# LLM Discovery
+# See /llms.txt and /for-llms/ for structured data
+
