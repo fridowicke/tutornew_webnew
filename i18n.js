@@ -1109,7 +1109,23 @@ const translations = {
 class I18n {
     constructor() {
         this.translations = translations;
-        this.currentLang = localStorage.getItem('language') || 'de';
+        
+        // Detect language
+        const savedLang = localStorage.getItem('language');
+        if (savedLang) {
+            this.currentLang = savedLang;
+        } else {
+            // Detect from browser
+            const browserLang = (navigator.language || navigator.userLanguage).toLowerCase();
+            // If it's German (de, de-at, de-ch, de-li, de-lu)
+            if (browserLang.startsWith('de')) {
+                this.currentLang = 'de';
+            } else {
+                // Default to English for everyone else
+                this.currentLang = 'en';
+            }
+        }
+        
         this.currentLocale = this.detectLocale();
         document.documentElement.lang = this.currentLang;
     }
