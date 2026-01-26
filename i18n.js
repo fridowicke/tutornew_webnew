@@ -373,7 +373,7 @@ const translations = {
         ugc_hero_title: "📚 Werde tutor.new Ambassador 🌻",
         ugc_intro_img: "ugc_DE.png",
         ugc_intro: "Bei tutor.new entwickeln wir KI-Lehrer:innen, die <strong>allen Schüler:innen</strong> ohne Angst durch die Schule helfen. Dafür suchen wir <strong>immer</strong> motivierte Ambassadors, die uns bei unserer Mission helfen wollen.",
-        ugc_test_clips: "Du brauchst <strong>keine Vorerfahrung</strong>! Solange du Motivation mitbringst und gerne Videos machst, können wir dich zu einem erfolgreichen Ambassador machen!<br><ul><li>750€ - 3000€ pro Monat</li><li>Unglaubliches Support-Team</li><li>Keine Erfahrung nötig</li></ul><span class='highlight-text'>✨ <strong>Wir freuen uns auf dich!</strong></span>",
+        ugc_test_clips: "<ul><li>750€ - 3000€ pro Monat</li><li>Unglaubliches Support-Team</li><li>Keine Erfahrung nötig</li></ul><span class='highlight-text'>✨ <strong>Wir freuen uns auf dich!</strong></span>",
         
         ugc_plan_title: "Dein Weg zum Ambassador",
         ugc_phase_1_title: "I. Sag einfach Hallo! 👋",
@@ -927,7 +927,7 @@ const translations = {
         ugc_hero_title: "📚 Become a tutor.new Ambassador 🌻",
         ugc_intro_img: "ugc_EN.png",
         ugc_intro: "At tutor.new, we're building AI tutors that help <strong>all students</strong> get through school without fear. We're <strong>always</strong> looking for motivated ambassadors who want to help us with our mission.",
-        ugc_test_clips: "You don't need <strong>any prior experience</strong>! As long as you're motivated and enjoy making videos, we can help you become a successful ambassador!<br><ul><li>$750 - $3000 per month</li><li>Incredible support team</li><li>No experience required</li></ul><span class='highlight-text'>✨ <strong>We can't wait to hear from you!</strong></span>",
+        ugc_test_clips: "<ul><li>$750 - $3000 per month</li><li>Incredible support team</li><li>No experience required</li></ul><span class='highlight-text'>✨ <strong>We can't wait to hear from you!</strong></span>",
         
         ugc_plan_title: "Your path to becoming an Ambassador",
         ugc_phase_1_title: "I. Just say Hi! 👋",
