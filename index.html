@@ -588,48 +588,8 @@
             transform: scale(1.05) rotate(-1deg);
         }
 
-        /* Secondary CTA (with circle) */
-        .cta-button-secondary {
-            display: inline-block;
-            background: none;
-            color: var(--text-color);
-            padding: 0;
-            font-size: 2.2rem;
-            text-decoration: none;
-            font-weight: 900;
-            border: none;
-            transition: all 0.2s ease;
-            font-family: 'Patrick Hand', cursive;
-            letter-spacing: -0.5px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-button-secondary::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150%;
-            height: 170%;
-            background-image: url('circling.png');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            z-index: -1;
-            pointer-events: none;
-            opacity: 1;
-        }
-
-        .cta-button-secondary:hover {
-            transform: translateX(5px);
-        }
-
-        .cta-button-secondary:hover::before {
-            transform: translate(-50%, -50%) translateX(5px);
-        }
-
+        /* Secondary CTA (with circle) - Moved to styles.css */
+        
         /* Steps CTA Buttons */
         .steps-cta-container {
             display: flex;
