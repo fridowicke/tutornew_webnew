@@ -25,48 +25,37 @@
             margin-bottom: 3rem;
         }
 
-        .intro-video-container {
+        .intro-img-container {
             text-align: center;
-            margin: 1.5rem 0;
+            margin: -0.5rem 0;
+        }
+
+        .intro-img {
+            max-width: 450px;
             width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            transform: rotate(1deg);
+            display: inline-block;
         }
 
-        .video-responsive {
-            overflow: hidden;
-            padding-bottom: 56.25%;
-            position: relative;
-            height: 0;
-            border-radius: 15px;
-            border: 2px solid var(--text-color);
-            box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+        .ugc-section p {
+            margin-bottom: 0.5rem;
         }
 
-        .video-responsive iframe {
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 100%;
-            position: absolute;
+        .ugc-section p:first-of-type {
+            margin-bottom: 0;
         }
 
-        .phase-box:nth-of-type(3) {
-            align-self: flex-start;
-            background-color: #bde4f2; /* Intense Blue */
-            transform: rotate(-0.5deg);
-            margin-left: 5%;
+        .ugc-section p:last-of-type {
+            margin-top: 0;
         }
 
-        .phase-box:nth-of-type(4) {
-            align-self: flex-end;
-            background-color: #f8d7da; /* Light Red/Pink */
-            transform: rotate(0.5deg);
-            margin-right: 5%;
+        @media (max-width: 600px) {
+            .intro-img {
+                max-width: 240px;
+            }
         }
 
-        .phase-box h3 {
+        .ugc-section h2 {
             font-size: 1.8rem;
             margin-top: 0;
             margin-bottom: 1rem;
@@ -391,10 +380,8 @@
         <div class="ugc-content">
             <div class="ugc-section">
                 <p data-i18n="ugc_intro">Hey everyone 👋 We’re two indie devs building a small AI tutoring app for middle & high school students, and we’re looking for creators who enjoy making short-form videos (TikTok, Reels, Shorts).</p>
-                <div class="intro-video-container">
-                    <div class="video-responsive">
-                        <iframe id="intro-video" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
+                <div class="intro-img-container">
+                    <img src="ugc_DE.jpg" data-i18n-attr="src:ugc_intro_img" class="intro-img" alt="UGC Creator Opportunity">
                 </div>
                 <p data-i18n="ugc_test_clips">We want to test daily short clips around studying, homework, motivation, “POV student life”, or reacting to the app. Nothing scripted, just natural content.</p>
             </div>
@@ -402,19 +389,12 @@
             <div class="ugc-section">
                 <h2 data-i18n="ugc_plan_title">Your path to becoming an Ambassador</h2>
                 <div class="phase-progression">
-                    <svg class="phase-line" viewBox="0 0 400 800" preserveAspectRatio="none">
-                        <path d="M 50 100 Q 350 200 350 300 Q 350 400 50 500 Q 50 600 350 700" />
+                    <svg class="phase-line" viewBox="0 0 400 600" preserveAspectRatio="none">
+                        <path d="M 50 100 Q 350 200 350 300 Q 350 400 50 500" />
                     </svg>
                     <div class="phase-box">
-                        <h3 data-i18n="ugc_phase_1_title">1. Learn about tutor.new and the Creator tools</h3>
-                        <p data-i18n="ugc_phase_1_text">Watch this video to understand how tutor.new works and how you can use our tools to create amazing content.</p>
-                        <div class="video-responsive" style="margin-top: 1rem; border-radius: 10px;">
-                            <iframe id="step1-video" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="phase-box">
-                        <h3 data-i18n="ugc_phase_2_title">2. Create your accounts, send them to us, warm them up</h3>
-                        <p data-i18n="ugc_phase_2_text">Set up your social media accounts, share the handles with us, and start engaging with other content to "warm up" the algorithm.</p>
+                        <h3 data-i18n="ugc_phase_1_title">I. Just say Hi! 👋</h3>
+                        <p data-i18n="ugc_phase_1_text">Don't overthink it! Just send a link to any video you've made or a quick file. We just want to see your vibe.</p>
                         <div class="phase-btns">
                             <a href="mailto:friedrich@tutor.new" class="phase-btn">
                                 ✉️ <span data-i18n="ugc_phase_1_email">Via Email</span>
@@ -425,12 +405,12 @@
                         </div>
                     </div>
                     <div class="phase-box">
-                        <h3 data-i18n="ugc_phase_3_title">3. Post daily for 1 week</h3>
-                        <p data-i18n="ugc_phase_3_text">Consistency is key! Post one high-quality short-form video every day for a week to see what resonates with your audience.</p>
+                        <h3 data-i18n="ugc_phase_2_title">II. Trial Month</h3>
+                        <p data-i18n="ugc_phase_2_text">Get paid <b>$750</b> while you learn. We'll support you with daily coaching and feedback to help your content go viral.</p>
                     </div>
                     <div class="phase-box">
-                        <h3 data-i18n="ugc_phase_4_title">4. Check in (Call / Mail) after one week</h3>
-                        <p data-i18n="ugc_phase_4_text">After your first week of posting, we'll have a quick check-in to review the results and plan the next steps.</p>
+                        <h3 data-i18n="ugc_phase_3_title">III. Ambassador Status</h3>
+                        <p data-i18n="ugc_phase_3_text">You're now a core part of the team. Enjoy total flexibility and earn up to <b>$3k a month</b> as a tutor.new face.</p>
                     </div>
                 </div>
             </div>
@@ -474,31 +454,6 @@
                     video.muted = !video.muted;
                     btn.innerHTML = video.muted ? '🔇' : '🔊';
                 }
-
-                // Handle video updates based on language
-                function updateVideos(lang) {
-                    const introVideo = document.getElementById('intro-video');
-                    const step1Video = document.getElementById('step1-video');
-                    
-                    if (lang === 'de') {
-                        introVideo.src = "https://www.youtube.com/embed/cSRjv5eBGls";
-                        step1Video.src = "https://www.youtube.com/embed/KGfQZFSuhug";
-                    } else {
-                        introVideo.src = "https://www.youtube.com/embed/59OY2OkL5C8";
-                        step1Video.src = "https://www.youtube.com/embed/pUDwCQlz5x8";
-                    }
-                }
-
-                // Listen for language changes
-                window.addEventListener('languageChanged', (e) => {
-                    updateVideos(e.detail.language);
-                });
-
-                // Initial load
-                document.addEventListener('DOMContentLoaded', () => {
-                    const currentLang = localStorage.getItem('preferredLanguage') || (navigator.language.startsWith('de') ? 'de' : 'en');
-                    updateVideos(currentLang);
-                });
             </script>
 
             <div class="apply-box">
