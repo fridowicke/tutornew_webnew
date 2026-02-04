@@ -1,0 +1,948 @@
+---
+layout: layouts/main.njk
+title: tutor.new - Lerne mit der KI, verdiene echte Belohnungen
+lang: de
+structuredData: |
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "tutor.new",
+    "url": "https://tutor.new",
+    "logo": "https://tutor.new/favicon.ico",
+    "description": "KI-Nachhilfe, die Lernen belohnt. Lerne mit der KI und verdiene echte Belohnungen.",
+    "founders": [
+      {
+        "@type": "Person",
+        "name": "Gero"
+      },
+      {
+        "@type": "Person",
+        "name": "Friedrich"
+      }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Zürich",
+      "addressCountry": "CH"
+    },
+    "offers": {
+      "@type": "Offer",
+      "category": "Educational Service",
+      "priceCurrency": "EUR",
+      "price": "2.99"
+    }
+  }
+pageStyles: |
+    /* Page Specific Overrides */
+    header {
+        text-align: left;
+        margin-bottom: 1.5rem;
+        font-size: 0.875rem;
+        font-weight: normal;
+        opacity: 0.6;
+        border-bottom: none;
+        display: flex;
+        padding: 0;
+    }
+
+    /* Hero Section */
+    .hero {
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+
+    .highlight-box {
+        background-color: #cce5ff; /* Light blue highlight */
+        color: #0e3322;
+        padding: 0 6px;
+        border-radius: 4px;
+        box-shadow: 2px 2px 0px rgba(14, 51, 34, 0.2);
+        display: inline-block;
+        transform: rotate(-2deg);
+        margin: 0 2px;
+    }
+
+    .highlight-underline {
+        background-image: url('{{ '/stroke.png' | url }}');
+        background-repeat: no-repeat;
+        background-size: 100% 12px; /* Thinner and firm stroke */
+        background-position: center bottom;
+        padding-bottom: 2px; /* Adjust spacing for stroke */
+        display: inline-block;
+        line-height: 1.2; /* Ensure line height accommodates stroke */
+    }
+    
+    /* Removing the pseudo-element approach which caused visibility issues */
+    .highlight-underline::after {
+        content: none;
+    }
+
+    /* Visual Placeholder */
+    .visual-placeholder {
+        width: 100%;
+        height: auto;
+        border: 3px solid var(--text-color);
+        border-radius: 15px; /* Slightly rounded edges */
+        display: block; /* Changed to block for image */
+        margin-bottom: 3rem;
+        overflow: hidden;
+        /* Irregular hand-drawn border effect */
+        box-shadow: 5px 5px 0px rgba(14, 51, 34, 0.2);
+        transform: rotate(-1deg);
+        background-color: white;
+    }
+    
+    .visual-placeholder img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Steps Flow */
+    .steps-flow-wrapper {
+        position: relative;
+        margin-bottom: 4rem;
+        margin-left: 12px; /* Give space for the line */
+    }
+
+    /* The continuous vertical line (grey background) */
+    .steps-flow-wrapper::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background-color: var(--text-color);
+        z-index: 1;
+        border-radius: 3px;
+    }
+
+    /* The blue progress line */
+    .steps-flow-wrapper::after {
+        content: '';
+        position: absolute;
+        left: -4.5px; /* Centered on the 3px line: (12-3)/2 = 4.5 */
+        top: 0;
+        width: 12px;
+        height: var(--total-line-progress, 0%);
+        background: linear-gradient(to bottom, #cce5ff, #4a9eff);
+        border-radius: 6px 6px 0 0;
+        z-index: 2;
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    /* Round bottom when complete */
+    .steps-flow-wrapper.complete::after {
+        border-radius: 6px;
+    }
+
+    .steps-container {
+        margin-bottom: 0;
+        position: relative;
+    }
+
+    .step {
+        padding-bottom: 2.5rem;
+        padding-left: 30px;
+        border-left: none;
+        position: relative;
+        z-index: 3;
+    }
+    
+    .step:last-child {
+        padding-bottom: 0;
+        border-left: none;
+    }
+    
+    /* Remove individual progress lines and borders */
+    .step::after {
+        display: none !important;
+    }
+    
+    .steps-cta-container::after {
+        display: none !important;
+    }
+    
+    /* Hand-drawn circle for step numbers */
+    .step::before {
+        content: '';
+        position: absolute;
+        left: -8.5px;
+        top: 4px;
+        width: 20px;
+        height: 20px;
+        background: var(--bg-color);
+        border: 3px solid var(--text-color);
+        border-radius: 50%;
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1rem;
+        color: transparent;
+    }
+    
+    .step.active::before {
+        content: attr(data-step-number);
+        background: var(--bg-color);
+        transform: scale(1.4);
+        color: var(--text-color);
+        left: -8.5px;
+    }
+
+    .step-heading {
+        font-weight: bold;
+        font-size: 1.4rem;
+        display: block;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .step-content {
+        font-size: 1.15rem;
+    }
+
+    /* Additional Examples (Old Situations) */
+    .examples-section {
+        margin-bottom: 4rem;
+        background: #fdfdfd;
+        background-image: radial-gradient(rgba(0, 51, 102, 0.15) 1.5px, transparent 1.5px);
+        background-size: 20px 20px;
+        padding: 2.5rem 1.5rem;
+        border: 2px solid var(--text-color);
+        border-radius: 20px 100px 20px 100px / 100px 20px 100px 20px;
+        box-shadow: 8px 8px 0px rgba(0, 51, 102, 0.05);
+        position: relative;
+    }
+
+    .examples-title {
+        text-align: center;
+        font-size: 1.6rem;
+        margin-bottom: 2.5rem;
+        font-family: 'Sour Gummy', sans-serif;
+        text-decoration: none;
+        position: relative;
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .examples-title::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #003366;
+        border-radius: 2px;
+        opacity: 0.3;
+    }
+
+    .examples-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .example-item {
+        margin-bottom: 0; /* Let grid handle spacing */
+        display: flex;
+        flex-direction: row; /* Emoji left, text right */
+        align-items: center; /* Center content vertically */
+        text-align: left;
+        font-size: 0.9rem; /* Smaller font */
+        background: white;
+        padding: 0.5rem 0.8rem; /* Reduced padding */
+        border: 2px solid var(--text-color);
+        border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; /* Hand-drawn box feel */
+        box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+        transition: transform 0.3s ease;
+        height: 100%; /* Ensure equal heights */
+        justify-content: flex-start; /* Align content to start */
+        gap: 0.8rem; /* Space between emoji and text */
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    .example-item h3 {
+        font-size: 1.1rem;
+        margin: 0;
+        font-family: 'Sour Gummy', sans-serif;
+        color: var(--text-color);
+        line-height: 1.1;
+    }
+    
+    .example-item:hover {
+        transform: scale(1.05) !important; /* Override rotation slightly on hover */
+        z-index: 10;
+        box-shadow: 6px 6px 0px rgba(14, 51, 34, 0.15);
+    }
+
+    /* Alternating rotations for sticky note feel - applied to grid items */
+    .example-item:nth-child(1) { transform: rotate(-1deg); }
+    .example-item:nth-child(2) { transform: rotate(1deg); }
+    .example-item:nth-child(3) { transform: rotate(0.5deg); }
+    .example-item:nth-child(4) { transform: rotate(-0.5deg); }
+    .example-item:nth-child(5) { transform: rotate(0.8deg); }
+    .example-item:nth-child(6) { transform: rotate(-0.8deg); }
+
+    .bullet {
+        margin: 0;
+        font-size: 1.5rem; /* Smaller emoji */
+        line-height: 1;
+        flex-shrink: 0;
+    }
+    
+    .example-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .example-highlight {
+        display: block;
+        font-weight: bold;
+        color: #003366;
+        margin-top: 0.1rem;
+    }
+
+    /* Pricing */
+    .pricing {
+        text-align: center;
+        margin-bottom: 4rem;
+        padding: 0;
+        position: relative;
+    }
+
+    .price-highlight {
+        font-size: 1.8rem;
+        font-weight: bold;
+        display: block;
+        margin-top: 0.5rem;
+    }
+
+    .pricing-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+
+    .pricing-card {
+        padding: 1.5rem;
+        border: 2px solid var(--text-color);
+        border-radius: 15px;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: transform 0.3s ease;
+        box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+    }
+
+    .pricing-card:hover {
+        transform: translateY(-5px) rotate(1deg);
+    }
+
+    .pricing-card:nth-child(1) { transform: rotate(-1deg); }
+    .pricing-card:nth-child(2) { transform: rotate(1deg); border-color: #4a9eff; }
+    .pricing-card:nth-child(3) { transform: rotate(-0.5deg); background-color: #fff9e6; border-color: #ffcc00; }
+
+    .pricing-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        font-family: 'Sour Gummy', sans-serif;
+    }
+
+    .pricing-card p {
+        font-size: 0.95rem;
+        opacity: 0.8;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .pricing-card .price {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: var(--text-color);
+    }
+
+    .price-container {
+        margin-top: auto;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        align-items: flex-start;
+    }
+
+    @media (max-width: 480px) {
+        .price-container {
+            align-items: center;
+            text-align: center;
+        }
+    }
+
+    .price-from {
+        font-size: 0.9rem;
+        opacity: 0.6;
+        line-height: 1;
+        margin-bottom: -2px;
+    }
+
+    .price-value {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: var(--text-color);
+        line-height: 1.1;
+        white-space: nowrap;
+    }
+
+    .pricing-preview-cta {
+        display: inline-block;
+        margin-top: 1rem;
+        font-weight: bold;
+        text-decoration: underline;
+        color: var(--text-color);
+        font-size: 1.1rem;
+    }
+
+    /* About Section */
+    .homepage-about {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+        background: #f9f9f9; /* Very light grey tint */
+        background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+        background-size: 25px 25px;
+        border: 2px solid var(--text-color);
+        border-radius: 40px 20px 40px 20px / 20px 40px 20px 40px;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.05);
+        position: relative;
+    }
+
+    .media-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .media-grid a {
+        transition: transform 0.2s ease;
+        display: flex;
+        align-items: center;
+    }
+
+    .media-grid a:hover {
+        transform: scale(1.1);
+    }
+
+    .media-grid img {
+        height: 25px;
+        width: auto;
+        max-width: 180px;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: all 0.3s ease;
+    }
+
+    .media-grid a:hover img {
+        filter: grayscale(0%);
+        opacity: 1;
+    }
+
+    .why-works-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        margin-top: 4rem; /* More space for labels below the section title */
+        margin-bottom: 2rem;
+        text-align: left;
+        padding: 0;
+    }
+
+    .why-col {
+        padding: 4rem 2rem 2rem;
+        border: 2px solid var(--text-color);
+        border-radius: 15px 50px 15px 50px / 50px 15px 50px 15px;
+        background: white;
+        transition: transform 0.3s ease;
+        box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.05);
+        position: relative;
+    }
+
+    .why-col:nth-child(1) {
+        background-color: #f0fff4; /* Light green for Didactics */
+        border-color: #2d6a4f; /* Darker green border */
+        transform: rotate(-0.5deg);
+        box-shadow: 6px 6px 0px rgba(45, 106, 79, 0.1);
+    }
+
+    .why-col:nth-child(1) h3 {
+        background-color: #f0fff4;
+        border-color: #2d6a4f;
+        transform: rotate(-4deg); /* Individual rotation */
+    }
+
+    .why-col:nth-child(2) {
+        background-color: #fff9e6; /* Light yellow/orange for Motivation */
+        border-color: #d97706; /* Darker orange border */
+        transform: rotate(0.5deg);
+        box-shadow: 6px 6px 0px rgba(217, 119, 6, 0.1);
+    }
+
+    .why-col:nth-child(2) h3 {
+        background-color: #fff9e6;
+        border-color: #d97706;
+        transform: rotate(3deg); /* Individual rotation */
+    }
+
+    .why-col:nth-child(1):hover {
+        box-shadow: 10px 10px 0px rgba(45, 106, 79, 0.15);
+    }
+
+    .why-col:nth-child(2):hover {
+        box-shadow: 10px 10px 0px rgba(217, 119, 6, 0.15);
+    }
+
+    .why-col h3 {
+        font-size: 1.5rem;
+        font-family: 'Sour Gummy', sans-serif;
+        text-decoration: none;
+        color: var(--text-color);
+        position: absolute;
+        top: -2.2rem; /* Moved further up */
+        left: 2rem;
+        padding: 0 12px;
+        border: 2px solid var(--text-color);
+        border-radius: 8px;
+    }
+
+    .why-col p {
+        font-size: 1.1rem;
+        line-height: 1.4;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+        margin-top: 0;
+    }
+
+    .why-learn-more {
+        font-weight: bold;
+        text-decoration: underline;
+        color: var(--text-color);
+        font-size: 1.1rem;
+        transition: opacity 0.2s ease;
+    }
+
+    .why-learn-more:hover {
+        opacity: 0.7;
+    }
+
+    .why-works-section {
+        margin-bottom: 4rem;
+        text-align: center;
+    }
+
+    /* Steps CTA Buttons */
+    .steps-cta-container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 2.5rem;
+        padding-bottom: 0;
+        padding-left: 30px;
+        border-left: none;
+        position: relative;
+        z-index: 1;
+    }
+
+    .steps-cta-container::after {
+        display: none;
+    }
+
+    .cta-button-main, .cta-button-rewards {
+        display: inline-block;
+        padding: 0.8rem 1.6rem;
+        font-size: 1.5rem;
+        font-family: 'Sour Gummy', sans-serif;
+        text-decoration: none;
+        border: 2px solid var(--text-color);
+        border-radius: 12px;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        color: var(--text-color);
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    .cta-button-main {
+        background-color: white;
+        box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .cta-button-main::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--fill-progress, 0%);
+        background: linear-gradient(to bottom, #cce5ff, #4a9eff);
+        opacity: 0.4;
+        z-index: -1;
+        pointer-events: none;
+        transition: none;
+    }
+
+    .cta-button-rewards {
+        background-color: #f9f9f9; /* Very light grey */
+        box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+    }
+
+    .cta-button-main:hover, .cta-button-rewards:hover {
+        transform: translateY(-3px);
+        box-shadow: 6px 6px 0px rgba(14, 51, 34, 0.15);
+        z-index: 5;
+    }
+
+    /* Desktop scaling */
+    @media (min-width: 481px) {
+        .cta-button-large {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+        h1, .headline-highlight {
+            font-size: 1.5rem;
+        }
+        .container {
+            background-size: 100% 1.8rem; 
+        }
+        .cta-button-large {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .examples-grid {
+            grid-template-columns: 1fr 1fr; /* Keep 2 columns on mobile */
+            gap: 1rem;
+        }
+        
+        .example-item {
+            font-size: 0.9rem;
+            padding: 0.5rem 0.6rem;
+        }
+        
+        .pricing-preview-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .why-works-grid {
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+        }
+
+        .steps-cta-container {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1.5rem;
+            padding: 2.5rem 1rem 2.5rem 0;
+            margin-bottom: 0;
+        }
+
+        .steps-flow-wrapper {
+            margin-left: 30px;
+            border-left: none; /* Handled by ::before */
+        }
+
+        .cta-button-main, .cta-button-rewards {
+            transform: none !important;
+            font-size: 1.6rem;
+            padding: 1rem;
+        }
+
+        .pricing-card {
+            transform: none !important;
+            text-align: center;
+        }
+        
+        .bullet {
+            font-size: 1.4rem;
+        }
+    }
+pageScripts: |
+    function toggleMenu() {
+        // Check if we're on mobile
+        const isMobile = window.innerWidth <= 480;
+        
+        if (isMobile) {
+            // Toggle mobile overlay
+            const mobileOverlay = document.getElementById('mobileMenuOverlay');
+            mobileOverlay.classList.toggle('active');
+        } else {
+            // Toggle desktop menu
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+    }
+    
+    // Scroll animation for steps
+    function handleStepScroll() {
+        const steps = document.querySelectorAll('.step');
+        const wrapper = document.querySelector('.steps-flow-wrapper');
+        const mainButton = document.querySelector('.cta-button-main');
+        const windowHeight = window.innerHeight;
+        const triggerPoint = windowHeight * 0.75;
+        
+        steps.forEach((step, index) => {
+            const rect = step.getBoundingClientRect();
+            const stepMiddle = rect.top + (rect.height / 2);
+            
+            // Circle animation - activate when step reaches lower in viewport
+            if (stepMiddle < windowHeight * 0.85) {
+                step.classList.add('active');
+            } else {
+                step.classList.remove('active');
+            }
+        });
+
+        // Total wrapper line progress
+        if (wrapper) {
+            const rect = wrapper.getBoundingClientRect();
+            const stepTop = rect.top;
+            const stepBottom = rect.bottom;
+            const stepHeight = rect.height;
+            let progress = 0;
+            
+            if (stepBottom < triggerPoint) {
+                progress = 100;
+                wrapper.classList.add('complete');
+            } else if (stepTop < triggerPoint) {
+                const scrolledAmount = triggerPoint - stepTop;
+                progress = Math.min(100, Math.max(0, (scrolledAmount / stepHeight) * 100));
+                wrapper.classList.remove('complete');
+            } else {
+                wrapper.classList.remove('complete');
+            }
+            wrapper.style.setProperty('--total-line-progress', progress + '%');
+        }
+
+        // Button fill progress
+        if (mainButton) {
+            const rect = mainButton.getBoundingClientRect();
+            const stepTop = rect.top;
+            const stepBottom = rect.bottom;
+            const stepHeight = rect.height;
+            let progress = 0;
+            
+            if (stepBottom < triggerPoint) {
+                progress = 100;
+            } else if (stepTop < triggerPoint) {
+                const scrolledAmount = triggerPoint - stepTop;
+                progress = Math.min(100, Math.max(0, (scrolledAmount / stepHeight) * 100));
+            }
+            mainButton.style.setProperty('--fill-progress', progress + '%');
+        }
+    }
+    
+    // Run on scroll and on load
+    window.addEventListener('scroll', handleStepScroll);
+    window.addEventListener('load', handleStepScroll);
+scripts:
+  - /common.js
+  - /i18n.js
+---
+
+<section class="hero">
+    <h1><span data-i18n="hero_title_pre">Lerne mit der</span> <span class="highlight-box" data-i18n="hero_title_highlight">KI,</span><br class="mobile-br"> <span data-i18n="hero_subtitle_pre">verdiene</span> <span class="highlight-underline" data-i18n="hero_subtitle_highlight">echte Belohnungen</span> <span data-i18n="hero_subtitle_post"></span></h1>
+</section>
+
+<div class="visual-placeholder" style="margin-bottom: 1.5rem;">
+    <img src="{{ '/lesson_physics.png' | url }}" alt="Beispiel einer Lerneinheit mit Notizen">
+</div>
+
+<div style="text-align: center; margin-top: 0.5rem; margin-bottom: 4rem;">
+    <a href="https://duck.tutor.new" class="cta-button-secondary" data-i18n="cta_button_secondary">→ Kostenlos testen</a>
+</div>
+
+<div class="steps-flow-wrapper">
+    <section class="steps-container">
+        <div class="step" data-step-number="1">
+            <span class="step-heading" data-i18n="step_1_heading">Starte, wo du es brauchst</span>
+            <div class="step-content" data-i18n="step_1_content">
+                Lade ein Foto vom Arbeitsblatt hoch oder sag der KI, was du nicht verstehst. Wir helfen dir genau da, wo du gerade hängst.
+            </div>
+        </div>
+        
+        <div class="step" data-step-number="2">
+            <span class="step-heading" data-i18n="step_2_heading">Lern mit der KI & sammle Coins</span>
+            <div class="step-content" data-i18n="step_2_content">
+                Du sprichst im (Voice-)chat mit der KI. Gemeinsam löst ihr Aufgaben und erhältst geduldige Erklärungen. Für jeden Lernfortschritt belohnt dich die KI sofort mit wertvollen Coins.
+            </div>
+        </div>
+
+        <div class="step" data-step-number="3">
+            <span class="step-heading" data-i18n="step_3_heading">Echte Belohnungen</span>
+            <div class="step-content" data-i18n="step_3_content">
+                Tausche deine gesammelten Coins gegen digitale Awards in der App oder echte Belohnungen ein, die wir dir direkt per Post nach Hause schicken.
+            </div>
+        </div>
+    </section>
+
+    <div class="steps-cta-container">
+        <a href="https://duck.tutor.new" class="cta-button-main" data-i18n="cta_start_now">Jetzt starten</a>
+        <a href="{{ '/rewards.html' | url }}" class="cta-button-rewards" data-i18n="cta_rewards_learn_more">Belohnungen entdecken</a>
+    </div>
+</div>
+
+<section class="why-works-section">
+    <h2 class="examples-title" data-i18n="why_works_title">Warum es funktioniert</h2>
+    <div class="why-works-grid">
+        <!-- Didactics -->
+        <div class="why-col">
+            <h3 data-i18n="why_didactics_title">Didaktik</h3>
+            <p data-i18n="why_didactics_text">Durch einen personalisierten Tutor, interaktive Visualisierungen sowie automatische Mitschriften und Quizze lernt es sich leichter und effektiver.</p>
+            <a href="{{ '/didaktik.html' | url }}" class="why-learn-more" data-i18n="why_learn_more">Mehr erfahren</a>
+        </div>
+        <!-- Motivation -->
+        <div class="why-col">
+            <h3 data-i18n="why_motivation_title">Motivation</h3>
+            <p data-i18n="why_motivation_text">Regelmäßiges Lernen mit Zuspruch, das Sammeln von Coins für gute Leistungen und das Erhalten von echten Belohnungen sorgen für dauerhaften Lernerfolg.</p>
+            <a href="{{ '/rewards.html' | url }}" class="why-learn-more" data-i18n="why_learn_more">Mehr erfahren</a>
+        </div>
+    </div>
+</section>
+
+<section class="examples-section">
+    <div class="examples-title" data-i18n="examples_title">Wem hilft das?</div>
+    <div class="examples-grid">
+        <a href="{{ '/students.html' | url }}" class="example-item">
+            <span class="bullet">🎓</span>
+            <h3 data-i18n="example_1_text">Für Schüler</h3>
+        </a>
+        <a href="{{ '/parents.html' | url }}" class="example-item">
+            <span class="bullet">👨‍👩‍👧‍👦</span>
+            <h3 data-i18n="example_2_text">Für Eltern</h3>
+        </a>
+        <a href="{{ '/schools.html' | url }}" class="example-item">
+            <span class="bullet">🏫</span>
+            <h3 data-i18n="example_3_text">Für Schulen & Lehrer</h3>
+        </a>
+        <a href="{{ '/uni.html' | url }}" class="example-item">
+            <span class="bullet">🏢</span>
+            <h3 data-i18n="example_4_text">Uni & Ausbildung</h3>
+        </a>
+        <a href="{{ '/lifelong-learning.html' | url }}" class="example-item">
+            <span class="bullet">🌍</span>
+            <h3 data-i18n="example_5_text">Lebenslanges Lernen</h3>
+        </a>
+        <a href="{{ '/languages.html' | url }}" class="example-item">
+            <span class="bullet">🗣️</span>
+            <h3 data-i18n="example_6_text">Sprachen lernen</h3>
+        </a>
+    </div>
+</section>
+
+<section class="pricing">
+    <h2 class="examples-title" data-i18n="pricing_preview_title">Wähle das passende Paket</h2>
+    <div class="pricing-preview-grid">
+        <!-- Prepaid -->
+        <div class="pricing-card">
+            <div>
+                <h3 data-i18n="plan_prepaid_title">Prepaid</h3>
+                <p data-i18n="plan_prepaid_desc">Volle Flexibilität</p>
+            </div>
+            <div class="price-container">
+                <div class="price-from" data-i18n="pricing_from">ab</div>
+                <div class="price-value" data-i18n="plan_prepaid_price">4€ / Stunde</div>
+            </div>
+        </div>
+        <!-- Standard -->
+        <div class="pricing-card">
+            <div>
+                <h3 data-i18n="plan_standard_title">Standard Abo</h3>
+                <p data-i18n="plan_standard_desc">Wöchentliche Stunden<br>Super Preis</p>
+            </div>
+            <div class="price-container">
+                <div class="price-from" data-i18n="pricing_from">ab</div>
+                <div class="price-value" data-i18n="plan_standard_price">2.99€ / Woche</div>
+            </div>
+        </div>
+        <!-- Boost -->
+        <div class="pricing-card">
+            <div>
+                <h3 data-i18n="plan_boost_title">Boost Abo</h3>
+                <p data-i18n="plan_boost_desc">Bessere Belohnungen &<br>Höchste Motivation</p>
+            </div>
+            <div class="price-container">
+                <div class="price-from" data-i18n="pricing_from">ab</div>
+                <div class="price-value" data-i18n="plan_boost_price">8.99€ / Woche</div>
+            </div>
+        </div>
+    </div>
+    <a href="{{ '/pricing.html' | url }}" class="pricing-preview-cta" data-i18n="pricing_preview_cta">Alle Preise & Details ansehen →</a>
+</section>
+
+<section class="homepage-about">
+    <h2 class="examples-title" data-i18n="homepage_about_title">Über uns</h2>
+    <div style="max-width: 650px; margin: 0 auto 2.5rem auto; text-align: left;">
+        <p style="font-size: 1.2rem; margin-bottom: 1.5rem;" data-i18n="homepage_about_founders">Wir sind Gero und Friedrich, Mathematiker und Informatiker in Zürich. Mit tutor.new wollen wir Software nutzen, um jedem Schüler, unabhängig von seinem Hintergrund, eine qualitativ hochwertige, personalisierte Bildung zugänglich zu machen.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+            <a href="{{ '/ueber-uns.html' | url }}" class="nav-link link-about" data-i18n="homepage_about_learn_more" style="font-size: 1.2rem; flex: 1; text-align: center; min-width: 140px;">Mehr erfahren</a>
+            <a href="mailto:friedrich@tutor.new" class="nav-link link-legal" data-i18n="homepage_about_contact" style="font-size: 1.2rem; flex: 1; text-align: center; min-width: 140px;">E-Mail senden</a>
+        </div>
+    </div>
+    
+    <p style="font-size: 1rem; opacity: 0.8;" data-i18n="homepage_about_media">Über unsere Vision wurde bereits in führenden Medien berichtet:</p>
+    <div class="media-grid">
+        <a href="https://www.20min.ch/story/eth-studenten-ki-nachhilfe-fuer-2-franken-pro-stunde-103281970" target="_blank">
+            <img src="{{ '/media-outlets/20Minuten.svg' | url }}" alt="20 Minuten">
+        </a>
+        <a href="https://www.tagesanzeiger.ch/ki-nachhilfe-fuer-3-franken-revolutioniert-bildung-382172844340" target="_blank">
+            <img src="{{ '/media-outlets/Tagesanzeiger.svg' | url }}" alt="Tagesanzeiger">
+        </a>
+        <a href="https://www.aargauerzeitung.ch/leben/bildung-ein-roboter-als-nachhilfelehrerin-wie-eine-ki-kindern-das-rechnen-beibringt-ld.2761331" target="_blank">
+            <img src="{{ '/media-outlets/AargauerZeitung.svg' | url }}" alt="Aargauer Zeitung">
+        </a>
+        <a href="https://www.abendzeitung-muenchen.de/muenchen/muenchner-revolutioniert-nachhilfe-kuenstliche-intelligenz-statt-teurem-lehrer-art-1045999" target="_blank">
+            <img src="{{ '/media-outlets/Abendzeitung.svg' | url }}" alt="Abendzeitung">
+        </a>
+        <a href="https://www.tz.de/muenchen/stadt/muenchen-kuenstliche-intelligenz-erteilt-schuelern-nachhilfe-93702437.html" target="_blank">
+            <img src="{{ '/media-outlets/TZ.svg' | url }}" alt="TZ">
+        </a>
+        <a href="https://www.bluewin.ch/de/digital/ai-news/wie-zwei-eth-studenten-den-nachhilfe-unterricht-mit-ki-revolutionieren-2625497.html" target="_blank">
+            <img src="{{ '/media-outlets/BlueNews.webp' | url }}" alt="BlueNews">
+        </a>
+    </div>
+</section>
+

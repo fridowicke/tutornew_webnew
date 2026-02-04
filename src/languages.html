@@ -1,0 +1,171 @@
+---
+layout: layouts/simple.njk
+title: Language Learning - tutor.new
+lang: de
+pageStyles: |
+    :root {
+        --accent-color: #1f4c7a; /* Blue accent for languages */
+    }
+
+    a {
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--accent-color);
+        display: inline-block;
+        transform: rotate(-1deg);
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        opacity: 0.7;
+        margin-bottom: 3rem;
+        display: block;
+    }
+
+    .didactics-section {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 5rem;
+        text-align: left;
+    }
+
+    .didactics-section:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .section-text {
+        flex: 1;
+    }
+
+    .section-visual {
+        flex: 0 0 220px; /* Small fixed width for images */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-title {
+        font-family: 'Sour Gummy', sans-serif;
+        font-size: 1.6rem;
+        color: var(--accent-color);
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-content {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    .card-image {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        border: 2px solid #eee;
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+        transform: rotate(1deg);
+    }
+
+    .didactics-section:nth-child(even) .card-image {
+        transform: rotate(-1deg);
+    }
+
+    .tutor-grid {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tutor-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--accent-color);
+        box-shadow: 2px 2px 0px rgba(31, 76, 122, 0.1);
+    }
+
+    @media (max-width: 480px) {
+        .didactics-section, .didactics-section:nth-child(even) {
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .section-visual {
+            flex: none;
+            width: 180px;
+            margin: 0 auto;
+        }
+    }
+---
+
+<h1 data-i18n="lang_learning_title">Sprachen lernen</h1>
+<span class="subtitle" data-i18n="lang_learning_subtitle">Meistere jede Sprache mit KI-Unterstützung</span>
+
+<!-- Section 1: Upload materials or create your own course -->
+<div class="didactics-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="lang_learning_1_title">Eigene Inhalte & Kurse</span>
+        <div class="card-content" data-i18n="lang_learning_1_text">
+            Lade deine eigenen Materialien hoch oder lass dir von der KI einen massgeschneiderten Sprachkurs erstellen. Egal ob Zeitungsartikel, Liedtexte oder Schulbücher.
+        </div>
+    </div>
+    <div class="section-visual">
+        <img src="{{ '/didactics_assets/upload_material.png' | url }}" alt="Upload material" class="card-image">
+    </div>
+</div>
+
+<!-- Section 2: Learn at any level, practice vocabulary, grammar, speaking and writing -->
+<div class="didactics-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="lang_learning_2_title">Rundum-Training</span>
+        <div class="card-content" data-i18n="lang_learning_2_text">
+            Übe Vokabeln, Grammatik, Sprechen und Schreiben auf jedem Niveau (A1-C2). Die KI passt sich deinem Tempo an und korrigiert dich sanft.
+        </div>
+    </div>
+    <div class="section-visual">
+        <img src="{{ '/language.jpeg' | url }}" alt="Language Learning" class="card-image">
+    </div>
+</div>
+
+<!-- Section 3: Real Conversations -->
+<div class="didactics-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="lang_learning_3_title">Echte Konversationen</span>
+        <div class="card-content" data-i18n="lang_learning_3_text">
+            Führe natürliche Gespräche im Voice-Modus. Verbessere deine Aussprache und verliere die Angst vor dem Sprechen in einer sicheren Umgebung.
+        </div>
+    </div>
+    <div class="section-visual">
+        <div class="tutor-grid">
+            <img src="{{ '/tutors/anna.png' | url }}" alt="Anna" class="tutor-img">
+            <img src="{{ '/tutors/alex.png' | url }}" alt="Alex" class="tutor-img">
+            <img src="{{ '/tutors/maya.png' | url }}" alt="Maya" class="tutor-img">
+            <img src="{{ '/tutors/sophia.png' | url }}" alt="Sophia" class="tutor-img">
+            <img src="{{ '/tutors/steve.png' | url }}" alt="Steve" class="tutor-img">
+        </div>
+    </div>
+</div>
+
+<!-- Section 4: Cultural Context -->
+<div class="didactics-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="lang_learning_4_title">Kultureller Kontext</span>
+        <div class="card-content" data-i18n="lang_learning_4_text">
+            Lerne nicht nur Wörter, sondern auch Redewendungen und kulturelle Besonderheiten kennen, damit du dich wie ein Local fühlst.
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center; margin-bottom: 4rem;">
+    <a href="https://duck.tutor.new" class="cta-button-secondary" data-i18n="cta_button_secondary">→ Kostenlos testen</a>
+</div>
+
+

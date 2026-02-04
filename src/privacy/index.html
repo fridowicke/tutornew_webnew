@@ -1,0 +1,25 @@
+---
+layout: layouts/simple.njk
+title: Weiterleitung / Redirecting...
+lang: de
+permalink: /privacy/
+pageStyles: |
+    body {
+        text-align: center;
+        padding: 2rem;
+    }
+    p {
+        font-size: 1.2rem;
+        margin: 1rem 0;
+    }
+---
+
+<meta http-equiv="refresh" content="0; url={{ '/impressum-agb.html' | url }}#datenschutz">
+<link rel="canonical" href="https://tutor.new/impressum-agb.html#datenschutz">
+<script>
+    window.location.href = "{{ '/impressum-agb.html' | url }}#datenschutz";
+</script>
+
+<p>Falls Sie nicht automatisch weitergeleitet werden, klicken Sie bitte <a href="{{ '/impressum-agb.html' | url }}#datenschutz">hier</a>.</p>
+<p>If you are not automatically redirected, please click <a href="{{ '/impressum-agb.html' | url }}#datenschutz">here</a>.</p>
+

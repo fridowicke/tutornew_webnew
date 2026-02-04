@@ -1,0 +1,17 @@
+{
+  "name": "tutornew-web",
+  "version": "1.0.0",
+  "description": "tutor.new website",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "dev": "eleventy --serve --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
+

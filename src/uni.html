@@ -1,0 +1,156 @@
+---
+layout: layouts/simple.njk
+title: Für Uni & Studium - tutor.new
+lang: de
+pageStyles: |
+    :root {
+        --accent-color: #1f4c7a; /* Professional blue for Uni */
+    }
+
+    a {
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--accent-color);
+        display: inline-block;
+        transform: rotate(-1deg);
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        opacity: 0.7;
+        margin-bottom: 3rem;
+        display: block;
+    }
+
+    .feature-section {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 5rem;
+        text-align: left;
+    }
+
+    .feature-section:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .section-text {
+        flex: 1;
+    }
+
+    .section-visual {
+        flex: 0 0 220px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-title {
+        font-family: 'Sour Gummy', sans-serif;
+        font-size: 1.6rem;
+        color: var(--accent-color);
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-content {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    .card-image {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        border: 2px solid #eee;
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+        transform: rotate(1deg);
+    }
+
+    .feature-section:nth-child(even) .card-image {
+        transform: rotate(-1deg);
+    }
+
+    @media (max-width: 480px) {
+        .feature-section, .feature-section:nth-child(even) {
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .section-visual {
+            flex: none;
+            width: 180px;
+            margin: 0 auto;
+        }
+    }
+---
+
+<h1 data-i18n="uni_title">Für Uni & Studium</h1>
+<span class="subtitle" data-i18n="uni_subtitle">Meistere dein Studium mit KI-Power</span>
+
+<!-- Section 1: Upload lecture material -->
+<div class="feature-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="uni_1_title">Vorlesungsmaterial hochladen</span>
+        <div class="card-content" data-i18n="uni_1_text">
+            Lade deine Skripte, Paper oder Übungsblätter hoch. Die KI versteht komplexe akademische Zusammenhänge und hilft dir, auch die schwierigsten Konzepte zu durchdringen.
+        </div>
+    </div>
+    <div class="section-visual">
+        <img src="{{ '/didactics_assets/lecture_notes.png' | url }}" alt="Lecture Notes" class="card-image">
+    </div>
+</div>
+
+<!-- Section 2: 1:1 explanations on uni level -->
+<div class="feature-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="uni_2_title">1:1 Erklärungen auf Uni-Niveau</span>
+        <div class="card-content" data-i18n="uni_2_text">
+            Egal ob Analysis, Thermodynamik oder Rechtsphilosophie – dein KI-Mentor steht dir 24/7 zur Seite und erklärt dir komplexe Theorie in deinem individuellen Lerntempo.
+        </div>
+    </div>
+    <div class="section-visual">
+        <img src="{{ '/explain.jpeg' | url }}" alt="Academic Explanation" class="card-image">
+    </div>
+</div>
+
+<!-- Section 3: Efficient exam prep -->
+<div class="feature-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="uni_3_title">Effiziente Prüfungsvorbereitung</span>
+        <div class="card-content" data-i18n="uni_3_text">
+            Kein Bulimie-Lernen mehr. Die KI hilft dir, den Stoff zu strukturieren, Zusammenhänge zu verstehen und bereitet dich mit gezielten Übungsfragen auf deine Prüfungen vor.
+        </div>
+    </div>
+    <div class="section-visual">
+        <img src="{{ '/exam.jpeg' | url }}" alt="University Exams" class="card-image">
+    </div>
+</div>
+
+<!-- Section 4: Quizzes & Flashcards from scripts -->
+<div class="feature-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="uni_4_title">Quizze & Karteikarten aus Skripten</span>
+        <div class="card-content" data-i18n="uni_4_text">
+            Verwandle hunderte Seiten Skript in Sekunden in lernfertige Quizze und Karteikarten. Perfekt optimiert für Active Recall und Spaced Repetition.
+        </div>
+    </div>
+    <div class="section-visual">
+        <img src="{{ '/didactics_assets/mc_quiz.png' | url }}" alt="University Quizzes" class="card-image">
+    </div>
+</div>
+
+<div style="text-align: center; margin-bottom: 2rem;">
+    <p data-i18n="uni_cta_text">Studieren war noch nie so effizient.</p>
+</div>
+
+<div style="text-align: center; margin-bottom: 4rem;">
+    <a href="https://duck.tutor.new" class="cta-button-secondary" data-i18n="uni_cta_button">→ Kostenlos ausprobieren</a>
+</div>
+
+
