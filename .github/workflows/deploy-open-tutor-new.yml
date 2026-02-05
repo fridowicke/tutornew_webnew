@@ -8,7 +8,6 @@ on:
       - 'sites/open.tutor.new/**'
       - 'shared/**'
       - '.github/workflows/deploy-open-tutor-new.yml'
-      - '.github/workflows/shared-build.yml'
       - 'package.json'
       - 'package-lock.json'
   workflow_dispatch:
@@ -84,9 +83,9 @@ jobs:
       - name: Deploy to open.tutor.new repository
         uses: peaceiris/actions-gh-pages@v3
         with:
-          # Use PAT for deploying to external repository
-          # If OPEN_TUTOR_NEW_DEPLOY_TOKEN is not set, this will deploy to current repo's gh-pages branch
-          github_token: ${{ secrets.OPEN_TUTOR_NEW_DEPLOY_TOKEN || secrets.GITHUB_TOKEN }}
+          # MUST use PAT for deploying to external repository
+          # GITHUB_TOKEN does not work for external repositories
+          github_token: ${{ secrets.OPEN_TUTOR_NEW_DEPLOY_TOKEN }}
           publish_dir: _site-open-tutor-new
           # Deploy to separate repository
           external_repository: fridowicke/open-tutor-new

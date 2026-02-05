@@ -8,7 +8,6 @@ on:
       - 'sites/tutor.new/**'
       - 'shared/**'
       - '.github/workflows/deploy-tutor-new.yml'
-      - '.github/workflows/shared-build.yml'
       - 'package.json'
       - 'package-lock.json'
   workflow_dispatch:
