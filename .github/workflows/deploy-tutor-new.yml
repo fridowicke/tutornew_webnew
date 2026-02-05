@@ -39,8 +39,8 @@ jobs:
         run: npm ci
 
       - name: Build tutor.new
-        working-directory: sites/tutor.new
         run: |
+          cd sites/tutor.new
           npx @11ty/eleventy --config=.eleventy.js
 
       - name: Verify build output

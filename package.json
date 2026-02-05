@@ -1,11 +1,15 @@
 {
   "name": "tutornew-web",
   "version": "1.0.0",
-  "description": "tutor.new website",
+  "description": "tutor.new and open.tutor.new websites",
   "scripts": {
-    "build": "eleventy",
-    "serve": "eleventy --serve",
-    "dev": "eleventy --serve --watch"
+    "build": "npm run build:tutor-new && npm run build:open-tutor-new",
+    "build:tutor-new": "cd sites/tutor.new && npx @11ty/eleventy --config=.eleventy.js",
+    "build:open-tutor-new": "cd sites/open.tutor.new && npx @11ty/eleventy --config=.eleventy.js",
+    "serve:tutor-new": "cd sites/tutor.new && npx @11ty/eleventy --config=.eleventy.js --serve",
+    "serve:open-tutor-new": "cd sites/open.tutor.new && npx @11ty/eleventy --config=.eleventy.js --serve",
+    "dev:tutor-new": "cd sites/tutor.new && npx @11ty/eleventy --config=.eleventy.js --serve --watch",
+    "dev:open-tutor-new": "cd sites/open.tutor.new && npx @11ty/eleventy --config=.eleventy.js --serve --watch"
   },
   "keywords": [],
   "author": "",

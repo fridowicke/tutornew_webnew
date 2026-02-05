@@ -1,0 +1,24 @@
+---
+layout: layouts/simple.njk
+title: Redirecting...
+lang: en
+permalink: /terms/
+pageStyles: |
+    body {
+        text-align: center;
+        padding: 2rem;
+    }
+    p {
+        font-size: 1.2rem;
+        margin: 1rem 0;
+    }
+---
+
+<meta http-equiv="refresh" content="0; url={{ '/impressum-agb.html' | url }}#agb">
+<script>
+    window.location.href = "{{ '/impressum-agb.html' | url }}#agb";
+</script>
+
+<p>If you are not redirected automatically, follow this <a href="{{ '/impressum-agb.html' | url }}#agb">link to Terms & Conditions</a>.</p>
+
+

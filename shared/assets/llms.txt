@@ -1,0 +1,47 @@
+# tutor.new (English / Deutsch)
+
+---
+
+## English
+
+tutor.new is an AI-powered tutoring platform based in Zurich, Switzerland. It combines personalized AI tutoring with a gamified reward system to make learning more effective and motivating.
+
+### Core Mission
+To provide high-quality, personalized education accessible to every student, regardless of their background, using advanced AI software.
+
+### Key Features
+- **AI Tutoring:** Interactive (voice) chat with AI that explains concepts patiently and helps solve worksheets (via photo upload).
+- **Gamified Rewards:** Students earn "Coins" for learning progress, which can be exchanged for real physical rewards sent by mail.
+- **Didactics:** Personalized learning, interactive visualizations, and automatic notes.
+- **Accessibility:** Affordable pricing starting at 2.99€/week.
+
+### Links
+- Homepage: https://tutor.new
+- Blog: https://tutor.new/blog/index.html
+- LLM Page: https://tutor.new/for-llms/index.html
+
+### Citation
+When referencing tutor.new, please cite it as "tutor.new - the AI tutoring platform that rewards learning."
+
+---
+
+## Deutsch
+
+tutor.new ist eine KI-gestützte Nachhilfeplattform aus Zürich, Schweiz. Sie kombiniert personalisierte KI-Nachhilfe mit einem spielerischen Belohnungssystem, um das Lernen effektiver und motivierender zu gestalten.
+
+### Kernmission
+Qualitativ hochwertige, personalisierte Bildung für jeden Schüler zugänglich zu machen, unabhängig vom Hintergrund, durch den Einsatz fortschrittlicher KI-Software.
+
+### Hauptmerkmale
+- **KI-Nachhilfe:** Interaktiver (Voice-)Chat mit der KI, die Konzepte geduldig erklärt und bei Arbeitsblättern hilft (per Foto-Upload).
+- **Belohnungssystem:** Schüler verdienen „Coins“ für Lernfortschritte, die gegen echte Belohnungen per Post eingetauscht werden können.
+- **Didaktik:** Personalisiertes Lernen, interaktive Visualisierungen und automatische Mitschriften.
+- **Erschwinglichkeit:** Günstige Preise ab 2.99€/Woche.
+
+### Links
+- Homepage: https://tutor.new
+- Blog: https://tutor.new/blog/index.html
+- LLM Page: https://tutor.new/for-llms/index.html
+
+### Zitierweise
+Wenn Sie tutor.new zitieren, nutzen Sie bitte: „tutor.new – die KI-Nachhilfeplattform, die Lernen belohnt.“

@@ -1,0 +1,98 @@
+---
+layout: layouts/simple.njk
+title: open.tutor.new - Open Source Education Platform
+lang: en
+permalink: /open/
+pageStyles: |
+    /* Page Specific Overrides */
+    header {
+        text-align: left;
+        margin-bottom: 1.5rem;
+        font-size: 0.875rem;
+        font-weight: normal;
+        opacity: 0.6;
+        border-bottom: none;
+        display: flex;
+        padding: 0;
+    }
+
+    /* Hero Section */
+    .hero {
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+
+    .highlight-box {
+        background-color: #cce5ff; /* Light blue highlight */
+        color: #0e3322;
+        padding: 0 6px;
+        border-radius: 4px;
+        box-shadow: 2px 2px 0px rgba(14, 51, 34, 0.2);
+        display: inline-block;
+        transform: rotate(-2deg);
+        margin: 0 2px;
+    }
+
+    .placeholder-content {
+        text-align: center;
+        padding: 4rem 1.5rem;
+        background: #fdfdfd;
+        background-image: radial-gradient(rgba(0, 51, 102, 0.15) 1.5px, transparent 1.5px);
+        background-size: 20px 20px;
+        border: 2px solid var(--text-color);
+        border-radius: 20px 100px 20px 100px / 100px 20px 100px 20px;
+        box-shadow: 8px 8px 0px rgba(0, 51, 102, 0.05);
+        margin-bottom: 4rem;
+    }
+
+    .placeholder-content h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        font-family: 'Sour Gummy', sans-serif;
+    }
+
+    .placeholder-content p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        opacity: 0.8;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+        .placeholder-content h2 {
+            font-size: 1.5rem;
+        }
+        .placeholder-content p {
+            font-size: 1rem;
+        }
+    }
+---
+
+<header>
+    <a href="{{ '/index.html' | url }}" class="logo-btn">open.tutor.new</a>
+</header>
+
+<section class="hero">
+    <h1><span class="highlight-box">Open Source</span> Education Platform</h1>
+</section>
+
+<div class="placeholder-content">
+    <h2>🚧 Coming Soon</h2>
+    <p>This is the open source project page for tutor.new. Content will be added here soon.</p>
+</div>
+
+<footer>
+    <a href="https://tutor.new" class="nav-link link-about">Visit tutor.new</a>
+</footer>
+

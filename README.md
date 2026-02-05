@@ -1,6 +1,11 @@
-# tutor.new Website
+# tutor.new & open.tutor.new Websites
 
-This website is built with [11ty (Eleventy)](https://www.11ty.dev/), a static site generator.
+This monorepo contains two separate websites built with [11ty (Eleventy)](https://www.11ty.dev/):
+
+1. **tutor.new** - Main educational platform website
+2. **open.tutor.new** - Open source documentation site
+
+Both sites share infrastructure (build logic, shared assets, layouts) while maintaining independent deployments.
 
 ## Quick Start
 
@@ -8,47 +13,66 @@ This website is built with [11ty (Eleventy)](https://www.11ty.dev/), a static si
 # Install dependencies
 npm install
 
-# Build the site
+# Build both sites
 npm run build
 
-# Serve locally with auto-reload
-npm run serve
+# Build individual sites
+npm run build:tutor-new
+npm run build:open-tutor-new
+
+# Serve locally
+npm run serve:tutor-new      # Serves tutor.new at http://localhost:8080
+npm run serve:open-tutor-new # Serves open.tutor.new at http://localhost:8080
+
+# Development mode (with watch)
+npm run dev:tutor-new
+npm run dev:open-tutor-new
 ```
 
-The site will be generated in the `_site` directory.
+Build outputs:
+- `_site-tutor-new/` - tutor.new build output
+- `_site-open-tutor-new/` - open.tutor.new build output
 
 ## Project Structure
 
 ```
 tutornew_webnew/
-├── src/                    # Source files (templates)
-│   ├── _includes/         # Templates and partials
-│   │   ├── layouts/      # Base templates
-│   │   └── partials/     # Reusable components
-│   ├── index.html        # Homepage
-│   ├── faq.html          # FAQ page
-│   └── ...               # Other pages
-├── _site/                # Generated output (gitignored)
-├── styles.css            # Global styles
-├── common.js             # Shared JavaScript
-├── i18n.js               # Internationalization
-├── media-outlets/        # Media logos
-├── tutors/               # Tutor images
-├── didactics_assets/     # Didactics images
-├── rewards/              # Reward images
-├── blog/                 # Blog posts (legacy, to be migrated)
-├── open/                 # Open source page (legacy, to be migrated)
-├── privacy/              # Privacy page (legacy, to be migrated)
-├── for-llms/             # LLM page (legacy, to be migrated)
-├── ugc/                  # UGC content (legacy, to be migrated)
-└── *.html                # Legacy HTML files (to be migrated to src/)
-
-# Root level HTML files are legacy and will be migrated to src/
+├── sites/
+│   ├── tutor.new/          # Main site content
+│   │   ├── .eleventy.js    # Site-specific Eleventy config
+│   │   ├── CNAME           # Custom domain (tutor.new)
+│   │   ├── _includes/      # Site-specific layouts (optional)
+│   │   └── *.html          # Site pages
+│   └── open.tutor.new/     # Open source site content
+│       ├── .eleventy.js
+│       ├── CNAME           # Custom domain (open.tutor.new)
+│       └── *.html
+├── shared/
+│   ├── assets/             # Shared static assets (CSS, JS, images)
+│   │   ├── styles.css
+│   │   ├── common.js
+│   │   ├── i18n.js
+│   │   ├── media-outlets/
+│   │   ├── tutors/
+│   │   └── ...
+│   ├── layouts/            # Shared Eleventy layouts
+│   └── partials/           # Shared Eleventy partials
+├── .github/
+│   └── workflows/
+│       ├── shared-build.yml           # Reusable build workflow
+│       ├── deploy-tutor-new.yml      # Deploys tutor.new
+│       └── deploy-open-tutor-new.yml  # Deploys open.tutor.new
+├── _site-tutor-new/        # tutor.new build output (gitignored)
+├── _site-open-tutor-new/   # open.tutor.new build output (gitignored)
+└── package.json            # Build scripts and dependencies
 ```
+
+**Note**: The `src/` directory is legacy and will be migrated to `sites/tutor.new/` over time.
 
 ## Adding a New Page
 
-Create a new file in `src/` with front matter:
+### For tutor.new
+Create a new file in `sites/tutor.new/` with front matter:
 
 ```yaml
 ---
@@ -62,28 +86,46 @@ pageStyles: |
 Your HTML content here
 ```
 
-## Migration Status
+### For open.tutor.new
+Create a new file in `sites/open.tutor.new/` with similar front matter.
 
-✅ **Migrated:**
-- `index.html` → `src/index.html`
-- `faq.html` → `src/faq.html`
+## Shared Infrastructure
 
-📋 **To Migrate:**
-- All other `.html` files in root directory
-- Subdirectories: `blog/`, `open/`, `privacy/`, `for-llms/`, `ugc/`
+### Shared Assets
+- **Location**: `/shared/assets/`
+- Both sites automatically copy these during build
+- Update shared CSS, JS, or images here
 
-See `MIGRATION.md` for detailed migration guide.
+### Shared Layouts
+- **Location**: `/shared/layouts/` and `/shared/partials/`
+- Sites can reference these: `layout: ../../shared/layouts/base.njk`
+- Sites can override with their own layouts in `sites/{site}/_includes/layouts/`
 
 ## Deployment
 
-The `_site/` directory contains the final static HTML files. Deploy this directory to your hosting provider.
+Both sites deploy automatically via GitHub Actions when you push to `main`:
 
-### GitHub Pages
-1. Push to repository
-2. Configure GitHub Actions to run `npm run build`
-3. Deploy from `_site/` directory
+- **tutor.new**: Deploys to this repository's GitHub Pages
+- **open.tutor.new**: Deploys to a separate repository (requires setup)
 
-### Netlify/Vercel
-- Auto-detects 11ty
-- Build command: `npm run build`
-- Publish directory: `_site`
+### Quick Setup
+
+1. **For tutor.new**: Already configured! Just push to `main` and it will deploy.
+
+2. **For open.tutor.new**: Follow the setup guide:
+   - See `SETUP_OPEN_TUTOR_NEW.md` for step-by-step instructions
+   - Or use `scripts/setup-checklist.md` as a checklist
+
+### Documentation
+
+- `DEPLOYMENT.md` - Detailed deployment guide, DNS setup, and troubleshooting
+- `SETUP_OPEN_TUTOR_NEW.md` - Step-by-step setup for open.tutor.new
+- `MULTI_SITE_SETUP.md` - Architecture and implementation details
+- `scripts/verify-setup.sh` - Verification script to check your setup
+
+### Verify Setup
+
+Run the verification script:
+```bash
+./scripts/verify-setup.sh
+```

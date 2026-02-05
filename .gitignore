@@ -1,5 +1,7 @@
 node_modules/
 _site/
+_site-tutor-new/
+_site-open-tutor-new/
 _legacy/
 .DS_Store
 *.log

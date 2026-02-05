@@ -1,0 +1,157 @@
+---
+layout: layouts/simple.njk
+title: Lebenslanges Lernen - tutor.new
+lang: de
+permalink: /lifelong-learning.html
+pageStyles: |
+    :root {
+        --accent-color: #1f4c7a; /* Professional blue for Lifelong Learning */
+    }
+
+    a {
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--accent-color);
+        display: inline-block;
+        transform: rotate(-1deg);
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        opacity: 0.7;
+        margin-bottom: 3rem;
+        display: block;
+    }
+
+    .feature-section {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 5rem;
+        text-align: left;
+    }
+
+    .feature-section:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .section-text {
+        flex: 1;
+    }
+
+    .section-visual {
+        flex: 0 0 220px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-title {
+        font-family: 'Sour Gummy', sans-serif;
+        font-size: 1.6rem;
+        color: var(--accent-color);
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-content {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    .card-image {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        border: 2px solid #eee;
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+        transform: rotate(1deg);
+    }
+
+    .feature-section:nth-child(even) .card-image {
+        transform: rotate(-1deg);
+    }
+
+    @media (max-width: 480px) {
+        .feature-section, .feature-section:nth-child(even) {
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .section-visual {
+            flex: none;
+            width: 180px;
+            margin: 0 auto;
+        }
+    }
+---
+
+<h1 data-i18n="lifelong_learning_title">Lebenslanges Lernen</h1>
+<span class="subtitle" data-i18n="lifelong_learning_subtitle">Lerne alles, was dich weiterbringt</span>
+
+<!-- Section 1: Professional Development -->
+<div class="feature-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="lifelong_learning_1_title">Berufliche Weiterbildung</span>
+        <div class="card-content" data-i18n="lifelong_learning_1_text">
+            Mastere neue Software, lerne Programmiersprachen oder vertiefe dein Fachwissen. Die KI hilft dir, am Puls der Zeit zu bleiben.
+        </div>
+    </div>
+    <div class="section-visual">
+        <img src="{{ '/explain.jpeg' | url }}" alt="Professional Development" class="card-image">
+    </div>
+</div>
+
+<!-- Section 2: Hobbies & Interests -->
+<div class="feature-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="lifelong_learning_2_title">Hobbys & Interessen</span>
+        <div class="card-content" data-i18n="lifelong_learning_2_text">
+            Egal ob du Kochen, Geschichte oder Astronomie lernen willst – dein KI-Mentor hat das Wissen und die Geduld, dich in jedes Thema einzuführen.
+        </div>
+    </div>
+    <div class="section-visual">
+        <img src="{{ '/lesson.png' | url }}" alt="Hobbies and Interests" class="card-image">
+    </div>
+</div>
+
+<!-- Section 3: Efficient knowledge management -->
+<div class="feature-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="lifelong_learning_3_title">Effizientes Wissensmanagement</span>
+        <div class="card-content" data-i18n="lifelong_learning_3_text">
+            Verarbeite Artikel, PDFs und Notizen in Sekunden. Lass dir Zusammenfassungen erstellen und teste dein Wissen mit Quizzen.
+        </div>
+    </div>
+    <div class="section-visual">
+        <img src="{{ '/didactics_assets/mc_quiz.png' | url }}" alt="Knowledge Management" class="card-image">
+    </div>
+</div>
+
+<!-- Section 4: Flexible integration -->
+<div class="feature-section">
+    <div class="section-text">
+        <span class="card-title" data-i18n="lifelong_learning_4_title">Flexibel in den Alltag integrierbar</span>
+        <div class="card-content" data-i18n="lifelong_learning_4_text">
+            Keine festen Kurszeiten. Lerne in der Mittagspause, in der Bahn oder gemütlich am Abend. Deine KI ist immer für dich da.
+        </div>
+    </div>
+    <div class="section-visual">
+        <img src="{{ '/homework.jpeg' | url }}" alt="Flexible Learning" class="card-image">
+    </div>
+</div>
+
+<div style="text-align: center; margin-bottom: 2rem;">
+    <p data-i18n="lifelong_learning_cta_text">Lerne heute etwas Neues.</p>
+</div>
+
+<div style="text-align: center; margin-bottom: 4rem;">
+    <a href="https://duck.tutor.new" class="cta-button-secondary" data-i18n="lifelong_learning_cta_button">→ Kostenlos ausprobieren</a>
+</div>
+
+

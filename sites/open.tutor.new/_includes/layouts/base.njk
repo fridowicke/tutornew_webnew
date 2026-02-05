@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="{{ lang | default('en') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default('open.tutor.new') }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/styles.css' | url }}">
+    {% if structuredData %}
+    <script type="application/ld+json">
+    {{ structuredData | safe }}
+    </script>
+    {% endif %}
+    {% if pageStyles %}
+    <style>
+        {{ pageStyles | safe }}
+    </style>
+    {% endif %}
+</head>
+<body>
+
+    <div class="container">
+        {% block header %}{% endblock %}
+        
+        {{ content | safe }}
+        
+        {% block footer %}{% endblock %}
+    </div>
+
+    {% if pageScripts %}
+    <script>
+        {{ pageScripts | safe }}
+    </script>
+    {% endif %}
+    {% if scripts %}
+        {% for script in scripts %}
+        <script src="{{ script | url }}"></script>
+        {% endfor %}
+    {% else %}
+        <script src="{{ '/i18n.js' | url }}"></script>
+    {% endif %}
+</body>
+</html>
+

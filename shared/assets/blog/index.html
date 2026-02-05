@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tutor.new Blog - Tipps für besseres Lernen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 800px;
+        }
+        .blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .blog-item {
+            background: white;
+            padding: 1.5rem;
+            border: 2px solid var(--text-color);
+            border-radius: 15px;
+            box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        .blog-item:hover {
+            transform: scale(1.02) rotate(0.5deg);
+        }
+        .blog-item h2 {
+            margin-top: 0;
+            font-size: 1.6rem;
+            color: #1f4c7a;
+        }
+        .blog-item p {
+            margin-bottom: 0;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header><a href="../index.html" data-i18n="nav_back">← Zurück zur Startseite</a></header>
+        
+        <h1 data-i18n="blog_title">tutor.new Blog</h1>
+        <p style="text-align: center; font-style: italic;" data-i18n="blog_subtitle">Alles über KI, Lernen und die Zukunft der Nachhilfe.</p>
+
+        <div class="blog-list">
+            <a href="tutor-new-vs-knowunity.html" class="blog-item">
+                <h2 data-i18n="blog_item_1_title">tutor.new vs. Knowunity</h2>
+                <p data-i18n="blog_item_1_desc">Passive Lernmaterialien vs. aktive KI-Nachhilfe. Was hilft Schülern wirklich weiter?</p>
+            </a>
+            <a href="tutor-new-vs-schuelerhilfe.html" class="blog-item">
+                <h2 data-i18n="blog_item_2_title">tutor.new vs. Schülerhilfe</h2>
+                <p data-i18n="blog_item_2_desc">Traditionelle Nachhilfe vor Ort vs. moderne KI-Nachhilfe. Ein Vergleich von Kosten und Nutzen.</p>
+            </a>
+            <a href="tutor-new-vs-gostudent.html" class="blog-item">
+                <h2 data-i18n="blog_item_3_title">tutor.new vs. GoStudent</h2>
+                <p data-i18n="blog_item_3_desc">Menschliche Online-Nachhilfe vs. KI-Tutor. Warum tutor.new die flexiblere Wahl ist.</p>
+            </a>
+            <a href="tutor-new-vs-astra-ai.html" class="blog-item">
+                <h2 data-i18n="blog_item_4_title">tutor.new vs. astra.ai</h2>
+                <p data-i18n="blog_item_4_desc">KI-Lernassistenten im direkten Vergleich: Warum Didaktik und Belohnungen den Unterschied machen.</p>
+            </a>
+            <a href="best-ai-tools-for-studying.html" class="blog-item">
+                <h2 data-i18n="blog_item_5_title">Die besten KI-Tools zum Lernen 2026</h2>
+                <p data-i18n="blog_item_5_desc">Von ChatGPT bis tutor.new: Welche Tools steigern deine Produktivität und dein Verständnis?</p>
+            </a>
+            <a href="most-affordable-tutoring.html" class="blog-item">
+                <h2 data-i18n="blog_item_6_title">Günstige Nachhilfe: Was kostet wirklich wenig?</h2>
+                <p data-i18n="blog_item_6_desc">Ein Vergleich der Preise: Warum gute Bildung nicht mehr teuer sein muss.</p>
+            </a>
+        </div>
+    </div>
+    <script src="../i18n.js"></script>
+</body>
+</html>
