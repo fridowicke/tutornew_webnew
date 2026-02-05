@@ -74,6 +74,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Verify PAT secret exists
+        run: |
+          if [ -z "${{ secrets.OPEN_TUTOR_NEW_DEPLOY_TOKEN }}" ]; then
+            echo "::error::OPEN_TUTOR_NEW_DEPLOY_TOKEN secret is not set. Please add it in repository settings."
+            exit 1
+          fi
+          echo "✓ PAT secret is configured"
+
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
