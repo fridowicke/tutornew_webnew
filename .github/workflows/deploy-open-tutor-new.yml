@@ -80,7 +80,13 @@ jobs:
             echo "::error::OPEN_TUTOR_NEW_DEPLOY_TOKEN secret is not set. Please add it in repository settings."
             exit 1
           fi
-          echo "✓ PAT secret is configured"
+          # Verify it's not empty (basic check - token should start with ghp_)
+          TOKEN="${{ secrets.OPEN_TUTOR_NEW_DEPLOY_TOKEN }}"
+          if [[ ! "$TOKEN" =~ ^ghp_ ]]; then
+            echo "::error::OPEN_TUTOR_NEW_DEPLOY_TOKEN appears to be invalid (should start with ghp_)"
+            exit 1
+          fi
+          echo "✓ PAT secret is configured and appears valid"
 
       - name: Download build artifact
         uses: actions/download-artifact@v4
@@ -89,11 +95,13 @@ jobs:
           path: _site-open-tutor-new
 
       - name: Deploy to open.tutor.new repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.OPEN_TUTOR_NEW_DEPLOY_TOKEN }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           # MUST use PAT for deploying to external repository
           # GITHUB_TOKEN does not work for external repositories
-          github_token: ${{ secrets.OPEN_TUTOR_NEW_DEPLOY_TOKEN }}
+          personal_token: ${{ secrets.OPEN_TUTOR_NEW_DEPLOY_TOKEN }}
           publish_dir: _site-open-tutor-new
           # Deploy to separate repository
           external_repository: fridowicke/open-tutor-new
