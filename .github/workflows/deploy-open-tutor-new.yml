@@ -1,0 +1,62 @@
+name: Deploy open.tutor.new
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'sites/open.tutor.new/**'
+      - 'shared/**'
+      - '.github/workflows/deploy-open-tutor-new.yml'
+      - '.github/workflows/shared-build.yml'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# IMPORTANT: For open.tutor.new to deploy to a separate repository:
+# 1. Create a separate repository (e.g., fridowicke/open-tutor-new)
+# 2. Generate a Personal Access Token (PAT) with 'repo' scope
+# 3. Add it as a secret in THIS repository: OPEN_TUTOR_NEW_DEPLOY_TOKEN
+# 4. Uncomment the external_repository line below and update the repo name
+
+concurrency:
+  group: "pages-open-tutor-new"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    uses: ./.github/workflows/shared-build.yml
+    with:
+      site_name: open.tutor.new
+      input_dir: sites/open.tutor.new
+      output_dir: _site-open-tutor-new
+      config_file: sites/open.tutor.new/.eleventy.js
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifact-open.tutor.new
+          path: _site-open-tutor-new
+
+      - name: Deploy to open.tutor.new repository
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # Use PAT for deploying to external repository
+          # If OPEN_TUTOR_NEW_DEPLOY_TOKEN is not set, this will deploy to current repo's gh-pages branch
+          github_token: ${{ secrets.OPEN_TUTOR_NEW_DEPLOY_TOKEN || secrets.GITHUB_TOKEN }}
+          publish_dir: _site-open-tutor-new
+          # Deploy to separate repository
+          external_repository: fridowicke/open-tutor-new
+
