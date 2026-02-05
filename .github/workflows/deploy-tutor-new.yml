@@ -1,0 +1,92 @@
+name: Deploy tutor.new
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'sites/tutor.new/**'
+      - 'shared/**'
+      - '.github/workflows/deploy-tutor-new.yml'
+      - '.github/workflows/shared-build.yml'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages-tutor-new"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build tutor.new
+        working-directory: sites/tutor.new
+        run: |
+          npx @11ty/eleventy --config=.eleventy.js
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "_site-tutor-new" ]; then
+            echo "Error: Build output directory _site-tutor-new does not exist"
+            exit 1
+          fi
+          if [ -z "$(ls -A _site-tutor-new)" ]; then
+            echo "Error: Build output directory _site-tutor-new is empty"
+            exit 1
+          fi
+          echo "✓ Build successful: $(find _site-tutor-new -type f | wc -l) files generated"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact-tutor.new
+          path: _site-tutor-new
+          retention-days: 1
+
+  deploy:
+    environment:
+      name: github-pages-tutor-new
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifact-tutor.new
+          path: _site-tutor-new
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site-tutor-new'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

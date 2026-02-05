@@ -30,12 +30,43 @@ concurrency:
 
 jobs:
   build:
-    uses: ./.github/workflows/shared-build.yml
-    with:
-      site_name: open.tutor.new
-      input_dir: sites/open.tutor.new
-      output_dir: _site-open-tutor-new
-      config_file: sites/open.tutor.new/.eleventy.js
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build open.tutor.new
+        working-directory: sites/open.tutor.new
+        run: |
+          npx @11ty/eleventy --config=.eleventy.js
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "_site-open-tutor-new" ]; then
+            echo "Error: Build output directory _site-open-tutor-new does not exist"
+            exit 1
+          fi
+          if [ -z "$(ls -A _site-open-tutor-new)" ]; then
+            echo "Error: Build output directory _site-open-tutor-new is empty"
+            exit 1
+          fi
+          echo "✓ Build successful: $(find _site-open-tutor-new -type f | wc -l) files generated"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact-open.tutor.new
+          path: _site-open-tutor-new
+          retention-days: 1
 
   deploy:
     runs-on: ubuntu-latest
