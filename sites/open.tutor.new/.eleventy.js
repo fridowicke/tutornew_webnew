@@ -19,6 +19,11 @@ module.exports = function(eleventyConfig) {
     "../../shared/assets/media-outlets": "media-outlets",
   });
 
+  // Copy site-specific assets (logo, etc.)
+  eleventyConfig.addPassthroughCopy({
+    "assets": "assets",
+  });
+
   // Copy CNAME for custom domain
   eleventyConfig.addPassthroughCopy("CNAME");
 
