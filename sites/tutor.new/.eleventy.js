@@ -25,8 +25,19 @@ module.exports = function(eleventyConfig) {
     "../../shared/assets/blog": "blog",
   });
 
-  // Copy root-level images from shared (if any exist at root)
-  // Note: Most images are in subdirectories above
+  // Copy root-level images from repository root
+  eleventyConfig.addPassthroughCopy({
+    "../../lesson_physics.png": "lesson_physics.png",
+    "../../lesson.png": "lesson.png",
+    "../../stroke.png": "stroke.png",
+    "../../circling.png": "circling.png",
+    "../../guf.png": "guf.png",
+    "../../guf.jpeg": "guf.jpeg",
+    "../../exam.jpeg": "exam.jpeg",
+    "../../explain.jpeg": "explain.jpeg",
+    "../../homework.jpeg": "homework.jpeg",
+    "../../language.jpeg": "language.jpeg",
+  });
 
   // Copy CNAME for custom domain
   eleventyConfig.addPassthroughCopy("CNAME");
