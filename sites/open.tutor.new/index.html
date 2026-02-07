@@ -3,10 +3,19 @@ layout: layouts/simple.njk
 title: open.tutor.new - Open Source Education Platform
 lang: en
 pageStyles: |
+    /* Ensure container matches regular page width, but allow more width for header */
+    .container {
+        max-width: 650px;
+    }
+    
+    .hero h1 {
+        max-width: 100%;
+    }
+
     /* Page Specific Overrides */
     header {
         text-align: left;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.5rem;
         font-size: 0.875rem;
         font-weight: normal;
         opacity: 0.6;
@@ -19,12 +28,15 @@ pageStyles: |
     .hero {
         text-align: left;
         margin-bottom: 2rem;
+        margin-top: -1rem;
     }
 
     h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin-bottom: 0.5rem;
         line-height: 1.3;
+        font-weight: 100;
+        white-space: nowrap;
     }
 
     .highlight-box {
@@ -38,58 +50,128 @@ pageStyles: |
         margin: 0 2px;
     }
 
-    .placeholder-content {
-        text-align: center;
-        padding: 4rem 1.5rem;
-        background: #fdfdfd;
-        background-image: radial-gradient(rgba(0, 51, 102, 0.15) 1.5px, transparent 1.5px);
-        background-size: 20px 20px;
-        border: 2px solid var(--text-color);
-        border-radius: 20px 100px 20px 100px / 100px 20px 100px 20px;
-        box-shadow: 8px 8px 0px rgba(0, 51, 102, 0.05);
+    .brushstroke-underline {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 2px;
+    }
+
+    .brushstroke-underline::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #e74c3c;
+        border-radius: 2px;
+        transform: rotate(-1.2deg) scaleX(1.1);
+        opacity: 0.9;
+    }
+    
+    .brushstroke-underline::before {
+        content: '';
+        position: absolute;
+        bottom: 1px;
+        left: -2px;
+        width: calc(100% + 4px);
+        height: 2.5px;
+        background: #e74c3c;
+        border-radius: 1.5px;
+        transform: rotate(0.8deg) scaleX(1.15);
+        opacity: 0.5;
+    }
+
+    .visual-placeholder {
+        width: 80%;
+        height: auto;
+        border: 3px solid var(--text-color);
+        border-radius: 15px;
+        display: block;
+        margin: 0 auto 3rem auto;
+        overflow: hidden;
+        box-shadow: 5px 5px 0px rgba(14, 51, 34, 0.2);
+        transform: rotate(-1deg);
+        background-color: white;
+    }
+    
+    .visual-placeholder img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .about-section {
         margin-bottom: 4rem;
+        padding: 0;
+        margin-top: 2rem; /* Align to background line (2rem spacing) */
     }
 
-    .placeholder-content h2 {
-        font-size: 2rem;
+    .about-section h2 {
+        font-size: 1.4rem;
         margin-bottom: 1.5rem;
-        font-family: 'Sour Gummy', sans-serif;
+        font-weight: 100;
+        color: var(--text-color);
+        line-height: 2rem; /* Match background line spacing */
+        margin-top: 0;
     }
 
-    .placeholder-content p {
-        font-size: 1.2rem;
-        line-height: 1.6;
-        opacity: 0.8;
-        max-width: 500px;
-        margin: 0 auto;
+    .about-section p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #000000;
+        margin-bottom: 1.5rem;
+        font-weight: 300;
+    }
+
+    .about-section p:last-child {
+        margin-bottom: 0;
+    }
+
+    .about-section .smaller-text {
+        font-size: 0.95rem;
+        font-weight: 200;
     }
 
     /* Responsive */
     @media (max-width: 480px) {
         h1 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            white-space: normal;
         }
-        .placeholder-content h2 {
-            font-size: 1.5rem;
+        .about-section h2 {
+            font-size: 1.3rem;
+            line-height: 1.8rem;
         }
-        .placeholder-content p {
+        .about-section p {
             font-size: 1rem;
         }
     }
 ---
 
 <section class="hero">
-    <h1><span class="highlight-box">Open Source</span> Education Platform</h1>
+    <h1>OpenTutor powers <span class="highlight-box">1:1 learning</span> for <span class="brushstroke-underline">everyone</span></h1>
 </section>
 
-<div class="placeholder-content">
-    <h2>🚧 Coming Soon</h2>
-    <p>This is the open source project page for tutor.new. Content will be added here soon.</p>
-    <!-- Deployment test -->
+<div class="visual-placeholder" style="margin-bottom: 1.5rem;">
+    <img src="{{ '/lesson_physics.png' | url }}" alt="Example of a learning unit with notes">
 </div>
+
+<section class="about-section">
+    <p>
+        OpenTutor is an open-source AI tutor for real 1:1 learning.<br>
+        <span class="smaller-text">The best way to learn has always been individual instruction. Now we have the technology to make it scale.
+        OpenTutor gives anyone access to a personalized tutor, and makes the entire system open, inspectable, and modifiable. Every line of code is public.
+        You can run it yourself, adapt it to your needs, and share your improvements.<br>
+        OpenTutor is built by teachers and learners around the world, coordinated in Switzerland.</span>
+    </p>
+</section>
 
 <footer style="text-align: center; padding: 2rem 0;">
     <img src="{{ '/assets/open_quack.png' | url }}" alt="open.tutor.new logo" style="width: 40px; height: 40px; margin-bottom: 1rem; display: block; margin-left: auto; margin-right: auto;">
-    <a href="https://tutor.new" class="nav-link link-about">Visit tutor.new</a>
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+        <a href="https://tutor.new" class="nav-link link-about">Visit tutor.new</a>
+        <a href="https://discord.com/invite/TCWEJASD" class="nav-link link-about" target="_blank" rel="noopener noreferrer">Join Discord</a>
+    </div>
 </footer>
 

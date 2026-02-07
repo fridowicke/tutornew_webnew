@@ -24,6 +24,11 @@ module.exports = function(eleventyConfig) {
     "assets": "assets",
   });
 
+  // Copy root-level images from repository root
+  eleventyConfig.addPassthroughCopy({
+    "../../lesson_physics.png": "lesson_physics.png",
+  });
+
   // Copy CNAME for custom domain
   eleventyConfig.addPassthroughCopy("CNAME");
 
