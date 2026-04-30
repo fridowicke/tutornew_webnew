@@ -16,7 +16,7 @@ const translations = {
         hero_title_pre: "Personalisierte",
         hero_title_highlight: "KI-Nachhilfe,",
         hero_subtitle_pre: "",
-        hero_subtitle_highlight: "schöne Lernzettel",
+        hero_subtitle_highlight: "schöne Mitschrift",
         hero_subtitle_post: ".",
 
         // Steps
