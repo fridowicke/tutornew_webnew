@@ -22,6 +22,30 @@ pageStyles: |
         max-width: 680px;
     }
 
+    .contact-box {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        max-width: 680px;
+        margin-top: 1.75rem;
+        padding: 1rem;
+        border: 1px solid rgba(31, 76, 122, 0.25);
+        border-radius: 10px;
+        background: #f7fafc;
+    }
+
+    .contact-box img {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex: 0 0 auto;
+    }
+
+    .contact-box p {
+        margin: 0;
+    }
+
     p {
         line-height: 1.65;
         margin-bottom: 1rem;
@@ -29,6 +53,9 @@ pageStyles: |
 
     @media (max-width: 480px) {
         h1 { font-size: 1.8rem; }
+        .contact-box {
+            align-items: flex-start;
+        }
     }
 ---
 
@@ -37,5 +64,9 @@ pageStyles: |
 <div class="content-section">
     <p>Wir arbeiten mit mehreren Schulen in der ganzen Schweiz zusammen und freuen uns über den Austausch mit weiteren Schulen und Lehrpersonen.</p>
     <p>Am Anfang steht in der Regel ein kurzes Videogespräch. Dabei besprechen wir Ihre Erwartungen, den konkreten Bedarf an Ihrer Schule und mögliche Formen der Zusammenarbeit.</p>
+</div>
+
+<div class="contact-box">
     <p>Für einen Termin oder erste Fragen freuen wir uns über eine Nachricht an <a href="mailto:friedrich@tutor.new?subject=Gespr%C3%A4ch%20zu%20tutor.new%20an%20unserer%20Schule">friedrich@tutor.new</a>.</p>
+    <img src="https://avatars.githubusercontent.com/u/84902954?v=4" alt="Friedrich Wicke">
 </div>
