@@ -1,7 +1,7 @@
 const translations = {
     de: {
         // Page Title
-        page_title: "tutor.new - Lerne mit der KI, verdiene echte Belohnungen",
+        page_title: "tutor.new — Personalisierte KI-Nachhilfe für jeden Schüler",
         
         // Navigation
         nav_how: "So funktioniert's",
@@ -13,19 +13,33 @@ const translations = {
         nav_back: "← Zurück zur Startseite",
         
         // Hero
-        hero_title_pre: "Lerne mit der",
-        hero_title_highlight: "KI,",
-        hero_subtitle_pre: "verdiene",
-        hero_subtitle_highlight: "echte Belohnungen",
+        hero_title_pre: "Personalisierte",
+        hero_title_highlight: "KI-Nachhilfe,",
+        hero_subtitle_pre: "die",
+        hero_subtitle_highlight: "wirklich erklärt",
         hero_subtitle_post: "",
-        
+
         // Steps
         step_1_heading: "Starte, wo du es brauchst",
         step_1_content: "Lade ein Foto vom Arbeitsblatt hoch oder sag der KI, was du nicht verstehst. Wir helfen dir genau da, wo du gerade hängst.",
-        step_2_heading: "Lern mit der KI & sammle Coins",
-        step_2_content: "Lerne im Voice-Modus und erhalte Coins für gelöste Aufgaben, Fleiß und gute Leistungen. Die KI motiviert dich bei jedem Schritt!",
-        step_3_heading: "Echte Belohnungen",
-        step_3_content: "Tausche deine Coins im Shop gegen coole Belohnungen (z.B. AirPods!) ein. Wir schicken sie dir direkt per Post nach Hause.",
+        step_2_heading: "Lern mit deinem KI-Tutor",
+        step_2_content: "Du sprichst im (Voice-)Chat mit der KI. Sie erklärt geduldig, stellt Rückfragen und passt sich deinem Tempo an — mit Live-Mitschriften, automatischen Übungen und Karteikarten.",
+        step_3_heading: "Spielerisch dranbleiben",
+        step_3_content: "Punkte und kleine Auszeichnungen für regelmäßigen Lernfortschritt halten die Motivation hoch — auch wenn es mal schwerfällt.",
+        cta_didactics_learn_more: "Mehr zur Didaktik",
+
+        // Teacher spotlight
+        teacher_label: "Für Lehrkräfte",
+        teacher_title: "Individuelle Förderung — auch bei 25 Schülern",
+        teacher_lead: "tutor.new lässt sich als ergänzendes Angebot in Schule und Hausaufgabenbetreuung einsetzen. Jeder Schüler arbeitet mit einem geduldigen KI-Tutor in seinem Tempo am eigenen Stoff — Sie behalten den Überblick.",
+        teacher_point_1_title: "Differenzierung leicht gemacht",
+        teacher_point_1_text: "Schwächere Schüler bekommen mehr Zeit und Erklärungen, stärkere weiterführende Aufgaben — automatisch.",
+        teacher_point_2_title: "Mit Ihrem Material",
+        teacher_point_2_text: "Arbeitsblätter, Schulbuchseiten oder Prüfungen hochladen — der Tutor unterrichtet direkt mit Ihrem Stoff.",
+        teacher_point_3_title: "Mit Lehrkräften entwickelt",
+        teacher_point_3_text: "Mitgestaltet von erfahrenen Lehrerinnen und Lehrern, basierend auf aktueller Bildungsforschung.",
+        teacher_cta_primary: "Pilotprojekt anfragen",
+        teacher_cta_secondary: "Mehr für Schulen",
         
         // Didactics Page
         didactics_title: "Unsere Didaktik",
@@ -52,7 +66,7 @@ const translations = {
         why_didactics_title: "Didaktik",
         why_didactics_text: "Durch einen personalisierten Tutor, interaktive Visualisierungen sowie automatische Mitschriften und Quizze lernt es sich leichter und effektiver.",
         why_motivation_title: "Motivation",
-        why_motivation_text: "Regelmäßiges Lernen mit Zuspruch, das Sammeln von Coins für gute Leistungen und das Erhalten von echten Belohnungen sorgen für dauerhaften Lernerfolg.",
+        why_motivation_text: "Kleine spielerische Anreize und sichtbare Fortschritte helfen, regelmäßig dranzubleiben — der wichtigste Faktor für nachhaltigen Lernerfolg.",
         why_learn_more: "Mehr erfahren",
 
         // Examples
@@ -555,7 +569,7 @@ const translations = {
     },
     en: {
         // Page Title
-        page_title: "tutor.new - Learn with our AI, earn real rewards",
+        page_title: "tutor.new — Personalized AI tutoring for every student",
 
         // Navigation
         nav_how: "How it works",
@@ -567,19 +581,33 @@ const translations = {
         nav_back: "← Back to home",
         
         // Hero
-        hero_title_pre: "Learn with our",
-        hero_title_highlight: "AI,",
-        hero_subtitle_pre: "earn",
-        hero_subtitle_highlight: "real rewards",
+        hero_title_pre: "Personalized",
+        hero_title_highlight: "AI tutoring,",
+        hero_subtitle_pre: "that",
+        hero_subtitle_highlight: "actually explains",
         hero_subtitle_post: "",
-        
+
         // Steps
         step_1_heading: "Start where you need it",
         step_1_content: "Upload a photo of your worksheet or tell the AI what you don't understand. We help you exactly where you're stuck.",
-        step_2_heading: "Learn with AI & earn coins",
-        step_2_content: "Learn in voice mode and earn coins for solving tasks, effort, and good performance. The AI motivates you at every step!",
-        step_3_heading: "Real Rewards",
-        step_3_content: "Exchange your coins in the shop for cool rewards (e.g., AirPods!). We ship them directly to your home by mail.",
+        step_2_heading: "Learn with your AI tutor",
+        step_2_content: "Talk to the AI in (voice) chat. It explains patiently, asks follow-up questions, and adapts to your pace — with live notes, auto-generated exercises and flashcards.",
+        step_3_heading: "Stay motivated",
+        step_3_content: "Points and small badges for steady progress help keep motivation up — even when things get tough.",
+        cta_didactics_learn_more: "More on didactics",
+
+        // Teacher spotlight
+        teacher_label: "For teachers",
+        teacher_title: "Individual support — even with 25 students",
+        teacher_lead: "tutor.new can be used as a complement to classroom teaching and homework support. Each student works with a patient AI tutor at their own pace on their own material — you keep the overview.",
+        teacher_point_1_title: "Differentiation made easy",
+        teacher_point_1_text: "Weaker students get more time and explanations, stronger ones get more advanced tasks — automatically.",
+        teacher_point_2_title: "Uses your material",
+        teacher_point_2_text: "Upload worksheets, textbook pages, or exams — the tutor teaches directly from your content.",
+        teacher_point_3_title: "Co-designed with teachers",
+        teacher_point_3_text: "Built with experienced teachers and grounded in current educational research.",
+        teacher_cta_primary: "Request a pilot",
+        teacher_cta_secondary: "More for schools",
 
         // Didactics Page
         didactics_title: "Our Didactics",
@@ -606,7 +634,7 @@ const translations = {
         why_didactics_title: "Didactics",
         why_didactics_text: "Learn more effectively with a personalized tutor, interactive visualizations, and automatic lesson notes and quizzes.",
         why_motivation_title: "Motivation",
-        why_motivation_text: "Achieve long-term success through regular lessons with encouragement, earning coins for performance, and receiving real rewards.",
+        why_motivation_text: "Small playful incentives and visible progress help students stay consistent — the most important factor for lasting learning success.",
         why_learn_more: "Learn more",
 
         // Examples

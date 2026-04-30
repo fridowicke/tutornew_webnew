@@ -1,19 +1,18 @@
 ---
 layout: layouts/simple.njk
-title: Für Schulen - tutor.new
+title: Für Schulen und Lehrkräfte — tutor.new
 lang: de
 permalink: /schools.html
+description: tutor.new als ergänzendes Angebot in der Schule. Individuelle KI-Nachhilfe, mit Lehrkräften entwickelt — als Differenzierung im Unterricht, Hausaufgabenhilfe und Prüfungsvorbereitung.
 pageStyles: |
     :root {
         --accent-color: #1f4c7a;
     }
 
-    a {
-        font-weight: bold;
-    }
+    a { font-weight: bold; }
 
     h1 {
-        font-size: 2.5rem;
+        font-size: 2.4rem;
         margin-bottom: 0.5rem;
         color: var(--accent-color);
         border-bottom: 2px dashed var(--accent-color);
@@ -23,18 +22,86 @@ pageStyles: |
 
     .subtitle {
         font-size: 1.2rem;
-        opacity: 0.8;
-        margin-bottom: 2rem;
+        opacity: 0.85;
+        margin-bottom: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        margin-top: 0;
+        margin-bottom: 1rem;
+        font-family: 'Sour Gummy', sans-serif;
     }
 
     .content-section {
-        background-color: #f9f9f9;
+        background-color: #f9fbff;
         border: 2px solid var(--text-color);
         border-radius: 16px;
-        padding: 2rem;
-        margin-bottom: 3rem;
+        padding: 1.75rem 1.75rem;
+        margin-bottom: 1.75rem;
         box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.05);
-        transform: rotate(0.5deg);
+    }
+
+    .content-section.tilt-l { transform: rotate(-0.4deg); }
+    .content-section.tilt-r { transform: rotate(0.4deg); }
+
+    p { line-height: 1.6; margin-bottom: 1rem; }
+
+    ul.use-cases {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    ul.use-cases li {
+        background: white;
+        border: 2px solid var(--accent-color);
+        border-radius: 12px;
+        padding: 0.9rem 1rem;
+        line-height: 1.4;
+        font-size: 0.98rem;
+    }
+
+    ul.use-cases li strong {
+        display: block;
+        margin-bottom: 0.25rem;
+        color: var(--accent-color);
+    }
+
+    .pilot-steps {
+        counter-reset: step;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .pilot-steps li {
+        counter-increment: step;
+        position: relative;
+        padding-left: 2.5rem;
+        margin-bottom: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .pilot-steps li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: -2px;
+        width: 1.8rem;
+        height: 1.8rem;
+        background: var(--accent-color);
+        color: white;
+        font-weight: bold;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.95rem;
     }
 
     .cta-section {
@@ -42,49 +109,101 @@ pageStyles: |
         background-color: #e0f0f7;
         border: 2px dashed var(--accent-color);
         border-radius: 16px;
-        padding: 2.5rem;
+        padding: 2.25rem;
         margin-top: 2rem;
-        transform: rotate(-0.5deg);
+        transform: rotate(-0.4deg);
     }
+
+    .cta-section h2 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+
+    .cta-section p { font-size: 1.05rem; margin-bottom: 1.25rem; }
 
     .cta-button {
         display: inline-block;
         background-color: var(--accent-color);
         color: white;
-        padding: 1rem 2rem;
+        padding: 0.9rem 1.8rem;
         border-radius: 50px;
         text-decoration: none;
-        font-size: 1.2rem;
-        margin-top: 1.5rem;
+        font-size: 1.15rem;
         box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
         transition: transform 0.2s;
     }
 
-    .cta-button:hover {
-        transform: scale(1.05);
+    .cta-button:hover { transform: scale(1.04); }
+
+    .cta-note {
+        display: block;
+        margin-top: 0.9rem;
+        font-size: 0.9rem;
+        opacity: 0.75;
+        font-weight: normal;
     }
 
-    p {
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
+    @media (max-width: 480px) {
+        ul.use-cases { grid-template-columns: 1fr; }
+        h1 { font-size: 1.8rem; }
     }
 ---
 
-<header>
-    <a href="{{ '/index.html' | url }}" class="back-link" data-i18n="nav_back">← Zurück zur Startseite</a>
-</header>
+<h1>Für Schulen und Lehrkräfte</h1>
+<p class="subtitle">Individuelle KI-Nachhilfe als Ergänzung zum Klassenunterricht — mit Lehrkräften entwickelt.</p>
 
-<h1 data-i18n="schools_title">Für Schulen</h1>
-<p class="subtitle" data-i18n="schools_subtitle">KI-Unterstützung für Bildungseinrichtungen</p>
+<div class="content-section tilt-l">
+    <h2>Die Realität in heterogenen Klassen</h2>
+    <p>In jeder Klasse gibt es Schüler, die mehr Zeit brauchen — und solche, die unterfordert sind. Beide individuell zu fördern, ist im Klassenverband kaum leistbar. Hier setzt tutor.new an: Jeder Schüler bekommt einen geduldigen, personalisierten Tutor, der genau dort weiterhilft, wo er gerade hängt.</p>
+</div>
 
-<div class="content-section">
-    <p data-i18n="schools_intro">Wir unterstützen Schulen dabei, personalisiertes Lernen in den Unterrichtsalltag zu integrieren.</p>
-    <p data-i18n="schools_global">Wir arbeiten bereits erfolgreich mit Schulen auf der ganzen Welt zusammen, um Schülern eine moderne und motivierende Lernumgebung zu bieten.</p>
+<div class="content-section tilt-r">
+    <h2>Wo Schulen tutor.new einsetzen</h2>
+    <ul class="use-cases">
+        <li>
+            <strong>Differenzierung im Unterricht</strong>
+            Während Sie eine Gruppe begleiten, arbeiten andere Schüler eigenständig mit dem Tutor — auf ihrem Niveau.
+        </li>
+        <li>
+            <strong>Hausaufgabenbetreuung</strong>
+            Schüler bekommen Erklärungen, wenn sie nicht weiterkommen — ohne dass die Eltern den Stoff können müssen.
+        </li>
+        <li>
+            <strong>Prüfungsvorbereitung</strong>
+            Automatisch generierte Übungen und Karteikarten zu Ihrem Stoff, Lückenfüller bei einzelnen Themen.
+        </li>
+        <li>
+            <strong>Förder- und Forderangebote</strong>
+            Schwächere Schüler holen auf, stärkere bekommen anspruchsvollere Aufgaben — beide im eigenen Tempo.
+        </li>
+        <li>
+            <strong>Sprachenlernen und DaZ</strong>
+            Geduldiges Üben im Voice-Chat, ohne Hemmungen vor der Klasse zu sprechen.
+        </li>
+        <li>
+            <strong>Vertretungsstunden</strong>
+            Eine sinnvolle Beschäftigung mit echtem Lerneffekt, wenn der Fachlehrer fehlt.
+        </li>
+    </ul>
+</div>
+
+<div class="content-section tilt-l">
+    <h2>Mit Lehrkräften entwickelt</h2>
+    <p>tutor.new wurde gemeinsam mit erfahrenen Lehrerinnen und Lehrern konzipiert und basiert auf aktueller Bildungsforschung. Der Tutor erklärt Schritt für Schritt, gibt nicht vorschnell die Lösung, stellt Rückfragen und wechselt die Erklärweise, wenn etwas nicht ankommt — so wie eine gute Lehrkraft es auch tun würde.</p>
+    <p>Inhalte werden nicht aus einem generischen Lehrplan gezogen: Sie können Arbeitsblätter, Schulbuchseiten oder Prüfungen hochladen, und der Tutor unterrichtet direkt mit Ihrem Material.</p>
+</div>
+
+<div class="content-section tilt-r">
+    <h2>So sieht ein Pilotprojekt aus</h2>
+    <ol class="pilot-steps">
+        <li><strong>Kennenlerngespräch</strong> — wir verstehen Ihren Kontext, Ihre Klasse und Ihre Ziele.</li>
+        <li><strong>Kostenfreier Testzeitraum</strong> — Ihre Schüler nutzen tutor.new für vier bis sechs Wochen.</li>
+        <li><strong>Begleitung</strong> — wir unterstützen Sie bei der Einführung und sind für Rückfragen erreichbar.</li>
+        <li><strong>Auswertung</strong> — gemeinsam schauen wir, was funktioniert hat und was nicht.</li>
+        <li><strong>Skalierung bei Bedarf</strong> — wenn es passt, weiten wir auf weitere Klassen oder Stufen aus.</li>
+    </ol>
 </div>
 
 <div class="cta-section">
-    <h2 data-i18n="schools_cta_text">Haben Sie Interesse an einer Zusammenarbeit oder möchten Sie tutor.new an Ihrer Schule testen?</h2>
-    <a href="mailto:friedrich@tutor.new" class="cta-button" data-i18n="schools_cta_button">Schreiben Sie uns eine E-Mail</a>
+    <h2>Interesse an einem Pilotprojekt?</h2>
+    <p>Schreiben Sie uns kurz, in welchem Kontext Sie tutor.new einsetzen möchten — wir melden uns persönlich.</p>
+    <a href="mailto:friedrich@tutor.new?subject=Pilotprojekt%20an%20unserer%20Schule" class="cta-button">E-Mail an Friedrich schreiben</a>
+    <span class="cta-note">friedrich@tutor.new — wir antworten in der Regel innerhalb von 24 Stunden.</span>
 </div>
-
-

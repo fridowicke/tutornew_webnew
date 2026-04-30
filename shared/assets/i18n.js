@@ -1,7 +1,7 @@
 const translations = {
     de: {
         // Page Title
-        page_title: "tutor.new - Lerne mit der KI, verdiene echte Belohnungen",
+        page_title: "tutor.new - Lerne mit der KI, die schöne Notizen erstellt",
         
         // Navigation
         nav_how: "So funktioniert's",
@@ -13,19 +13,19 @@ const translations = {
         nav_back: "← Zurück zur Startseite",
         
         // Hero
-        hero_title_pre: "Lerne mit der",
-        hero_title_highlight: "KI,",
-        hero_subtitle_pre: "verdiene",
-        hero_subtitle_highlight: "echte Belohnungen",
-        hero_subtitle_post: "",
-        
+        hero_title_pre: "Personalisierte",
+        hero_title_highlight: "KI-Nachhilfe,",
+        hero_subtitle_pre: "",
+        hero_subtitle_highlight: "schöne Lernzettel",
+        hero_subtitle_post: ".",
+
         // Steps
         step_1_heading: "Starte, wo du es brauchst",
         step_1_content: "Lade ein Foto vom Arbeitsblatt hoch oder sag der KI, was du nicht verstehst. Wir helfen dir genau da, wo du gerade hängst.",
-        step_2_heading: "Lern mit der KI & sammle Coins",
-        step_2_content: "Lerne im Voice-Modus und erhalte Coins für gelöste Aufgaben, Fleiß und gute Leistungen. Die KI motiviert dich bei jedem Schritt!",
-        step_3_heading: "Echte Belohnungen",
-        step_3_content: "Tausche deine Coins im Shop gegen coole Belohnungen (z.B. AirPods!) ein. Wir schicken sie dir direkt per Post nach Hause.",
+        step_2_heading: "Lern mit deinem KI-Tutor",
+        step_2_content: "Du sprichst im (Voice-)Chat mit der KI. Sie erklärt geduldig, stellt Rückfragen und passt sich deinem Tempo an — mit Live-Mitschriften, automatischen Übungen und Karteikarten.",
+        step_3_heading: "Spielerisch dranbleiben",
+        step_3_content: "Punkte und kleine Auszeichnungen für regelmäßigen Lernfortschritt halten die Motivation hoch — auch wenn es mal schwerfällt.",
         
         // Didactics Page
         didactics_title: "Unsere Didaktik",
@@ -81,6 +81,7 @@ const translations = {
         price_highlight: "Dann 2.99€/Woche",
         price_sub: "Jederzeit kündbar",
         cta_button_secondary: "→ Kostenlos testen",
+        cta_button_teachers: "Infos für Schulen",
         cta_start_now: "Jetzt starten",
         cta_rewards_learn_more: "Belohnungen entdecken",
 
@@ -555,7 +556,7 @@ const translations = {
     },
     en: {
         // Page Title
-        page_title: "tutor.new - Learn with our AI, earn real rewards",
+        page_title: "tutor.new - Learn with the AI that takes beautiful notes",
 
         // Navigation
         nav_how: "How it works",
@@ -567,19 +568,19 @@ const translations = {
         nav_back: "← Back to home",
         
         // Hero
-        hero_title_pre: "Learn with our",
-        hero_title_highlight: "AI,",
-        hero_subtitle_pre: "earn",
-        hero_subtitle_highlight: "real rewards",
-        hero_subtitle_post: "",
-        
+        hero_title_pre: "Personalised",
+        hero_title_highlight: "AI tutoring,",
+        hero_subtitle_pre: "",
+        hero_subtitle_highlight: "beautiful study notes",
+        hero_subtitle_post: ".",
+
         // Steps
         step_1_heading: "Start where you need it",
         step_1_content: "Upload a photo of your worksheet or tell the AI what you don't understand. We help you exactly where you're stuck.",
-        step_2_heading: "Learn with AI & earn coins",
-        step_2_content: "Learn in voice mode and earn coins for solving tasks, effort, and good performance. The AI motivates you at every step!",
-        step_3_heading: "Real Rewards",
-        step_3_content: "Exchange your coins in the shop for cool rewards (e.g., AirPods!). We ship them directly to your home by mail.",
+        step_2_heading: "Learn with your AI tutor",
+        step_2_content: "You talk with the AI in (voice) chat. It explains patiently, asks follow-up questions, and adapts to your pace — with live notes, automatic exercises, and flashcards.",
+        step_3_heading: "Stay engaged, playfully",
+        step_3_content: "Points and small badges for steady progress keep motivation up — even when it gets hard.",
 
         // Didactics Page
         didactics_title: "Our Didactics",
@@ -635,6 +636,7 @@ const translations = {
         price_highlight: "Then $2.99/Week",
         price_sub: "Cancel anytime",
         cta_button_secondary: "→ Try for free",
+        cta_button_teachers: "Info for schools",
         cta_start_now: "Start now",
         cta_rewards_learn_more: "Discover rewards",
 
