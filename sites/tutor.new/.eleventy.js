@@ -8,6 +8,7 @@ module.exports = function(eleventyConfig) {
   // Copy static assets from shared directory
   eleventyConfig.addPassthroughCopy({
     "../../shared/assets/styles.css": "styles.css",
+    "../../modern.css": "modern.css",
     "../../shared/assets/common.js": "common.js",
     "../../shared/assets/i18n.js": "i18n.js",
     "../../shared/assets/favicon.ico": "favicon.ico",
@@ -63,4 +64,3 @@ module.exports = function(eleventyConfig) {
     dataTemplateEngine: "njk",
   };
 };
-

@@ -14,15 +14,18 @@
 
 <!-- Desktop/Mobile Header -->
 <header>
-    <button class="logo-btn" onclick="toggleMenu()">tutor.new</button>
+    <a class="brand-link" href="{{ '/index.html' | url }}" aria-label="tutor.new home">
+        <span class="brand-mark">t</span>
+        <span class="brand-name">tutor.new</span>
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu" type="button">
+        <span></span>
+        <span></span>
+    </button>
     <nav class="nav-menu" id="navMenu">
-        <a href="{{ '/so-funktionierts.html' | url }}" class="nav-link link-how" data-i18n="nav_how">So funktioniert's</a>
-        <a href="{{ '/didaktik.html' | url }}" class="nav-link link-didactics" data-i18n="nav_didactics">Didaktik</a>
-        <a href="{{ '/pricing.html' | url }}" class="nav-link link-faq" data-i18n="nav_pricing" style="background-color: #e0f0f7; color: #1f4c7a; border-color: #1f4c7a;">Preise</a>
-        <a href="{{ '/faq.html' | url }}" class="nav-link link-faq" data-i18n="nav_faq">FAQ</a>
-        <a href="{{ '/ueber-uns.html' | url }}" class="nav-link link-about" data-i18n="nav_about">Über uns</a>
-        <a href="{{ '/impressum-agb.html' | url }}" class="nav-link link-legal" data-i18n="nav_legal">Impressum & AGB</a>
-        <a href="https://tutor.new/privacy" class="nav-link link-privacy" data-i18n="nav_privacy">Datenschutz</a>
+        <a href="{{ '/schools.html' | url }}" class="nav-link">Schools</a>
+        <a href="{{ '/pricing.html' | url }}" class="nav-link">Pricing</a>
+        <a href="{{ '/faq.html' | url }}" class="nav-link">FAQ</a>
+        <a href="https://duck.tutor.new" class="nav-link nav-cta" data-i18n="cta_start_now">Jetzt starten</a>
     </nav>
 </header>
-
