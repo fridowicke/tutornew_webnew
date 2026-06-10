@@ -1,6 +1,6 @@
 ---
 layout: layouts/base.njk
-title: tutor.new — Bessere Noten mit deinem KI-Tutor
+title: tutor.new | Bessere Noten mit deinem KI-Tutor
 description: Sprich mit deinem KI-Tutor - er verwandelt deine Unterlagen in ein interaktives Lernblatt. Auch als Schulversion für Lehrpersonen.
 lang: de
 useQ: true
@@ -11,7 +11,7 @@ scripts: []
     /* ---------- Hero: headline, app demo, copy below ---------- */
 
     .q-hero {
-        padding: 22px 0 56px;
+        padding: 14px 0 56px;
     }
 
     .q-hero-top {
@@ -666,6 +666,101 @@ scripts: []
         color: var(--q-green);
     }
 
+    .q-mini-visual {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 7px;
+        min-height: 86px;
+        padding: 11px 12px;
+        margin-bottom: 10px;
+        border-radius: 12px;
+        background: var(--q-cream);
+        border: 1.5px solid var(--q-line);
+    }
+
+    .q-mini-visual .q-file {
+        font-size: 11.5px;
+        padding: 6px 9px;
+        background: #fff;
+    }
+
+    .q-mini-call {
+        position: relative;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        background: var(--q-green-soft);
+        overflow: hidden;
+    }
+
+    .q-mini-call img {
+        width: 58px;
+        height: 58px;
+        border-radius: 999px;
+        border: 2px solid var(--q-green);
+        background: #fff;
+        object-fit: contain;
+    }
+
+    .q-call-live {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        padding: 3px 9px;
+        border-radius: 999px;
+        background: var(--q-rose);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: .03em;
+    }
+
+    .q-call-dots {
+        position: absolute;
+        right: 8px;
+        bottom: 8px;
+        display: flex;
+        gap: 5px;
+    }
+
+    .q-call-dots i {
+        display: grid;
+        place-items: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid var(--q-line);
+        font-style: normal;
+        font-size: 11px;
+    }
+
+    .q-exam {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .q-exam-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--q-green);
+    }
+
+    .q-exam-top em {
+        font-style: normal;
+        font-family: var(--q-display);
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--q-green-mid);
+    }
+
     .q-mini-card span {
         font-size: 14px;
         line-height: 1.55;
@@ -737,6 +832,27 @@ scripts: []
     }
 
     @media (max-width: 720px) {
+        .q-hero {
+            padding-top: 8px;
+        }
+
+        .q-hero-top {
+            margin-bottom: 14px;
+        }
+
+        .q-hero-top .q-h1 {
+            font-size: 27px \!important;
+        }
+
+        .q-hero-below {
+            margin-top: 16px;
+            gap: 11px;
+        }
+
+        .q-hero-below .q-lead {
+            font-size: 14.5px;
+        }
+
         .sf-app-body {
             display: block;
             position: relative;
@@ -765,7 +881,7 @@ scripts: []
 
         .sf-chat-log {
             flex: 0 1 auto;
-            max-height: 148px;
+            max-height: 118px;
             padding: 0 2px 6px;
         }
 
@@ -815,7 +931,7 @@ scripts: []
             <span>tutor.new</span>
         </a>
         <div class="q-nav-actions">
-            <a class="q-navlink" href="{{ '/preview/teachers.html' | url }}">Schulversion</a>
+            <a class="q-btn q-btn-ghost" href="{{ '/preview/teachers.html' | url }}">Schulversion</a>
             <a class="q-btn q-btn-primary" href="https://duck.tutor.new">Jetzt gratis lernen</a>
         </div>
     </nav>
@@ -834,7 +950,7 @@ scripts: []
             <div class="sf-app" id="sf-app" aria-hidden="true">
                 <div class="sf-app-chrome">
                     <i></i><i></i><i></i>
-                    <span id="sf-doc-title">tutor.new — Lernblatt: Lineare Funktionen</span>
+                    <span id="sf-doc-title">tutor.new · Lernblatt: Lineare Funktionen</span>
                 </div>
                 <div class="sf-app-body">
                     <aside class="sf-chat-panel">
@@ -860,7 +976,7 @@ scripts: []
                                 <div class="sf-block sf-note-title" data-block="title">
                                     <div class="sf-block-content">
                                         <span>Thema</span>
-                                        <span>Lineare Funktionen — dein Arbeitsblatt</span>
+                                        <span>Lineare Funktionen</span>
                                     </div>
                                 </div>
 
@@ -910,7 +1026,7 @@ scripts: []
                                     <div class="sf-block-content">
                                         <strong>Merke:</strong>
                                         <ul>
-                                            <li>m macht die Gerade steiler — q verschiebt sie nach oben.</li>
+                                            <li>m macht die Gerade steiler, q verschiebt sie nach oben.</li>
                                             <li>Deine Lösung: y = 2x + 1 ✓</li>
                                         </ul>
                                     </div>
@@ -923,7 +1039,7 @@ scripts: []
                                 <div class="sf-block sf-note-title" data-block="title">
                                     <div class="sf-block-content">
                                         <span>Thema</span>
-                                        <span>Passé composé — Französisch</span>
+                                        <span>Passé composé</span>
                                     </div>
                                 </div>
 
@@ -968,11 +1084,11 @@ scripts: []
 
             <!-- Sub-line + CTA below the demo -->
             <div class="q-hero-below">
-                <p class="q-lead">Sprich mit deinem KI-Tutor — er verwandelt deine Unterlagen in ein interaktives Lernblatt.</p>
                 <div class="q-hero-ctas">
                     <a class="q-btn q-btn-primary" href="https://duck.tutor.new">Jetzt gratis lernen</a>
                     <a class="q-btn q-btn-ghost" href="{{ '/preview/teachers.html' | url }}">Schulversion ansehen</a>
                 </div>
+                <p class="q-lead">Sprich mit deinem KI-Tutor. Er verwandelt deine Unterlagen in ein interaktives Lernblatt.</p>
                 <div class="q-hero-trust">
                     <span>100'000+ Lernende</span>
                 </div>
@@ -984,16 +1100,31 @@ scripts: []
     <section class="q-mini">
         <div class="q-wrap q-mini-grid">
             <div class="q-mini-card">
-                <strong>Deine echten Unterlagen</strong>
-                <span>Foto vom Arbeitsblatt reicht.</span>
+                <div class="q-mini-visual" aria-hidden="true">
+                    <span class="q-file">Arbeitsblatt</span>
+                    <span class="q-file is-img">Wandtafel</span>
+                    <span class="q-file is-doc">Zusammenfassung</span>
+                </div>
+                <strong>Deine Unterlagen</strong>
+                <span>Foto vom Arbeitsblatt reicht. Gelernt wird, was bei dir drankommt.</span>
             </div>
             <div class="q-mini-card">
-                <strong>Hinweise statt Lösungen</strong>
-                <span>Du kommst selbst drauf.</span>
+                <div class="q-mini-visual q-mini-call" aria-hidden="true">
+                    <span class="q-call-live">LIVE</span>
+                    <img src="{{ '/tutors/maya.png' | url }}" alt="">
+                    <span class="q-call-dots"><i>🎤</i><i>📷</i></span>
+                </div>
+                <strong>Videocall mit Maya</strong>
+                <span>Wie echte Nachhilfe, nur immer verfügbar.</span>
             </div>
             <div class="q-mini-card">
-                <strong>Chat oder Stimme</strong>
-                <span>Frag einfach — Maya ist immer da.</span>
+                <div class="q-mini-visual q-exam" aria-hidden="true">
+                    <span class="q-exam-top">Probeprüfung Algebra <em>bereit ✓</em></span>
+                    <span class="q-meter"><i style="width: 86%"></i></span>
+                    <span class="q-exam-top"><em>Du bist auf Kurs: 86%</em></span>
+                </div>
+                <strong>Prüfungsvorbereitung</strong>
+                <span>Probeprüfungen mit Feedback, bis du sicher bist.</span>
             </div>
         </div>
     </section>
@@ -1013,7 +1144,7 @@ scripts: []
                 </div>
                 <div class="q-zensi-copy">
                     <span class="q-kicker">Die Schulversion</span>
-                    <blockquote>«Der Tutor übernimmt das Üben — ich sitze wieder neben den Kindern.»</blockquote>
+                    <blockquote>«Der Tutor übernimmt das Üben. Ich sitze wieder neben den Kindern.»</blockquote>
                     <figcaption>Zensi Hopf unterrichtet mit tutor.new an der Kantonsschule Wattwil. Lehrpersonen planen den Unterricht, der Tutor begleitet jedes Kind.</figcaption>
                     <a class="q-btn q-btn-cream" href="{{ '/preview/teachers.html' | url }}">Schulversion ansehen</a>
                 </div>
@@ -1038,8 +1169,8 @@ scripts: []
             fr: document.getElementById('sf-editor-fr')
         };
         const titles = {
-            math: 'tutor.new — Lernblatt: Lineare Funktionen',
-            fr: 'tutor.new — Lernblatt: Passé composé'
+            math: 'tutor.new · Lernblatt: Lineare Funktionen',
+            fr: 'tutor.new · Lernblatt: Passé composé'
         };
         let active = 'math';
 

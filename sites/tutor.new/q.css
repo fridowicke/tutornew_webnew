@@ -73,9 +73,12 @@ img {
 /* ---------- Navigation ---------- */
 
 .q-header {
-    position: sticky;
+    position: sticky \!important;
     top: 0;
     z-index: 60;
+    display: block \!important;
+    margin: 0 \!important;
+    padding: 0 \!important;
     background: rgba(249, 241, 232, .94);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -87,7 +90,7 @@ img {
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    height: 74px;
+    height: 62px;
 }
 
 .q-logo {
@@ -1155,10 +1158,15 @@ h1.q-h1 {
 }
 
 .q-footer .q-logo {
-    color: #fff;
+    color: #fff \!important;
+    font-size: 17px;
+    gap: 9px;
 }
 
 .q-footer .q-logo img {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
     border-color: rgba(249, 241, 232, .65);
 }
 
@@ -1237,6 +1245,16 @@ h1.q-h1 {
     .q-nav-links,
     .q-nav .q-btn-ghost {
         display: none;
+    }
+
+    .q-nav-actions .q-navlink {
+        display: none;
+    }
+
+    .q-nav .q-btn {
+        min-height: 42px;
+        padding: 0 16px;
+        font-size: 14px \!important;
     }
 
     .q-hero {
