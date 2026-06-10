@@ -74,11 +74,8 @@ scripts: []
             <img src="{{ '/quack/quack-avatar.png' | url }}" alt="">
             <span>tutor.new</span>
         </a>
-        <div class="q-nav-links">
-            <a href="#funktionen">So funktioniert's</a>
-            <a href="{{ '/schools.html' | url }}">Für Schulen</a>
-        </div>
         <div class="q-nav-actions">
+            <a class="q-navlink" href="#funktionen">So funktioniert's</a>
             <a class="q-btn q-btn-ghost" href="https://duck.tutor.new">App testen</a>
             <a class="q-btn q-btn-primary" href="mailto:friedrich@tutor.new?subject=tutor.new%20an%20unserer%20Schule">Gespräch vereinbaren</a>
         </div>
@@ -336,7 +333,10 @@ scripts: []
 <footer class="q-footer">
     <div class="q-wrap q-footer-inner">
         <div class="q-footer-brand">
-            <img src="{{ '/quack/logo-white.svg' | url }}" alt="tutor.new">
+            <div class="q-logo">
+                <img src="{{ '/quack/quack-avatar.png' | url }}" alt="">
+                <span>tutor.new</span>
+            </div>
             <p>© tutor.new. Alle Rechte vorbehalten.</p>
         </div>
         <div class="q-footer-cols">

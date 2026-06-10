@@ -11,7 +11,7 @@ scripts: []
     /* ---------- Hero: headline, app demo, copy below ---------- */
 
     .q-hero {
-        padding: 56px 0 60px;
+        padding: 22px 0 56px;
     }
 
     .q-hero-top {
@@ -31,8 +31,8 @@ scripts: []
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 16px;
-        margin-top: clamp(32px, 4vw, 44px);
+        gap: 13px;
+        margin-top: clamp(20px, 3vw, 30px);
     }
 
     .q-hero-below .q-lead {
@@ -91,7 +91,7 @@ scripts: []
         display: grid;
         grid-template-columns: 272px minmax(0, 1fr);
         grid-template-rows: 100%;
-        height: 442px;
+        height: 400px;
     }
 
     /* ---------- Chat panel ---------- */
@@ -738,23 +738,46 @@ scripts: []
 
     @media (max-width: 720px) {
         .sf-app-body {
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto;
-            height: auto;
-        }
-
-        .sf-chat-panel {
-            border-right: none;
-            border-bottom: 1.5px solid var(--q-line);
-        }
-
-        .sf-chat-log {
-            height: 215px;
-            flex: 0 0 auto;
+            display: block;
+            position: relative;
+            height: 460px;
         }
 
         .sf-canvas {
-            height: 320px;
+            position: absolute;
+            inset: 0;
+        }
+
+        /* Chat floats over the sheet, like in the app */
+        .sf-chat-panel {
+            position: absolute;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            z-index: 5;
+            border: none;
+            background: transparent;
+        }
+
+        .sf-chat-top {
+            display: none;
+        }
+
+        .sf-chat-log {
+            flex: 0 1 auto;
+            max-height: 148px;
+            padding: 0 2px 6px;
+        }
+
+        .sf-bubble,
+        .sf-attach {
+            box-shadow: 0 6px 18px rgba(14, 51, 34, .18);
+        }
+
+        .sf-chat-input {
+            margin: 0;
+            background: rgba(249, 241, 232, .96);
+            box-shadow: 0 6px 18px rgba(14, 51, 34, .15);
         }
 
         .sf-caret {
@@ -762,26 +785,26 @@ scripts: []
         }
 
         .sf-editor {
-            height: 500px;
-            padding: 16px 20px 80px;
+            height: 760px;
+            padding: 14px 18px 80px;
         }
 
-        .sf-note-title { top: 22px; left: 20px; right: 20px; }
-        .sf-note-title .sf-block-content { grid-template-columns: 56px 1fr; gap: 14px; font-size: 12px; }
-        .sf-note-def { top: 64px; left: 20px; width: 80%; }
+        .sf-note-title { top: 18px; left: 18px; right: 18px; }
+        .sf-note-title .sf-block-content { grid-template-columns: 52px 1fr; gap: 12px; font-size: 12px; }
+        .sf-note-def { top: 58px; left: 18px; width: calc(100% - 36px); }
         .sf-def-formula { font-size: 13px; }
-        .sf-def-note { font-size: 9px; }
-        .sf-note-graph { top: 116px; left: 36px; width: 75%; }
+        .sf-def-note { font-size: 9.5px; }
+        .sf-note-graph { top: 112px; left: 30px; width: 64%; }
         .sf-gchip { font-size: 9px; padding: 3px 8px; }
-        .sf-note-exercise { top: 308px; left: 36px; width: 75%; font-size: 10px; padding: 9px 10px; }
-        .sf-note-merke { top: 396px; left: 20px; right: 20px; font-size: 10px; }
-        .sf-note-merke .sf-block-content { grid-template-columns: 56px 1fr; gap: 14px; }
+        .sf-note-exercise { top: 330px; left: 30px; width: 72%; font-size: 11px; padding: 9px 10px; }
+        .sf-note-merke { top: 420px; left: 18px; right: 18px; font-size: 11px; }
+        .sf-note-merke .sf-block-content { grid-template-columns: 52px 1fr; gap: 12px; }
 
-        .sf-note-cards { top: 116px; left: 20px; }
+        .sf-note-cards { top: 126px; left: 18px; }
         .sf-vocab-card { font-size: 11px; padding: 6px 9px; }
         .sf-vocab-card em { font-size: 8px; }
-        .sf-editor--fr .sf-note-exercise { top: 200px; }
-        .sf-editor--fr .sf-note-merke { top: 280px; }
+        .sf-editor--fr .sf-note-exercise { top: 212px; }
+        .sf-editor--fr .sf-note-merke { top: 298px; }
     }
 </style>
 
@@ -791,10 +814,8 @@ scripts: []
             <img src="{{ '/quack/quack-avatar.png' | url }}" alt="">
             <span>tutor.new</span>
         </a>
-        <div class="q-nav-links">
-            <a href="{{ '/preview/teachers.html' | url }}">Schulversion</a>
-        </div>
         <div class="q-nav-actions">
+            <a class="q-navlink" href="{{ '/preview/teachers.html' | url }}">Schulversion</a>
             <a class="q-btn q-btn-primary" href="https://duck.tutor.new">Jetzt gratis lernen</a>
         </div>
     </nav>
@@ -1242,7 +1263,7 @@ scripts: []
 
             await say('tutor', 'Mini-Übung für dich: Schau mal auf die gestrichelte Gerade.');
             await gap(450);
-            await scrollCanvas(S(85, 90));
+            await scrollCanvas(S(125, 150));
             await write('exercise', [418, 210]);
             await gap(1300);
 
@@ -1250,7 +1271,7 @@ scripts: []
             await gap();
             await say('tutor', 'Stark, genau so!');
             await gap(450);
-            await scrollCanvas(S(200, 170));
+            await scrollCanvas(S(235, 260));
             await write('merke', [528, 160]);
             await sleep(2800);
         };
@@ -1277,6 +1298,7 @@ scripts: []
 
             await say('tutor', 'Jetzt du: Füll die Lücke aus.');
             await gap(450);
+            await scrollCanvas(S(0, 60));
             await write('exercise', [292, 210]);
             await gap(1300);
 
@@ -1284,7 +1306,7 @@ scripts: []
             await gap();
             await say('tutor', 'Parfait, genau so!');
             await gap(450);
-            await scrollCanvas(S(45, 60));
+            await scrollCanvas(S(85, 130));
             await write('merke', [392, 160]);
             await sleep(2800);
         };
@@ -1349,7 +1371,10 @@ scripts: []
 <footer class="q-footer">
     <div class="q-wrap q-footer-inner">
         <div class="q-footer-brand">
-            <img src="{{ '/quack/logo-white.svg' | url }}" alt="tutor.new">
+            <div class="q-logo">
+                <img src="{{ '/quack/quack-avatar.png' | url }}" alt="">
+                <span>tutor.new</span>
+            </div>
             <p>© tutor.new. Alle Rechte vorbehalten.</p>
         </div>
         <div class="q-footer-cols">

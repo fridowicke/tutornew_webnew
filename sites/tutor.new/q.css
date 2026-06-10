@@ -132,6 +132,18 @@ img {
     gap: 10px;
 }
 
+.q-nav-actions .q-navlink {
+    padding: 9px 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--q-green);
+}
+
+.q-nav-actions .q-navlink:hover {
+    background: var(--q-beige);
+}
+
 .q-btn {
     display: inline-flex;
     align-items: center;
@@ -1142,10 +1154,12 @@ h1.q-h1 {
     gap: 16px;
 }
 
-.q-footer-brand img {
-    width: 150px;
-    height: auto;
-    align-self: flex-start;
+.q-footer .q-logo {
+    color: #fff;
+}
+
+.q-footer .q-logo img {
+    border-color: rgba(249, 241, 232, .65);
 }
 
 .q-footer-brand p {
