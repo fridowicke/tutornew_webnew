@@ -1287,6 +1287,7 @@ scripts: []
             status.textContent = who === 'tutor' ? 'spricht …' : 'hört zu …';
             window.sfMayaSpeaking = (who === 'tutor');
             const speakMs = Math.min(900 + text.length * 24, 2400);
+            if (who === 'tutor' && window.sfSpeak) window.sfSpeak(text, speakMs);
             await sleep(speakMs);
             window.sfMayaSpeaking = false;
             row.classList.remove('is-speaking');
@@ -1543,6 +1544,8 @@ scripts: []
 </script>
 <script type="module">
 // Muted talking head: lazy-loaded on desktop after the page is idle.
+// Mouth movement is driven by real viseme timelines (TalkingHead's
+// German lipsync rules); each line is converted once and cached.
 // Falls back silently to the static avatar on any failure.
 (async () => {
     const tile = document.getElementById('sf-call');
@@ -1558,6 +1561,12 @@ scripts: []
     try {
         const THREE = await import('three');
         const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+
+        let lipsync = null;
+        try {
+            const mod = await import('/quack/lipsync-de.mjs');
+            lipsync = new mod.LipsyncDe();
+        } catch (e) { lipsync = null; }
 
         const W = tile.clientWidth, H = tile.clientHeight;
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
@@ -1587,27 +1596,99 @@ scripts: []
         gltf.scene.updateWorldMatrix(true, true);
         const headPos = new THREE.Vector3();
         (headBone === null ? gltf.scene : headBone).getWorldPosition(headPos);
-        cam.position.set(headPos.x, headPos.y + 0.03, headPos.z + 0.42);
-        cam.lookAt(headPos.x, headPos.y + 0.01, headPos.z);
+        // Zoomed out: head and shoulders in frame
+        cam.position.set(headPos.x, headPos.y - 0.02, headPos.z + 0.85);
+        cam.lookAt(headPos.x, headPos.y - 0.05, headPos.z);
 
         const setMorph = (name, v) => morphMeshes.forEach(m => {
             const i = m.morphTargetDictionary[name];
             if (i !== undefined) m.morphTargetInfluences[i] = v;
         });
-        setMorph('mouthSmile', 0.3);
 
-        let jaw = 0, blinkUntil = 0, nextBlink = performance.now() + 1500;
+        // Oculus viseme -> ARKit blendshape combos (maya.glb has ARKit only)
+        const VISEMES = {
+            'aa': { jawOpen: .45, mouthOpen: .45 },
+            'E':  { jawOpen: .24, mouthOpen: .3, mouthSmile: .25 },
+            'I':  { jawOpen: .12, mouthOpen: .2, mouthSmile: .4 },
+            'O':  { jawOpen: .32, mouthOpen: .3, mouthFunnel: .45, mouthPucker: .25 },
+            'U':  { jawOpen: .18, mouthOpen: .18, mouthPucker: .55, mouthFunnel: .3 },
+            'PP': { mouthPressLeft: .5, mouthPressRight: .5, mouthClose: .3, jawOpen: .03 },
+            'FF': { mouthShrugUpper: .4, mouthRollLower: .35, jawOpen: .07 },
+            'TH': { jawOpen: .15, mouthOpen: .18 },
+            'DD': { jawOpen: .16, mouthOpen: .2 },
+            'kk': { jawOpen: .18, mouthOpen: .15 },
+            'CH': { jawOpen: .16, mouthFunnel: .45, mouthPucker: .3 },
+            'SS': { jawOpen: .09, mouthSmile: .3 },
+            'nn': { jawOpen: .12, mouthOpen: .1 },
+            'RR': { jawOpen: .16, mouthPucker: .2 },
+            'sil': {}
+        };
+        const MORPHS = ['jawOpen', 'mouthOpen', 'mouthFunnel', 'mouthPucker', 'mouthSmile',
+            'mouthPressLeft', 'mouthPressRight', 'mouthClose', 'mouthShrugUpper', 'mouthRollLower'];
+        const current = {};
+        MORPHS.forEach(m => { current[m] = 0; });
+
+        // text -> relative viseme timeline, converted once and cached
+        const cache = new Map();
+        const relTimeline = (text) => {
+            let rel = cache.get(text);
+            if (rel !== undefined) return rel;
+            const items = [];
+            let t = 0;
+            const words = lipsync.preProcessText(text).split(/\s+/).filter(w => w.length > 0);
+            words.forEach(w => {
+                const o = lipsync.wordsToVisemes(w);
+                const n = o.visemes.length;
+                for (let i = 0; i < n; i++) {
+                    items.push({ v: o.visemes[i], s: t + o.times[i], d: o.durations[i] });
+                }
+                t += (n > 0 ? o.times[n - 1] + o.durations[n - 1] : 1) + 1.6;
+            });
+            rel = { items, total: Math.max(t, 1) };
+            cache.set(text, rel);
+            return rel;
+        };
+
+        let speech = null;
+        window.sfSpeak = (text, ms) => {
+            if (lipsync === null) return;
+            try {
+                const rel = relTimeline(text);
+                speech = { rel, t0: performance.now(), scale: (ms * 0.92) / rel.total, idx: 0 };
+            } catch (e) { speech = null; }
+        };
+
+        let blinkUntil = 0, nextBlink = performance.now() + 1500;
         const tick = () => {
             const now = performance.now();
             const t = now / 1000;
-
             const speaking = window.sfMayaSpeaking === true;
-            const target = speaking
-                ? Math.max(0, 0.16 + 0.18 * Math.abs(Math.sin(t * 9.3)) * (0.55 + 0.45 * Math.sin(t * 2.1)) + 0.05 * Math.sin(t * 14.7))
-                : 0;
-            jaw += (target - jaw) * 0.35;
-            setMorph('jawOpen', jaw);
-            setMorph('mouthFunnel', speaking ? 0.10 * Math.abs(Math.sin(t * 5.7)) : 0);
+
+            const target = {};
+            MORPHS.forEach(m => { target[m] = 0; });
+            target.mouthSmile = 0.16;
+
+            if (speaking && speech !== null) {
+                const rt = (now - speech.t0) / speech.scale;
+                const items = speech.rel.items;
+                while (speech.idx < items.length && items[speech.idx].s + items[speech.idx].d < rt) speech.idx++;
+                const it = items[speech.idx];
+                if (it !== undefined && it.s <= rt) {
+                    const def = VISEMES[it.v];
+                    if (def !== undefined) {
+                        Object.keys(def).forEach(k => { target[k] = Math.max(target[k], def[k]); });
+                    }
+                }
+            } else if (speaking && lipsync === null) {
+                // procedural fallback if the lipsync module is unavailable
+                target.jawOpen = Math.max(0, 0.16 + 0.18 * Math.abs(Math.sin(t * 9.3)) * (0.55 + 0.45 * Math.sin(t * 2.1)));
+                target.mouthOpen = target.jawOpen * 0.8;
+            }
+
+            MORPHS.forEach(m => {
+                current[m] += (target[m] - current[m]) * 0.4;
+                setMorph(m, current[m]);
+            });
 
             if (now > nextBlink) {
                 blinkUntil = now + 130;
