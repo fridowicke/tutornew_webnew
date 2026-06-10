@@ -6,7 +6,7 @@
     <title>{{ title | default('tutor.new') }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sour+Gummy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:wght@400;500;600;700;800&family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/styles.css' | url }}">
     {% if structuredData %}
     <script type="application/ld+json">
@@ -18,7 +18,9 @@
         {{ pageStyles | safe }}
     </style>
     {% endif %}
-    <link rel="stylesheet" href="{{ '/modern.css' | url }}">
+    {% if useQ %}
+    <link rel="stylesheet" href="{{ '/q.css' | url }}">
+    {% endif %}
 </head>
 <body>
 
@@ -44,3 +46,4 @@
     {% endif %}
 </body>
 </html>
+

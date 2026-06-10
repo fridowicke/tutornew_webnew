@@ -1,0 +1,1381 @@
+---
+layout: layouts/base.njk
+title: tutor.new — Bessere Noten mit deinem KI-Tutor
+description: Sprich mit deinem KI-Tutor - er verwandelt deine Unterlagen in ein interaktives Lernblatt. Auch als Schulversion für Lehrpersonen.
+lang: de
+useQ: true
+scripts: []
+---
+
+<style>
+    /* ---------- Hero: headline, app demo, copy below ---------- */
+
+    .q-hero {
+        padding: 56px 0 60px;
+    }
+
+    .q-hero-top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: clamp(28px, 3.5vw, 40px);
+    }
+
+    .q-hero-top .q-h1 {
+        text-align: center !important;
+    }
+
+    .q-hero-below {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+        margin-top: clamp(32px, 4vw, 44px);
+    }
+
+    .q-hero-below .q-lead {
+        max-width: 520px;
+    }
+
+    .q-hero-ctas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 13px;
+        margin-top: 4px;
+    }
+
+    .q-hero-trust {
+        justify-content: center;
+    }
+
+    /* ---------- The app window: chat docked to the Lernblatt ---------- */
+
+    .sf-app {
+        width: min(1020px, 100%);
+        margin: 0 auto;
+        border-radius: 18px;
+        background: #fff;
+        border: 1.5px solid var(--q-line);
+        box-shadow: 0 2px 0 rgba(14, 51, 34, .06), 0 28px 70px rgba(14, 51, 34, .14);
+        overflow: hidden;
+    }
+
+    .sf-app-chrome {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 11px 16px;
+        border-bottom: 1.5px solid var(--q-line);
+        background: var(--q-beige);
+    }
+
+    .sf-app-chrome i {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--q-taupe);
+    }
+
+    .sf-app-chrome span {
+        margin-left: 8px;
+        font-family: var(--q-display);
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--q-green-mid);
+    }
+
+    .sf-app-body {
+        display: grid;
+        grid-template-columns: 272px minmax(0, 1fr);
+        grid-template-rows: 100%;
+        height: 442px;
+    }
+
+    /* ---------- Chat panel ---------- */
+
+    .sf-chat-panel {
+        display: flex;
+        flex-direction: column;
+        border-right: 1.5px solid var(--q-line);
+        background: #fffdf9;
+        min-width: 0;
+    }
+
+    .sf-chat-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-bottom: 1.5px solid var(--q-line);
+    }
+
+    .sf-chat-top .sf-ava {
+        width: 38px;
+        height: 38px;
+        border-radius: 999px;
+        border: 2px solid var(--q-green);
+        background: #fff;
+        object-fit: contain;
+        flex: 0 0 auto;
+    }
+
+    .sf-chat-top strong {
+        display: block;
+        font-family: var(--q-display);
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--q-green);
+        line-height: 1.15;
+    }
+
+    .sf-chat-top em {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-style: normal;
+        font-size: 11px;
+        font-weight: 600;
+        color: #8a9388;
+    }
+
+    .sf-chat-top em::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--q-emerald);
+        flex: 0 0 auto;
+    }
+
+    .sf-chat-log {
+        flex: 1;
+        padding: 12px;
+        overflow: hidden;
+        min-height: 0;
+    }
+
+    .sf-row {
+        display: flex;
+        align-items: flex-end;
+        gap: 7px;
+        margin-bottom: 8px;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity .35s ease, transform .35s ease;
+    }
+
+    .sf-row.is-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .sf-row--student {
+        justify-content: flex-end;
+    }
+
+    .sf-chat-avatar {
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        border: 1.5px solid var(--q-green);
+        background: #fff;
+        object-fit: contain;
+        flex: 0 0 auto;
+        margin-bottom: 2px;
+    }
+
+    .sf-bubble {
+        display: flex;
+        flex-direction: column;
+        max-width: 85%;
+        border: 1.5px solid transparent;
+        padding: 8px 11px 9px;
+        font-size: 12.5px;
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 2px 0;
+    }
+
+    .sf-row--tutor .sf-bubble {
+        border-radius: 12px 12px 12px 4px;
+        background: var(--q-green-soft);
+        border-color: #c5dec9;
+        color: var(--q-green);
+    }
+
+    .sf-row--student .sf-bubble {
+        border-radius: 12px 12px 4px 12px;
+        background: var(--q-beige);
+        border-color: var(--q-taupe);
+        color: var(--q-green);
+    }
+
+    /* Voice waveform: animates only while its bubble is speaking,
+       collapses away when the turn is done. */
+
+    .sf-wave {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        height: 14px;
+        margin-bottom: 4px;
+        overflow: hidden;
+        transition: height .35s ease, opacity .35s ease, margin .35s ease;
+    }
+
+    .sf-row.is-done .sf-wave {
+        height: 0;
+        opacity: 0;
+        margin-bottom: 0;
+    }
+
+    .sf-row--tutor .sf-wave { color: var(--q-green-mid); }
+    .sf-row--student .sf-wave { color: var(--q-orange); }
+
+    .sf-wave i {
+        width: 2.5px;
+        min-height: 3px;
+        height: calc(var(--voice-height) * .25px);
+        border-radius: 999px;
+        background: currentColor;
+        transform: scaleY(.45);
+        opacity: .5;
+        transform-origin: center;
+    }
+
+    .sf-row.is-speaking .sf-wave i {
+        animation: sf-voice-bar var(--voice-duration, .72s) ease-in-out infinite;
+        animation-delay: calc(var(--voice-delay) * -1s);
+    }
+
+    @keyframes sf-voice-bar {
+        0%, 100% { transform: scaleY(.3); opacity: .4; }
+        18% { transform: scaleY(1.1); opacity: 1; }
+        42%, 48% { transform: scaleY(.4); opacity: .5; }
+        68% { transform: scaleY(1.25); opacity: 1; }
+        78% { transform: scaleY(.5); opacity: .7; }
+    }
+
+    /* Attached worksheet photo in the chat */
+
+    .sf-attach {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        width: 132px;
+        padding: 7px;
+        border-radius: 12px 12px 4px 12px;
+        background: var(--q-beige);
+        border: 1.5px solid var(--q-taupe);
+    }
+
+    .sf-attach-img {
+        position: relative;
+        height: 76px;
+        border-radius: 7px;
+        background: #fff;
+        border: 1px solid var(--q-line);
+        padding: 8px 9px;
+        overflow: hidden;
+    }
+
+    .sf-attach-img i {
+        display: block;
+        height: 4px;
+        border-radius: 999px;
+        background: #e2dccb;
+        margin-bottom: 5px;
+    }
+
+    .sf-attach-img i:nth-child(1) { width: 62%; background: #cfc6ae; }
+    .sf-attach-img i:nth-child(2) { width: 88%; }
+    .sf-attach-img i:nth-child(3) { width: 74%; }
+    .sf-attach-img i:nth-child(4) { width: 81%; }
+
+    .sf-attach-img::after {
+        content: "y = ?";
+        position: absolute;
+        right: 8px;
+        bottom: 5px;
+        font-family: "Kerkis", Georgia, serif;
+        font-size: 12px;
+        font-weight: 700;
+        color: rgba(14, 51, 34, .55);
+    }
+
+    .sf-attach-name {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 10.5px;
+        font-weight: 700;
+        color: var(--q-green-mid);
+    }
+
+    .sf-chat-input {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 12px 12px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1.5px solid var(--q-line);
+        background: var(--q-cream);
+        font-size: 12px;
+        font-weight: 600;
+        color: #8a9388;
+        flex: 0 0 auto;
+    }
+
+    .sf-chat-input .sf-mic {
+        display: grid;
+        place-items: center;
+        width: 26px;
+        height: 26px;
+        flex: 0 0 auto;
+        border-radius: 999px;
+        background: var(--q-green);
+        color: #fff;
+        font-size: 12px;
+    }
+
+    /* ---------- Lernblatt canvas ---------- */
+
+    .sf-canvas {
+        position: relative;
+        overflow: hidden;
+        background-image: radial-gradient(circle, #d8cdbb 1px, transparent 1px);
+        background-size: 20px 20px;
+        background-color: #fffdf9;
+        font-family: "Kerkis", "Latin Modern", Georgia, "Times New Roman", serif;
+    }
+
+    .sf-canvas-scroller {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+    }
+
+    .sf-editor {
+        position: relative;
+        width: 100%;
+        height: 660px;
+        padding: 26px 38px 120px;
+        box-sizing: border-box;
+        overflow: hidden;
+        display: none;
+    }
+
+    .sf-editor.is-active {
+        display: block;
+    }
+
+    .sf-chat-log,
+    .sf-editor {
+        transition: opacity .5s ease;
+    }
+
+    .sf-app.is-resetting .sf-chat-log,
+    .sf-app.is-resetting .sf-editor {
+        opacity: 0;
+    }
+
+    .sf-block {
+        position: absolute;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity .5s ease, transform .5s ease;
+    }
+
+    .sf-block.is-on {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .sf-note-title {
+        top: 34px;
+        left: 38px;
+        right: 38px;
+        color: var(--q-green);
+    }
+
+    .sf-note-title .sf-block-content {
+        display: grid;
+        grid-template-columns: 112px 1fr;
+        gap: 34px;
+        align-items: end;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--q-green-mid);
+        font-size: 19px;
+        font-weight: 700;
+    }
+
+    .sf-note-def {
+        top: 102px;
+        left: 194px;
+        width: min(420px, 58%);
+    }
+
+    .sf-def-formula {
+        margin: 0 0 4px;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--q-green);
+    }
+
+    .sf-def-note {
+        margin: 0;
+        font-size: 12px;
+        color: rgba(14, 51, 34, .65);
+    }
+
+    /* Graph block: chips + axes + functions that draw in / change */
+
+    .sf-note-graph {
+        top: 172px;
+        left: 194px;
+        width: min(340px, 47%);
+    }
+
+    .sf-graph-tools {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .sf-gchip {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 11px;
+        border-radius: 999px;
+        border: 1.5px solid var(--q-line);
+        background: #fff;
+        font-family: var(--q-font);
+        font-size: 11.5px;
+        font-weight: 700;
+        color: var(--q-green);
+        transition: opacity .35s ease, transform .35s ease;
+    }
+
+    .sf-gchip.is-hidden {
+        opacity: 0;
+        transform: scale(.9);
+    }
+
+    .sf-gchip.is-pulse {
+        animation: sf-chip-pulse .6s ease;
+    }
+
+    @keyframes sf-chip-pulse {
+        0% { transform: scale(1); }
+        35% { transform: scale(1.18); background: #fdf3dc; border-color: var(--q-amber); }
+        100% { transform: scale(1); }
+    }
+
+    .sf-note-graph svg {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, .55);
+    }
+
+    .sf-fn line,
+    .sf-fn path {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        transition: stroke-dashoffset 1.1s ease;
+    }
+
+    .sf-fn text {
+        opacity: 0;
+        transition: opacity .5s ease .6s;
+        font-family: var(--q-font);
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+    .sf-fn.is-drawn line,
+    .sf-fn.is-drawn path {
+        stroke-dashoffset: 0;
+    }
+
+    .sf-fn.is-drawn text {
+        opacity: 1;
+    }
+
+    .sf-fn--dashed.is-drawn line {
+        stroke-dasharray: .04 .025;
+    }
+
+    /* French scenario: vocab cards + tighter layout */
+
+    .sf-note-cards {
+        top: 188px;
+        left: 194px;
+    }
+
+    .sf-vocab {
+        display: flex;
+        gap: 9px;
+    }
+
+    .sf-vocab-card {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 9px 13px;
+        background: #fff;
+        border: 1.5px solid var(--q-line);
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--q-green);
+        box-shadow: 0 4px 12px rgba(14, 51, 34, .06);
+    }
+
+    .sf-vocab-card em {
+        font-style: normal;
+        font-family: var(--q-font);
+        font-size: 10px;
+        font-weight: 800;
+        color: #0d9466;
+        background: #e7f7ef;
+        border-radius: 999px;
+        padding: 2px 7px;
+        align-self: flex-start;
+    }
+
+    .sf-editor--fr .sf-note-exercise {
+        top: 286px;
+    }
+
+    .sf-editor--fr .sf-note-merke {
+        top: 386px;
+    }
+
+    .sf-note-exercise {
+        top: 412px;
+        left: 194px;
+        width: min(330px, 52%);
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: var(--q-green-soft);
+        border: 1.5px solid #c5dec9;
+        box-shadow: 0 8px 22px rgba(14, 51, 34, .08);
+        font-size: 13px;
+        line-height: 1.35;
+        color: var(--q-green);
+    }
+
+    .sf-note-exercise strong {
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    .sf-note-exercise p {
+        margin: 0;
+    }
+
+    .sf-note-merke {
+        top: 524px;
+        left: 38px;
+        right: 38px;
+        color: rgba(14, 51, 34, .78);
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    .sf-note-merke .sf-block-content {
+        display: grid;
+        grid-template-columns: 118px 1fr;
+        gap: 34px;
+        align-items: start;
+    }
+
+    .sf-note-merke strong {
+        display: block;
+        border-bottom: 2px solid var(--q-green-mid);
+        padding-bottom: 4px;
+        color: var(--q-green);
+    }
+
+    .sf-note-merke ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+    /* Insertion caret (JS positions it) */
+
+    .sf-caret {
+        position: absolute;
+        z-index: 2;
+        width: 2px;
+        height: 17px;
+        opacity: 0;
+        transition: opacity .2s ease;
+    }
+
+    .sf-caret.is-on {
+        opacity: 1;
+    }
+
+    .sf-caret i {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--q-green-mid);
+        animation: sf-caret-blink 1s steps(1) infinite;
+    }
+
+    @keyframes sf-caret-blink {
+        0%, 55% { opacity: 1; }
+        56%, 100% { opacity: 0; }
+    }
+
+    /* ---------- Features (3 cards) ---------- */
+
+    .q-mini {
+        padding: 30px 0 80px;
+    }
+
+    .q-mini-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .q-mini-card {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 22px 24px;
+        background: #fff;
+        border: 1.5px solid var(--q-line);
+        border-radius: 16px;
+        box-shadow: 0 2px 0 rgba(14, 51, 34, .06);
+    }
+
+    .q-mini-card strong {
+        font-family: var(--q-display);
+        font-size: 17.5px;
+        font-weight: 600;
+        color: var(--q-green);
+    }
+
+    .q-mini-card span {
+        font-size: 14px;
+        line-height: 1.55;
+    }
+
+    /* ---------- School version (Zensi) ---------- */
+
+    .q-zensi {
+        padding: 0 0 110px;
+    }
+
+    .q-zensi-card {
+        display: grid;
+        grid-template-columns: 230px minmax(0, 1fr);
+        gap: clamp(28px, 4vw, 56px);
+        align-items: center;
+        padding: clamp(32px, 5vw, 52px);
+        border-radius: 24px;
+        background: var(--q-green);
+        color: var(--q-cream);
+    }
+
+    .q-zensi-card .q-kicker {
+        color: var(--q-yellow);
+    }
+
+    .q-zensi-card .q-polaroid {
+        transform: rotate(-2.5deg);
+        justify-self: center;
+        width: 100%;
+    }
+
+    .q-zensi-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .q-zensi-copy blockquote {
+        margin: 0;
+        font-family: var(--q-hand);
+        font-size: clamp(26px, 2.6vw, 34px);
+        font-weight: 600;
+        line-height: 1.3;
+        color: #fff;
+    }
+
+    .q-zensi-copy figcaption {
+        font-size: 14.5px;
+        font-weight: 600;
+        color: rgba(249, 241, 232, .75);
+    }
+
+    /* ---------- Responsive ---------- */
+
+    @media (max-width: 860px) {
+        .q-mini-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .q-zensi-card {
+            grid-template-columns: 1fr;
+        }
+
+        .q-zensi-card .q-polaroid {
+            max-width: 230px;
+        }
+    }
+
+    @media (max-width: 720px) {
+        .sf-app-body {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            height: auto;
+        }
+
+        .sf-chat-panel {
+            border-right: none;
+            border-bottom: 1.5px solid var(--q-line);
+        }
+
+        .sf-chat-log {
+            height: 215px;
+            flex: 0 0 auto;
+        }
+
+        .sf-canvas {
+            height: 320px;
+        }
+
+        .sf-caret {
+            display: none;
+        }
+
+        .sf-editor {
+            height: 500px;
+            padding: 16px 20px 80px;
+        }
+
+        .sf-note-title { top: 22px; left: 20px; right: 20px; }
+        .sf-note-title .sf-block-content { grid-template-columns: 56px 1fr; gap: 14px; font-size: 12px; }
+        .sf-note-def { top: 64px; left: 20px; width: 80%; }
+        .sf-def-formula { font-size: 13px; }
+        .sf-def-note { font-size: 9px; }
+        .sf-note-graph { top: 116px; left: 36px; width: 75%; }
+        .sf-gchip { font-size: 9px; padding: 3px 8px; }
+        .sf-note-exercise { top: 308px; left: 36px; width: 75%; font-size: 10px; padding: 9px 10px; }
+        .sf-note-merke { top: 396px; left: 20px; right: 20px; font-size: 10px; }
+        .sf-note-merke .sf-block-content { grid-template-columns: 56px 1fr; gap: 14px; }
+
+        .sf-note-cards { top: 116px; left: 20px; }
+        .sf-vocab-card { font-size: 11px; padding: 6px 9px; }
+        .sf-vocab-card em { font-size: 8px; }
+        .sf-editor--fr .sf-note-exercise { top: 200px; }
+        .sf-editor--fr .sf-note-merke { top: 280px; }
+    }
+</style>
+
+<header class="q-header">
+    <nav class="q-nav q-wrap" aria-label="Hauptnavigation">
+        <a href="{{ '/preview/' | url }}" class="q-logo" aria-label="tutor.new">
+            <img src="{{ '/quack/quack-avatar.png' | url }}" alt="">
+            <span>tutor.new</span>
+        </a>
+        <div class="q-nav-links">
+            <a href="{{ '/preview/teachers.html' | url }}">Schulversion</a>
+        </div>
+        <div class="q-nav-actions">
+            <a class="q-btn q-btn-primary" href="https://duck.tutor.new">Jetzt gratis lernen</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <!-- ================= HERO ================= -->
+    <section class="q-hero">
+        <div class="q-wrap">
+            <!-- Headline on top -->
+            <div class="q-hero-top">
+                <h1 class="q-h1">Einfach <span class="q-mark">bessere Noten</span>.</h1>
+            </div>
+
+            <!-- App demo: chat docked to the Lernblatt -->
+            <div class="sf-app" id="sf-app" aria-hidden="true">
+                <div class="sf-app-chrome">
+                    <i></i><i></i><i></i>
+                    <span id="sf-doc-title">tutor.new — Lernblatt: Lineare Funktionen</span>
+                </div>
+                <div class="sf-app-body">
+                    <aside class="sf-chat-panel">
+                        <div class="sf-chat-top">
+                            <img class="sf-ava" src="{{ '/tutors/maya.png' | url }}" alt="">
+                            <div>
+                                <strong>Maya</strong>
+                                <em id="sf-status">online</em>
+                            </div>
+                        </div>
+                        <div class="sf-chat-log" id="sf-chat-log"></div>
+                        <div class="sf-chat-input">
+                            <span class="sf-mic">🎤</span>
+                            <span>Sprich oder schreib mit Maya …</span>
+                        </div>
+                    </aside>
+
+                    <div class="sf-canvas">
+                        <div class="sf-canvas-scroller" id="sf-scroller">
+                            <div class="sf-editor sf-editor--math is-active" id="sf-editor-math">
+                                <span class="sf-caret"><i></i></span>
+
+                                <div class="sf-block sf-note-title" data-block="title">
+                                    <div class="sf-block-content">
+                                        <span>Thema</span>
+                                        <span>Lineare Funktionen — dein Arbeitsblatt</span>
+                                    </div>
+                                </div>
+
+                                <div class="sf-block sf-note-def" data-block="def">
+                                    <div class="sf-block-content">
+                                        <p class="sf-def-formula">y = m·x + q</p>
+                                        <p class="sf-def-note">m: Steigung · q: y-Achsenabschnitt</p>
+                                    </div>
+                                </div>
+
+                                <div class="sf-block sf-note-graph" data-block="graph">
+                                    <div class="sf-block-content">
+                                        <div class="sf-graph-tools">
+                                            <span class="sf-gchip" id="sf-chip-m">m = 1</span>
+                                            <span class="sf-gchip is-hidden" id="sf-chip-q">q = 0</span>
+                                        </div>
+                                        <svg viewBox="0 0 300 150" aria-hidden="true">
+                                            <line x1="12" y1="108" x2="288" y2="108" stroke="#d9d2c2" stroke-width="1"></line>
+                                            <line x1="150" y1="6" x2="150" y2="144" stroke="#d9d2c2" stroke-width="1"></line>
+
+                                            <g class="sf-fn" id="sf-g1">
+                                                <line x1="42" y1="216" x2="258" y2="0" pathLength="1" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round"></line>
+                                                <text x="236" y="34" fill="#0ea5e9">m = 1</text>
+                                            </g>
+
+                                            <g class="sf-fn" id="sf-g2">
+                                                <line x1="96" y1="216" x2="204" y2="0" pathLength="1" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round"></line>
+                                                <text x="160" y="22" fill="#f43f5e">m = 2</text>
+                                            </g>
+
+                                            <g class="sf-fn sf-fn--dashed" id="sf-g3">
+                                                <line x1="96" y1="189" x2="204" y2="-27" pathLength="1" stroke="#34d399" stroke-width="2.5" stroke-linecap="round"></line>
+                                                <text x="100" y="122" fill="#10b981">q = +1</text>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <div class="sf-block sf-note-exercise" data-block="exercise">
+                                    <div class="sf-block-content">
+                                        <strong>Übung:</strong>
+                                        <p>Welche Gleichung hat die gestrichelte Gerade?</p>
+                                    </div>
+                                </div>
+
+                                <div class="sf-block sf-note-merke" data-block="merke">
+                                    <div class="sf-block-content">
+                                        <strong>Merke:</strong>
+                                        <ul>
+                                            <li>m macht die Gerade steiler — q verschiebt sie nach oben.</li>
+                                            <li>Deine Lösung: y = 2x + 1 ✓</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sf-editor sf-editor--fr" id="sf-editor-fr">
+                                <span class="sf-caret"><i></i></span>
+
+                                <div class="sf-block sf-note-title" data-block="title">
+                                    <div class="sf-block-content">
+                                        <span>Thema</span>
+                                        <span>Passé composé — Französisch</span>
+                                    </div>
+                                </div>
+
+                                <div class="sf-block sf-note-def" data-block="rule">
+                                    <div class="sf-block-content">
+                                        <p class="sf-def-formula">passé composé = avoir / être + participe passé</p>
+                                        <p class="sf-def-note">z. B. j'ai mangé · je suis allé</p>
+                                    </div>
+                                </div>
+
+                                <div class="sf-block sf-note-cards" data-block="cards">
+                                    <div class="sf-block-content">
+                                        <div class="sf-vocab">
+                                            <span class="sf-vocab-card">aller<em>être</em></span>
+                                            <span class="sf-vocab-card">venir<em>être</em></span>
+                                            <span class="sf-vocab-card">partir<em>être</em></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sf-block sf-note-exercise" data-block="exercise">
+                                    <div class="sf-block-content">
+                                        <strong>Übung:</strong>
+                                        <p>Füll die Lücke: Hier, je ____ allé au lac.</p>
+                                    </div>
+                                </div>
+
+                                <div class="sf-block sf-note-merke" data-block="merke">
+                                    <div class="sf-block-content">
+                                        <strong>Merke:</strong>
+                                        <ul>
+                                            <li>Bewegungsverben (aller, venir, partir …) nehmen être.</li>
+                                            <li>Deine Lösung: je suis allé ✓</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-line + CTA below the demo -->
+            <div class="q-hero-below">
+                <p class="q-lead">Sprich mit deinem KI-Tutor — er verwandelt deine Unterlagen in ein interaktives Lernblatt.</p>
+                <div class="q-hero-ctas">
+                    <a class="q-btn q-btn-primary" href="https://duck.tutor.new">Jetzt gratis lernen</a>
+                    <a class="q-btn q-btn-ghost" href="{{ '/preview/teachers.html' | url }}">Schulversion ansehen</a>
+                </div>
+                <div class="q-hero-trust">
+                    <span>100'000+ Lernende</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="q-mini">
+        <div class="q-wrap q-mini-grid">
+            <div class="q-mini-card">
+                <strong>Deine echten Unterlagen</strong>
+                <span>Foto vom Arbeitsblatt reicht.</span>
+            </div>
+            <div class="q-mini-card">
+                <strong>Hinweise statt Lösungen</strong>
+                <span>Du kommst selbst drauf.</span>
+            </div>
+            <div class="q-mini-card">
+                <strong>Chat oder Stimme</strong>
+                <span>Frag einfach — Maya ist immer da.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SCHOOL VERSION ================= -->
+    <!-- ENTWURF: Zitat von Zensi Hopf ist ein Platzhalter — von ihr freigeben lassen.
+         Foto stammt von ihrem X-Profil (Einverständnis einholen).
+         VIDEO: Hier später das Video einbetten (ersetzt oder ergänzt das Polaroid). -->
+    <section class="q-zensi">
+        <div class="q-wrap">
+            <figure class="q-zensi-card">
+                <div class="q-polaroid">
+                    <div class="q-polaroid-photo">
+                        <img src="{{ '/quack/zensi-hopf.jpg' | url }}" alt="Zensi Hopf">
+                    </div>
+                    <div class="q-polaroid-caption">Zensi Hopf<small>Biologie · Kanti Wattwil</small></div>
+                </div>
+                <div class="q-zensi-copy">
+                    <span class="q-kicker">Die Schulversion</span>
+                    <blockquote>«Der Tutor übernimmt das Üben — ich sitze wieder neben den Kindern.»</blockquote>
+                    <figcaption>Zensi Hopf unterrichtet mit tutor.new an der Kantonsschule Wattwil. Lehrpersonen planen den Unterricht, der Tutor begleitet jedes Kind.</figcaption>
+                    <a class="q-btn q-btn-cream" href="{{ '/preview/teachers.html' | url }}">Schulversion ansehen</a>
+                </div>
+            </figure>
+        </div>
+    </section>
+</main>
+
+<script>
+    (() => {
+        const app = document.getElementById('sf-app');
+        const log = document.getElementById('sf-chat-log');
+        const status = document.getElementById('sf-status');
+        const scroller = document.getElementById('sf-scroller');
+        const docTitle = document.getElementById('sf-doc-title');
+        const mayaSrc = "/tutors/maya.png";
+        if (!app || !log) return;
+
+        // Two alternating sessions: math, then French.
+        const editors = {
+            math: document.getElementById('sf-editor-math'),
+            fr: document.getElementById('sf-editor-fr')
+        };
+        const titles = {
+            math: 'tutor.new — Lernblatt: Lineare Funktionen',
+            fr: 'tutor.new — Lernblatt: Passé composé'
+        };
+        let active = 'math';
+
+        const blocksOf = {};
+        Object.entries(editors).forEach(([key, ed]) => {
+            const map = {};
+            ed.querySelectorAll('[data-block]').forEach(el => { map[el.dataset.block] = el; });
+            blocksOf[key] = map;
+        });
+        const allBlocks = Object.values(blocksOf).flatMap(m => Object.values(m));
+        const caretOf = () => editors[active].querySelector('.sf-caret');
+
+        const voices = [
+            [8, 12, 17, 23, 16, 9, 7, 11, 28, 45, 22, 8, 13, 6],
+            [7, 9, 14, 20, 31, 18, 8, 6, 12, 24, 39, 55, 26, 10],
+            [6, 11, 19, 27, 15, 8, 6, 10, 14, 22, 11, 7, 34, 50],
+            [9, 13, 18, 28, 17, 10, 6, 8, 21, 36, 49, 31, 12, 7]
+        ];
+
+        const makeWave = (seed) => {
+            const wave = document.createElement('span');
+            wave.className = 'sf-wave';
+            const heights = voices[seed % voices.length];
+            heights.forEach((h, i) => {
+                const bar = document.createElement('i');
+                bar.style.setProperty('--voice-height', String(h));
+                bar.style.setProperty('--voice-delay', String((i * 0.061 + seed * 0.137) % 1.05));
+                bar.style.setProperty('--voice-duration', `${0.58 + ((i * 7 + seed * 3) % 9) * 0.055}s`);
+                wave.appendChild(bar);
+            });
+            return wave;
+        };
+
+        const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+        let seed = 0;
+
+        const animateScroll = (el, target, dur = 450) => {
+            const start = el.scrollTop;
+            const dist = target - start;
+            if (Math.abs(dist) < 2) return Promise.resolve();
+            const t0 = performance.now();
+            return new Promise(resolve => {
+                const step = (now) => {
+                    const t = Math.min((now - t0) / dur, 1);
+                    const eased = t * t * (3 - 2 * t);
+                    el.scrollTop = start + dist * eased;
+                    if (t < 1) requestAnimationFrame(step); else resolve();
+                };
+                requestAnimationFrame(step);
+            });
+        };
+
+        const scrollChatDown = () => animateScroll(log, log.scrollHeight - log.clientHeight, 400);
+
+        const buildRow = (who, text) => {
+            const row = document.createElement('div');
+            row.className = `sf-row sf-row--${who}`;
+            if (who === 'tutor') {
+                const ava = document.createElement('img');
+                ava.className = 'sf-chat-avatar';
+                ava.src = mayaSrc;
+                ava.alt = '';
+                row.appendChild(ava);
+            }
+            const bubble = document.createElement('span');
+            bubble.className = 'sf-bubble';
+            bubble.appendChild(makeWave(seed++));
+            bubble.appendChild(document.createTextNode(text));
+            row.appendChild(bubble);
+            return row;
+        };
+
+        // Speaking is brisk; the waveform runs only on the active bubble
+        // and collapses when the turn is over.
+        const say = async (who, text) => {
+            const row = buildRow(who, text);
+            log.appendChild(row);
+            requestAnimationFrame(() => row.classList.add('is-in'));
+            await scrollChatDown();
+
+            row.classList.add('is-speaking');
+            status.textContent = who === 'tutor' ? 'spricht …' : 'hört zu …';
+            const speakMs = Math.min(900 + text.length * 24, 2400);
+            await sleep(speakMs);
+            row.classList.remove('is-speaking');
+            row.classList.add('is-done');
+            status.textContent = 'online';
+            await sleep(150);
+            await scrollChatDown();
+        };
+
+        // A small breath between turns, like in a real conversation.
+        const gap = (ms = 750) => sleep(ms);
+
+        // The student attaches a photo of the worksheet.
+        const attach = async (label) => {
+            const row = document.createElement('div');
+            row.className = 'sf-row sf-row--student';
+            const box = document.createElement('span');
+            box.className = 'sf-attach';
+            box.innerHTML = '<span class="sf-attach-img"><i></i><i></i><i></i><i></i></span>' +
+                '<span class="sf-attach-name">' + label + '</span>';
+            row.appendChild(box);
+            log.appendChild(row);
+            requestAnimationFrame(() => row.classList.add('is-in'));
+            await scrollChatDown();
+            await sleep(700);
+        };
+
+        // Letter-by-letter typing inside a canvas block.
+        // SVG labels and graph chips are skipped — they animate on their own.
+        const typeBlock = async (el) => {
+            const nodes = [];
+            const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+                acceptNode: (n) =>
+                    n.parentElement.closest('svg, .sf-graph-tools')
+                        ? NodeFilter.FILTER_REJECT
+                        : NodeFilter.FILTER_ACCEPT
+            });
+            while (walker.nextNode()) {
+                const n = walker.currentNode;
+                if (n.textContent.trim()) nodes.push([n, n.textContent]);
+            }
+            const total = nodes.reduce((s, [, t]) => s + t.length, 0);
+            nodes.forEach(([n]) => { n.textContent = ''; });
+            el.classList.add('is-on');
+
+            if (!total) { await sleep(600); return; }
+
+            const charMs = Math.max(9, Math.min(22, 1700 / total));
+            for (const [n, full] of nodes) {
+                for (let i = 1; i <= full.length; i++) {
+                    n.textContent = full.slice(0, i);
+                    await sleep(charMs);
+                }
+            }
+        };
+
+        const restoreTexts = (() => {
+            const saved = [];
+            allBlocks.forEach(el => {
+                const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+                while (walker.nextNode()) {
+                    const n = walker.currentNode;
+                    if (n.textContent.trim()) saved.push([n, n.textContent]);
+                }
+            });
+            return () => saved.forEach(([n, t]) => { n.textContent = t; });
+        })();
+
+        // Maya writes on the sheet: caret marks the spot, text types in.
+        const write = async (name, caretPos) => {
+            status.textContent = 'schreibt …';
+            const caret = caretOf();
+            if (caretPos && window.innerWidth > 720) {
+                caret.style.top = caretPos[0] + 'px';
+                caret.style.left = caretPos[1] + 'px';
+                caret.classList.add('is-on');
+            }
+            await sleep(400);
+            await typeBlock(blocksOf[active][name]);
+            caret.classList.remove('is-on');
+            status.textContent = 'online';
+        };
+
+        // Visualization steps: draw a function, change a parameter.
+        const draw = async (id) => {
+            document.getElementById(id).classList.add('is-drawn');
+            await sleep(1300);
+        };
+
+        const setChip = async (id, text) => {
+            const chip = document.getElementById(id);
+            chip.textContent = text;
+            chip.classList.remove('is-hidden');
+            chip.classList.add('is-pulse');
+            setTimeout(() => chip.classList.remove('is-pulse'), 650);
+            await sleep(450);
+        };
+
+        const mobile = () => window.innerWidth <= 720;
+        const S = (desktop, small) => (mobile() ? small : desktop);
+        const scrollCanvas = (top) => animateScroll(scroller, top, 800);
+
+        // Session 1 — math: the visualization is built, then modified.
+        const playMath = async () => {
+            await say('student', 'Ich versteh lineare Funktionen einfach nicht. Hier, mein Arbeitsblatt:');
+            await sleep(450);
+            await attach('Arbeitsblatt.jpg');
+            await gap();
+            await say('tutor', 'Danke! Fangen wir ganz klein an.');
+            await gap(450);
+            await write('title', [40, 150]);
+            await sleep(250);
+            await write('def', [108, 200]);
+            await gap();
+
+            await say('tutor', 'So sieht jede lineare Funktion aus. Was meinst du, wofür steht das m?');
+            await gap(950);
+            await say('student', 'Hm … die Steigung?');
+            await gap();
+            await say('tutor', 'Genau! Schau, ich zeichne dir mal y = x.');
+            await gap(450);
+            await write('graph', null);
+            await draw('sf-g1');
+            await gap();
+
+            await say('tutor', 'Jetzt stell ich m mal auf 2. Schau, was passiert.');
+            await gap(450);
+            await setChip('sf-chip-m', 'm = 2');
+            await draw('sf-g2');
+            await gap();
+            await say('student', 'Die Gerade wird steiler!');
+            await gap();
+
+            await say('tutor', 'Richtig! Und q schiebt alles nach oben:');
+            await gap(450);
+            await setChip('sf-chip-q', 'q = +1');
+            await draw('sf-g3');
+            await gap();
+
+            await say('tutor', 'Mini-Übung für dich: Schau mal auf die gestrichelte Gerade.');
+            await gap(450);
+            await scrollCanvas(S(85, 90));
+            await write('exercise', [418, 210]);
+            await gap(1300);
+
+            await say('student', 'y = 2x + 1?');
+            await gap();
+            await say('tutor', 'Stark, genau so!');
+            await gap(450);
+            await scrollCanvas(S(200, 170));
+            await write('merke', [528, 160]);
+            await sleep(2800);
+        };
+
+        // Session 2 — French: vocab cards and a gap-fill exercise.
+        const playFrench = async () => {
+            await say('student', 'Morgen hab ich Franz-Test übers Passé composé. Üben wir kurz?');
+            await gap();
+            await say('tutor', 'Klar! Ich schreib dir das Wichtigste auf, dann üben wir.');
+            await gap(450);
+            await write('title', [40, 150]);
+            await sleep(250);
+            await write('rule', [108, 200]);
+            await gap();
+
+            await say('tutor', 'Die meisten Verben gehen mit avoir. Aber welche nehmen être?');
+            await gap(950);
+            await say('student', 'Ähm … die mit Bewegung?');
+            await gap();
+            await say('tutor', 'Genau! Die wichtigsten leg ich dir als Kärtchen an.');
+            await gap(450);
+            await write('cards', [192, 200]);
+            await gap();
+
+            await say('tutor', 'Jetzt du: Füll die Lücke aus.');
+            await gap(450);
+            await write('exercise', [292, 210]);
+            await gap(1300);
+
+            await say('student', 'je suis allé?');
+            await gap();
+            await say('tutor', 'Parfait, genau so!');
+            await gap(450);
+            await scrollCanvas(S(45, 60));
+            await write('merke', [392, 160]);
+            await sleep(2800);
+        };
+
+        const plays = { math: playMath, fr: playFrench };
+        const order = ['math', 'fr'];
+
+        const switchTo = (key) => {
+            active = key;
+            Object.entries(editors).forEach(([k, ed]) => ed.classList.toggle('is-active', k === key));
+            docTitle.textContent = titles[key];
+            scroller.scrollTop = 0;
+        };
+
+        const reset = async (next) => {
+            app.classList.add('is-resetting');
+            await sleep(550);
+            log.innerHTML = '';
+            log.scrollTop = 0;
+            allBlocks.forEach(b => b.classList.remove('is-on'));
+            document.querySelectorAll('.sf-fn').forEach(g => g.classList.remove('is-drawn'));
+            const chipM = document.getElementById('sf-chip-m');
+            const chipQ = document.getElementById('sf-chip-q');
+            chipM.textContent = 'm = 1';
+            chipQ.textContent = 'q = 0';
+            chipQ.classList.add('is-hidden');
+            restoreTexts();
+            switchTo(next);
+            app.classList.remove('is-resetting');
+            await sleep(600);
+        };
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            Object.values(blocksOf.math).forEach(b => b.classList.add('is-on'));
+            document.querySelectorAll('.sf-fn').forEach(g => g.classList.add('is-drawn'));
+            document.getElementById('sf-chip-m').textContent = 'm = 2';
+            const chipQ = document.getElementById('sf-chip-q');
+            chipQ.textContent = 'q = +1';
+            chipQ.classList.remove('is-hidden');
+            [
+                ['student', 'y = 2x + 1?'],
+                ['tutor', 'Stark, genau so!']
+            ].forEach(([who, text]) => {
+                const row = buildRow(who, text);
+                row.classList.add('is-in', 'is-done');
+                log.appendChild(row);
+            });
+            return;
+        }
+
+        (async () => {
+            let i = 0;
+            while (true) {
+                await plays[order[i]]();
+                i = (i + 1) % order.length;
+                await reset(order[i]);
+            }
+        })();
+    })();
+</script>
+
+<footer class="q-footer">
+    <div class="q-wrap q-footer-inner">
+        <div class="q-footer-brand">
+            <img src="{{ '/quack/logo-white.svg' | url }}" alt="tutor.new">
+            <p>© tutor.new. Alle Rechte vorbehalten.</p>
+        </div>
+        <div class="q-footer-cols">
+            <div>
+                <h3>tutor.new</h3>
+                <ul>
+                    <li><a href="https://duck.tutor.new">App starten</a></li>
+                    <li><a href="{{ '/preview/teachers.html' | url }}">Schulversion</a></li>
+                    <li><a href="{{ '/schools.html' | url }}">Für Schulen</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Unternehmen</h3>
+                <ul>
+                    <li><a href="{{ '/ueber-uns.html' | url }}">Über uns</a></li>
+                    <li><a href="{{ '/faq.html' | url }}">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="{{ '/impressum-agb.html' | url }}">Impressum</a></li>
+                    <li><a href="{{ '/terms.html' | url }}">Nutzungsbedingungen</a></li>
+                    <li><a href="{{ '/privacy/' | url }}">Datenschutz</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

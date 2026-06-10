@@ -8,7 +8,6 @@ module.exports = function(eleventyConfig) {
   // Copy static assets from shared directory
   eleventyConfig.addPassthroughCopy({
     "../../shared/assets/styles.css": "styles.css",
-    "../../modern.css": "modern.css",
     "../../shared/assets/common.js": "common.js",
     "../../shared/assets/i18n.js": "i18n.js",
     "../../shared/assets/favicon.ico": "favicon.ico",
@@ -20,6 +19,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "../../shared/assets/media-outlets": "media-outlets",
     "../../shared/assets/tutors": "tutors",
+    "../../shared/assets/quack": "quack",
     "../../shared/assets/didactics_assets": "didactics_assets",
     "../../shared/assets/rewards": "rewards",
     "../../shared/assets/ugc": "ugc",
@@ -43,6 +43,9 @@ module.exports = function(eleventyConfig) {
   // Copy CNAME for custom domain
   eleventyConfig.addPassthroughCopy("CNAME");
 
+  // Shared design-system stylesheet for q-pages (preview)
+  eleventyConfig.addPassthroughCopy("q.css");
+
   // Add filter for URL handling
   eleventyConfig.addFilter("url", function(value) {
     return value;
@@ -64,3 +67,4 @@ module.exports = function(eleventyConfig) {
     dataTemplateEngine: "njk",
   };
 };
+

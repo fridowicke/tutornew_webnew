@@ -1,2249 +1,1114 @@
 ---
-layout: layouts/base.njk
-title: tutor.new - Halbiere deine Lernzeit
-description: Verwandle deine Unterlagen mit KI in Notizen, Erklärungen, Übungen und interaktive Lernflächen.
+layout: layouts/main.njk
+title: tutor.new — Personalisierte KI-Nachhilfe für jeden Schüler
+description: Personalisierte KI-Nachhilfe, die jeden Schüler in seinem Tempo abholt. Mit Live-Mitschriften, automatischen Übungen und individuellem Lernpfad — auch im Schulunterricht einsetzbar.
 lang: de
----
-
-<style>
-    :root {
-        --sf-primary: #235f38;
-        --sf-primary-dark: #12351f;
-        --sf-text: #111c18;
-        --sf-muted: #5f6d68;
-        --sf-border: #dce8e2;
-        --sf-green: #235f38;
-        --sf-blue: #2761d8;
-        --sf-yellow: #a56600;
-        --sf-footer: #f7f7f8;
-        --sf-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+structuredData: |
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "tutor.new",
+    "url": "https://tutor.new",
+    "logo": "https://tutor.new/favicon.ico",
+    "description": "KI-Nachhilfe mit strukturierten Notizen. Lerne mit der KI, die während des Unterrichts schöne, durchsuchbare Notizen für dich erstellt.",
+    "founders": [
+      {
+        "@type": "Person",
+        "name": "Gero"
+      },
+      {
+        "@type": "Person",
+        "name": "Friedrich"
+      }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Zürich",
+      "addressCountry": "CH"
+    },
+    "offers": {
+      "@type": "Offer",
+      "category": "Educational Service",
+      "priceCurrency": "EUR",
+      "price": "2.99"
     }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        margin: 0 !important;
-        background: #fff !important;
-        color: var(--sf-text) !important;
-        font-family: var(--sf-font) !important;
-        font-size: 16px !important;
-        line-height: 1.5 !important;
-    }
-
-    .container {
-        width: 100% !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: #fff !important;
-    }
-
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    .sf-header {
-        position: fixed;
-        inset: 20px 0 auto;
-        z-index: 50;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        pointer-events: none;
-        margin: 0 !important;
-        padding: 0 !important;
-        width: auto !important;
-        max-width: none !important;
-    }
-
-    .language-switcher,
-    .lang-switcher {
-        display: none !important;
-    }
-
-    .sf-nav {
-        width: min(1000px, calc(100% - 32px));
-        height: 70px;
-        padding: 12px 24px;
-        border-radius: 10px;
-        background: #f7fbf8;
+  }
+pageStyles: |
+    /* Page Specific Overrides */
+    header {
+        text-align: left;
+        margin-bottom: 1.5rem;
+        font-size: 0.875rem;
+        font-weight: normal;
+        opacity: 0.6;
+        border-bottom: none;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        box-shadow: 0 10px 30px rgba(14, 51, 34, 0.08);
-        pointer-events: auto;
-        margin-inline: auto !important;
+        padding: 0;
     }
 
-    .sf-logo {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        flex: 0 0 auto;
-        color: var(--sf-text);
-        font-weight: 850;
+    /* Hero Section */
+    .hero {
+        text-align: left;
+        margin-bottom: 2rem;
     }
 
-    .sf-logo-mark {
-        display: grid;
-        place-items: center;
-        width: 32px;
-        height: 32px;
-        border-radius: 9px;
-        background: var(--sf-primary-dark);
-        color: #fff;
-        font-size: 15px;
-        font-weight: 900;
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
     }
 
-    .sf-logo-name {
-        font-size: 16px;
-        letter-spacing: 0;
-    }
-
-    .sf-nav-actions {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .sf-language,
-    .sf-link,
-    .sf-button {
-        height: 44px;
-        border-radius: 8px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 0 18px;
-        color: var(--sf-primary) !important;
-        font-size: 14px !important;
-        font-weight: 700 !important;
-        letter-spacing: 0 !important;
-        border: 1px solid transparent;
-        background: transparent !important;
-        box-shadow: none !important;
+    .hero h1 {
+        font-size: clamp(1.2rem, 4.2vw, 1.8rem);
         white-space: nowrap;
     }
 
-    .sf-button {
-        border-color: var(--sf-border);
-        background: #fff !important;
-        box-shadow: 0 1px 2px rgba(14, 51, 34, 0.05) !important;
-    }
-
-    .sf-primary-button {
-        background: var(--sf-primary) !important;
-        border: 1px solid var(--sf-primary) !important;
-        color: #fff !important;
-        min-height: 44px;
-        border-radius: 8px;
-        padding: 0 20px;
-        display: inline-flex;
+    .hero-cta-row {
+        display: flex;
+        flex-wrap: nowrap;
         align-items: center;
         justify-content: center;
-        font-size: 14px !important;
-        font-weight: 800 !important;
-        box-shadow: 0 8px 18px rgba(23, 116, 95, 0.16) !important;
+        gap: 3.5rem;
+        margin-top: 2.25rem;
+        margin-bottom: 4rem;
     }
 
-    .sf-mobile-download {
-        display: none;
+    .hero-cta-row .cta-button-secondary {
+        font-size: 1.4rem;
     }
 
-    .sf-mobile-trust {
-        display: none !important;
+    @media (max-width: 600px) {
+        .hero-cta-row {
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
     }
 
-    .sf-mobile-text {
-        display: none;
+    .cta-button-tertiary {
+        display: inline-block;
+        font-family: 'Sour Gummy', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #0e3322;
+        background-color: #cce5ff;
+        padding: 0.2rem 0.7rem;
+        border-radius: 6px;
+        box-shadow: 3px 3px 0px rgba(14, 51, 34, 0.2);
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 5px;
+        letter-spacing: -0.5px;
+        transform: rotate(-1.5deg);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .sf-hero {
-        min-height: 100vh;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        padding: 116px 0 24px;
-        background: #fff;
+    .cta-button-tertiary:hover {
+        transform: rotate(-1.5deg) translate(-1px, -1px);
+        box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.25);
     }
 
-    .sf-hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-            radial-gradient(ellipse at 50% 42%, rgba(255,255,255,.98) 0 16%, rgba(255,255,255,.72) 33%, transparent 56%),
-            radial-gradient(ellipse at 66% 56%, rgba(255,255,255,.66) 0 8%, rgba(222,241,226,.34) 24%, transparent 44%),
-            radial-gradient(ellipse at 26% 78%, rgba(49,111,63,.42), transparent 38%),
-            linear-gradient(180deg, #fff 0%, #fff 22%, #edf6ee 42%, #b9d8bf 68%, #4f8a59 100%);
-        z-index: 0;
+    .highlight-box {
+        background-color: #cce5ff; /* Light blue highlight */
+        color: #0e3322;
+        padding: 0 6px;
+        border-radius: 4px;
+        box-shadow: 2px 2px 0px rgba(14, 51, 34, 0.2);
+        display: inline-block;
+        transform: rotate(-2deg);
+        margin: 0 2px;
     }
 
-    .sf-hero::after {
-        content: "";
-        position: absolute;
-        inset: 18% -8% -10%;
-        background:
-            repeating-linear-gradient(0deg, rgba(18,53,31,.055) 0 1px, transparent 1px 5px),
-            repeating-linear-gradient(90deg, rgba(255,255,255,.09) 0 1px, transparent 1px 7px),
-            radial-gradient(circle at 44% 46%, rgba(255,255,255,.5), transparent 24%);
-        filter: blur(.15px);
-        opacity: .56;
-        mix-blend-mode: multiply;
-        pointer-events: none;
-        z-index: 0;
+    .highlight-underline {
+        background-image: url('{{ '/stroke.png' | url }}');
+        background-repeat: no-repeat;
+        background-size: 100% 12px; /* Thinner and firm stroke */
+        background-position: center bottom;
+        padding-bottom: 2px; /* Adjust spacing for stroke */
+        display: inline-block;
+        line-height: 1.2; /* Ensure line height accommodates stroke */
+    }
+    
+    /* Removing the pseudo-element approach which caused visibility issues */
+    .highlight-underline::after {
+        content: none;
     }
 
-    .sf-hero-inner {
-        position: relative;
-        z-index: 1;
-        width: min(1320px, calc(100% - 48px));
-        min-height: 0;
-        display: grid;
-        grid-template-columns: minmax(320px, 420px) minmax(720px, 1fr);
-        grid-template-rows: minmax(0, auto);
-        align-items: start;
-        justify-content: center;
-        column-gap: clamp(34px, 5vw, 76px);
-        row-gap: 16px;
-    }
-
-    .sf-hero-copy {
-        grid-column: 1;
-        grid-row: 1;
+    /* Visual Placeholder */
+    .visual-placeholder {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 18px;
-        text-align: left;
-        padding: 22px 0 0;
-        align-self: start;
+        height: auto;
+        border: 3px solid var(--text-color);
+        border-radius: 15px; /* Slightly rounded edges */
+        display: block; /* Changed to block for image */
+        margin-bottom: 3rem;
+        overflow: hidden;
+        /* Irregular hand-drawn border effect */
+        box-shadow: 5px 5px 0px rgba(14, 51, 34, 0.2);
+        transform: rotate(-1deg);
+        background-color: white;
     }
-
-    .sf-hero h1 {
-        margin: 0 !important;
-        max-width: 500px !important;
-        color: var(--sf-text) !important;
-        font-family: var(--sf-font) !important;
-        font-size: clamp(42px, 4.3vw, 58px) !important;
-        line-height: 1.03 !important;
-        font-weight: 820 !important;
-        letter-spacing: 0 !important;
-        text-align: left !important;
-    }
-
-    .sf-hero p {
-        margin: 0;
-        max-width: 420px;
-        color: #365149;
-        font-size: 18px;
-        line-height: 1.45;
-        font-weight: 600;
-    }
-
-    .sf-hero-kicker {
-        color: var(--sf-primary);
-        font-size: 13px;
-        font-weight: 850;
-        letter-spacing: .08em;
-        text-transform: uppercase;
-    }
-
-    .sf-stream-stage {
-        position: absolute;
-        left: 50%;
-        right: auto;
-        bottom: -226px;
-        width: min(780px, calc(100% + 28px));
-        height: 220px;
-        min-height: 0;
+    
+    .visual-placeholder img {
+        width: 100%;
+        height: auto;
         display: block;
-        overflow: visible;
-        transform: translateX(-50%);
-        z-index: 4;
-        pointer-events: none;
-        padding: 2px 0;
-        border: 0;
-        border-radius: 0;
-        background: transparent;
-        box-shadow: none;
     }
 
-    .sf-chat-feed {
-        position: absolute;
-        inset: 0;
-        z-index: 2;
-    }
-
-    .sf-dialog-tutor {
-        position: absolute;
-        left: 50%;
-        top: 12px;
-        width: 124px;
-        height: 124px;
-        border-radius: 999px;
-        display: grid;
-        place-items: center;
-        transform: translateX(-50%);
-        z-index: 1;
-    }
-
-    .sf-dialog-tutor::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background:
-            linear-gradient(90deg, rgba(35,95,56,.24) 0 50%, rgba(39,97,216,.24) 50% 100%),
-            rgba(255,255,255,.75);
-        border: 1px solid rgba(18,53,31,.12);
-        box-shadow: 0 18px 42px rgba(18,53,31,.14);
-    }
-
-    .sf-dialog-tutor img {
+    /* Steps Flow */
+    .steps-flow-wrapper {
         position: relative;
-        z-index: 1;
-        width: 102px;
-        height: 102px;
-        object-fit: contain;
+        margin-bottom: 4rem;
+        margin-left: 12px; /* Give space for the line */
     }
 
-    .sf-chat {
+    /* The continuous vertical line (grey background) */
+    .steps-flow-wrapper::before {
+        content: '';
         position: absolute;
         left: 0;
-        top: 82px;
-        width: 100%;
-        display: grid;
-        grid-template-columns: minmax(240px, 1fr) 132px minmax(240px, 1fr);
-        align-items: end;
-        gap: 14px;
-        opacity: 0;
-        transform: translateY(10px);
-        animation: sf-chat-one 48s ease-in-out infinite;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background-color: var(--text-color);
+        z-index: 1;
+        border-radius: 3px;
     }
 
-    .sf-chat--one { animation-name: sf-chat-one; }
-
-    .sf-chat::after {
-        content: "";
+    /* The blue progress line */
+    .steps-flow-wrapper::after {
+        content: '';
         position: absolute;
-        bottom: -30px;
-        width: 128px;
-        height: 42px;
-        opacity: .9;
-        background: currentColor;
-        -webkit-mask:
-            url("data:image/svg+xml,%3Csvg viewBox='0 0 180 58' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='black'%3E%3Crect x='2' y='24' width='3' height='10' rx='1.5'/%3E%3Crect x='8' y='21' width='3' height='16' rx='1.5'/%3E%3Crect x='14' y='18' width='3' height='22' rx='1.5'/%3E%3Crect x='20' y='14' width='3' height='30' rx='1.5'/%3E%3Crect x='26' y='20' width='3' height='18' rx='1.5'/%3E%3Crect x='32' y='24' width='3' height='10' rx='1.5'/%3E%3Crect x='38' y='23' width='3' height='12' rx='1.5'/%3E%3Crect x='44' y='18' width='3' height='22' rx='1.5'/%3E%3Crect x='50' y='8' width='4' height='42' rx='2'/%3E%3Crect x='58' y='2' width='4' height='54' rx='2'/%3E%3Crect x='66' y='12' width='4' height='34' rx='2'/%3E%3Crect x='74' y='24' width='3' height='10' rx='1.5'/%3E%3Crect x='80' y='21' width='3' height='16' rx='1.5'/%3E%3Crect x='86' y='25' width='3' height='8' rx='1.5'/%3E%3Crect x='92' y='23' width='3' height='12' rx='1.5'/%3E%3Crect x='98' y='8' width='4' height='42' rx='2'/%3E%3Crect x='106' y='0' width='4' height='58' rx='2'/%3E%3Crect x='114' y='5' width='4' height='48' rx='2'/%3E%3Crect x='122' y='22' width='3' height='14' rx='1.5'/%3E%3Crect x='128' y='24' width='3' height='10' rx='1.5'/%3E%3Crect x='134' y='20' width='3' height='18' rx='1.5'/%3E%3Crect x='140' y='10' width='4' height='38' rx='2'/%3E%3Crect x='148' y='6' width='4' height='46' rx='2'/%3E%3Crect x='156' y='15' width='3' height='28' rx='1.5'/%3E%3Crect x='162' y='21' width='3' height='16' rx='1.5'/%3E%3Crect x='168' y='17' width='3' height='24' rx='1.5'/%3E%3Crect x='174' y='24' width='3' height='10' rx='1.5'/%3E%3C/g%3E%3C/svg%3E")
-            center / contain no-repeat;
-        mask:
-            url("data:image/svg+xml,%3Csvg viewBox='0 0 180 58' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='black'%3E%3Crect x='2' y='24' width='3' height='10' rx='1.5'/%3E%3Crect x='8' y='21' width='3' height='16' rx='1.5'/%3E%3Crect x='14' y='18' width='3' height='22' rx='1.5'/%3E%3Crect x='20' y='14' width='3' height='30' rx='1.5'/%3E%3Crect x='26' y='20' width='3' height='18' rx='1.5'/%3E%3Crect x='32' y='24' width='3' height='10' rx='1.5'/%3E%3Crect x='38' y='23' width='3' height='12' rx='1.5'/%3E%3Crect x='44' y='18' width='3' height='22' rx='1.5'/%3E%3Crect x='50' y='8' width='4' height='42' rx='2'/%3E%3Crect x='58' y='2' width='4' height='54' rx='2'/%3E%3Crect x='66' y='12' width='4' height='34' rx='2'/%3E%3Crect x='74' y='24' width='3' height='10' rx='1.5'/%3E%3Crect x='80' y='21' width='3' height='16' rx='1.5'/%3E%3Crect x='86' y='25' width='3' height='8' rx='1.5'/%3E%3Crect x='92' y='23' width='3' height='12' rx='1.5'/%3E%3Crect x='98' y='8' width='4' height='42' rx='2'/%3E%3Crect x='106' y='0' width='4' height='58' rx='2'/%3E%3Crect x='114' y='5' width='4' height='48' rx='2'/%3E%3Crect x='122' y='22' width='3' height='14' rx='1.5'/%3E%3Crect x='128' y='24' width='3' height='10' rx='1.5'/%3E%3Crect x='134' y='20' width='3' height='18' rx='1.5'/%3E%3Crect x='140' y='10' width='4' height='38' rx='2'/%3E%3Crect x='148' y='6' width='4' height='46' rx='2'/%3E%3Crect x='156' y='15' width='3' height='28' rx='1.5'/%3E%3Crect x='162' y='21' width='3' height='16' rx='1.5'/%3E%3Crect x='168' y='17' width='3' height='24' rx='1.5'/%3E%3Crect x='174' y='24' width='3' height='10' rx='1.5'/%3E%3C/g%3E%3C/svg%3E")
-            center / contain no-repeat;
-        transform-origin: center;
-        animation: sf-voice-wave 1.05s ease-in-out infinite;
+        left: -4.5px; /* Centered on the 3px line: (12-3)/2 = 4.5 */
+        top: 0;
+        width: 12px;
+        height: var(--total-line-progress, 0%);
+        background: linear-gradient(to bottom, #cce5ff, #4a9eff);
+        border-radius: 6px 6px 0 0;
+        z-index: 2;
+        opacity: 0.5;
+        pointer-events: none;
     }
 
-    .sf-chat--two { animation-name: sf-chat-two; }
-    .sf-chat--three { animation-name: sf-chat-three; }
-    .sf-chat--four { animation-name: sf-chat-four; }
-    .sf-chat--five { animation-name: sf-chat-five; }
-    .sf-chat--six { animation-name: sf-chat-six; }
-    .sf-chat--seven { animation-name: sf-chat-seven; }
-    .sf-chat--eight { animation-name: sf-chat-eight; }
-
-    .sf-chat--student .sf-chat-bubble {
-        grid-column: 1;
-        justify-self: end;
-        background: #edf7f2;
-        border-color: rgba(35,95,56,.18);
-        color: #203f33;
+    /* Round bottom when complete */
+    .steps-flow-wrapper.complete::after {
+        border-radius: 6px;
     }
 
-    .sf-chat--student::after {
-        right: calc(50% + 82px);
-        color: rgba(35,95,56,.78);
+    .steps-container {
+        margin-bottom: 0;
+        position: relative;
     }
 
-    .sf-chat--student .sf-chat-avatar {
-        display: none;
+    .step {
+        padding-bottom: 2.5rem;
+        padding-left: 30px;
+        border-left: none;
+        position: relative;
+        z-index: 3;
     }
-
-    .sf-chat--tutor .sf-chat-bubble {
-        grid-column: 3;
-        justify-self: start;
-        background: #fff;
-        border-color: rgba(39,97,216,.26);
-        color: #12351f;
+    
+    .step:last-child {
+        padding-bottom: 0;
+        border-left: none;
     }
-
-    .sf-chat--tutor::after {
-        left: calc(50% + 82px);
-        color: rgba(39,97,216,.82);
+    
+    /* Remove individual progress lines and borders */
+    .step::after {
+        display: none !important;
     }
-
-    .sf-chat--tutor .sf-chat-avatar {
-        display: none;
+    
+    .steps-cta-container::after {
+        display: none !important;
     }
-
-    .sf-chat::after {
-        content: none;
-    }
-
-    .sf-voice-wave {
+    
+    /* Hand-drawn circle for step numbers */
+    .step::before {
+        content: '';
         position: absolute;
-        bottom: -33px;
-        width: 140px;
-        height: 48px;
+        left: -8.5px;
+        top: 4px;
+        width: 20px;
+        height: 20px;
+        background: var(--bg-color);
+        border: 3px solid var(--text-color);
+        border-radius: 50%;
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 5;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 3px;
-        color: rgba(35,95,56,.78);
-        opacity: 0;
-        animation: sf-voice-one 48s linear infinite;
+        font-weight: bold;
+        font-size: 1rem;
+        color: transparent;
+    }
+    
+    .step.active::before {
+        content: attr(data-step-number);
+        background: var(--bg-color);
+        transform: scale(1.4);
+        color: var(--text-color);
+        left: -8.5px;
     }
 
-    .sf-chat--two .sf-voice-wave { animation-name: sf-voice-two; }
-    .sf-chat--three .sf-voice-wave { animation-name: sf-voice-three; }
-    .sf-chat--four .sf-voice-wave { animation-name: sf-voice-four; }
-    .sf-chat--five .sf-voice-wave { animation-name: sf-voice-five; }
-    .sf-chat--six .sf-voice-wave { animation-name: sf-voice-six; }
-    .sf-chat--seven .sf-voice-wave { animation-name: sf-voice-seven; }
-    .sf-chat--eight .sf-voice-wave { animation-name: sf-voice-eight; }
-
-    .sf-chat--student .sf-voice-wave {
-        right: calc(50% + 74px);
+    .step-heading {
+        font-weight: bold;
+        font-size: 1.4rem;
+        display: block;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .step-content {
+        font-size: 1.15rem;
     }
 
-    .sf-chat--tutor .sf-voice-wave {
-        left: calc(50% + 74px);
-        color: rgba(39,97,216,.82);
-    }
-
-    .sf-voice-wave span {
-        width: 3px;
-        height: calc(var(--voice-height) * 1px);
-        min-height: 5px;
-        border-radius: 999px;
-        background: currentColor;
-        transform-origin: center;
-        animation: sf-voice-bar var(--voice-duration, .72s) ease-in-out infinite;
-        animation-delay: calc(var(--voice-delay) * -1s);
-    }
-
-    .sf-chat-bubble {
-        max-width: 300px;
-        border: 1px solid transparent;
-        border-radius: 14px;
-        padding: 13px 15px;
-        box-shadow: 0 10px 28px rgba(18,53,31,.08);
-        font-size: 15px;
-        font-weight: 750;
-        line-height: 1.22;
-    }
-
-    .sf-chat--student .sf-chat-bubble {
-        margin-right: 8px;
-    }
-
-    .sf-chat--tutor .sf-chat-bubble {
-        margin-left: 8px;
-    }
-
-    .sf-chat-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 999px;
-        display: grid;
-        place-items: center;
-        overflow: hidden;
-        font-size: 13px;
-        font-weight: 850;
-        align-self: end;
-        box-shadow: 0 8px 20px rgba(18,53,31,.09);
-    }
-
-    .sf-chat-avatar img {
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-    }
-
-    .sf-note-canvas {
-        position: relative;
-        width: min(748px, 100%);
-        aspect-ratio: 1.54 / 1;
-        border-radius: 18px;
-        background: #fff;
-        border: 1px solid rgba(23, 116, 95, .16);
-        box-shadow: 0 30px 80px rgba(14, 51, 34, .15);
-        overflow: hidden;
-        transform: none;
-        font-family: "Kerkis", "Latin Modern", Georgia, "Times New Roman", serif;
-        z-index: 3;
-    }
-
-    .sf-note-canvas::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image: radial-gradient(circle, #d0d0d0 1px, transparent 1px);
+    /* Additional Examples (Old Situations) */
+    .examples-section {
+        margin-bottom: 4rem;
+        background: #fdfdfd;
+        background-image: radial-gradient(rgba(0, 51, 102, 0.15) 1.5px, transparent 1.5px);
         background-size: 20px 20px;
-        background-position: 0 0;
-        z-index: 0;
-    }
-
-    .sf-note-canvas::after {
-        content: none;
-    }
-
-    .sf-canvas-editor {
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        background-image: radial-gradient(circle, #d0d0d0 1px, transparent 1px);
-        background-size: 20px 20px;
-        background-position: 0 0;
-        scroll-behavior: smooth;
-    }
-
-    .sf-canvas-editor::-webkit-scrollbar {
-        width: 7px;
-    }
-
-    .sf-canvas-editor::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    .sf-canvas-editor::-webkit-scrollbar-thumb {
-        border-radius: 999px;
-        background: rgba(18, 53, 31, .16);
-    }
-
-    .sf-canvas-editor .bn-editor {
+        padding: 2.5rem 1.5rem;
+        border: 2px solid var(--text-color);
+        border-radius: 20px 100px 20px 100px / 100px 20px 100px 20px;
+        box-shadow: 8px 8px 0px rgba(0, 51, 102, 0.05);
         position: relative;
+    }
+
+    .examples-title {
+        text-align: center;
+        font-size: 1.6rem;
+        margin-bottom: 2.5rem;
+        font-family: 'Sour Gummy', sans-serif;
+        text-decoration: none;
+        position: relative;
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .examples-title::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
         width: 100%;
-        height: 820px;
+        height: 4px;
+        background: #003366;
+        border-radius: 2px;
+        opacity: 0.3;
+    }
+
+    .examples-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .example-item {
+        margin-bottom: 0; /* Let grid handle spacing */
+        display: flex;
+        flex-direction: row; /* Emoji left, text right */
+        align-items: center; /* Center content vertically */
+        text-align: left;
+        font-size: 0.9rem; /* Smaller font */
+        background: white;
+        padding: 0.5rem 0.8rem; /* Reduced padding */
+        border: 2px solid var(--text-color);
+        border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; /* Hand-drawn box feel */
+        box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+        transition: transform 0.3s ease;
+        height: 100%; /* Ensure equal heights */
+        justify-content: flex-start; /* Align content to start */
+        gap: 0.8rem; /* Space between emoji and text */
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    .example-item h3 {
+        font-size: 1.1rem;
         margin: 0;
-        padding: 26px 38px 120px;
-        box-sizing: border-box;
-        background-image: radial-gradient(circle, #d0d0d0 1px, transparent 1px);
-        background-size: 20px 20px;
-        background-position: 0 0;
-        transform: translateY(0);
+        font-family: 'Sour Gummy', sans-serif;
+        color: var(--text-color);
+        line-height: 1.1;
+    }
+    
+    .example-item:hover {
+        transform: scale(1.05) !important; /* Override rotation slightly on hover */
+        z-index: 10;
+        box-shadow: 6px 6px 0px rgba(14, 51, 34, 0.15);
     }
 
-    .sf-canvas-placeholder {
-        display: none;
+    /* Alternating rotations for sticky note feel - applied to grid items */
+    .example-item:nth-child(1) { transform: rotate(-1deg); }
+    .example-item:nth-child(2) { transform: rotate(1deg); }
+    .example-item:nth-child(3) { transform: rotate(0.5deg); }
+    .example-item:nth-child(4) { transform: rotate(-0.5deg); }
+    .example-item:nth-child(5) { transform: rotate(0.8deg); }
+    .example-item:nth-child(6) { transform: rotate(-0.8deg); }
+
+    .bullet {
+        margin: 0;
+        font-size: 1.5rem; /* Smaller emoji */
+        line-height: 1;
+        flex-shrink: 0;
+    }
+    
+    .example-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .example-highlight {
+        display: block;
+        font-weight: bold;
+        color: #003366;
+        margin-top: 0.1rem;
     }
 
-    .sf-block {
-        position: absolute;
-        opacity: 0;
-        overflow: hidden;
-        transform: translateY(8px);
-        clip-path: inset(0 100% 0 0);
-    }
-
-    .sf-block-content {
+    /* Pricing */
+    .pricing {
+        text-align: center;
+        margin-bottom: 4rem;
         padding: 0;
-        margin: 0;
-    }
-
-    .sf-inline {
-        display: block;
-    }
-
-    .sf-note-item {
-        position: absolute;
-        left: 34px;
-        right: 28px;
-        opacity: 0;
-        transform: translateY(12px) scale(.985);
-        animation: sf-note-add 11s ease-in-out infinite;
-    }
-
-    .sf-note-title {
-        top: 34px;
-        left: 38px;
-        right: 38px;
-        color: #111c18;
-        animation: sf-note-add-title 48s ease-in-out infinite;
-    }
-
-    .sf-note-title .sf-block-content {
-        display: grid;
-        grid-template-columns: 112px 1fr;
-        gap: 34px;
-        align-items: end;
-        padding-bottom: 8px;
-        border-bottom: 2px solid var(--sf-primary);
-        font-size: 19px;
-        font-weight: 700;
-    }
-
-    .sf-note-body {
-        top: 94px;
-        left: 194px;
-        width: 440px;
-        color: rgba(17,28,24,.78);
-        font-size: 13px;
-        line-height: 1.45;
-        animation: sf-note-add-intro 48s ease-in-out infinite;
-    }
-
-    .sf-note-body p {
-        margin: 0 0 8px;
-    }
-
-    .sf-note-body ul {
-        margin: 0;
-        padding-left: 22px;
-    }
-
-    .sf-note-body li {
-        margin: 1px 0;
-    }
-
-    .sf-note-functions {
-        top: 220px;
-        left: 194px;
-        width: 330px;
-        color: rgba(17,28,24,.74);
-        font-size: 12px;
-        line-height: 1.5;
-        animation: sf-note-add-functions 48s ease-in-out infinite;
-    }
-
-    .sf-note-functions ul {
-        margin: 0;
-        padding-left: 18px;
-    }
-
-    .sf-note-formula {
-        top: 302px;
-        left: 194px;
-        width: 500px;
-        padding-left: 10px;
-        border-left: 2px solid #0b3d2d;
-        color: #235f38;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-        font-size: 10px;
-        white-space: nowrap;
-        animation: sf-note-add-equation 48s ease-in-out infinite;
-    }
-
-    .sf-note-graph {
-        top: 366px;
-        left: 178px;
-        width: 430px;
-        height: 118px;
-        animation: sf-note-add-graph 48s ease-in-out infinite;
-    }
-
-    .sf-note-graph svg {
-        width: 100%;
-        height: 100%;
-        overflow: visible;
-    }
-
-    .sf-note-controls {
-        top: 540px;
-        left: 194px;
-        width: 330px;
-        min-height: 74px;
-        padding: 12px 14px;
-        border-radius: 12px;
-        background: #eef7f2;
-        box-shadow: 0 8px 22px rgba(14, 51, 34, .08);
-        font-size: 13px;
-        line-height: 1.35;
-        color: #173f31;
-        animation: sf-note-add-question 48s ease-in-out infinite;
-    }
-
-    .sf-note-controls strong {
-        display: block;
-        margin-bottom: 6px;
-        color: #111c18;
-    }
-
-    .sf-note-controls p {
-        margin: 0;
-    }
-
-    .sf-note-solution {
-        top: 674px;
-        left: 38px;
-        width: 560px;
-        color: rgba(17, 28, 24, .78);
-        font-size: 13px;
-        line-height: 1.45;
-        animation: sf-note-add-solution 48s ease-in-out infinite;
-    }
-
-    .sf-note-solution .sf-block-content {
-        display: grid;
-        grid-template-columns: 118px 1fr;
-        gap: 34px;
-        align-items: start;
-    }
-
-    .sf-note-solution strong {
-        display: block;
-        border-bottom: 2px solid var(--sf-primary);
-        padding-bottom: 4px;
-        color: #111c18;
-    }
-
-    .sf-note-solution ul {
-        margin: 0;
-        padding-left: 20px;
-    }
-
-    .sf-canvas-action {
-        display: none;
-    }
-
-    .sf-canvas-reload {
-        display: none;
-    }
-
-    .sf-center-orbit::before,
-    .sf-center-orbit::after,
-    .sf-person-card::before,
-    .sf-person-card::after,
-    .sf-note-canvas::after,
-    .sf-speech-line,
-    .sf-chat,
-    .sf-voice-wave,
-    .sf-block,
-    .sf-canvas-action {
-        animation-delay: -2.55s;
-    }
-
-    .sf-note-slider {
-        display: grid;
-        grid-template-columns: 1fr 34px;
-        gap: 12px;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
-    .sf-note-slider::before {
-        content: "";
-        height: 7px;
-        border-radius: 999px;
-        background:
-            radial-gradient(circle at 36%, #0b3d2d 0 6px, transparent 6.5px),
-            linear-gradient(#ddd, #ddd);
-    }
-
-    .sf-note-slider:nth-child(2)::before {
-        background:
-            radial-gradient(circle at 70%, #0b3d2d 0 6px, transparent 6.5px),
-            linear-gradient(#ddd, #ddd);
-    }
-
-    .sf-trust {
-        position: static;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        color: var(--sf-primary-dark);
-        background: rgba(23, 116, 95, .1);
-        border: 1px solid rgba(23, 116, 95, .12);
-        border-radius: 999px;
-        padding: 10px 14px;
-        box-shadow: none;
-        max-width: 420px;
-        white-space: normal;
-        z-index: 6;
-    }
-
-    .sf-visual-panel {
-        grid-column: 2;
-        grid-row: 1;
         position: relative;
-        width: min(800px, 100%);
-        justify-self: end;
+    }
+
+    .price-highlight {
+        font-size: 1.8rem;
+        font-weight: bold;
+        display: block;
+        margin-top: 0.5rem;
+    }
+
+    .pricing-preview-grid {
         display: grid;
-        grid-template-rows: auto;
-        justify-items: end;
-        align-items: start;
-        padding: 92px 0 0;
-        transform: translateX(40px);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+
+    .pricing-card {
+        padding: 1.5rem;
+        border: 2px solid var(--text-color);
+        border-radius: 15px;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: transform 0.3s ease;
+        box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+    }
+
+    .pricing-card:hover {
+        transform: translateY(-5px) rotate(1deg);
+    }
+
+    .pricing-card:nth-child(1) { transform: rotate(-1deg); }
+    .pricing-card:nth-child(2) { transform: rotate(1deg); border-color: #4a9eff; }
+    .pricing-card:nth-child(3) { transform: rotate(-0.5deg); background-color: #fff9e6; border-color: #ffcc00; }
+
+    .pricing-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        font-family: 'Sour Gummy', sans-serif;
+    }
+
+    .pricing-card p {
+        font-size: 0.95rem;
+        opacity: 0.8;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .pricing-card .price {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: var(--text-color);
+    }
+
+    .price-container {
+        margin-top: auto;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        align-items: flex-start;
+    }
+
+    @media (max-width: 480px) {
+        .price-container {
+            align-items: center;
+            text-align: center;
+        }
+    }
+
+    .price-from {
+        font-size: 0.9rem;
+        opacity: 0.6;
+        line-height: 1;
+        margin-bottom: -2px;
+    }
+
+    .price-value {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: var(--text-color);
+        line-height: 1.1;
+        white-space: nowrap;
+    }
+
+    .pricing-preview-cta {
+        display: inline-block;
+        margin-top: 1rem;
+        font-weight: bold;
+        text-decoration: underline;
+        color: var(--text-color);
+        font-size: 1.1rem;
+    }
+
+    /* About Section */
+    .homepage-about {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+        background: #f9f9f9; /* Very light grey tint */
+        background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+        background-size: 25px 25px;
+        border: 2px solid var(--text-color);
+        border-radius: 40px 20px 40px 20px / 20px 40px 20px 40px;
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.05);
+        position: relative;
+    }
+
+    .media-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .media-grid a {
+        transition: transform 0.2s ease;
+        display: flex;
+        align-items: center;
+    }
+
+    .media-grid a:hover {
+        transform: scale(1.1);
+    }
+
+    .media-grid img {
+        height: 25px;
+        width: auto;
+        max-width: 180px;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: all 0.3s ease;
+    }
+
+    .media-grid a:hover img {
+        filter: grayscale(0%);
+        opacity: 1;
+    }
+
+    .why-works-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        margin-top: 4rem; /* More space for labels below the section title */
+        margin-bottom: 2rem;
+        text-align: left;
+        padding: 0;
+    }
+
+    .why-col {
+        padding: 4rem 2rem 2rem;
+        border: 2px solid var(--text-color);
+        border-radius: 15px 50px 15px 50px / 50px 15px 50px 15px;
+        background: white;
+        transition: transform 0.3s ease;
+        box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.05);
+        position: relative;
+    }
+
+    .why-col:nth-child(1) {
+        background-color: #f0fff4; /* Light green for Didactics */
+        border-color: #2d6a4f; /* Darker green border */
+        transform: rotate(-0.5deg);
+        box-shadow: 6px 6px 0px rgba(45, 106, 79, 0.1);
+    }
+
+    .why-col:nth-child(1) h3 {
+        background-color: #f0fff4;
+        border-color: #2d6a4f;
+        transform: rotate(-4deg); /* Individual rotation */
+    }
+
+    .why-col:nth-child(2) {
+        background-color: #fff9e6; /* Light yellow/orange for Motivation */
+        border-color: #d97706; /* Darker orange border */
+        transform: rotate(0.5deg);
+        box-shadow: 6px 6px 0px rgba(217, 119, 6, 0.1);
+    }
+
+    .why-col:nth-child(2) h3 {
+        background-color: #fff9e6;
+        border-color: #d97706;
+        transform: rotate(3deg); /* Individual rotation */
+    }
+
+    .why-col:nth-child(1):hover {
+        box-shadow: 10px 10px 0px rgba(45, 106, 79, 0.15);
+    }
+
+    .why-col:nth-child(2):hover {
+        box-shadow: 10px 10px 0px rgba(217, 119, 6, 0.15);
+    }
+
+    .why-col h3 {
+        font-size: 1.5rem;
+        font-family: 'Sour Gummy', sans-serif;
+        text-decoration: none;
+        color: var(--text-color);
+        position: absolute;
+        top: -2.2rem; /* Moved further up */
+        left: 2rem;
+        padding: 0 12px;
+        border: 2px solid var(--text-color);
+        border-radius: 8px;
+    }
+
+    .why-col p {
+        font-size: 1.1rem;
+        line-height: 1.4;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+        margin-top: 0;
+    }
+
+    .why-learn-more {
+        font-weight: bold;
+        text-decoration: underline;
+        color: var(--text-color);
+        font-size: 1.1rem;
+        transition: opacity 0.2s ease;
+    }
+
+    .why-learn-more:hover {
+        opacity: 0.7;
+    }
+
+    .why-works-section {
+        margin-bottom: 4rem;
+        text-align: center;
+    }
+
+    /* Teacher spotlight */
+    .teacher-spotlight {
+        margin-bottom: 4rem;
+        padding: 2.5rem 2rem;
+        background: #f4f8ff;
+        border: 2px solid #1f4c7a;
+        border-radius: 20px 80px 20px 80px / 80px 20px 80px 20px;
+        box-shadow: 8px 8px 0px rgba(31, 76, 122, 0.08);
+        position: relative;
+        transform: rotate(-0.3deg);
+    }
+    .teacher-spotlight .label {
+        position: absolute;
+        top: -1.1rem;
+        left: 1.5rem;
+        background: #1f4c7a;
+        color: white;
+        font-family: 'Sour Gummy', sans-serif;
+        padding: 0.25rem 0.9rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        transform: rotate(-2deg);
+    }
+    .teacher-spotlight h2 {
+        font-size: 1.6rem;
+        margin: 0 0 0.75rem 0;
+        font-family: 'Sour Gummy', sans-serif;
+        color: #1f4c7a;
+    }
+    .teacher-spotlight p.lead {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+    .teacher-points {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.75rem;
+    }
+    .teacher-point {
+        background: white;
+        border: 2px solid #1f4c7a;
+        border-radius: 14px;
+        padding: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        box-shadow: 3px 3px 0px rgba(31, 76, 122, 0.1);
+    }
+    .teacher-point strong {
+        display: block;
+        margin-bottom: 0.4rem;
+        color: #1f4c7a;
+        font-size: 1.05rem;
+    }
+    .teacher-cta-row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .teacher-cta-primary,
+    .teacher-cta-secondary {
+        display: inline-block;
+        padding: 0.75rem 1.4rem;
+        font-family: 'Sour Gummy', sans-serif;
+        font-size: 1.15rem;
+        text-decoration: none;
+        border-radius: 12px;
+        border: 2px solid #1f4c7a;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .teacher-cta-primary {
+        background: #1f4c7a;
+        color: white;
+        box-shadow: 4px 4px 0px rgba(31, 76, 122, 0.25);
+    }
+    .teacher-cta-secondary {
+        background: white;
+        color: #1f4c7a;
+        box-shadow: 4px 4px 0px rgba(31, 76, 122, 0.1);
+    }
+    .teacher-cta-primary:hover,
+    .teacher-cta-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 6px 6px 0px rgba(31, 76, 122, 0.2);
+    }
+    @media (max-width: 480px) {
+        .teacher-points { grid-template-columns: 1fr; }
+        .teacher-spotlight { padding: 2rem 1.25rem; }
+    }
+
+    /* Steps CTA Buttons */
+    .steps-cta-container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 2.5rem;
+        padding-bottom: 0;
+        padding-left: 30px;
+        border-left: none;
+        position: relative;
+        z-index: 1;
+    }
+
+    .steps-cta-container::after {
+        display: none;
+    }
+
+    .cta-button-main, .cta-button-rewards {
+        display: inline-block;
+        padding: 0.8rem 1.6rem;
+        font-size: 1.5rem;
+        font-family: 'Sour Gummy', sans-serif;
+        text-decoration: none;
+        border: 2px solid var(--text-color);
+        border-radius: 12px;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        color: var(--text-color);
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    .cta-button-main {
+        background-color: white;
+        box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .cta-button-main::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--fill-progress, 0%);
+        background: linear-gradient(to bottom, #cce5ff, #4a9eff);
+        opacity: 0.4;
+        z-index: -1;
+        pointer-events: none;
+        transition: none;
+    }
+
+    .cta-button-rewards {
+        background-color: #f9f9f9; /* Very light grey */
+        box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.1);
+    }
+
+    .cta-button-main:hover, .cta-button-rewards:hover {
+        transform: translateY(-3px);
+        box-shadow: 6px 6px 0px rgba(14, 51, 34, 0.15);
         z-index: 5;
     }
 
-    .sf-trust img {
-        width: 22px;
-        height: 22px;
-        filter: none;
-    }
-
-    .sf-trust span {
-        color: var(--sf-primary-dark);
-        font-size: 14px;
-        font-weight: 750;
-    }
-
-    .sf-trust .sf-logo-mark {
-        width: 26px;
-        height: 26px;
-        border-radius: 7px;
-        color: #fff;
-        font-size: 13px;
-        flex: 0 0 auto;
-    }
-
-    .sf-features {
-        padding: 0 16px 80px;
-        background: #fff;
-    }
-
-    .sf-section-title {
-        width: max-content;
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 80px 0 40px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-    }
-
-    .sf-section-title img {
-        width: 100px;
-        height: 100px;
-        object-fit: contain;
-        margin-bottom: -16px;
-        z-index: 1;
-    }
-
-    .sf-section-title .sf-logo-mark {
-        width: 64px;
-        height: 64px;
-        border-radius: 18px;
-        margin-bottom: -8px;
-        font-size: 28px;
-        z-index: 1;
-    }
-
-    .sf-section-title h2 {
-        margin: 0 !important;
-        color: var(--sf-text) !important;
-        font-family: var(--sf-font) !important;
-        font-size: clamp(28px, 3.2vw, 40px) !important;
-        line-height: 1.1 !important;
-        font-weight: 780 !important;
-        text-align: center !important;
-        z-index: 2;
-    }
-
-    .sf-benefit-list {
-        width: min(100%, 1120px);
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 56px;
-    }
-
-    .sf-benefit {
-        border-radius: 24px;
-        overflow: hidden;
-        min-height: 520px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding: 80px;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(360px, 1fr);
-        align-items: center;
-        gap: min(9vw, 120px);
-    }
-
-    .sf-benefit:nth-child(1),
-    .sf-benefit:nth-child(6) {
-        background: linear-gradient(135deg, #eef8f4, #d8efe6);
-    }
-
-    .sf-benefit:nth-child(2) {
-        background: linear-gradient(135deg, #edf7ef, #d6efdc);
-    }
-
-    .sf-benefit:nth-child(3) {
-        background: linear-gradient(135deg, #edf6ff, #dcecff);
-    }
-
-    .sf-benefit:nth-child(4) {
-        background: linear-gradient(135deg, #fff8df, #edf4df);
-    }
-
-    .sf-benefit:nth-child(5) {
-        background: linear-gradient(135deg, #f0f6f3, #dcebe5);
-    }
-
-    .sf-benefit-text {
-        display: flex;
-        flex-direction: column;
-        gap: 22px;
-    }
-
-    .sf-kicker {
-        color: var(--sf-primary);
-        font-size: 14px;
-        font-weight: 850;
-        line-height: 1.1;
-        text-transform: uppercase;
-    }
-
-    .sf-benefit:nth-child(2) .sf-kicker { color: var(--sf-green); }
-    .sf-benefit:nth-child(3) .sf-kicker { color: var(--sf-blue); }
-    .sf-benefit:nth-child(4) .sf-kicker { color: var(--sf-yellow); }
-    .sf-benefit:nth-child(5) .sf-kicker { color: #49665d; }
-
-    .sf-benefit h3 {
-        margin: 0 !important;
-        color: var(--sf-text) !important;
-        font-family: var(--sf-font) !important;
-        font-size: clamp(26px, 3vw, 34px) !important;
-        line-height: 1.3 !important;
-        font-weight: 780 !important;
-    }
-
-    .sf-benefit p {
-        margin: 0;
-        color: #365149;
-        font-size: 16px;
-        line-height: 1.55;
-    }
-
-    .sf-benefit .sf-primary-button {
-        align-self: flex-start;
-    }
-
-    .sf-benefit:nth-child(2) .sf-primary-button { background: var(--sf-green) !important; border-color: var(--sf-green) !important; }
-    .sf-benefit:nth-child(3) .sf-primary-button { background: var(--sf-blue) !important; border-color: var(--sf-blue) !important; }
-    .sf-benefit:nth-child(4) .sf-primary-button { background: var(--sf-yellow) !important; border-color: var(--sf-yellow) !important; }
-    .sf-benefit:nth-child(5) .sf-primary-button { background: #49665d !important; border-color: #49665d !important; }
-
-    .sf-visual {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 4 / 3;
-        border-radius: 14px;
-        overflow: hidden;
-        display: grid;
-        place-items: center;
-    }
-
-    .sf-device {
-        width: min(92%, 420px);
-        min-height: 280px;
-        border-radius: 22px;
-        padding: 18px;
-        background: rgba(255,255,255,.86);
-        box-shadow: 0 24px 65px rgba(14, 51, 34, .14);
-        border: 1px solid rgba(255,255,255,.8);
-        backdrop-filter: blur(6px);
-        transform: rotate(-1.5deg);
-    }
-
-    .sf-benefit:nth-child(even) .sf-device {
-        transform: rotate(1.5deg);
-    }
-
-    .sf-device-top {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 16px;
-    }
-
-    .sf-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        background: #d7e5df;
-    }
-
-    .sf-ui-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-
-    .sf-mini-card,
-    .sf-wide-card {
-        border-radius: 14px;
-        background: #fff;
-        border: 1px solid rgba(23, 116, 95, .08);
-        box-shadow: 0 10px 20px rgba(14, 51, 34, .07);
-        padding: 14px;
-    }
-
-    .sf-wide-card {
-        grid-column: 1 / -1;
-    }
-
-    .sf-line {
-        display: block;
-        height: 8px;
-        border-radius: 999px;
-        margin: 8px 0;
-        background: #e3eee9;
-    }
-
-    .sf-line.short { width: 52%; }
-    .sf-line.medium { width: 72%; }
-    .sf-line.accent { background: rgba(23, 116, 95, .25); }
-
-    .sf-chip-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 10px;
-    }
-
-    .sf-chip {
-        height: 28px;
-        border-radius: 999px;
-        padding: 0 11px;
-        display: inline-flex;
-        align-items: center;
-        color: #fff;
-        background: var(--sf-primary);
-        font-size: 12px;
-        font-weight: 800;
-    }
-
-    .sf-benefit:nth-child(2) .sf-chip { background: var(--sf-green); }
-    .sf-benefit:nth-child(3) .sf-chip { background: var(--sf-blue); }
-    .sf-benefit:nth-child(4) .sf-chip { background: var(--sf-yellow); }
-    .sf-benefit:nth-child(5) .sf-chip { background: #49665d; }
-
-    .sf-footer {
-        background: var(--sf-footer);
-        padding: 120px 80px;
-    }
-
-    .sf-footer-inner {
-        width: min(1200px, 100%);
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        gap: 80px;
-    }
-
-    .sf-footer-brand {
-        width: min(400px, 100%);
-        display: flex;
-        flex-direction: column;
-        gap: 28px;
-    }
-
-    .sf-footer-brand img {
-        width: 154px;
-        height: auto;
-    }
-
-    .sf-footer-logo {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        color: var(--sf-text);
-        font-weight: 850;
-    }
-
-    .sf-footer-brand p,
-    .sf-footer a {
-        color: #365149 !important;
-        font-size: 14px !important;
-        font-weight: 500 !important;
-    }
-
-    .sf-socials {
-        display: flex;
-        gap: 24px;
-    }
-
-    .sf-socials a {
-        width: 40px;
-        height: 40px;
-        border: 1px solid #d5d1da;
-        border-radius: 999px;
-        display: grid;
-        place-items: center;
-        background: transparent !important;
-    }
-
-    .sf-socials img {
-        width: 20px;
-        height: 20px;
-    }
-
-    .sf-footer-cols {
-        flex: 1;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(120px, 1fr));
-        gap: 80px;
-    }
-
-    .sf-footer h3 {
-        margin: 0 0 18px !important;
-        color: var(--sf-text) !important;
-        font-family: var(--sf-font) !important;
-        font-size: 16px !important;
-        font-weight: 800 !important;
-    }
-
-    .sf-footer ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-    }
-
-    @keyframes sf-chat-shift {
-        0%, 38% {
-            transform: translateY(0);
-        }
-        48%, 70% {
-            transform: translateY(-34px);
-        }
-        80%, 96% {
-            transform: translateY(-70px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes sf-chat-one {
-        0%, 2%, 26%, 100% {
-            opacity: 0;
-            transform: translateY(8px) scale(.98);
-        }
-        3%, 12% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        14%, 24% {
-            opacity: .55;
-            transform: translateY(-26px) scale(.985);
-        }
-    }
-
-    @keyframes sf-chat-two {
-        0%, 11%, 35%, 100% {
-            opacity: 0;
-            transform: translateY(8px) scale(.98);
-        }
-        13%, 26% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        28%, 33% {
-            opacity: .55;
-            transform: translateY(-26px) scale(.985);
-        }
-    }
-
-    @keyframes sf-chat-three {
-        0%, 25%, 50%, 100% {
-            opacity: 0;
-            transform: translateY(8px) scale(.98);
-        }
-        27%, 35% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        37%, 48% {
-            opacity: .55;
-            transform: translateY(-26px) scale(.985);
-        }
-    }
-
-    @keyframes sf-chat-four {
-        0%, 34%, 59%, 100% {
-            opacity: 0;
-            transform: translateY(8px) scale(.98);
-        }
-        36%, 50% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        52%, 57% {
-            opacity: .55;
-            transform: translateY(-26px) scale(.985);
-        }
-    }
-
-    @keyframes sf-chat-five {
-        0%, 49%, 75%, 100% {
-            opacity: 0;
-            transform: translateY(8px) scale(.98);
-        }
-        51%, 59% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        61%, 73% {
-            opacity: .55;
-            transform: translateY(-26px) scale(.985);
-        }
-    }
-
-    @keyframes sf-chat-six {
-        0%, 58%, 83%, 100% {
-            opacity: 0;
-            transform: translateY(8px) scale(.98);
-        }
-        60%, 75% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        77%, 81% {
-            opacity: .55;
-            transform: translateY(-26px) scale(.985);
-        }
-    }
-
-    @keyframes sf-chat-seven {
-        0%, 74%, 98%, 100% {
-            opacity: 0;
-            transform: translateY(8px) scale(.98);
-        }
-        76%, 83% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        85%, 96% {
-            opacity: .55;
-            transform: translateY(-26px) scale(.985);
-        }
-    }
-
-    @keyframes sf-chat-eight {
-        0%, 82%, 97%, 100% {
-            opacity: 0;
-            transform: translateY(8px) scale(.98);
-        }
-        84%, 95% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-    }
-
-    @keyframes sf-voice-bar {
-        0%, 100% {
-            transform: scaleY(.18);
-            opacity: .32;
-        }
-        10%, 28% {
-            transform: scaleY(.2);
-            opacity: .36;
-        }
-        18% {
-            transform: scaleY(1.05);
-            opacity: 1;
-        }
-        42%, 48% {
-            transform: scaleY(.24);
-            opacity: .4;
-        }
-        68% {
-            transform: scaleY(1.2);
-            opacity: 1;
-        }
-        78% {
-            transform: scaleY(.38);
-            opacity: .62;
-        }
-    }
-
-    @keyframes sf-voice-one {
-        0%, 2.7%, 8.2%, 100% { opacity: 0; transform: translateY(1px); }
-        3.2%, 4.2%, 5%, 6.5%, 7.5% { opacity: .95; transform: translateY(0); }
-        4.6%, 6.1% { opacity: .28; transform: translateY(0); }
-    }
-
-    @keyframes sf-voice-two {
-        0%, 12.7%, 18.2%, 100% { opacity: 0; transform: translateY(1px); }
-        13.2%, 14.1%, 15.2%, 16.8%, 17.6% { opacity: .95; transform: translateY(0); }
-        14.6%, 16.1% { opacity: .25; transform: translateY(0); }
-    }
-
-    @keyframes sf-voice-three {
-        0%, 26.7%, 31.4%, 100% { opacity: 0; transform: translateY(1px); }
-        27.2%, 28.4%, 29.3%, 30.5% { opacity: .95; transform: translateY(0); }
-        28.8% { opacity: .24; transform: translateY(0); }
-    }
-
-    @keyframes sf-voice-four {
-        0%, 35.7%, 41.5%, 100% { opacity: 0; transform: translateY(1px); }
-        36.2%, 37.3%, 38.5%, 40.5% { opacity: .95; transform: translateY(0); }
-        37.9%, 39.4% { opacity: .25; transform: translateY(0); }
-    }
-
-    @keyframes sf-voice-five {
-        0%, 50.7%, 55.1%, 100% { opacity: 0; transform: translateY(1px); }
-        51.2%, 52.6%, 53.5%, 54.3% { opacity: .95; transform: translateY(0); }
-        53% { opacity: .25; transform: translateY(0); }
-    }
-
-    @keyframes sf-voice-six {
-        0%, 59.7%, 65.3%, 100% { opacity: 0; transform: translateY(1px); }
-        60.2%, 61.4%, 62.5%, 64.3% { opacity: .95; transform: translateY(0); }
-        61.9%, 63.3% { opacity: .25; transform: translateY(0); }
-    }
-
-    @keyframes sf-voice-seven {
-        0%, 75.7%, 79.7%, 100% { opacity: 0; transform: translateY(1px); }
-        76.2%, 77.2%, 78.1%, 79% { opacity: .95; transform: translateY(0); }
-        77.6% { opacity: .25; transform: translateY(0); }
-    }
-
-    @keyframes sf-voice-eight {
-        0%, 83.7%, 89.5%, 100% { opacity: 0; transform: translateY(1px); }
-        84.2%, 85.6%, 86.8%, 88.5% { opacity: .95; transform: translateY(0); }
-        86.1%, 87.5% { opacity: .25; transform: translateY(0); }
-    }
-
-    @keyframes sf-tutor-process {
-        0%, 11%, 21%, 36%, 46%, 61%, 71%, 86%, 96%, 100% {
-            opacity: .38;
-            transform: scale(.96);
-            background: rgba(255,255,255,.32);
-            border-color: rgba(18, 53, 31, .14);
-            box-shadow: none;
-        }
-        13%, 18%, 38%, 43%, 63%, 68%, 88%, 93% {
-            opacity: 1;
-            transform: scale(1.2);
-            background: rgba(35,95,56,.28);
-            border-color: rgba(18,53,31,.42);
-            box-shadow:
-                0 0 0 10px rgba(35,95,56,.08),
-                0 0 38px rgba(255,255,255,.72);
-        }
-    }
-
-    @keyframes sf-tutor-to-canvas {
-        0%, 11%, 21%, 36%, 46%, 61%, 71%, 86%, 96%, 100% {
-            opacity: .22;
-            transform: translateX(-50%) translateY(18px) scaleY(.68);
-        }
-        13%, 18%, 38%, 43%, 63%, 68%, 88%, 93% {
-            opacity: 1;
-            transform: translateX(-50%) translateY(-6px) scaleY(1.12);
-        }
-    }
-
-    @keyframes sf-note-transfer {
-        0%, 11%, 21%, 36%, 46%, 61%, 71%, 86%, 96%, 100% {
-            opacity: 0;
-            transform: translateY(0) scaleY(.8);
-        }
-        13%, 18%, 38%, 43%, 63%, 68%, 88%, 93% {
-            opacity: 1;
-            transform: translateY(-44px) scaleY(.7);
-        }
-    }
-
-    @keyframes sf-note-add-title {
-        0%, 18% {
-            opacity: 0;
-            transform: translateY(8px);
-            clip-path: inset(0 100% 0 0);
-        }
-        21%, 97% {
-            opacity: 1;
-            transform: translateY(0);
-            clip-path: inset(0 0 0 0);
-        }
-        100% { opacity: 0; transform: translateY(-4px); clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes sf-note-add-intro {
-        0%, 21% {
-            opacity: 0;
-            transform: translateY(8px);
-            clip-path: inset(0 100% 0 0);
-        }
-        24%, 97% {
-            opacity: 1;
-            transform: translateY(0);
-            clip-path: inset(0 0 0 0);
-        }
-        100% { opacity: 0; transform: translateY(-4px); clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes sf-note-add-functions {
-        0%, 42% {
-            opacity: 0;
-            transform: translateY(8px);
-            clip-path: inset(0 100% 0 0);
-        }
-        45%, 97% {
-            opacity: 1;
-            transform: translateY(0);
-            clip-path: inset(0 0 0 0);
-        }
-        100% { opacity: 0; transform: translateY(-4px); clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes sf-note-add-equation {
-        0%, 46% {
-            opacity: 0;
-            transform: translateY(8px);
-            clip-path: inset(0 100% 0 0);
-        }
-        49%, 97% {
-            opacity: 1;
-            transform: translateY(0);
-            clip-path: inset(0 0 0 0);
-        }
-        100% { opacity: 0; transform: translateY(-4px); clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes sf-note-add-question {
-        0%, 84% {
-            opacity: 0;
-            transform: translateY(8px);
-            clip-path: inset(0 100% 0 0);
-        }
-        88%, 97% {
-            opacity: 1;
-            transform: translateY(0);
-            clip-path: inset(0 0 0 0);
-        }
-        100% { opacity: 0; transform: translateY(-4px); clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes sf-note-add-body {
-        0%, 37% {
-            opacity: 0;
-            transform: translateY(8px);
-            clip-path: inset(0 100% 0 0);
+    /* Desktop scaling */
+    @media (min-width: 481px) {
+        .cta-button-large {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
-        39%, 96% {
-            opacity: 1;
-            transform: translateY(0);
-            clip-path: inset(0 0 0 0);
-        }
-        100% { opacity: 0; transform: translateY(-4px); clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes sf-note-add-formula {
-        0%, 37% {
-            opacity: 0;
-            transform: translateY(8px);
-            clip-path: inset(0 100% 0 0);
-        }
-        39%, 96% {
-            opacity: 1;
-            transform: translateY(0);
-            clip-path: inset(0 0 0 0);
-        }
-        100% { opacity: 0; transform: translateY(-4px); clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes sf-note-add-graph {
-        0%, 60% {
-            opacity: 0;
-            transform: translateY(8px);
-            clip-path: inset(0 100% 0 0);
-        }
-        64%, 97% {
-            opacity: 1;
-            transform: translateY(0);
-            clip-path: inset(0 0 0 0);
-        }
-        100% { opacity: 0; transform: translateY(-4px); clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes sf-note-add-controls {
-        0%, 86% {
-            opacity: 0;
-            transform: translateY(8px);
-            clip-path: inset(0 100% 0 0);
-        }
-        90%, 97% {
-            opacity: 1;
-            transform: translateY(0);
-            clip-path: inset(0 0 0 0);
-        }
-        100% { opacity: 0; transform: translateY(-4px); clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes sf-note-add-solution {
-        0%, 90% {
-            opacity: 0;
-            transform: translateY(8px);
-            clip-path: inset(0 100% 0 0);
-        }
-        93%, 97% {
-            opacity: 1;
-            transform: translateY(0);
-            clip-path: inset(0 0 0 0);
-        }
-        100% { opacity: 0; transform: translateY(-4px); clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes sf-note-add {
-        0%, 56% {
-            opacity: 0;
-            transform: translateY(12px) scale(.985);
-        }
-        62%, 100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-    }
-
-    @keyframes sf-note-clear {
-        0%, 90% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        100% {
-            opacity: 0;
-            transform: translateY(-4px) scale(.99);
-        }
     }
-
-    @media (max-width: 767px) {
-        .sf-header {
-            inset: 0 0 auto;
-        }
-
-        .sf-nav {
-            width: 100%;
-            height: 76px;
-            border-radius: 0;
-            padding: 0 16px;
-            box-shadow: none;
-        }
-
-        .sf-language,
-        .sf-desktop-only,
-        .sf-trust-desktop,
-        .sf-section-title img {
-            display: none !important;
-        }
-
-        .sf-mobile-download {
-            display: inline-flex;
-            height: 44px;
-            padding: 0 16px;
-            border: 1px solid var(--sf-border);
-            border-radius: 8px;
-            color: var(--sf-primary) !important;
-            font-size: 14px !important;
-            font-weight: 800 !important;
-            align-items: center;
-            justify-content: center;
-            background: #fff !important;
-        }
-
-        .sf-desktop-text {
-            display: none;
-        }
-
-        .sf-mobile-text {
-            display: inline;
-        }
-
-        .sf-hero {
-            padding-top: 84px;
-        }
 
-        .sf-hero-inner {
-            min-height: calc(100vh - 88px);
-            width: calc(100% - 24px);
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
+    /* Responsive */
+    @media (max-width: 480px) {
+        h1, .headline-highlight {
+            font-size: 1.5rem;
         }
-
-        .sf-hero h1 {
-            font-size: 40px !important;
-            text-align: center !important;
-        }
-
-        .sf-hero p {
-            max-width: 330px;
-            font-size: 16px;
-        }
-
-        .sf-hero-copy {
-            align-items: center;
-            text-align: center;
-            padding-bottom: 0;
-        }
-
-        .sf-visual-panel {
-            padding: 8px 0 0;
-            justify-items: center;
-            width: 100%;
-            gap: 12px;
-            transform: none;
-        }
-
-        .sf-stream-stage {
-            position: relative;
-            left: auto;
-            right: auto;
-            bottom: auto;
-            justify-self: center;
-            width: min(360px, 96vw);
-            height: 192px;
-            display: block;
-            gap: 10px;
-            min-height: 0;
-            margin-top: -18px;
-            padding: 4px 0;
-            border-radius: 14px;
-            transform: none;
-        }
-
-        .sf-chat-feed {
-            position: absolute;
-            inset: 0;
-        }
-
-        .sf-dialog-tutor {
-            top: 42px;
-            width: 86px;
-            height: 86px;
-        }
-
-        .sf-dialog-tutor img {
-            width: 72px;
-            height: 72px;
-        }
-
-        .sf-chat {
-            top: 104px;
-            grid-template-columns: minmax(116px, 1fr) 88px minmax(116px, 1fr);
-            gap: 6px;
-        }
-
-        .sf-chat::after {
-            width: 76px;
-            height: 25px;
-            bottom: -24px;
-        }
-
-        .sf-chat--student::after {
-            right: calc(50% + 46px);
-        }
-
-        .sf-chat--tutor::after {
-            left: calc(50% + 46px);
-        }
-
-        .sf-voice-wave {
-            width: 82px;
-            height: 30px;
-            gap: 2px;
-            bottom: -25px;
-        }
-
-        .sf-chat--student .sf-voice-wave {
-            right: calc(50% + 42px);
-        }
-
-        .sf-chat--tutor .sf-voice-wave {
-            left: calc(50% + 42px);
-        }
-
-        .sf-voice-wave span {
-            width: 2px;
-            height: calc(var(--voice-height) * .62px);
-        }
-
-        .sf-chat-bubble {
-            max-width: 132px;
-            padding: 8px 9px;
-            font-size: 10px;
-            border-radius: 10px;
-        }
-
-        .sf-chat-avatar,
-        .sf-chat-avatar img {
-            width: 32px;
-            height: 32px;
-            font-size: 11px;
-        }
-
-        .sf-note-canvas {
-            width: min(360px, 96vw);
-            border-radius: 16px;
-            --canvas-zoom: .32;
-        }
-
-        .sf-note-canvas::before {
-            left: 11px;
-            top: 9px;
-            font-size: 7px;
-        }
-
-        .sf-note-item {
-            left: 16px;
-            right: 14px;
-        }
-
-        .sf-note-title {
-            top: 26px;
-            left: 22px;
-            right: 22px;
-        }
-
-        .sf-note-title .sf-block-content {
-            grid-template-columns: 58px 1fr;
-            gap: 16px;
-            padding-bottom: 8px;
-            font-size: 10px;
-        }
-
-        .sf-note-body {
-            top: 68px;
-            left: 106px;
-            width: 190px;
-            font-size: 8px;
-            line-height: 1.35;
-        }
-
-        .sf-note-body p {
-            margin-bottom: 8px;
-        }
-
-        .sf-note-body ul {
-            padding-left: 22px;
-        }
-
-        .sf-note-formula {
-            top: 176px;
-            left: 106px;
-            width: 190px;
-            padding-left: 7px;
-            border-left-width: 2px;
-            font-size: 7px;
-        }
-
-        .sf-note-graph {
-            top: 220px;
-            left: 82px;
-            width: 220px;
-            height: 70px;
-        }
-
-        .sf-note-controls {
-            top: 318px;
-            left: 106px;
-            width: 178px;
-            min-height: 54px;
-            padding: 8px 9px;
-            border-radius: 10px;
-            font-size: 7px;
+        .container {
+            background-size: 100% 1.8rem; 
         }
-
-        .sf-note-solution {
-            top: 398px;
-            left: 22px;
-            width: 270px;
-            font-size: 8px;
-        }
-
-        .sf-note-solution .sf-block-content {
-            grid-template-columns: 60px 1fr;
-            gap: 14px;
-        }
-
-        .sf-note-functions {
-            top: 126px;
-            left: 106px;
-            width: 180px;
-            font-size: 7px;
-        }
-
-        .sf-note-slider {
-            grid-template-columns: 1fr 14px;
-            gap: 4px;
-            margin-bottom: 4px;
-        }
-
-        .sf-note-slider::before {
-            height: 3px;
-        }
-
-        .sf-mobile-trust {
-            display: inline-flex !important;
-            position: static;
-            transform: none;
-            background: transparent;
-            color: var(--sf-text);
-            box-shadow: none;
-            padding: 0 16px;
-            white-space: normal;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .sf-mobile-trust img {
-            filter: none;
-        }
-
-        .sf-mobile-trust span {
-            color: var(--sf-text);
-            font-weight: 600;
+        .cta-button-large {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
-
-        .sf-section-title {
-            padding: 40px 0 28px;
-        }
-
-        .sf-section-title h2 {
-            color: var(--sf-primary) !important;
-            font-size: 26px !important;
+        
+        .examples-grid {
+            grid-template-columns: 1fr 1fr; /* Keep 2 columns on mobile */
+            gap: 1rem;
         }
-
-        .sf-benefit-list {
-            gap: 32px;
+        
+        .example-item {
+            font-size: 0.9rem;
+            padding: 0.5rem 0.6rem;
         }
-
-        .sf-benefit {
-            min-height: 0;
-            border-radius: 8px;
-            padding: 32px 20px 20px;
+        
+        .pricing-preview-grid {
             grid-template-columns: 1fr;
-            gap: 28px;
+            gap: 2rem;
         }
 
-        .sf-benefit-text {
-            align-items: center;
-            text-align: center;
-            gap: 14px;
+        .why-works-grid {
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
         }
 
-        .sf-benefit p {
-            display: none;
-        }
-
-        .sf-benefit .sf-primary-button {
-            align-self: center;
-        }
-
-        .sf-benefit h3 {
-            font-size: 22px !important;
-        }
-
-        .sf-device {
-            width: 100%;
-            min-height: 230px;
-            transform: none !important;
-        }
-
-        .sf-footer {
-            padding: 64px 20px;
-        }
-
-        .sf-footer-inner {
+        .steps-cta-container {
             flex-direction: column;
-            gap: 40px;
+            align-items: stretch;
+            gap: 1.5rem;
+            padding: 2.5rem 1rem 2.5rem 0;
+            margin-bottom: 0;
         }
 
-        .sf-footer-cols {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 32px;
+        .steps-flow-wrapper {
+            margin-left: 30px;
+            border-left: none; /* Handled by ::before */
         }
 
-        .sf-footer-cols .sf-footer-col:first-child {
-            display: none;
+        .cta-button-main, .cta-button-rewards {
+            transform: none !important;
+            font-size: 1.6rem;
+            padding: 1rem;
+        }
+
+        .pricing-card {
+            transform: none !important;
+            text-align: center;
+        }
+        
+        .bullet {
+            font-size: 1.4rem;
         }
     }
-</style>
-
-<header class="sf-header">
-    <nav class="sf-nav" aria-label="Hauptnavigation">
-        <a href="{{ '/index.html' | url }}" class="sf-logo" aria-label="tutor.new">
-            <span class="sf-logo-mark">t</span>
-            <span class="sf-logo-name">tutor.new</span>
-        </a>
-        <div class="sf-nav-actions">
-            <button class="sf-language" type="button" aria-label="Sprache auswählen">
-                <span>🇩🇪</span>
-                <span>⌄</span>
-            </button>
-            <a class="sf-link sf-desktop-only" href="{{ '/schools.html' | url }}">Schools</a>
-            <a class="sf-button sf-desktop-only" href="https://duck.tutor.new">Gratis testen</a>
-            <a class="sf-mobile-download" href="https://duck.tutor.new">Jetzt starten</a>
-        </div>
-    </nav>
-</header>
-
-<main>
-    <section class="sf-hero">
-        <div class="sf-hero-inner">
-            <div class="sf-hero-copy">
-                <span class="sf-hero-kicker">tutor.new</span>
-                <h1>Nie wieder <br class="sf-mobile-break">durch eine Prüfung fallen</h1>
-                <p>Dein KI-Tutor verwandelt Unterlagen in ein interaktives Lernblatt mit Notizen, Aufgaben und Erklärungen.</p>
-                <a class="sf-primary-button sf-desktop-only" href="https://duck.tutor.new">Los geht's</a>
-                <div class="sf-trust sf-trust-desktop">
-                    <span class="sf-logo-mark">t</span>
-                    <span>Für konzentriertes Lernen mit deinen echten Materialien</span>
-                </div>
-            </div>
-
-            <a class="sf-primary-button sf-mobile-download" href="https://duck.tutor.new">Los geht's</a>
-
-            <div class="sf-trust sf-mobile-trust">
-                <span class="sf-logo-mark">t</span>
-                <span>Lerne direkt mit deinen echten Materialien</span>
-            </div>
-
-            <div class="sf-visual-panel">
-                <div class="sf-note-canvas">
-                    <div class="sf-canvas-editor bn-container" data-theming-css-variables-tutornew data-color-scheme="light" data-notes-document-kind="learningDocumentVariation">
-                        <div class="bn-editor bn-default-styles">
-                            <div class="sf-canvas-placeholder">Text eingeben oder "/" fur Befehle tippen</div>
-
-                            <div class="sf-block sf-note-title bn-block-outer" data-node-type="columnList">
-                                <div class="sf-block-content bn-block-content">
-                                    <span class="sf-inline bn-inline-content">Aufgabe</span>
-                                    <span class="sf-inline bn-inline-content">Phasenverschiebung im Drehstromsystem</span>
-                                </div>
-                            </div>
-
-                            <div class="sf-block sf-note-body bn-block-outer" data-node-type="paragraph">
-                                <div class="sf-block-content bn-block-content">
-                                    <p class="bn-inline-content">Im Drehstromnetz werden drei Wechselspannungen erzeugt, die jeweils um 120° zeitlich verschoben sind.</p>
-                                </div>
-                            </div>
-
-                            <div class="sf-block sf-note-functions bn-block-outer" data-node-type="paragraph">
-                                <div class="sf-block-content bn-block-content">
-                                    <ul>
-                                        <li>u1(x) = sin(x)</li>
-                                        <li>u2(x) = sin(x - 2π/3)</li>
-                                        <li>u3(x) = sin(x - 4π/3)</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="sf-block sf-note-formula bn-block-outer" data-node-type="paragraph">
-                                <div class="sf-block-content bn-block-content">$u_1(t)=sin(ωt)$  $u_2(t)=sin(ωt-2.09)$  $u_3(t)=sin(ωt-4.19)$</div>
-                            </div>
-
-                            <div class="sf-block sf-note-graph bn-block-outer" data-node-type="genui">
-                                <div class="sf-block-content bn-block-content genui-block">
-                                    <svg viewBox="0 0 290 78" aria-hidden="true">
-                                        <line x1="12" y1="39" x2="280" y2="39" stroke="#d9d9d9" stroke-width="1" stroke-dasharray="3 4"></line>
-                                        <path d="M12 39 C35 -5 58 -5 81 39 S127 83 150 39 S196 -5 219 39 S265 83 280 39" fill="none" stroke="#ff3b3b" stroke-width="2"></path>
-                                        <path d="M12 62 C35 83 58 83 81 39 S127 -5 150 39 S196 83 219 39 S265 -5 280 16" fill="none" stroke="#248cff" stroke-width="2"></path>
-                                        <path d="M12 16 C35 -5 58 83 81 62 S127 16 150 39 S196 83 219 62 S265 16 280 16" fill="none" stroke="#36a84a" stroke-width="2"></path>
-                                    </svg>
-                                </div>
-                            </div>
-
-                            <div class="sf-block sf-note-controls bn-block-outer" data-node-type="genui">
-                                <div class="sf-block-content bn-block-content genui-block">
-                                    <strong>Übung:</strong>
-                                    <p>Prüfe am Graphen, welchen Wert u1 + u2 + u3 an jedem Zeitpunkt hat.</p>
-                                </div>
-                            </div>
-
-                            <div class="sf-block sf-note-solution bn-block-outer" data-node-type="columnList">
-                                <div class="sf-block-content bn-block-content">
-                                    <strong>Lösung:</strong>
-                                    <ul>
-                                        <li>Die drei Phasen sind jeweils um 120° verschoben.</li>
-                                        <li>Bei symmetrischer Belastung gilt: u1 + u2 + u3 = 0.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sf-stream-stage" aria-hidden="true">
-                    <div class="sf-dialog-tutor">
-                        <img src="{{ '/tutors/maya.png' | url }}" alt="">
-                    </div>
-                    <div class="sf-chat-feed">
-                        <div class="sf-chat sf-chat--student sf-chat--one">
-                            <span class="sf-chat-avatar">Du</span>
-                            <span class="sf-chat-bubble">Ich habe eine Aufgabe zu Drehstrom. Kannst du daraus ein Lernblatt machen?</span>
-                        </div>
-                        <div class="sf-chat sf-chat--tutor sf-chat--two">
-                            <span class="sf-chat-bubble">Ja. Ich lege zuerst Titel und Fragestellung an.</span>
-                        </div>
-                        <div class="sf-chat sf-chat--student sf-chat--three">
-                            <span class="sf-chat-avatar">Du</span>
-                            <span class="sf-chat-bubble">Bitte langsam. Ich will die Verschiebung verstehen.</span>
-                        </div>
-                        <div class="sf-chat sf-chat--tutor sf-chat--four">
-                            <span class="sf-chat-bubble">Dann ergänze ich die drei Spannungen als Funktionen.</span>
-                        </div>
-                        <div class="sf-chat sf-chat--student sf-chat--five">
-                            <span class="sf-chat-avatar">Du</span>
-                            <span class="sf-chat-bubble">Kannst du zeigen, wie die Kurven zusammenhängen?</span>
-                        </div>
-                        <div class="sf-chat sf-chat--tutor sf-chat--six">
-                            <span class="sf-chat-bubble">Ja. Ich zeichne den Graphen und markiere die Phasen.</span>
-                        </div>
-                        <div class="sf-chat sf-chat--student sf-chat--seven">
-                            <span class="sf-chat-avatar">Du</span>
-                            <span class="sf-chat-bubble">Was soll ich am Ende prüfen?</span>
-                        </div>
-                        <div class="sf-chat sf-chat--tutor sf-chat--eight">
-                            <span class="sf-chat-bubble">Ich füge eine kurze Übung und die Kernaussage hinzu.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="sf-features">
-        <div class="sf-section-title">
-            <span class="sf-logo-mark">t</span>
-            <h2>Halbiere deine Lernzeit</h2>
-        </div>
-
-        <div class="sf-benefit-list">
-            <article class="sf-benefit">
-                <div class="sf-benefit-text">
-                    <div>
-                        <span class="sf-kicker">Bring deine Dateien an Bord</span>
-                        <h3>Lade Dateien, PDFs, Folien, handschriftliche Notizen und mehr hoch</h3>
-                    </div>
-                    <p>Mach deine eigenen Inhalte zur starken Grundlage für Lernen, Teilen oder Weiterverwenden.</p>
-                    <a class="sf-primary-button" href="https://duck.tutor.new">Dateien hochladen</a>
-                </div>
-                <div class="sf-visual" role="img" aria-label="Dateien hochladen">
-                    <div class="sf-device">
-                        <div class="sf-device-top"><span class="sf-dot"></span><span class="sf-dot"></span><span class="sf-dot"></span></div>
-                        <div class="sf-ui-grid">
-                            <div class="sf-mini-card"><span class="sf-line accent"></span><span class="sf-line medium"></span><span class="sf-line short"></span></div>
-                            <div class="sf-mini-card"><span class="sf-line"></span><span class="sf-line medium"></span><span class="sf-line short"></span></div>
-                            <div class="sf-wide-card"><span class="sf-line accent"></span><span class="sf-line"></span><span class="sf-line medium"></span><div class="sf-chip-row"><span class="sf-chip">PDF</span><span class="sf-chip">Slides</span><span class="sf-chip">Notes</span></div></div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="sf-benefit">
-                <div class="sf-benefit-text">
-                    <div>
-                        <span class="sf-kicker">Verschaffe dir einen Überblick</span>
-                        <h3>Erhalte Lernzettel in Sekunden</h3>
-                    </div>
-                    <p>Lass Max Zusammenfassungen für dich erstellen, die perfekt zu deinem Lernstil passen.</p>
-                    <a class="sf-primary-button" href="https://duck.tutor.new">Lernzettel erstellen</a>
-                </div>
-                <div class="sf-visual" role="img" aria-label="Lernzettel erstellen">
-                    <div class="sf-device">
-                        <div class="sf-device-top"><span class="sf-dot"></span><span class="sf-dot"></span><span class="sf-dot"></span></div>
-                        <div class="sf-wide-card"><span class="sf-line accent"></span><span class="sf-line"></span><span class="sf-line medium"></span><span class="sf-line short"></span></div>
-                        <div class="sf-chip-row"><span class="sf-chip">Zusammenfassung</span><span class="sf-chip">Kapitel</span><span class="sf-chip">Merken</span></div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="sf-benefit">
-                <div class="sf-benefit-text">
-                    <div>
-                        <span class="sf-kicker">Frag Max alles</span>
-                        <h3>Hol dir sofort Erklärungen von deinem Lernbuddy Max</h3>
-                    </div>
-                    <p>Etwas nicht verstanden? Kein Problem, Max ist da und hilft dir!</p>
-                    <a class="sf-primary-button" href="https://duck.tutor.new">Lerne mit Max</a>
-                </div>
-                <div class="sf-visual" role="img" aria-label="Mit Max lernen">
-                    <div class="sf-device">
-                        <div class="sf-wide-card"><span class="sf-line medium"></span><span class="sf-line short"></span></div>
-                        <div class="sf-wide-card"><span class="sf-line accent"></span><span class="sf-line"></span><span class="sf-line medium"></span></div>
-                        <div class="sf-chip-row"><span class="sf-chip">Warum?</span><span class="sf-chip">Beispiel</span><span class="sf-chip">Nochmal</span></div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="sf-benefit">
-                <div class="sf-benefit-text">
-                    <div>
-                        <span class="sf-kicker">Merke dir mehr</span>
-                        <h3>Präg dir die Inhalte mühelos mit Karteikarten ein</h3>
-                    </div>
-                    <p>Max erinnert dich daran, was du wann wiederholen solltest - so vergisst du nichts mehr.</p>
-                    <a class="sf-primary-button" href="https://duck.tutor.new">Karteikarten erstellen</a>
-                </div>
-                <div class="sf-visual" role="img" aria-label="Karteikarten">
-                    <div class="sf-device">
-                        <div class="sf-ui-grid">
-                            <div class="sf-mini-card"><span class="sf-line accent"></span><span class="sf-line short"></span></div>
-                            <div class="sf-mini-card"><span class="sf-line"></span><span class="sf-line medium"></span></div>
-                            <div class="sf-mini-card"><span class="sf-line"></span><span class="sf-line short"></span></div>
-                            <div class="sf-mini-card"><span class="sf-line accent"></span><span class="sf-line medium"></span></div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="sf-benefit">
-                <div class="sf-benefit-text">
-                    <div>
-                        <span class="sf-kicker">Teste dich selbst</span>
-                        <h3>Mache ein Quiz und teste dein Wissen</h3>
-                    </div>
-                    <p>Lass Max dich mit interaktiven Quizzen testen, finde Lücken und stelle sicher, dass du alles verstehst.</p>
-                    <a class="sf-primary-button" href="https://duck.tutor.new">Quiz erstellen</a>
-                </div>
-                <div class="sf-visual" role="img" aria-label="Quiz erstellen">
-                    <div class="sf-device">
-                        <div class="sf-wide-card"><span class="sf-line accent"></span><span class="sf-line"></span></div>
-                        <div class="sf-chip-row"><span class="sf-chip">A</span><span class="sf-chip">B</span><span class="sf-chip">C</span></div>
-                        <div class="sf-wide-card"><span class="sf-line medium"></span><span class="sf-line short"></span></div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="sf-benefit">
-                <div class="sf-benefit-text">
-                    <div>
-                        <span class="sf-kicker">Werde prüfungsreif</span>
-                        <h3>Absolviere realistische Übungsklausuren</h3>
-                    </div>
-                    <p>Simuliere echte Prüfungsbedingungen mit Zeitlimit, sofortiger Auswertung und detailliertem Feedback zu jeder Frage.</p>
-                    <a class="sf-primary-button" href="https://duck.tutor.new">Übungsklausur erstellen</a>
-                </div>
-                <div class="sf-visual" role="img" aria-label="Übungsklausur">
-                    <div class="sf-device">
-                        <div class="sf-device-top"><span class="sf-dot"></span><span class="sf-dot"></span><span class="sf-dot"></span></div>
-                        <div class="sf-wide-card"><span class="sf-line accent"></span><span class="sf-line"></span><span class="sf-line medium"></span></div>
-                        <div class="sf-chip-row"><span class="sf-chip">45:00</span><span class="sf-chip">Feedback</span><span class="sf-chip">Punkte</span></div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
-</main>
-
-<script>
-    (() => {
-        const voices = [
-            [8, 12, 17, 23, 16, 9, 7, 11, 28, 45, 22, 8, 13, 6, 10, 36, 52, 41, 9, 7, 13, 24, 31, 18, 10, 16, 7],
-            [7, 9, 14, 20, 31, 18, 8, 6, 12, 24, 39, 55, 26, 10, 7, 13, 22, 18, 7, 9, 35, 48, 29, 13, 8, 15, 6],
-            [6, 11, 19, 27, 15, 8, 6, 10, 14, 22, 11, 7, 34, 50, 38, 12, 8, 6, 18, 30, 21, 9, 14, 8, 5, 11, 7],
-            [9, 13, 18, 28, 17, 10, 6, 8, 21, 36, 49, 31, 12, 7, 11, 16, 12, 8, 25, 43, 56, 34, 14, 9, 17, 12, 6]
-        ];
-        document.querySelectorAll('.sf-chat').forEach((chat, chatIndex) => {
-            if (chat.querySelector('.sf-voice-wave')) return;
-
-            const wave = document.createElement('span');
-            wave.className = 'sf-voice-wave';
-            wave.setAttribute('aria-hidden', 'true');
-
-            const heights = voices[chatIndex % voices.length];
-            heights.forEach((height, index) => {
-                const bar = document.createElement('span');
-                bar.style.setProperty('--voice-height', String(height));
-                bar.style.setProperty('--voice-delay', String((index * 0.061 + chatIndex * 0.137) % 1.05));
-                bar.style.setProperty('--voice-duration', `${0.58 + ((index * 7 + chatIndex * 3) % 9) * 0.055}s`);
-                wave.appendChild(bar);
-            });
-
-            chat.appendChild(wave);
-        });
-    })();
-
-    (() => {
-        const canvas = document.querySelector('.sf-canvas-editor');
-        if (!canvas) return;
-
-        const cycleMs = 48000;
-        const animationLeadMs = 2550;
-        let lastTarget = -1;
-
-        const targetForProgress = (progress) => {
-            if (progress >= 0.98) return 0;
-            if (progress >= 0.92) return 315;
-            if (progress >= 0.86) return 245;
-            if (progress >= 0.68) return 108;
-            if (progress >= 0.47) return 42;
-            return 0;
-        };
-
-        const tick = () => {
-            const progress = ((performance.now() + animationLeadMs) % cycleMs) / cycleMs;
-            const target = targetForProgress(progress);
-
-            if (target !== lastTarget) {
-                canvas.scrollTo({ top: target, behavior: target === 0 ? 'auto' : 'smooth' });
-                lastTarget = target;
+pageScripts: |
+    function toggleMenu() {
+        // Check if we're on mobile
+        const isMobile = window.innerWidth <= 480;
+        
+        if (isMobile) {
+            // Toggle mobile overlay
+            const mobileOverlay = document.getElementById('mobileMenuOverlay');
+            mobileOverlay.classList.toggle('active');
+        } else {
+            // Toggle desktop menu
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+    }
+    
+    // Scroll animation for steps
+    function handleStepScroll() {
+        const steps = document.querySelectorAll('.step');
+        const wrapper = document.querySelector('.steps-flow-wrapper');
+        const mainButton = document.querySelector('.cta-button-main');
+        const windowHeight = window.innerHeight;
+        const triggerPoint = windowHeight * 0.75;
+        
+        steps.forEach((step, index) => {
+            const rect = step.getBoundingClientRect();
+            const stepMiddle = rect.top + (rect.height / 2);
+            
+            // Circle animation - activate when step reaches lower in viewport
+            if (stepMiddle < windowHeight * 0.85) {
+                step.classList.add('active');
+            } else {
+                step.classList.remove('active');
             }
+        });
 
-            window.requestAnimationFrame(tick);
-        };
+        // Total wrapper line progress
+        if (wrapper) {
+            const rect = wrapper.getBoundingClientRect();
+            const stepTop = rect.top;
+            const stepBottom = rect.bottom;
+            const stepHeight = rect.height;
+            let progress = 0;
+            
+            if (stepBottom < triggerPoint) {
+                progress = 100;
+                wrapper.classList.add('complete');
+            } else if (stepTop < triggerPoint) {
+                const scrolledAmount = triggerPoint - stepTop;
+                progress = Math.min(100, Math.max(0, (scrolledAmount / stepHeight) * 100));
+                wrapper.classList.remove('complete');
+            } else {
+                wrapper.classList.remove('complete');
+            }
+            wrapper.style.setProperty('--total-line-progress', progress + '%');
+        }
 
-        tick();
-    })();
-</script>
+        // Button fill progress
+        if (mainButton) {
+            const rect = mainButton.getBoundingClientRect();
+            const stepTop = rect.top;
+            const stepBottom = rect.bottom;
+            const stepHeight = rect.height;
+            let progress = 0;
+            
+            if (stepBottom < triggerPoint) {
+                progress = 100;
+            } else if (stepTop < triggerPoint) {
+                const scrolledAmount = triggerPoint - stepTop;
+                progress = Math.min(100, Math.max(0, (scrolledAmount / stepHeight) * 100));
+            }
+            mainButton.style.setProperty('--fill-progress', progress + '%');
+        }
+    }
+    
+    // Run on scroll and on load
+    window.addEventListener('scroll', handleStepScroll);
+    window.addEventListener('load', handleStepScroll);
+scripts:
+  - /common.js
+  - /i18n.js
+---
 
-<footer class="sf-footer">
-    <h2 class="sr-only">Fußzeile</h2>
-    <div class="sf-footer-inner">
-        <div class="sf-footer-brand">
-            <div class="sf-footer-logo">
-                <span class="sf-logo-mark">t</span>
-                <span class="sf-logo-name">tutor.new</span>
-            </div>
-            <p>© tutor.new. Alle Rechte vorbehalten.</p>
-            <div class="sf-socials">
-                <a href="#" aria-label="Instagram">IG</a>
-                <a href="#" aria-label="TikTok">TT</a>
-                <a href="#" aria-label="LinkedIn">in</a>
+<section class="hero">
+    <h1><span data-i18n="hero_title_pre">Personalisierte</span> <span class="highlight-box" data-i18n="hero_title_highlight">KI-Nachhilfe,</span> <span data-i18n="hero_subtitle_pre"></span><span class="highlight-underline" data-i18n="hero_subtitle_highlight">schöne Mitschrift</span><span data-i18n="hero_subtitle_post">.</span></h1>
+</section>
+
+<div class="visual-placeholder" style="margin-bottom: 1.5rem;">
+    <img src="{{ '/lesson_physics.png' | url }}" alt="Beispiel einer Lerneinheit mit Notizen">
+</div>
+
+<div class="hero-cta-row">
+    <a href="https://duck.tutor.new" class="cta-button-secondary" data-i18n="cta_button_secondary">→ Kostenlos testen</a>
+    <a href="{{ '/schools.html' | url }}" class="cta-button-tertiary" data-i18n="cta_button_teachers">Infos für Schulen</a>
+</div>
+
+<div class="steps-flow-wrapper">
+    <section class="steps-container">
+        <div class="step" data-step-number="1">
+            <span class="step-heading" data-i18n="step_1_heading">Starte, wo du es brauchst</span>
+            <div class="step-content" data-i18n="step_1_content">
+                Lade ein Foto vom Arbeitsblatt hoch oder sag der KI, was du nicht verstehst. Wir helfen dir genau da, wo du gerade hängst.
             </div>
         </div>
-        <div class="sf-footer-cols">
-            <div class="sf-footer-col">
-                <h3>tutor.new</h3>
-                <ul>
-                    <li><a href="https://duck.tutor.new">Starten</a></li>
-                    <li><a href="{{ '/schools.html' | url }}">Schools</a></li>
-                </ul>
+        
+        <div class="step" data-step-number="2">
+            <span class="step-heading" data-i18n="step_2_heading">Lern mit deinem KI-Tutor</span>
+            <div class="step-content" data-i18n="step_2_content">
+                Du sprichst im (Voice-)Chat mit der KI. Sie erklärt geduldig, stellt Rückfragen und passt sich deinem Tempo an — mit Live-Mitschriften, automatischen Übungen und Karteikarten.
             </div>
-            <div class="sf-footer-col">
-                <h3>Unternehmen</h3>
-                <ul>
-                    <li><a href="{{ '/ueber-uns.html' | url }}">Über uns</a></li>
-                    <li><a href="{{ '/faq.html' | url }}">FAQ</a></li>
-                </ul>
+        </div>
+
+        <div class="step" data-step-number="3">
+            <span class="step-heading" data-i18n="step_3_heading">Spielerisch dranbleiben</span>
+            <div class="step-content" data-i18n="step_3_content">
+                Punkte und kleine Auszeichnungen für regelmäßigen Lernfortschritt halten die Motivation hoch — auch wenn es mal schwerfällt.
             </div>
-            <div class="sf-footer-col">
-                <h3>Rechtliches</h3>
-                <ul>
-                    <li><a href="{{ '/impressum-agb.html' | url }}">Impressum</a></li>
-                    <li><a href="{{ '/terms.html' | url }}">Nutzungsbedingungen</a></li>
-                    <li><a href="{{ '/privacy/' | url }}">Datenschutz</a></li>
-                </ul>
+        </div>
+    </section>
+
+    <div class="steps-cta-container">
+        <a href="https://duck.tutor.new" class="cta-button-main" data-i18n="cta_start_now">Jetzt starten</a>
+        <a href="{{ '/didaktik.html' | url }}" class="cta-button-rewards" data-i18n="cta_didactics_learn_more">Mehr zur Didaktik</a>
+    </div>
+</div>
+
+<section class="why-works-section">
+    <h2 class="examples-title" data-i18n="why_works_title">Warum es funktioniert</h2>
+    <div class="why-works-grid">
+        <!-- Didactics -->
+        <div class="why-col">
+            <h3 data-i18n="why_didactics_title">Didaktik</h3>
+            <p data-i18n="why_didactics_text">Durch einen personalisierten Tutor, interaktive Visualisierungen sowie automatische Mitschriften und Quizze lernt es sich leichter und effektiver.</p>
+            <a href="{{ '/didaktik.html' | url }}" class="why-learn-more" data-i18n="why_learn_more">Mehr erfahren</a>
+        </div>
+        <!-- Motivation -->
+        <div class="why-col">
+            <h3 data-i18n="why_motivation_title">Motivation</h3>
+            <p data-i18n="why_motivation_text">Kleine spielerische Anreize und sichtbare Fortschritte helfen, regelmäßig dranzubleiben — der wichtigste Faktor für nachhaltigen Lernerfolg.</p>
+            <a href="{{ '/rewards.html' | url }}" class="why-learn-more" data-i18n="why_learn_more">Mehr erfahren</a>
+        </div>
+    </div>
+</section>
+
+<section class="teacher-spotlight">
+    <span class="label" data-i18n="teacher_label">Für Lehrkräfte</span>
+    <h2 data-i18n="teacher_title">Individuelle Förderung — auch bei 25 Schülern</h2>
+    <p class="lead" data-i18n="teacher_lead">tutor.new lässt sich als ergänzendes Angebot in Schule und Hausaufgabenbetreuung einsetzen. Jeder Schüler arbeitet mit einem geduldigen KI-Tutor in seinem Tempo am eigenen Stoff — Sie behalten den Überblick.</p>
+    <div class="teacher-points">
+        <div class="teacher-point">
+            <strong data-i18n="teacher_point_1_title">Differenzierung leicht gemacht</strong>
+            <span data-i18n="teacher_point_1_text">Schwächere Schüler bekommen mehr Zeit und Erklärungen, stärkere weiterführende Aufgaben — automatisch.</span>
+        </div>
+        <div class="teacher-point">
+            <strong data-i18n="teacher_point_2_title">Mit Ihrem Material</strong>
+            <span data-i18n="teacher_point_2_text">Arbeitsblätter, Schulbuchseiten oder Prüfungen hochladen — der Tutor unterrichtet direkt mit Ihrem Stoff.</span>
+        </div>
+        <div class="teacher-point">
+            <strong data-i18n="teacher_point_3_title">Mit Lehrkräften entwickelt</strong>
+            <span data-i18n="teacher_point_3_text">Mitgestaltet von erfahrenen Lehrerinnen und Lehrern, basierend auf aktueller Bildungsforschung.</span>
+        </div>
+    </div>
+    <div class="teacher-cta-row">
+        <a href="mailto:friedrich@tutor.new?subject=Pilotprojekt%20an%20unserer%20Schule" class="teacher-cta-primary" data-i18n="teacher_cta_primary">Pilotprojekt anfragen</a>
+        <a href="{{ '/schools.html' | url }}" class="teacher-cta-secondary" data-i18n="teacher_cta_secondary">Mehr für Schulen</a>
+    </div>
+</section>
+
+<section class="examples-section">
+    <div class="examples-title" data-i18n="examples_title">Wem hilft das?</div>
+    <div class="examples-grid">
+        <a href="{{ '/students.html' | url }}" class="example-item">
+            <span class="bullet">🎓</span>
+            <h3 data-i18n="example_1_text">Für Schüler</h3>
+        </a>
+        <a href="{{ '/parents.html' | url }}" class="example-item">
+            <span class="bullet">👨‍👩‍👧‍👦</span>
+            <h3 data-i18n="example_2_text">Für Eltern</h3>
+        </a>
+        <a href="{{ '/schools.html' | url }}" class="example-item">
+            <span class="bullet">🏫</span>
+            <h3 data-i18n="example_3_text">Für Schulen & Lehrer</h3>
+        </a>
+        <a href="{{ '/uni.html' | url }}" class="example-item">
+            <span class="bullet">🏢</span>
+            <h3 data-i18n="example_4_text">Uni & Ausbildung</h3>
+        </a>
+        <a href="{{ '/lifelong-learning.html' | url }}" class="example-item">
+            <span class="bullet">🌍</span>
+            <h3 data-i18n="example_5_text">Lebenslanges Lernen</h3>
+        </a>
+        <a href="{{ '/languages.html' | url }}" class="example-item">
+            <span class="bullet">🗣️</span>
+            <h3 data-i18n="example_6_text">Sprachen lernen</h3>
+        </a>
+    </div>
+</section>
+
+<section class="pricing">
+    <h2 class="examples-title" data-i18n="pricing_preview_title">Wähle das passende Paket</h2>
+    <div class="pricing-preview-grid">
+        <!-- Prepaid -->
+        <div class="pricing-card">
+            <div>
+                <h3 data-i18n="plan_prepaid_title">Prepaid</h3>
+                <p data-i18n="plan_prepaid_desc">Volle Flexibilität</p>
+            </div>
+            <div class="price-container">
+                <div class="price-from" data-i18n="pricing_from">ab</div>
+                <div class="price-value" data-i18n="plan_prepaid_price">4€ / Stunde</div>
+            </div>
+        </div>
+        <!-- Standard -->
+        <div class="pricing-card">
+            <div>
+                <h3 data-i18n="plan_standard_title">Standard Abo</h3>
+                <p data-i18n="plan_standard_desc">Wöchentliche Stunden<br>Super Preis</p>
+            </div>
+            <div class="price-container">
+                <div class="price-from" data-i18n="pricing_from">ab</div>
+                <div class="price-value" data-i18n="plan_standard_price">2.99€ / Woche</div>
+            </div>
+        </div>
+        <!-- Boost -->
+        <div class="pricing-card">
+            <div>
+                <h3 data-i18n="plan_boost_title">Boost Abo</h3>
+                <p data-i18n="plan_boost_desc">Bessere Belohnungen &<br>Höchste Motivation</p>
+            </div>
+            <div class="price-container">
+                <div class="price-from" data-i18n="pricing_from">ab</div>
+                <div class="price-value" data-i18n="plan_boost_price">8.99€ / Woche</div>
             </div>
         </div>
     </div>
-</footer>
+    <a href="{{ '/pricing.html' | url }}" class="pricing-preview-cta" data-i18n="pricing_preview_cta">Alle Preise & Details ansehen →</a>
+</section>
+
+<section class="homepage-about">
+    <h2 class="examples-title" data-i18n="homepage_about_title">Über uns</h2>
+    <div style="max-width: 650px; margin: 0 auto 2.5rem auto; text-align: left;">
+        <p style="font-size: 1.2rem; margin-bottom: 1.5rem;" data-i18n="homepage_about_founders">Wir sind Gero und Friedrich, Mathematiker und Informatiker in Zürich. Mit tutor.new wollen wir Software nutzen, um jedem Schüler, unabhängig von seinem Hintergrund, eine qualitativ hochwertige, personalisierte Bildung zugänglich zu machen.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+            <a href="{{ '/ueber-uns.html' | url }}" class="nav-link link-about" data-i18n="homepage_about_learn_more" style="font-size: 1.2rem; flex: 1; text-align: center; min-width: 140px;">Mehr erfahren</a>
+            <a href="mailto:friedrich@tutor.new" class="nav-link link-legal" data-i18n="homepage_about_contact" style="font-size: 1.2rem; flex: 1; text-align: center; min-width: 140px;">E-Mail senden</a>
+        </div>
+    </div>
+    
+    <p style="font-size: 1rem; opacity: 0.8;" data-i18n="homepage_about_media">Über unsere Vision wurde bereits in führenden Medien berichtet:</p>
+    <div class="media-grid">
+        <a href="https://www.20min.ch/story/eth-studenten-ki-nachhilfe-fuer-2-franken-pro-stunde-103281970" target="_blank">
+            <img src="{{ '/media-outlets/20Minuten.svg' | url }}" alt="20 Minuten">
+        </a>
+        <a href="https://www.tagesanzeiger.ch/ki-nachhilfe-fuer-3-franken-revolutioniert-bildung-382172844340" target="_blank">
+            <img src="{{ '/media-outlets/Tagesanzeiger.svg' | url }}" alt="Tagesanzeiger">
+        </a>
+        <a href="https://www.aargauerzeitung.ch/leben/bildung-ein-roboter-als-nachhilfelehrerin-wie-eine-ki-kindern-das-rechnen-beibringt-ld.2761331" target="_blank">
+            <img src="{{ '/media-outlets/AargauerZeitung.svg' | url }}" alt="Aargauer Zeitung">
+        </a>
+        <a href="https://www.abendzeitung-muenchen.de/muenchen/muenchner-revolutioniert-nachhilfe-kuenstliche-intelligenz-statt-teurem-lehrer-art-1045999" target="_blank">
+            <img src="{{ '/media-outlets/Abendzeitung.svg' | url }}" alt="Abendzeitung">
+        </a>
+        <a href="https://www.tz.de/muenchen/stadt/muenchen-kuenstliche-intelligenz-erteilt-schuelern-nachhilfe-93702437.html" target="_blank">
+            <img src="{{ '/media-outlets/TZ.svg' | url }}" alt="TZ">
+        </a>
+        <a href="https://www.bluewin.ch/de/digital/ai-news/wie-zwei-eth-studenten-den-nachhilfe-unterricht-mit-ki-revolutionieren-2625497.html" target="_blank">
+            <img src="{{ '/media-outlets/BlueNews.webp' | url }}" alt="BlueNews">
+        </a>
+    </div>
+</section>

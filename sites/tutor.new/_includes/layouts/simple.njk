@@ -1,11 +1,6 @@
 {% extends "layouts/base.njk" %}
 
 {% block header %}
-<header class="simple-header">
-    <a class="brand-link" href="{{ '/index.html' | url }}" aria-label="tutor.new home">
-        <span class="brand-mark">t</span>
-        <span class="brand-name">tutor.new</span>
-    </a>
-    <a href="{{ '/index.html' | url }}" class="back-link" data-i18n="nav_back">Zurück zur Startseite</a>
-</header>
+<header><a href="{{ '/index.html' | url }}" data-i18n="nav_back">← Zurück zur Startseite</a></header>
 {% endblock %}
+
