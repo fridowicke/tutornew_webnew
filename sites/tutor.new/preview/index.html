@@ -1279,6 +1279,8 @@ scripts: []
             window.sfMayaSpeaking = (who === 'tutor');
             const speakMs = Math.min(900 + text.length * 24, 2400);
             if (who === 'tutor' && window.sfSpeak) window.sfSpeak(text, speakMs);
+            if (who === 'tutor' && window.sfSmile && /Genau|Richtig|Stark|Parfait|Klar/.test(text)) window.sfSmile();
+            if (who === 'tutor' && window.sfBrows && text.indexOf('?') >= 0) window.sfBrows();
             await sleep(speakMs);
             window.sfMayaSpeaking = false;
             row.classList.remove('is-speaking');
@@ -1699,7 +1701,10 @@ scripts: []
         };
 
         let blinkUntil = 0, nextBlink = performance.now() + 1500;
-        let writeAmt = 0;
+        let writeAmt = 0, lastWriting = -1e9, prevDown = 0;
+        let smileUntil = 0, smileAmt = 0, browsUntil = 0, browAmt = 0;
+        window.sfSmile = () => { smileUntil = performance.now() + 1900; };
+        window.sfBrows = () => { browsUntil = performance.now() + 1300; };
         const tick = () => {
             const now = performance.now();
             const t = now / 1000;
@@ -1739,9 +1744,28 @@ scripts: []
             setMorph('eyeBlinkLeft', blink);
             setMorph('eyeBlinkRight', blink);
 
-            const writing = window.sfMayaWriting === true;
-            writeAmt += ((writing ? 1 : 0) - writeAmt) * 0.07;
+            // Look down while writing; short pauses between writes keep her down,
+            // and she lingers a moment before looking back up.
+            const writingNow = window.sfMayaWriting === true;
+            if (writingNow) lastWriting = now;
+            const down = (writingNow || now - lastWriting < 1600) ? 1 : 0;
+            writeAmt += (down - writeAmt) * (down === 1 ? 0.08 : 0.04);
+            if (prevDown === 1 && down === 0) smileUntil = Math.max(smileUntil, now + 1400);
+            prevDown = down;
             setMorph('eyesLookDown', writeAmt * 0.6);
+
+            // Micro-expressions: brief smile (praise, or after finishing a note),
+            // raised brows on questions.
+            const smiling = now < smileUntil;
+            smileAmt += ((smiling ? 1 : 0) - smileAmt) * (smiling ? 0.12 : 0.05);
+            target.mouthSmile = 0.16 + smileAmt * 0.42;
+            setMorph('eyeSquintLeft', smileAmt * 0.28);
+            setMorph('eyeSquintRight', smileAmt * 0.28);
+            const brows = now < browsUntil;
+            browAmt += ((brows ? 1 : 0) - browAmt) * 0.12;
+            setMorph('browInnerUp', browAmt * 0.4);
+            setMorph('browOuterUpLeft', browAmt * 0.28);
+            setMorph('browOuterUpRight', browAmt * 0.28);
 
             if (headBone !== null) {
                 headBone.rotation.y = 0.07 * Math.sin(t * 0.55) + (speaking ? 0.02 * Math.sin(t * 3.1) : 0);
