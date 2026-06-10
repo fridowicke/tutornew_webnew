@@ -66,19 +66,19 @@ img {
 }
 
 .q-wrap {
-    width: min(1140px, calc(100% - 48px));
+    width: min(1000px, calc(100% - 48px));
     margin: 0 auto;
 }
 
 /* ---------- Navigation ---------- */
 
 .q-header {
-    position: sticky \!important;
+    position: sticky !important;
     top: 0;
     z-index: 60;
-    display: block \!important;
-    margin: 0 \!important;
-    padding: 0 \!important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
     background: rgba(249, 241, 232, .94);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -89,25 +89,26 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
-    height: 62px;
+    gap: 20px;
+    min-height: 56px;
+    padding: 7px 0;
 }
 
 .q-logo {
     display: inline-flex;
     align-items: center;
-    gap: 11px;
+    gap: 9px;
     flex: 0 0 auto;
     color: var(--q-green);
     font-family: var(--q-display);
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 700;
 }
 
 .q-logo img {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
     border: 2px solid var(--q-green);
 }
 
@@ -152,11 +153,11 @@ img {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    min-height: 46px;
-    padding: 0 22px;
-    border-radius: 14px;
+    min-height: 40px;
+    padding: 0 17px;
+    border-radius: 12px;
     font-family: var(--q-display);
-    font-size: 15.5px !important;
+    font-size: 14px !important;
     font-weight: 600 !important;
     letter-spacing: .01em;
     white-space: nowrap;
@@ -175,7 +176,7 @@ img {
 .q-btn-primary {
     background: var(--q-green) !important;
     color: #fff !important;
-    box-shadow: 0 4px 0 rgba(14, 51, 34, .28);
+    box-shadow: 0 3px 0 rgba(14, 51, 34, .28);
 }
 
 .q-btn-primary:hover {
@@ -186,7 +187,7 @@ img {
 .q-btn-ghost {
     background: #fff !important;
     color: var(--q-green) !important;
-    box-shadow: 0 4px 0 rgba(14, 51, 34, .12);
+    box-shadow: 0 3px 0 rgba(14, 51, 34, .12);
 }
 
 .q-btn-cream {
@@ -217,7 +218,7 @@ img {
 h1.q-h1 {
     margin: 0 !important;
     font-family: var(--q-display) !important;
-    font-size: clamp(38px, 4.8vw, 58px) !important;
+    font-size: clamp(30px, 3.6vw, 42px) !important;
     font-weight: 700 !important;
     line-height: 1.06 !important;
     letter-spacing: 0 !important;
@@ -228,7 +229,7 @@ h1.q-h1 {
 .q-h2 {
     margin: 0 !important;
     font-family: var(--q-display) !important;
-    font-size: clamp(28px, 3.3vw, 42px) !important;
+    font-size: clamp(23px, 2.6vw, 32px) !important;
     font-weight: 700 !important;
     line-height: 1.12 !important;
     color: var(--q-green) !important;
@@ -237,7 +238,7 @@ h1.q-h1 {
 .q-h3 {
     margin: 0 !important;
     font-family: var(--q-display) !important;
-    font-size: clamp(22px, 2.3vw, 29px) !important;
+    font-size: clamp(18px, 1.9vw, 23px) !important;
     font-weight: 600 !important;
     line-height: 1.2 !important;
     color: var(--q-green) !important;
@@ -246,7 +247,7 @@ h1.q-h1 {
 .q-lead {
     margin: 0;
     color: var(--q-body);
-    font-size: 17.5px;
+    font-size: 15.5px;
     line-height: 1.65;
 }
 
@@ -1140,7 +1141,7 @@ h1.q-h1 {
 .q-footer {
     background: var(--q-green);
     color: rgba(249, 241, 232, .8);
-    padding: 64px 0 52px;
+    padding: 44px 0 38px;
 }
 
 .q-footer-inner {
@@ -1158,7 +1159,7 @@ h1.q-h1 {
 }
 
 .q-footer .q-logo {
-    color: #fff \!important;
+    color: #fff !important;
     font-size: 17px;
     gap: 9px;
 }
@@ -1254,7 +1255,7 @@ h1.q-h1 {
     .q-nav .q-btn {
         min-height: 42px;
         padding: 0 16px;
-        font-size: 14px \!important;
+        font-size: 14px !important;
     }
 
     .q-hero {

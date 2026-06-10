@@ -54,7 +54,7 @@ scripts: []
     /* ---------- The app window: chat docked to the Lernblatt ---------- */
 
     .sf-app {
-        width: min(1020px, 100%);
+        width: min(920px, 100%);
         margin: 0 auto;
         border-radius: 18px;
         background: #fff;
@@ -91,7 +91,7 @@ scripts: []
         display: grid;
         grid-template-columns: 272px minmax(0, 1fr);
         grid-template-rows: 100%;
-        height: 400px;
+        height: 380px;
     }
 
     /* ---------- Chat panel ---------- */
@@ -841,7 +841,7 @@ scripts: []
         }
 
         .q-hero-top .q-h1 {
-            font-size: 27px \!important;
+            font-size: 27px !important;
         }
 
         .q-hero-below {
@@ -1394,7 +1394,7 @@ scripts: []
 
             await say('tutor', 'Mini-Übung für dich: Schau mal auf die gestrichelte Gerade.');
             await gap(450);
-            await scrollCanvas(S(125, 150));
+            await scrollCanvas(S(140, 150));
             await write('exercise', [418, 210]);
             await gap(1300);
 
@@ -1402,7 +1402,7 @@ scripts: []
             await gap();
             await say('tutor', 'Stark, genau so!');
             await gap(450);
-            await scrollCanvas(S(235, 260));
+            await scrollCanvas(S(250, 260));
             await write('merke', [528, 160]);
             await sleep(2800);
         };
@@ -1437,7 +1437,7 @@ scripts: []
             await gap();
             await say('tutor', 'Parfait, genau so!');
             await gap(450);
-            await scrollCanvas(S(85, 130));
+            await scrollCanvas(S(100, 130));
             await write('merke', [392, 160]);
             await sleep(2800);
         };
