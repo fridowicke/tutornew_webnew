@@ -990,12 +990,12 @@ scripts: []
                         <div class="sf-call" id="sf-call" aria-hidden="true">
                             <canvas id="sf-call-canvas"></canvas>
                             <img class="sf-call-fallback" src="{{ '/tutors/maya.png' | url }}" alt="">
-                            <span class="sf-call-pill">Maya<em id="sf-status">online</em></span>
+                            <span class="sf-call-pill">Maya</span>
                         </div>
                         <div class="sf-chat-log" id="sf-chat-log"></div>
                         <div class="sf-chat-input">
                             <span class="sf-mic">🎤</span>
-                            <span>Sprich oder schreib mit Maya …</span>
+                            <span>Sprich oder schreib …</span>
                         </div>
                     </aside>
 
@@ -1189,7 +1189,7 @@ scripts: []
     (() => {
         const app = document.getElementById('sf-app');
         const log = document.getElementById('sf-chat-log');
-        const status = document.getElementById('sf-status');
+        const status = document.getElementById('sf-status') ?? { textContent: '' };
         const scroller = document.getElementById('sf-scroller');
         const docTitle = document.getElementById('sf-doc-title');
         const mayaSrc = "/tutors/maya.png";
@@ -1599,7 +1599,7 @@ scripts: []
 
         // Camera framing. Open the page with ?tune for live sliders,
         // then report the values back to bake them in here.
-        const camParams = { y: 0.05, z: 0.85, ly: -0.01, fov: 26 };
+        const camParams = { y: -0.015, z: 0.84, ly: 0.06, fov: 28 };
         const applyCam = () => {
             cam.position.set(headPos.x, headPos.y + camParams.y, headPos.z + camParams.z);
             cam.fov = camParams.fov;
