@@ -104,44 +104,71 @@ scripts: []
         min-width: 0;
     }
 
-    .sf-chat-top {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 14px;
+    /* Video-call tile: Maya as a (muted) talking head */
+
+    .sf-call {
+        position: relative;
+        flex: 0 0 auto;
+        height: 132px;
+        overflow: hidden;
         border-bottom: 1.5px solid var(--q-line);
+        background: linear-gradient(155deg, #cde9f6 0%, #e2efe4 55%, #f6ecdf 100%);
     }
 
-    .sf-chat-top .sf-ava {
-        width: 38px;
-        height: 38px;
+    .sf-call canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .sf-call-fallback {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 80px;
+        height: 80px;
+        transform: translate(-50%, -50%);
         border-radius: 999px;
         border: 2px solid var(--q-green);
         background: #fff;
         object-fit: contain;
-        flex: 0 0 auto;
+        transition: opacity .6s ease;
     }
 
-    .sf-chat-top strong {
-        display: block;
+    .sf-call.is-3d .sf-call-fallback {
+        opacity: 0;
+    }
+
+    .sf-call-pill {
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 11px;
+        border-radius: 999px;
+        background: rgba(255, 253, 249, .88);
+        border: 1px solid var(--q-line);
         font-family: var(--q-display);
-        font-size: 15px;
+        font-size: 12px;
         font-weight: 600;
         color: var(--q-green);
-        line-height: 1.15;
     }
 
-    .sf-chat-top em {
+    .sf-call-pill em {
         display: inline-flex;
         align-items: center;
         gap: 5px;
         font-style: normal;
-        font-size: 11px;
+        font-family: var(--q-font);
+        font-size: 10.5px;
         font-weight: 600;
         color: #8a9388;
     }
 
-    .sf-chat-top em::before {
+    .sf-call-pill em::before {
         content: "";
         width: 6px;
         height: 6px;
@@ -881,7 +908,7 @@ scripts: []
             background: transparent;
         }
 
-        .sf-chat-top {
+        .sf-call {
             display: none;
         }
 
@@ -960,12 +987,10 @@ scripts: []
                 </div>
                 <div class="sf-app-body">
                     <aside class="sf-chat-panel">
-                        <div class="sf-chat-top">
-                            <img class="sf-ava" src="{{ '/tutors/maya.png' | url }}" alt="">
-                            <div>
-                                <strong>Maya</strong>
-                                <em id="sf-status">online</em>
-                            </div>
+                        <div class="sf-call" id="sf-call" aria-hidden="true">
+                            <canvas id="sf-call-canvas"></canvas>
+                            <img class="sf-call-fallback" src="{{ '/tutors/maya.png' | url }}" alt="">
+                            <span class="sf-call-pill">Maya<em id="sf-status">online</em></span>
                         </div>
                         <div class="sf-chat-log" id="sf-chat-log"></div>
                         <div class="sf-chat-input">
@@ -1260,8 +1285,10 @@ scripts: []
 
             row.classList.add('is-speaking');
             status.textContent = who === 'tutor' ? 'spricht …' : 'hört zu …';
+            window.sfMayaSpeaking = (who === 'tutor');
             const speakMs = Math.min(900 + text.length * 24, 2400);
             await sleep(speakMs);
+            window.sfMayaSpeaking = false;
             row.classList.remove('is-speaking');
             row.classList.add('is-done');
             status.textContent = 'online';
@@ -1504,6 +1531,107 @@ scripts: []
             }
         })();
     })();
+</script>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+}
+</script>
+<script type="module">
+// Muted talking head: lazy-loaded on desktop after the page is idle.
+// Falls back silently to the static avatar on any failure.
+(async () => {
+    const tile = document.getElementById('sf-call');
+    const canvas = document.getElementById('sf-call-canvas');
+    if (tile === null || canvas === null) return;
+    if (window.innerWidth <= 720) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    if (document.readyState === 'complete') { /* already loaded */ }
+    else await new Promise(r => window.addEventListener('load', r, { once: true }));
+    await new Promise(r => setTimeout(r, 800));
+
+    try {
+        const THREE = await import('three');
+        const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+
+        const W = tile.clientWidth, H = tile.clientHeight;
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(W, H, false);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+        const scene = new THREE.Scene();
+        const cam = new THREE.PerspectiveCamera(26, W / H, 0.05, 10);
+        scene.add(new THREE.AmbientLight(0xffffff, 1.25));
+        const key = new THREE.DirectionalLight(0xffffff, 1.5);
+        key.position.set(0.5, 0.8, 1);
+        scene.add(key);
+
+        const gltf = await new Promise((res, rej) =>
+            new GLTFLoader().load('/quack/maya.glb', res, undefined, rej));
+        scene.add(gltf.scene);
+
+        let headBone = null;
+        const morphMeshes = [];
+        gltf.scene.traverse(o => {
+            if (o.isBone && o.name === 'Head') headBone = o;
+            if (o.morphTargetDictionary) morphMeshes.push(o);
+            o.frustumCulled = false;
+        });
+
+        gltf.scene.updateWorldMatrix(true, true);
+        const headPos = new THREE.Vector3();
+        (headBone === null ? gltf.scene : headBone).getWorldPosition(headPos);
+        cam.position.set(headPos.x, headPos.y + 0.03, headPos.z + 0.42);
+        cam.lookAt(headPos.x, headPos.y + 0.01, headPos.z);
+
+        const setMorph = (name, v) => morphMeshes.forEach(m => {
+            const i = m.morphTargetDictionary[name];
+            if (i !== undefined) m.morphTargetInfluences[i] = v;
+        });
+        setMorph('mouthSmile', 0.3);
+
+        let jaw = 0, blinkUntil = 0, nextBlink = performance.now() + 1500;
+        const tick = () => {
+            const now = performance.now();
+            const t = now / 1000;
+
+            const speaking = window.sfMayaSpeaking === true;
+            const target = speaking
+                ? Math.max(0, 0.16 + 0.18 * Math.abs(Math.sin(t * 9.3)) * (0.55 + 0.45 * Math.sin(t * 2.1)) + 0.05 * Math.sin(t * 14.7))
+                : 0;
+            jaw += (target - jaw) * 0.35;
+            setMorph('jawOpen', jaw);
+            setMorph('mouthFunnel', speaking ? 0.10 * Math.abs(Math.sin(t * 5.7)) : 0);
+
+            if (now > nextBlink) {
+                blinkUntil = now + 130;
+                nextBlink = now + 1800 + Math.random() * 3200;
+            }
+            const blink = now < blinkUntil ? 1 : 0;
+            setMorph('eyeBlinkLeft', blink);
+            setMorph('eyeBlinkRight', blink);
+
+            if (headBone !== null) {
+                headBone.rotation.y = 0.07 * Math.sin(t * 0.55) + (speaking ? 0.02 * Math.sin(t * 3.1) : 0);
+                headBone.rotation.x = 0.035 * Math.sin(t * 0.41);
+                headBone.rotation.z = 0.02 * Math.sin(t * 0.3);
+            }
+
+            renderer.render(scene, cam);
+            requestAnimationFrame(tick);
+        };
+        tick();
+        tile.classList.add('is-3d');
+    } catch (e) {
+        // static avatar stays in place
+    }
+})();
 </script>
 
 <footer class="q-footer">
