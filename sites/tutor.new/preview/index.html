@@ -373,6 +373,19 @@ scripts: []
         font-size: 12px;
     }
 
+    /* French session: softly blurred tricolore for Maya */
+
+    .sf-app.is-fr .sf-call {
+        background: linear-gradient(100deg,
+            #a9c6ee 0%, #cfdef4 30%, #f4f7fb 46%, #f8fafc 54%, #f5d3d6 72%, #f0aeb4 100%);
+    }
+
+    .sf-app.is-fr .sf-row--tutor .sf-bubble {
+        background: linear-gradient(100deg, #eaf1fa 0%, #fcfdfe 48%, #faeef0 100%);
+        border-color: #d9e3f1;
+        color: var(--q-green);
+    }
+
     /* ---------- Lernblatt canvas ---------- */
 
     .sf-canvas {
@@ -1477,6 +1490,7 @@ scripts: []
 
         const switchTo = (key) => {
             active = key;
+            app.classList.toggle('is-fr', key === 'fr');
             Object.entries(editors).forEach(([k, ed]) => ed.classList.toggle('is-active', k === key));
             docTitle.textContent = titles[key];
             scroller.scrollTop = 0;
