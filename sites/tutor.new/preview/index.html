@@ -136,6 +136,10 @@ scripts: []
         transition: opacity .6s ease;
     }
 
+    .sf-call-fallback.is-switching {
+        opacity: 0;
+    }
+
     .sf-call.is-3d .sf-call-fallback {
         opacity: 0;
     }
@@ -155,6 +159,12 @@ scripts: []
         font-size: 12px;
         font-weight: 600;
         color: var(--q-green);
+        transition: opacity .35s ease, transform .35s ease;
+    }
+
+    .sf-call-pill.is-switching {
+        opacity: 0;
+        transform: translateY(4px);
     }
 
     .sf-call-pill::before {
@@ -707,6 +717,7 @@ scripts: []
         font-family: var(--q-display);
         font-size: 17.5px;
         font-weight: 600;
+        line-height: 1.2;
         color: var(--q-green);
     }
 
@@ -731,20 +742,63 @@ scripts: []
 
     .q-mini-call {
         position: relative;
-        display: grid;
-        place-items: center;
-        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 142px;
+        padding: 12px 12px 42px;
         background: var(--q-green-soft);
         overflow: hidden;
     }
 
-    .q-mini-call img {
-        width: 58px;
-        height: 58px;
-        border-radius: 999px;
-        border: 2px solid var(--q-green);
-        background: #fff;
+    .q-mini-tutor-track {
+        position: relative;
+        width: min(100%, 320px);
+        height: 112px;
+    }
+
+    .q-mini-tutor-track img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 106px;
+        height: 106px;
         object-fit: contain;
+        transition: opacity 1.05s ease, transform 1.05s ease, filter 1.05s ease;
+        will-change: opacity, transform;
+    }
+
+    .q-mini-tutor-track img[data-pos="-2"] {
+        opacity: 0;
+        transform: translate(-205%, -50%) scale(.86);
+        z-index: 0;
+    }
+
+    .q-mini-tutor-track img[data-pos="-1"] {
+        opacity: .56;
+        filter: saturate(.86);
+        transform: translate(-126%, -50%) scale(.9);
+        z-index: 1;
+    }
+
+    .q-mini-tutor-track img[data-pos="0"] {
+        opacity: 1;
+        filter: drop-shadow(0 10px 16px rgba(14, 51, 34, .17));
+        transform: translate(-50%, -50%) scale(1);
+        z-index: 3;
+    }
+
+    .q-mini-tutor-track img[data-pos="1"] {
+        opacity: .56;
+        filter: saturate(.86);
+        transform: translate(26%, -50%) scale(.9);
+        z-index: 1;
+    }
+
+    .q-mini-tutor-track img[data-pos="2"] {
+        opacity: 0;
+        transform: translate(105%, -50%) scale(.86);
+        z-index: 0;
     }
 
     .q-call-live {
@@ -758,26 +812,47 @@ scripts: []
         font-size: 10px;
         font-weight: 800;
         letter-spacing: .03em;
+        z-index: 4;
     }
 
     .q-call-dots {
         position: absolute;
-        right: 8px;
-        bottom: 8px;
+        left: 50%;
+        bottom: 10px;
         display: flex;
-        gap: 5px;
+        gap: 8px;
+        transform: translateX(-50%);
+        z-index: 4;
     }
 
-    .q-call-dots i {
+    .q-call-control {
         display: grid;
         place-items: center;
-        width: 24px;
-        height: 24px;
+        width: 32px;
+        height: 32px;
         border-radius: 999px;
         background: #fff;
         border: 1px solid var(--q-line);
-        font-style: normal;
-        font-size: 11px;
+        box-shadow: 0 2px 0 rgba(14, 51, 34, .06);
+    }
+
+    .q-call-control svg {
+        width: 15px;
+        height: 15px;
+        stroke: var(--q-green);
+        stroke-width: 2.35;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+    }
+
+    .q-call-control.is-end {
+        background: var(--q-rose);
+        border-color: var(--q-rose);
+    }
+
+    .q-call-control.is-end svg {
+        stroke: #fff;
     }
 
     .q-exam {
@@ -805,9 +880,9 @@ scripts: []
         color: var(--q-green-mid);
     }
 
-    .q-mini-card span {
-        font-size: 14px;
-        line-height: 1.55;
+    .q-mini-card > span {
+        font-size: 13.5px;
+        line-height: 1.35;
     }
 
     /* ---------- School version (Zensi) ---------- */
@@ -1000,8 +1075,8 @@ scripts: []
                     <aside class="sf-chat-panel">
                         <div class="sf-call" id="sf-call" aria-hidden="true">
                             <canvas id="sf-call-canvas"></canvas>
-                            <img class="sf-call-fallback" src="{{ '/tutors/maya.png' | url }}" alt="">
-                            <span class="sf-call-pill">Maya</span>
+                            <img class="sf-call-fallback" id="sf-call-tutor-img" src="{{ '/tutors/maya.png' | url }}" alt="">
+                            <span class="sf-call-pill" id="sf-call-tutor-name">Maya</span>
                         </div>
                         <div class="sf-chat-log" id="sf-chat-log"></div>
                         <div class="sf-chat-input">
@@ -1154,11 +1229,39 @@ scripts: []
             <div class="q-mini-card">
                 <div class="q-mini-visual q-mini-call" aria-hidden="true">
                     <span class="q-call-live">LIVE</span>
-                    <img src="{{ '/tutors/maya.png' | url }}" alt="">
-                    <span class="q-call-dots"><i>🎤</i><i>📷</i></span>
+                    <div class="q-mini-tutor-track">
+                        <img data-mini-tutor="0" data-pos="0" src="{{ '/tutors/maya.png' | url }}" alt="">
+                        <img data-mini-tutor="1" data-pos="1" src="{{ '/tutors/alex.png' | url }}" alt="">
+                        <img data-mini-tutor="2" data-pos="2" src="{{ '/tutors/sophia.png' | url }}" alt="">
+                        <img data-mini-tutor="3" data-pos="-2" src="{{ '/tutors/steve.png' | url }}" alt="">
+                        <img data-mini-tutor="4" data-pos="-1" src="{{ '/tutors/anna.png' | url }}" alt="">
+                    </div>
+                    <span class="q-call-dots">
+                        <span class="q-call-control">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Z"></path>
+                                <path d="M19 11a7 7 0 0 1-14 0"></path>
+                                <path d="M12 18v3"></path>
+                                <path d="M8 21h8"></path>
+                            </svg>
+                        </span>
+                        <span class="q-call-control">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <rect x="4" y="6" width="11" height="12" rx="2"></rect>
+                                <path d="m15 10 5-3v10l-5-3"></path>
+                            </svg>
+                        </span>
+                        <span class="q-call-control is-end">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6.5 15.5c3.5-2.5 7.5-2.5 11 0"></path>
+                                <path d="M8.5 13.5 6 16"></path>
+                                <path d="m15.5 13.5 2.5 2.5"></path>
+                            </svg>
+                        </span>
+                    </span>
                 </div>
-                <strong>Videocall mit Maya</strong>
-                <span>Wie echte Nachhilfe, nur immer verfügbar.</span>
+                <strong>Videocall mit <span id="q-mini-tutor-name">Maya</span></strong>
+                <span>Mehrere Tutor:innen. Immer verfügbar.</span>
             </div>
             <div class="q-mini-card">
                 <div class="q-mini-visual q-exam" aria-hidden="true">
@@ -1195,6 +1298,61 @@ scripts: []
         </div>
     </section>
 </main>
+
+<script>
+    (() => {
+        const tutors = [
+            { name: 'Maya', img: "{{ '/tutors/maya.png' | url }}" },
+            { name: 'Alex', img: "{{ '/tutors/alex.png' | url }}" },
+            { name: 'Sophia', img: "{{ '/tutors/sophia.png' | url }}" },
+            { name: 'Steve', img: "{{ '/tutors/steve.png' | url }}" },
+            { name: 'Anna', img: "{{ '/tutors/anna.png' | url }}" }
+        ];
+        const names = [
+            document.getElementById('sf-call-tutor-name'),
+            document.getElementById('q-mini-tutor-name')
+        ].filter(Boolean);
+        const images = [
+            document.getElementById('sf-call-tutor-img')
+        ].filter(Boolean);
+        const miniImages = Array.from(document.querySelectorAll('[data-mini-tutor]'));
+
+        if (names.length === 0 && images.length === 0 && miniImages.length === 0) return;
+
+        let i = 0;
+        const setMiniCarousel = (activeIndex) => {
+            const half = Math.floor(tutors.length / 2);
+            miniImages.forEach(el => {
+                const index = Number(el.dataset.miniTutor);
+                let delta = index - activeIndex;
+                if (delta > half) delta -= tutors.length;
+                if (delta < -half) delta += tutors.length;
+                el.dataset.pos = String(delta);
+            });
+        };
+
+        const setTutor = (next) => {
+            names.forEach(el => el.classList.add('is-switching'));
+            images.forEach(el => el.classList.add('is-switching'));
+            setMiniCarousel(i);
+
+            window.setTimeout(() => {
+                names.forEach(el => { el.textContent = next.name; });
+                images.forEach(el => {
+                    el.src = next.img;
+                    el.alt = next.name;
+                });
+                names.forEach(el => el.classList.remove('is-switching'));
+                images.forEach(el => el.classList.remove('is-switching'));
+            }, 520);
+        };
+
+        window.setInterval(() => {
+            i = (i - 1 + tutors.length) % tutors.length;
+            setTutor(tutors[i]);
+        }, 4000);
+    })();
+</script>
 
 <script>
     (() => {
