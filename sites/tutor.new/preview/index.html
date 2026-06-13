@@ -1577,14 +1577,28 @@ scripts: []
             lipsync = new mod.LipsyncDe();
         } catch (e) { lipsync = null; }
 
-        const W = tile.clientWidth, H = tile.clientHeight;
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-        renderer.setSize(W, H, false);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        const renderer = new THREE.WebGLRenderer({
+            canvas,
+            alpha: true,
+            antialias: true,
+            powerPreference: 'high-performance'
+        });
+        const maxDpr = window.innerWidth >= 1280 ? 3 : 2.5;
+        const renderScale = 1.5;
+        const resizeRenderer = () => {
+            const W = Math.max(1, Math.round(tile.clientWidth * renderScale));
+            const H = Math.max(1, Math.round(tile.clientHeight * renderScale));
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxDpr));
+            renderer.setSize(W, H, false);
+            cam.aspect = W / H;
+            cam.updateProjectionMatrix();
+        };
         renderer.outputColorSpace = THREE.SRGBColorSpace;
+        if ('toneMapping' in renderer) renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        if ('toneMappingExposure' in renderer) renderer.toneMappingExposure = 1.05;
 
         const scene = new THREE.Scene();
-        const cam = new THREE.PerspectiveCamera(26, W / H, 0.05, 10);
+        const cam = new THREE.PerspectiveCamera(26, tile.clientWidth / tile.clientHeight, 0.05, 10);
         scene.add(new THREE.AmbientLight(0xffffff, 1.25));
         const key = new THREE.DirectionalLight(0xffffff, 1.5);
         key.position.set(0.5, 0.8, 1);
@@ -1599,6 +1613,21 @@ scripts: []
         gltf.scene.traverse(o => {
             if (o.isBone && o.name === 'Head') headBone = o;
             if (o.morphTargetDictionary) morphMeshes.push(o);
+            if (o.isMesh && o.material) {
+                const materials = Array.isArray(o.material) ? o.material : [o.material];
+                materials.forEach(material => {
+                    ['map', 'normalMap', 'roughnessMap', 'metalnessMap', 'emissiveMap'].forEach(key => {
+                        const texture = material[key];
+                        if (texture) {
+                            texture.generateMipmaps = true;
+                            texture.minFilter = THREE.LinearMipmapLinearFilter;
+                            texture.magFilter = THREE.LinearFilter;
+                            texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+                            texture.needsUpdate = true;
+                        }
+                    });
+                });
+            }
             o.frustumCulled = false;
         });
 
@@ -1615,7 +1644,19 @@ scripts: []
             cam.updateProjectionMatrix();
             cam.lookAt(headPos.x, headPos.y + camParams.ly, headPos.z);
         };
+        resizeRenderer();
         applyCam();
+        if ('ResizeObserver' in window) {
+            new ResizeObserver(() => {
+                resizeRenderer();
+                applyCam();
+            }).observe(tile);
+        } else {
+            window.addEventListener('resize', () => {
+                resizeRenderer();
+                applyCam();
+            });
+        }
 
         if (window.location.search.indexOf('tune') >= 0) {
             const panel = document.createElement('div');
