@@ -57,6 +57,52 @@ scripts: []
         padding: clamp(56px, 7vw, 90px) 0;
     }
 
+    .q-privacy-item-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 7px;
+    }
+
+    .q-privacy-item-head strong {
+        margin-bottom: 0;
+    }
+
+    .q-privacy-ico {
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 11px;
+        background: var(--q-green-soft);
+        color: var(--q-green-mid);
+    }
+
+    .q-privacy-ico svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .q-privacy-duck {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 10px;
+    }
+
+    .q-privacy-duck img {
+        width: 96px;
+        transform: rotate(-4deg);
+        filter: drop-shadow(0 8px 14px rgba(14, 51, 34, .18));
+    }
+
+    .q-privacy-note {
+        max-width: 230px;
+        line-height: 1.25;
+        transform: rotate(-1.5deg);
+    }
+
     @media (max-width: 860px) {
         .q-zensi-grid {
             grid-template-columns: 1fr;
@@ -294,22 +340,61 @@ scripts: []
                 <div class="q-privacy-copy">
                     <span class="q-kicker">Datenschutz</span>
                     <h2 class="q-h2">Bei Kinderdaten gibt es keine Kompromisse.</h2>
+                    <div class="q-privacy-duck" aria-hidden="true">
+                        <img src="{{ '/quack/quack-thinks.png' | url }}" alt="">
+                        <span class="q-hand q-privacy-note">Kinderdaten sind kein Geschäftsmodell. Versprochen.</span>
+                    </div>
                 </div>
                 <div class="q-privacy-list">
                     <div class="q-privacy-item">
-                        <strong>Anonymisiert</strong>
+                        <div class="q-privacy-item-head">
+                            <span class="q-privacy-ico" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/>
+                                <circle cx="12" cy="12" r="2.6"/>
+                                <line x1="4.5" y1="19.5" x2="19.5" y2="4.5"/>
+                            </svg>
+                        </span>
+                            <strong>Anonymisiert</strong>
+                        </div>
                         <span>Alle Lerndaten werden anonymisiert verarbeitet.</span>
                     </div>
                     <div class="q-privacy-item">
-                        <strong>Kein KI-Training</strong>
+                        <div class="q-privacy-item-head">
+                            <span class="q-privacy-ico" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 4.5l1.8 5 5 1.8-5 1.8-1.8 5-1.8-5-5-1.8 5-1.8z"/>
+                                <line x1="4.5" y1="19.5" x2="19.5" y2="4.5"/>
+                            </svg>
+                        </span>
+                            <strong>Kein KI-Training</strong>
+                        </div>
                         <span>Eure Daten trainieren keine KI-Modelle.</span>
                     </div>
                     <div class="q-privacy-item">
-                        <strong>EU &amp; Schweiz</strong>
+                        <div class="q-privacy-item-head">
+                            <span class="q-privacy-ico" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3l7 2.8v5c0 4.4-2.9 7.7-7 10.2-4.1-2.5-7-5.8-7-10.2v-5z"/>
+                                <line x1="12" y1="8.5" x2="12" y2="14.5"/>
+                                <line x1="9" y1="11.5" x2="15" y2="11.5"/>
+                            </svg>
+                        </span>
+                            <strong>EU &amp; Schweiz</strong>
+                        </div>
                         <span>Gespeichert nur auf Servern in der EU und der Schweiz.</span>
                     </div>
                     <div class="q-privacy-item">
-                        <strong>Persönlich erreichbar</strong>
+                        <div class="q-privacy-item-head">
+                            <span class="q-privacy-ico" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H5.5l2-2.7A7.5 7.5 0 1 1 20 11.5z"/>
+                                <line x1="9" y1="10.5" x2="15" y2="10.5"/>
+                                <line x1="9" y1="13.5" x2="13" y2="13.5"/>
+                            </svg>
+                        </span>
+                            <strong>Persönlich erreichbar</strong>
+                        </div>
                         <span>Ihr sprecht direkt mit uns, kein Ticketsystem.</span>
                     </div>
                 </div>

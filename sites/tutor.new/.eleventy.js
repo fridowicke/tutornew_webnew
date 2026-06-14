@@ -21,6 +21,7 @@ module.exports = function(eleventyConfig) {
     "../../shared/assets/tutors": "tutors",
     "../../shared/assets/quack": "quack",
     "../../shared/assets/didactics_assets": "didactics_assets",
+    "../../shared/assets/materials": "materials",
     "../../shared/assets/rewards": "rewards",
     "../../shared/assets/ugc": "ugc",
     "../../shared/assets/blog": "blog",
@@ -67,4 +68,3 @@ module.exports = function(eleventyConfig) {
     dataTemplateEngine: "njk",
   };
 };
-

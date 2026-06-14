@@ -5,3 +5,4 @@ _site-open-tutor-new/
 _legacy/
 .DS_Store
 *.log
+.gstack/

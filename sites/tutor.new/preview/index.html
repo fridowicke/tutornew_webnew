@@ -167,15 +167,6 @@ scripts: []
         transform: translateY(4px);
     }
 
-    .sf-call-pill::before {
-        content: "";
-        width: 7px;
-        height: 7px;
-        border-radius: 999px;
-        background: var(--q-emerald);
-        flex: 0 0 auto;
-    }
-
     .sf-call-pill em {
         display: inline-flex;
         align-items: center;
@@ -319,32 +310,16 @@ scripts: []
         border-radius: 7px;
         background: #fff;
         border: 1px solid var(--q-line);
-        padding: 8px 9px;
         overflow: hidden;
     }
 
-    .sf-attach-img i {
-        display: block;
-        height: 4px;
-        border-radius: 999px;
-        background: #e2dccb;
-        margin-bottom: 5px;
-    }
-
-    .sf-attach-img i:nth-child(1) { width: 62%; background: #cfc6ae; }
-    .sf-attach-img i:nth-child(2) { width: 88%; }
-    .sf-attach-img i:nth-child(3) { width: 74%; }
-    .sf-attach-img i:nth-child(4) { width: 81%; }
-
-    .sf-attach-img::after {
-        content: "y = ?";
+    .sf-attach-img img {
         position: absolute;
-        right: 8px;
-        bottom: 5px;
-        font-family: "Kerkis", Georgia, serif;
-        font-size: 12px;
-        font-weight: 700;
-        color: rgba(14, 51, 34, .55);
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 22%;
     }
 
     .sf-attach-name {
@@ -697,20 +672,43 @@ scripts: []
     }
 
     .q-mini-grid {
+        --mini-visual-h: 224px;
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: stretch;
         gap: 18px;
     }
 
+    /* Three features in a row, spotlit one at a time: the active card lifts,
+       gets an accent ring and full opacity (and its animation runs); the
+       other two dim back and hold a static, explanatory frame. */
     .q-mini-card {
         display: flex;
         flex-direction: column;
-        gap: 5px;
-        padding: 22px 24px;
-        background: #fff;
+        gap: 14px;
+        padding: 22px 22px 24px;
         border: 1.5px solid var(--q-line);
-        border-radius: 16px;
+        border-radius: 18px;
         box-shadow: 0 2px 0 rgba(14, 51, 34, .06);
+        opacity: .56;
+        transition: opacity .55s ease, transform .55s ease, box-shadow .55s ease, border-color .55s ease;
+    }
+
+    .q-mini-card:nth-child(1) { background: #fbf3e9; }
+    .q-mini-card:nth-child(2) { background: #ecf5ef; }
+    .q-mini-card:nth-child(3) { background: #eaf0fa; }
+
+    .q-mini-card.is-active {
+        opacity: 1;
+        transform: translateY(-5px);
+        border-color: var(--q-emerald);
+        box-shadow: 0 18px 36px rgba(14, 51, 34, .16);
+    }
+
+    .q-mini-text {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
     }
 
     .q-mini-card strong {
@@ -726,9 +724,10 @@ scripts: []
         align-items: center;
         flex-wrap: wrap;
         gap: 7px;
+        width: auto;
+        flex: 0 0 auto;
         min-height: 86px;
         padding: 11px 12px;
-        margin-bottom: 10px;
         border-radius: 12px;
         background: var(--q-cream);
         border: 1.5px solid var(--q-line);
@@ -740,72 +739,294 @@ scripts: []
         background: #fff;
     }
 
+    .q-materials-visual {
+        position: relative;
+        display: block;
+        height: var(--mini-visual-h);
+        min-height: 0;
+        flex: 0 0 auto;
+        box-sizing: border-box;
+        padding: 0;
+        background:
+            radial-gradient(72% 78% at 50% 46%, rgba(101, 212, 151, .16), rgba(101, 212, 151, 0) 70%),
+            var(--q-cream);
+        overflow: hidden;
+    }
+
+    /* Studyflash-style upload demo: a scripted loop driven by data-phase on
+       .q-up (idle -> drop -> upload -> done -> generate). Each child reacts to
+       the current phase via attribute selectors; the JS sequencer at the
+       bottom of the page just flips the phase and the status text. */
+    .q-up {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+    }
+
+    /* applied for one frame to snap back to the start with no reverse animation */
+    .q-up-noanim,
+    .q-up-noanim * { transition: none !important; }
+
+    .q-up-zone {
+        position: absolute;
+        inset: 10px;
+        border: 1.6px dashed rgba(14, 51, 34, .2);
+        border-radius: 13px;
+        pointer-events: none;
+    }
+
+    /* anchor for the dropped files + generated chips (same focal point) */
+    .q-up-files,
+    .q-up-out {
+        position: absolute;
+        left: 50%;
+        top: 39%;
+        transform: translate(-50%, -50%);
+    }
+
+    .q-up-file {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 78px;
+        margin: -52px 0 0 -39px;
+        border-radius: 9px;
+        background: #fff;
+        box-shadow: 0 10px 20px rgba(14, 51, 34, .18);
+        opacity: 0;
+        transform: translateY(-46px) scale(.9);
+        transition: opacity .6s ease, transform .8s cubic-bezier(.34, 1.5, .5, 1);
+    }
+
+    .q-up-file img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+    }
+
+    /* fan offsets + per-card stagger */
+    .q-up-file:nth-child(1) { --rx: -66px; --rot: -9deg; transition-delay: 0s; }
+    .q-up-file:nth-child(2) { --rx: 0px;   --rot: 0deg;  transition-delay: .1s; }
+    .q-up-file:nth-child(3) { --rx: 66px;  --rot: 9deg;  transition-delay: .2s; }
+
+    .q-up-check {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, .82);
+        opacity: 0;
+        transition: opacity .3s ease;
+    }
+
+    .q-up-check svg {
+        width: 30px;
+        height: 30px;
+        fill: none;
+        stroke: var(--q-emerald);
+        stroke-width: 2.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    /* files visible while they're in the zone */
+    .q-up[data-phase="drop"] .q-up-file,
+    .q-up[data-phase="upload"] .q-up-file,
+    .q-up[data-phase="done"] .q-up-file {
+        opacity: 1;
+        transform: translateX(var(--rx)) rotate(var(--rot)) scale(1);
+    }
+
+    .q-up[data-phase="done"] .q-up-check { opacity: 1; }
+
+    .q-up[data-phase="generate"] .q-up-file {
+        opacity: 0;
+        transform: translateX(var(--rx)) rotate(var(--rot)) scale(.55);
+    }
+
+    /* progress bar */
+    .q-up-bar {
+        position: absolute;
+        left: 50%;
+        bottom: 36px;
+        width: 58%;
+        height: 6px;
+        transform: translateX(-50%);
+        border-radius: 999px;
+        background: rgba(14, 51, 34, .1);
+        opacity: 0;
+        transition: opacity .3s ease;
+    }
+
+    .q-up-bar > i {
+        display: block;
+        height: 100%;
+        width: 0;
+        border-radius: 999px;
+        background: var(--q-emerald);
+    }
+
+    .q-up[data-phase="upload"] .q-up-bar,
+    .q-up[data-phase="done"] .q-up-bar { opacity: 1; }
+    .q-up[data-phase="upload"] .q-up-bar > i { width: 100%; transition: width 2s linear; }
+    .q-up[data-phase="done"] .q-up-bar > i { width: 100%; }
+
+    /* status line */
+    .q-up-status {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 14px;
+        text-align: center;
+        font-family: var(--q-display);
+        font-size: 11.5px;
+        font-weight: 700;
+        color: var(--q-green);
+        opacity: 0;
+        transition: opacity .3s ease;
+    }
+
+    .q-up[data-phase="upload"] .q-up-status,
+    .q-up[data-phase="done"] .q-up-status,
+    .q-up[data-phase="generate"] .q-up-status { opacity: 1; }
+
+    /* generated outputs: stacked pills that pop in */
+    .q-up-out {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .q-up-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 13px 6px 9px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1.5px solid var(--q-line);
+        box-shadow: 0 3px 7px rgba(14, 51, 34, .1);
+        font-family: var(--q-display);
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--q-green);
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateY(9px) scale(.92);
+        transition: opacity .4s ease, transform .5s cubic-bezier(.34, 1.5, .5, 1);
+    }
+
+    .q-up-chip-ico {
+        width: 17px;
+        height: 17px;
+        flex: 0 0 auto;
+        fill: none;
+        stroke: var(--q-emerald);
+        stroke-width: 1.9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .q-up[data-phase="generate"] .q-up-chip { opacity: 1; transform: translateY(0) scale(1); }
+    .q-up[data-phase="generate"] .q-up-chip:nth-child(2) { transition-delay: .22s; }
+    .q-up[data-phase="generate"] .q-up-chip:nth-child(3) { transition-delay: .44s; }
+
+    @media (prefers-reduced-motion: reduce) {
+        .q-up-file,
+        .q-up-bar,
+        .q-up-status,
+        .q-up-chip {
+            transition: none;
+        }
+    }
+
     .q-mini-call {
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 142px;
-        padding: 12px 12px 42px;
-        background: var(--q-green-soft);
+        height: var(--mini-visual-h);
+        min-height: 0;
+        flex: 0 0 auto;
+        box-sizing: border-box;
+        padding: 12px 12px 40px;
+        background:
+            radial-gradient(120% 80% at 50% 18%, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 60%),
+            var(--q-green-soft);
         overflow: hidden;
     }
 
     .q-mini-tutor-track {
         position: relative;
         width: min(100%, 320px);
-        height: 112px;
+        height: 104px;
     }
 
-    .q-mini-tutor-track img {
+    /* Circular video-call tiles. Each avatar is normalised to the same
+       apparent head size + centring via the inline --fz / --fx / --fy vars,
+       since the source cut-outs are framed differently. */
+    .q-call-tile {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 106px;
-        height: 106px;
-        object-fit: contain;
-        transition: opacity 1.05s ease, transform 1.05s ease, filter 1.05s ease;
+        width: 104px;
+        height: 104px;
+        border-radius: 26px;
+        background-color: #e7efe9;
+        background-image: var(--img);
+        background-repeat: no-repeat;
+        background-size: var(--fz, 170%) auto;
+        background-position: var(--fx, 47%) var(--fy, 30%);
+        box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .92);
+        transition: opacity .62s ease, transform .62s cubic-bezier(.4, 0, .2, 1), box-shadow .62s ease;
         will-change: opacity, transform;
     }
 
-    .q-mini-tutor-track img[data-pos="-2"] {
+    .q-call-tile[data-pos="-2"] {
         opacity: 0;
-        transform: translate(-205%, -50%) scale(.86);
+        transform: translate(-50%, -50%) translateX(-150px) scale(.46);
         z-index: 0;
     }
 
-    .q-mini-tutor-track img[data-pos="-1"] {
-        opacity: .56;
-        filter: saturate(.86);
-        transform: translate(-126%, -50%) scale(.9);
+    .q-call-tile[data-pos="-1"] {
+        opacity: .58;
+        transform: translate(-50%, -50%) translateX(-92px) scale(.62);
         z-index: 1;
     }
 
-    .q-mini-tutor-track img[data-pos="0"] {
+    .q-call-tile[data-pos="0"] {
         opacity: 1;
-        filter: drop-shadow(0 10px 16px rgba(14, 51, 34, .17));
         transform: translate(-50%, -50%) scale(1);
+        box-shadow:
+            inset 0 0 0 3px #fff,
+            0 0 0 3px var(--q-green),
+            0 12px 22px rgba(14, 51, 34, .22);
         z-index: 3;
     }
 
-    .q-mini-tutor-track img[data-pos="1"] {
-        opacity: .56;
-        filter: saturate(.86);
-        transform: translate(26%, -50%) scale(.9);
+    .q-call-tile[data-pos="1"] {
+        opacity: .58;
+        transform: translate(-50%, -50%) translateX(92px) scale(.62);
         z-index: 1;
     }
 
-    .q-mini-tutor-track img[data-pos="2"] {
+    .q-call-tile[data-pos="2"] {
         opacity: 0;
-        transform: translate(105%, -50%) scale(.86);
+        transform: translate(-50%, -50%) translateX(150px) scale(.46);
         z-index: 0;
     }
 
     .q-call-live {
         position: absolute;
-        top: 8px;
-        left: 8px;
-        padding: 3px 9px;
+        top: 9px;
+        left: 9px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 3px 9px 3px 7px;
         border-radius: 999px;
         background: var(--q-rose);
         color: #fff;
@@ -813,6 +1034,19 @@ scripts: []
         font-weight: 800;
         letter-spacing: .03em;
         z-index: 4;
+    }
+
+    .q-call-live i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #fff;
+        animation: q-call-pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes q-call-pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: .35; }
     }
 
     .q-call-dots {
@@ -859,28 +1093,223 @@ scripts: []
         flex-direction: column;
         align-items: stretch;
         justify-content: center;
-        gap: 8px;
+        height: var(--mini-visual-h);
+        min-height: 0;
+        flex: 0 0 auto;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
-    .q-exam-top {
+    /* Exam-prep widget: a calendar of the study plan. Each day lights up in turn
+       as the exam approaches, and tutor.new's recommendation for that day changes
+       with it. JS drives the active day; hover-gated like the other side card. */
+    .q-prep {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+        width: 100%;
+    }
+
+    .q-prep-head {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 8px;
-        font-size: 12px;
-        font-weight: 700;
+        font-family: var(--q-display);
+        font-size: 12.5px;
+        font-weight: 600;
         color: var(--q-green);
     }
 
-    .q-exam-top em {
+    .q-prep-days {
         font-style: normal;
+        font-size: 10.5px;
+        font-weight: 700;
+        color: var(--q-green-mid);
+        white-space: nowrap;
+    }
+
+    .q-prep-days b { color: var(--q-green); font-variant-numeric: tabular-nums; }
+
+    /* calendar week strip */
+    .q-cal {
+        display: flex;
+        gap: 5px;
+    }
+
+    .q-cal-day {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 6px 0 7px;
+        border-radius: 9px;
+        background: #fff;
+        border: 1.5px solid var(--q-line);
+        transition: background .35s ease, border-color .35s ease, box-shadow .35s ease, opacity .35s ease, transform .35s ease;
+    }
+
+    .q-cal-day .wd {
         font-family: var(--q-display);
-        font-size: 11px;
-        font-weight: 600;
+        font-size: 8.5px;
+        font-weight: 700;
+        letter-spacing: .04em;
+        text-transform: uppercase;
         color: var(--q-green-mid);
     }
 
-    .q-mini-card > span {
+    .q-cal-day .dt {
+        font-family: var(--q-display);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--q-green);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .q-cal-day.is-done { opacity: .42; }
+
+    /* current day = blue */
+    .q-cal-day.is-today {
+        border-color: #3f86e0;
+        background: rgba(63, 134, 224, .12);
+        box-shadow: 0 0 0 2px #3f86e0, 0 6px 12px rgba(14, 51, 34, .14);
+        transform: translateY(-2px);
+    }
+
+    .q-cal-day.is-today .wd,
+    .q-cal-day.is-today .dt { color: #2f6fd0; }
+
+    /* exam day = green */
+    .q-cal-day.is-exam {
+        position: relative;
+        border-color: var(--q-emerald);
+    }
+
+    .q-cal-day.is-exam .wd,
+    .q-cal-day.is-exam .dt { color: var(--q-green); }
+
+    .q-cal-day.is-exam::after {
+        content: "";
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--q-emerald);
+        box-shadow: 0 0 0 2px var(--q-cream);
+    }
+
+    /* reaching the exam day: today + exam both green */
+    .q-cal-day.is-today.is-exam {
+        border-color: var(--q-emerald);
+        background: var(--q-green-soft);
+        box-shadow: 0 0 0 2px var(--q-emerald), 0 6px 12px rgba(14, 51, 34, .14);
+    }
+
+    .q-cal-day.is-today.is-exam .wd,
+    .q-cal-day.is-today.is-exam .dt { color: var(--q-green); }
+
+    /* tutor.new's recommendation for the active day */
+    .q-rec {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+    }
+
+    .q-rec-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-family: var(--q-display);
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: .05em;
+        text-transform: uppercase;
+        color: var(--q-green-mid);
+    }
+
+    .q-prep-spark {
+        width: 12px;
+        height: 12px;
+        fill: var(--q-emerald);
+        animation: q-prep-spark 1.6s ease-in-out infinite;
+    }
+
+    @keyframes q-prep-spark {
+        0%, 100% { opacity: .5; transform: scale(.82) rotate(0deg); }
+        50% { opacity: 1; transform: scale(1.12) rotate(22deg); }
+    }
+
+    .q-rec-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .q-rec-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .q-rec-ico-wrap {
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        background: #fff;
+        border: 1.5px solid var(--q-line);
+        box-shadow: 0 2px 0 rgba(14, 51, 34, .06);
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+    }
+
+    .q-rec-ico {
+        display: none;
+        width: 15px;
+        height: 15px;
+        fill: none;
+        stroke: var(--q-emerald);
+        stroke-width: 1.9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .q-rec-item[data-ico="cards"] .q-rec-ico[data-ico="cards"],
+    .q-rec-item[data-ico="call"]  .q-rec-ico[data-ico="call"],
+    .q-rec-item[data-ico="exam"]  .q-rec-ico[data-ico="exam"] {
+        display: block;
+    }
+
+    .q-rec-text {
+        font-family: var(--q-display);
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--q-green);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .q-cal-day { transition: none; }
+        .q-prep-spark { animation: none; }
+    }
+
+    /* Continuous CSS motion (sparkle, LIVE pulse) runs only on the spotlit card. */
+    .q-prep-spark,
+    .q-call-live i {
+        animation-play-state: paused;
+    }
+
+    .q-mini-card.is-active .q-prep-spark,
+    .q-mini-card.is-active .q-call-live i {
+        animation-play-state: running;
+    }
+
+    .q-mini-text > span {
         font-size: 13.5px;
         line-height: 1.35;
     }
@@ -888,50 +1317,200 @@ scripts: []
     /* ---------- School version (Zensi) ---------- */
 
     .q-zensi {
-        padding: 0 0 110px;
+        padding: 0 0 88px;
     }
 
     .q-zensi-card {
         display: grid;
-        grid-template-columns: 230px minmax(0, 1fr);
-        gap: clamp(28px, 4vw, 56px);
+        grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
+        gap: clamp(24px, 3.4vw, 48px);
         align-items: center;
-        padding: clamp(32px, 5vw, 52px);
-        border-radius: 24px;
+        padding: clamp(24px, 3.6vw, 40px);
+        border-radius: 22px;
         background: var(--q-green);
         color: var(--q-cream);
     }
 
-    .q-zensi-card .q-kicker {
-        color: var(--q-yellow);
+    /* product proof: a mock live classroom dashboard, styled like a screenshot */
+    .q-dash {
+        background: #fff;
+        border-radius: 15px;
+        padding: 15px 15px 13px;
+        color: var(--q-green);
+        font-family: var(--q-font);
+        box-shadow: 0 24px 48px rgba(0, 0, 0, .24);
     }
 
-    .q-zensi-card .q-polaroid {
-        transform: rotate(-2.5deg);
-        justify-self: center;
-        width: 100%;
+    .q-dash-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 11px;
     }
+
+    .q-dash-title {
+        font-family: var(--q-display);
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--q-green);
+    }
+
+    .q-dash-live {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 10.5px;
+        font-weight: 700;
+        color: var(--q-green-mid);
+    }
+
+    .q-dash-live i {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--q-emerald);
+        animation: q-call-pulse 1.6s ease-in-out infinite;
+    }
+
+    .q-dash-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .q-dash-row {
+        display: grid;
+        grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        border-radius: 10px;
+        background: #f8f6f0;
+    }
+
+    .q-dash-who {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12.5px;
+        font-weight: 700;
+        color: var(--q-green);
+        white-space: nowrap;
+    }
+
+    .q-dash-who i {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--q-green-soft);
+        color: var(--q-green);
+        display: grid;
+        place-items: center;
+        font-size: 9.5px;
+        font-style: normal;
+        font-weight: 700;
+    }
+
+    .q-dash-task {
+        font-size: 11.5px;
+        color: #7c857a;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .q-dash-prog {
+        width: 62px;
+        height: 6px;
+        border-radius: 999px;
+        background: #e8e3d6;
+        overflow: hidden;
+    }
+
+    .q-dash-prog i {
+        display: block;
+        height: 100%;
+        border-radius: 999px;
+        background: var(--q-emerald);
+    }
+
+    .q-dash-row.is-stuck { background: #fcebe6; }
+    .q-dash-row.is-stuck .q-dash-task { color: var(--q-rose); font-weight: 700; }
+    .q-dash-row.is-stuck .q-dash-prog { background: rgba(229, 115, 115, .25); }
+    .q-dash-row.is-stuck .q-dash-prog i { background: var(--q-rose); }
+    .q-dash-row.is-stuck .q-dash-who i { background: rgba(229, 115, 115, .18); color: var(--q-rose); }
 
     .q-zensi-copy {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 18px;
+        gap: 16px;
+    }
+
+    .q-zensi-eyebrow {
+        font-family: var(--q-display);
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        color: var(--q-yellow);
     }
 
     .q-zensi-copy blockquote {
         margin: 0;
-        font-family: var(--q-hand);
-        font-size: clamp(26px, 2.6vw, 34px);
+        font-family: "Kerkis", "Latin Modern", Georgia, "Times New Roman", serif;
+        font-size: clamp(19px, 1.95vw, 25px);
         font-weight: 600;
-        line-height: 1.3;
+        line-height: 1.42;
+        letter-spacing: -.005em;
         color: #fff;
     }
 
-    .q-zensi-copy figcaption {
-        font-size: 14.5px;
-        font-weight: 600;
-        color: rgba(249, 241, 232, .75);
+    .q-zensi-by {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+    }
+
+    .q-zensi-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center 20%;
+        border: 2px solid rgba(255, 255, 255, .28);
+        flex: 0 0 auto;
+    }
+
+    .q-zensi-by-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        font-size: 12.5px;
+        line-height: 1.32;
+        color: rgba(249, 241, 232, .82);
+    }
+
+    .q-zensi-by-text strong {
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .q-zensi-stat {
+        display: flex;
+        align-items: baseline;
+        gap: 9px;
+        font-size: 13px;
+        line-height: 1.3;
+        color: rgba(249, 241, 232, .85);
+    }
+
+    .q-zensi-stat strong {
+        font-family: var(--q-display);
+        font-size: 25px;
+        font-weight: 700;
+        color: var(--q-yellow);
     }
 
     /* ---------- Responsive ---------- */
@@ -1218,23 +1797,60 @@ scripts: []
     <section class="q-mini">
         <div class="q-wrap q-mini-grid">
             <div class="q-mini-card">
-                <div class="q-mini-visual" aria-hidden="true">
-                    <span class="q-file">Arbeitsblatt</span>
-                    <span class="q-file is-img">Wandtafel</span>
-                    <span class="q-file is-doc">Zusammenfassung</span>
+                <div class="q-mini-visual q-materials-visual" aria-hidden="true">
+                    <div class="q-up" data-phase="idle">
+                        <div class="q-up-zone"></div>
+
+                        <!-- the materials that get dropped in, then check off -->
+                        <div class="q-up-files">
+                            <span class="q-up-file">
+                                <img src="{{ '/materials/worksheet.webp' | url }}" alt="">
+                                <i class="q-up-check"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5 9-10"></path></svg></i>
+                            </span>
+                            <span class="q-up-file">
+                                <img src="{{ '/materials/phone-scan.webp' | url }}" alt="">
+                                <i class="q-up-check"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5 9-10"></path></svg></i>
+                            </span>
+                            <span class="q-up-file">
+                                <img src="{{ '/materials/summary.webp' | url }}" alt="">
+                                <i class="q-up-check"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5 9-10"></path></svg></i>
+                            </span>
+                        </div>
+
+                        <!-- what gets generated -->
+                        <div class="q-up-out">
+                            <span class="q-up-chip">
+                                <svg class="q-up-chip-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="13" height="18" rx="2"/><path d="M8.5 8h6M8.5 12h6M8.5 16h3"/></svg>
+                                Übungsblatt
+                            </span>
+                            <span class="q-up-chip">
+                                <svg class="q-up-chip-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="12" height="10" rx="2"/><path d="M8 5h11a2 2 0 0 1 2 2v9"/></svg>
+                                Karteikarten
+                            </span>
+                            <span class="q-up-chip">
+                                <svg class="q-up-chip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 9h8a4 4 0 0 1 3.9 4.9l-.4 1.7A2.3 2.3 0 0 1 15 16l-1-1h-4l-1 1a2.3 2.3 0 0 1-4.5-.4l-.4-1.7A4 4 0 0 1 8 9Z"/><path d="M6.5 12h2.4M7.7 10.8v2.4"/><path d="M15 11.5h.01M16.5 13h.01"/></svg>
+                                Lernspiel
+                            </span>
+                        </div>
+
+                        <div class="q-up-bar"><i></i></div>
+                        <span class="q-up-status"></span>
+                    </div>
                 </div>
-                <strong>Deine Unterlagen</strong>
-                <span>Foto vom Arbeitsblatt reicht. Gelernt wird, was bei dir drankommt.</span>
+                <div class="q-mini-text">
+                    <strong>Deine Unterlagen</strong>
+                    <span>Geübt wird, was bei dir drankommt.</span>
+                </div>
             </div>
             <div class="q-mini-card">
                 <div class="q-mini-visual q-mini-call" aria-hidden="true">
-                    <span class="q-call-live">LIVE</span>
+                    <span class="q-call-live"><i></i>LIVE</span>
                     <div class="q-mini-tutor-track">
-                        <img data-mini-tutor="0" data-pos="0" src="{{ '/tutors/maya.png' | url }}" alt="">
-                        <img data-mini-tutor="1" data-pos="1" src="{{ '/tutors/alex.png' | url }}" alt="">
-                        <img data-mini-tutor="2" data-pos="2" src="{{ '/tutors/sophia.png' | url }}" alt="">
-                        <img data-mini-tutor="3" data-pos="-2" src="{{ '/tutors/steve.png' | url }}" alt="">
-                        <img data-mini-tutor="4" data-pos="-1" src="{{ '/tutors/anna.png' | url }}" alt="">
+                        <div class="q-call-tile" data-mini-tutor="0" data-pos="0" style="--img:url('{{ '/tutors/maya.png' | url }}'); --fz:176%; --fx:43%; --fy:30%"></div>
+                        <div class="q-call-tile" data-mini-tutor="1" data-pos="1" style="--img:url('{{ '/tutors/alex.png' | url }}'); --fz:208%; --fx:46%; --fy:37%"></div>
+                        <div class="q-call-tile" data-mini-tutor="2" data-pos="2" style="--img:url('{{ '/tutors/sophia.png' | url }}'); --fz:162%; --fx:43%; --fy:26%"></div>
+                        <div class="q-call-tile" data-mini-tutor="3" data-pos="-2" style="--img:url('{{ '/tutors/steve.png' | url }}'); --fz:192%; --fx:47%; --fy:28%"></div>
+                        <div class="q-call-tile" data-mini-tutor="4" data-pos="-1" style="--img:url('{{ '/tutors/anna.png' | url }}'); --fz:148%; --fx:49%; --fy:30%"></div>
                     </div>
                     <span class="q-call-dots">
                         <span class="q-call-control">
@@ -1260,39 +1876,116 @@ scripts: []
                         </span>
                     </span>
                 </div>
-                <strong>Videocall mit <span id="q-mini-tutor-name">Maya</span></strong>
-                <span>Mehrere Tutor:innen. Immer verfügbar.</span>
+                <div class="q-mini-text">
+                    <strong>Videocall mit <span id="q-mini-tutor-name">Maya</span></strong>
+                    <span>Mehrere Tutor:innen. Immer verfügbar.</span>
+                </div>
             </div>
             <div class="q-mini-card">
                 <div class="q-mini-visual q-exam" aria-hidden="true">
-                    <span class="q-exam-top">Probeprüfung Algebra <em>bereit ✓</em></span>
-                    <span class="q-meter"><i style="width: 86%"></i></span>
-                    <span class="q-exam-top"><em>Du bist auf Kurs: 86%</em></span>
+                    <div class="q-prep">
+                        <div class="q-prep-head">
+                            <span>Prüfung Mathe</span>
+                            <em class="q-prep-days">noch <b>6</b> Tage</em>
+                        </div>
+
+                        <div class="q-cal">
+                            <span class="q-cal-day" data-day="0"><span class="wd">Mo</span><span class="dt">9</span></span>
+                            <span class="q-cal-day" data-day="1"><span class="wd">Di</span><span class="dt">10</span></span>
+                            <span class="q-cal-day" data-day="2"><span class="wd">Mi</span><span class="dt">11</span></span>
+                            <span class="q-cal-day" data-day="3"><span class="wd">Do</span><span class="dt">12</span></span>
+                            <span class="q-cal-day" data-day="4"><span class="wd">Fr</span><span class="dt">13</span></span>
+                            <span class="q-cal-day" data-day="5"><span class="wd">Sa</span><span class="dt">14</span></span>
+                            <span class="q-cal-day is-exam" data-day="6"><span class="wd">So</span><span class="dt">15</span></span>
+                        </div>
+
+                        <div class="q-rec">
+                            <span class="q-rec-label">
+                                <svg class="q-prep-spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.7 6.1 6.1 1.7-6.1 1.7L12 18l-1.7-6.2L4.2 9.8l6.1-1.7z"/></svg>
+                                tutor.new empfiehlt
+                            </span>
+                            <div class="q-rec-list">
+                                <span class="q-rec-item" data-ico="cards">
+                                    <span class="q-rec-ico-wrap">
+                                        <svg class="q-rec-ico" data-ico="cards" viewBox="0 0 24 24"><rect x="3" y="7" width="12" height="10" rx="2"/><path d="M8 5h11a2 2 0 0 1 2 2v9"/></svg>
+                                        <svg class="q-rec-ico" data-ico="call" viewBox="0 0 24 24"><rect x="3" y="6" width="12" height="12" rx="2.5"/><path d="m15 10 5-3v10l-5-3"/></svg>
+                                        <svg class="q-rec-ico" data-ico="exam" viewBox="0 0 24 24"><rect x="5" y="3" width="13" height="18" rx="2"/><path d="M8.5 8h6M8.5 12h6M8.5 16h3"/></svg>
+                                    </span>
+                                    <span class="q-rec-text">Karteikarten anlegen</span>
+                                </span>
+                                <span class="q-rec-item" data-ico="exam">
+                                    <span class="q-rec-ico-wrap">
+                                        <svg class="q-rec-ico" data-ico="cards" viewBox="0 0 24 24"><rect x="3" y="7" width="12" height="10" rx="2"/><path d="M8 5h11a2 2 0 0 1 2 2v9"/></svg>
+                                        <svg class="q-rec-ico" data-ico="call" viewBox="0 0 24 24"><rect x="3" y="6" width="12" height="12" rx="2.5"/><path d="m15 10 5-3v10l-5-3"/></svg>
+                                        <svg class="q-rec-ico" data-ico="exam" viewBox="0 0 24 24"><rect x="5" y="3" width="13" height="18" rx="2"/><path d="M8.5 8h6M8.5 12h6M8.5 16h3"/></svg>
+                                    </span>
+                                    <span class="q-rec-text">Lernplan starten</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <strong>Prüfungsvorbereitung</strong>
-                <span>Probeprüfungen mit Feedback, bis du sicher bist.</span>
+                <div class="q-mini-text">
+                    <strong>Prüfungsvorbereitung</strong>
+                    <span>Probeprüfungen, bis du sicher bist.</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- ================= SCHOOL VERSION ================= -->
-    <!-- ENTWURF: Zitat von Zensi Hopf ist ein Platzhalter — von ihr freigeben lassen.
-         Foto stammt von ihrem X-Profil (Einverständnis einholen).
-         VIDEO: Hier später das Video einbetten (ersetzt oder ergänzt das Polaroid). -->
+    <!-- ENTWURF / PLATZHALTER — vor Veröffentlichung mit echten Daten belegen & freigeben:
+         · Zitat von Zensi Hopf (von ihr freigeben lassen)
+         · Foto (Einverständnis einholen — stammt von ihrem X-Profil)
+         · ALLE Zahlen sind erfunden: "120 Schüler:innen", "+31% mehr Aufgaben",
+           "Pilotprojekt", sowie das Klassen-Dashboard. Erst mit echten Pilotdaten ersetzen. -->
     <section class="q-zensi">
         <div class="q-wrap">
             <figure class="q-zensi-card">
-                <div class="q-polaroid">
-                    <div class="q-polaroid-photo">
-                        <img src="{{ '/quack/zensi-hopf.jpg' | url }}" alt="Zensi Hopf">
+                <!-- Produkt-Beweis: Live-Klassenansicht (Mock) -->
+                <div class="q-dash" aria-hidden="true">
+                    <div class="q-dash-head">
+                        <span class="q-dash-title">Klasse 2b · Biologie</span>
+                        <span class="q-dash-live"><i></i>live · 24 aktiv</span>
                     </div>
-                    <div class="q-polaroid-caption">Zensi Hopf<small>Biologie · Kanti Wattwil</small></div>
+                    <div class="q-dash-rows">
+                        <div class="q-dash-row">
+                            <span class="q-dash-who"><i>LM</i>Lena M.</span>
+                            <span class="q-dash-task">Photosynthese · Aufg. 4/5</span>
+                            <span class="q-dash-prog"><i style="width:82%"></i></span>
+                        </div>
+                        <div class="q-dash-row">
+                            <span class="q-dash-who"><i>JB</i>Jonas B.</span>
+                            <span class="q-dash-task">Zellteilung · Aufg. 3/5</span>
+                            <span class="q-dash-prog"><i style="width:61%"></i></span>
+                        </div>
+                        <div class="q-dash-row is-stuck">
+                            <span class="q-dash-who"><i>TR</i>Tim R.</span>
+                            <span class="q-dash-task">steckt fest · Zellatmung</span>
+                            <span class="q-dash-prog"><i style="width:34%"></i></span>
+                        </div>
+                        <div class="q-dash-row">
+                            <span class="q-dash-who"><i>AK</i>Aylin K.</span>
+                            <span class="q-dash-task">Genetik · fertig ✓</span>
+                            <span class="q-dash-prog"><i style="width:100%"></i></span>
+                        </div>
+                        <div class="q-dash-row">
+                            <span class="q-dash-who"><i>NS</i>Noah S.</span>
+                            <span class="q-dash-task">Ökosystem · Aufg. 3/5</span>
+                            <span class="q-dash-prog"><i style="width:55%"></i></span>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="q-zensi-copy">
-                    <span class="q-kicker">Die Schulversion</span>
-                    <blockquote>«Der Tutor übernimmt das Üben. Ich sitze wieder neben den Kindern.»</blockquote>
-                    <figcaption>Zensi Hopf unterrichtet mit tutor.new an der Kantonsschule Wattwil. Lehrpersonen planen den Unterricht, der Tutor begleitet jedes Kind.</figcaption>
-                    <a class="q-btn q-btn-cream" href="{{ '/preview/teachers.html' | url }}">Schulversion ansehen</a>
+                    <span class="q-zensi-eyebrow">Pilotprojekt · 120 Schüler:innen</span>
+                    <blockquote>«Zum ersten Mal konnte ich sehen, woran jede Schülerin und jeder Schüler gerade arbeitet.»</blockquote>
+                    <div class="q-zensi-by">
+                        <img class="q-zensi-avatar" src="{{ '/quack/zensi-hopf.jpg' | url }}" alt="Zensi Hopf">
+                        <span class="q-zensi-by-text"><strong>Zensi Hopf</strong>Biologielehrerin · Kantonsschule Wattwil</span>
+                    </div>
+                    <div class="q-zensi-stat"><strong>+31%</strong> mehr bearbeitete Aufgaben im Pilotprojekt</div>
+                    <a class="q-btn q-btn-cream" href="{{ '/preview/teachers.html' | url }}">Demo ansehen</a>
                 </div>
             </figure>
         </div>
@@ -1300,24 +1993,142 @@ scripts: []
 </main>
 
 <script>
+    // Spotlight: registered features take turns being the single highlighted,
+    // animated card; the others hold a static, explanatory frame.
+    const qFeatures = [];
+
+    /* "Deine Unterlagen" upload demo. On activation it plays the upload ->
+       generate sequence once. Once another card takes focus, it falls back to
+       the static three-material view. */
     (() => {
+        const up = document.querySelector('.q-up');
+        if (!up) return;
+        const card = up.closest('.q-mini-card');
+        const status = up.querySelector('.q-up-status');
+        // [phase, hold-ms-before-next] — last step has 0 (stay there)
+        const phases = [
+            ['drop',     1500, ''],
+            ['upload',   2200, 'Lädt hoch …'],
+            ['done',     1200, 'Hochgeladen ✓'],
+            ['generate', 0,    'Lernmaterial erstellt ✓']
+        ];
+
+        let timer = null;
+        const snapReset = () => {
+            up.classList.add('q-up-noanim');
+            up.dataset.phase = 'idle';
+            status.textContent = '';
+            void up.offsetWidth;            // force reflow so the snap is instant
+            up.classList.remove('q-up-noanim');
+        };
+        const showMaterials = () => {
+            up.classList.add('q-up-noanim');
+            up.dataset.phase = 'drop';
+            status.textContent = '';
+            void up.offsetWidth;
+            up.classList.remove('q-up-noanim');
+        };
+        const play = (idx) => {
+            const [phase, hold, text] = phases[idx];
+            up.dataset.phase = phase;
+            status.textContent = text;
+            if (hold > 0) timer = window.setTimeout(() => play(idx + 1), hold);
+        };
+        const start = () => {
+            window.clearTimeout(timer);
+            snapReset();
+            timer = window.setTimeout(() => play(0), 60);
+        };
+        const stop = () => {
+            window.clearTimeout(timer);
+            timer = null;
+            showMaterials();
+        };
+
+        // initial static frame: the user's three materials
+        showMaterials();
+        qFeatures.push({ card, start, stop, dwell: 7500 });
+    })();
+
+    /* "Prüfungsvorbereitung" widget: a study-plan calendar. The active day moves
+       across the week toward the exam, and tutor.new's recommendation for that
+       day changes with it. Hover-gated like the materials card. */
+    (() => {
+        const el = document.querySelector('.q-prep');
+        if (!el) return;
+        const cells = Array.from(el.querySelectorAll('.q-cal-day'));
+        const daysWrap = el.querySelector('.q-prep-days');
+        const recItems = Array.from(el.querySelectorAll('.q-rec-item'));
+        const EXAM = cells.length - 1;
+
+        // two recommendations from tutor.new per calendar day (last day = the exam)
+        const plan = [
+            [ { ico: 'cards', t: 'Karteikarten anlegen' }, { ico: 'exam', t: 'Lernplan starten' } ],
+            [ { ico: 'cards', t: 'Karteikarten üben' },    { ico: 'exam', t: 'Formeln wiederholen' } ],
+            [ { ico: 'call',  t: 'Videocall mit Maya' },   { ico: 'cards', t: 'Schwächen klären' } ],
+            [ { ico: 'exam',  t: 'Übungsaufgaben lösen' }, { ico: 'cards', t: 'Fehler analysieren' } ],
+            [ { ico: 'cards', t: 'Karten wiederholen' },   { ico: 'call', t: 'Kurzes Coaching' } ],
+            [ { ico: 'exam',  t: 'Probeprüfung schreiben' }, { ico: 'exam', t: 'Feedback ansehen' } ],
+            [ { ico: 'exam',  t: 'Prüfung Mathe – los!' }, { ico: 'call', t: 'Locker bleiben' } ]
+        ];
+
+        const apply = (today) => {
+            cells.forEach((c, k) => {
+                c.classList.toggle('is-done', k < today);
+                c.classList.toggle('is-today', k === today);
+            });
+            const left = EXAM - today;
+            daysWrap.innerHTML = left > 0
+                ? 'noch <b>' + left + '</b> ' + (left === 1 ? 'Tag' : 'Tage')
+                : '<b>Prüfungstag</b>';
+            plan[today].forEach((item, idx) => {
+                if (!recItems[idx]) return;
+                recItems[idx].dataset.ico = item.ico;
+                recItems[idx].querySelector('.q-rec-text').textContent = item.t;
+            });
+        };
+
+        let timer = null, today = 0, switches = 0;
+        const step = () => {
+            today = (today + 1) % cells.length;
+            apply(today);
+            switches += 1;
+            if (switches < 2) timer = setTimeout(step, 2200);
+        };
+        const start = () => {
+            if (timer) return;
+            today = 0;
+            switches = 0;
+            apply(today);
+            timer = setTimeout(step, 1400);
+        };
+        const stop = () => {
+            clearTimeout(timer);
+            timer = null;
+            today = 0;
+            switches = 0;
+            apply(0);
+        };
+
+        const card = el.closest('.q-mini-card');
+        apply(0); // static resting preview (the plan, exam day marked)
+        qFeatures.push({ card, start, stop });
+    })();
+
+    /* "Videocall mit …" tutor carousel. Static frame: Maya centred with the
+       other tutors around her. Active: the carousel rotates. */
+    (() => {
+        const call = document.querySelector('.q-mini-call');
         const tutors = [
-            { name: 'Maya', img: "{{ '/tutors/maya.png' | url }}" },
-            { name: 'Alex', img: "{{ '/tutors/alex.png' | url }}" },
-            { name: 'Sophia', img: "{{ '/tutors/sophia.png' | url }}" },
-            { name: 'Steve', img: "{{ '/tutors/steve.png' | url }}" },
-            { name: 'Anna', img: "{{ '/tutors/anna.png' | url }}" }
+            { name: 'Maya' }, { name: 'Alex' }, { name: 'Sophia' },
+            { name: 'Steve' }, { name: 'Anna' }
         ];
         const names = [
-            document.getElementById('sf-call-tutor-name'),
             document.getElementById('q-mini-tutor-name')
         ].filter(Boolean);
-        const images = [
-            document.getElementById('sf-call-tutor-img')
-        ].filter(Boolean);
         const miniImages = Array.from(document.querySelectorAll('[data-mini-tutor]'));
-
-        if (names.length === 0 && images.length === 0 && miniImages.length === 0) return;
+        if (!call || (names.length === 0 && miniImages.length === 0)) return;
+        const card = call.closest('.q-mini-card');
 
         let i = 0;
         const setMiniCarousel = (activeIndex) => {
@@ -1330,27 +2141,58 @@ scripts: []
                 el.dataset.pos = String(delta);
             });
         };
+        const setName = (idx) => { names.forEach(el => { el.textContent = tutors[idx].name; }); };
 
-        const setTutor = (next) => {
+        const advance = () => {
+            i = (i + 1) % tutors.length;
             names.forEach(el => el.classList.add('is-switching'));
-            images.forEach(el => el.classList.add('is-switching'));
             setMiniCarousel(i);
-
             window.setTimeout(() => {
-                names.forEach(el => { el.textContent = next.name; });
-                images.forEach(el => {
-                    el.src = next.img;
-                    el.alt = next.name;
-                });
+                setName(i);
                 names.forEach(el => el.classList.remove('is-switching'));
-                images.forEach(el => el.classList.remove('is-switching'));
-            }, 520);
+            }, 360);
         };
 
-        window.setInterval(() => {
-            i = (i - 1 + tutors.length) % tutors.length;
-            setTutor(tutors[i]);
-        }, 4000);
+        // On activation: switch sideways twice, then hold on the current tutor
+        // until the card is spotlit again (it does not reset when deactivated).
+        let timer = null;
+        const start = () => {
+            window.clearTimeout(timer);
+            advance();
+            timer = window.setTimeout(advance, 1650);
+        };
+        const stop = () => { window.clearTimeout(timer); timer = null; };
+
+        // initial frame: Maya centred
+        setMiniCarousel(0);
+        setName(0);
+        qFeatures.push({ card, start, stop });
+    })();
+
+    /* Spotlight controller: one feature is highlighted + animated at a time. */
+    (() => {
+        if (qFeatures.length === 0) return;
+        qFeatures.sort((a, b) =>
+            (a.card.compareDocumentPosition(b.card) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1);
+
+        // Reduced motion: hold every card on its static explanatory frame.
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            qFeatures.forEach(f => f.stop());
+            qFeatures[0].card.classList.add('is-active');
+            return;
+        }
+
+        const SPOTLIGHT_MS = 6000;
+        let active = -1;
+        const tick = () => {
+            active = (active + 1) % qFeatures.length;
+            qFeatures.forEach((f, idx) => {
+                if (idx === active) { f.card.classList.add('is-active'); f.start(); }
+                else { f.card.classList.remove('is-active'); f.stop(); }
+            });
+            window.setTimeout(tick, qFeatures[active].dwell || SPOTLIGHT_MS);
+        };
+        tick();
     })();
 </script>
 
@@ -1465,12 +2307,12 @@ scripts: []
         const gap = (ms = 750) => sleep(ms);
 
         // The student attaches a photo of the worksheet.
-        const attach = async (label) => {
+        const attach = async (label, img = "{{ '/materials/worksheet.webp' | url }}") => {
             const row = document.createElement('div');
             row.className = 'sf-row sf-row--student';
             const box = document.createElement('span');
             box.className = 'sf-attach';
-            box.innerHTML = '<span class="sf-attach-img"><i></i><i></i><i></i><i></i></span>' +
+            box.innerHTML = '<span class="sf-attach-img"><img src="' + img + '" alt=""></span>' +
                 '<span class="sf-attach-name">' + label + '</span>';
             row.appendChild(box);
             log.appendChild(row);
