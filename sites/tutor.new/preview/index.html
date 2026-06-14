@@ -690,6 +690,7 @@ scripts: []
         border: 1.5px solid var(--q-line);
         border-radius: 18px;
         box-shadow: 0 2px 0 rgba(14, 51, 34, .06);
+        cursor: pointer;
         opacity: .56;
         transition: opacity .55s ease, transform .55s ease, box-shadow .55s ease, border-color .55s ease;
     }
@@ -2183,16 +2184,97 @@ scripts: []
         }
 
         const SPOTLIGHT_MS = 6000;
+        const stackedFeatures = window.matchMedia('(max-width: 860px)');
         let active = -1;
-        const tick = () => {
-            active = (active + 1) % qFeatures.length;
+        let spotlightTimer = null;
+        let scrollRaf = null;
+
+        const focusFeature = (idx, scheduleNext = true) => {
+            if (idx < 0 || idx >= qFeatures.length) return;
+            window.clearTimeout(spotlightTimer);
+            if (idx === active) {
+                if (scheduleNext) {
+                    spotlightTimer = window.setTimeout(tick, qFeatures[active].dwell || SPOTLIGHT_MS);
+                }
+                return;
+            }
+            active = idx;
             qFeatures.forEach((f, idx) => {
                 if (idx === active) { f.card.classList.add('is-active'); f.start(); }
                 else { f.card.classList.remove('is-active'); f.stop(); }
             });
-            window.setTimeout(tick, qFeatures[active].dwell || SPOTLIGHT_MS);
+            if (scheduleNext) {
+                spotlightTimer = window.setTimeout(tick, qFeatures[active].dwell || SPOTLIGHT_MS);
+            }
         };
-        tick();
+
+        const tick = () => {
+            if (stackedFeatures.matches) return;
+            focusFeature((active + 1) % qFeatures.length);
+        };
+
+        const centerMobileFeature = () => {
+            window.clearTimeout(spotlightTimer);
+            const viewportCenter = window.innerHeight / 2;
+            let closestIdx = 0;
+            let closestDistance = Infinity;
+            qFeatures.forEach((f, idx) => {
+                const rect = f.card.getBoundingClientRect();
+                const cardCenter = rect.top + rect.height / 2;
+                const distance = Math.abs(cardCenter - viewportCenter);
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestIdx = idx;
+                }
+            });
+            focusFeature(closestIdx, false);
+        };
+
+        const queueMobileCenter = () => {
+            if (!stackedFeatures.matches || scrollRaf) return;
+            scrollRaf = window.requestAnimationFrame(() => {
+                scrollRaf = null;
+                centerMobileFeature();
+            });
+        };
+
+        const startSpotlight = () => {
+            window.clearTimeout(spotlightTimer);
+            if (stackedFeatures.matches) centerMobileFeature();
+            else tick();
+        };
+
+        qFeatures.forEach((f, idx) => {
+            f.card.tabIndex = 0;
+            const pauseOnFocus = () => {
+                if (stackedFeatures.matches) centerMobileFeature();
+                else focusFeature(idx, false);
+            };
+            const selectOnClick = () => {
+                if (stackedFeatures.matches) centerMobileFeature();
+                else focusFeature(idx);
+            };
+            const resumeAutoFocus = () => {
+                window.clearTimeout(spotlightTimer);
+                if (stackedFeatures.matches) {
+                    centerMobileFeature();
+                    return;
+                }
+                spotlightTimer = window.setTimeout(tick, qFeatures[active].dwell || SPOTLIGHT_MS);
+            };
+            f.card.addEventListener('pointerenter', pauseOnFocus);
+            f.card.addEventListener('mouseenter', pauseOnFocus);
+            f.card.addEventListener('pointerleave', resumeAutoFocus);
+            f.card.addEventListener('mouseleave', resumeAutoFocus);
+            f.card.addEventListener('click', selectOnClick);
+            f.card.addEventListener('focus', pauseOnFocus);
+            f.card.addEventListener('blur', resumeAutoFocus);
+        });
+
+        window.addEventListener('scroll', queueMobileCenter, { passive: true });
+        window.addEventListener('resize', queueMobileCenter);
+        stackedFeatures.addEventListener('change', startSpotlight);
+        startSpotlight();
     })();
 </script>
 
