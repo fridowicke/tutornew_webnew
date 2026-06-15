@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Geschützt · tutor.new</title>
+    <style>
+      @font-face {
+        font-family: "Sour Gummy";
+        src: url("./assets/SourGummy_400Regular.ttf") format("truetype");
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: "Sour Gummy";
+        src: url("./assets/SourGummy_700Bold.ttf") format("truetype");
+        font-weight: 700;
+      }
+      :root {
+        --paper: #f9f1e8;
+        --ink: #0e3322;
+        --muted: #587064;
+        --green: #3a6621;
+        --white: #fffdf9;
+        --red: #8b332b;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        min-height: 100%;
+      }
+      body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Sour Gummy", system-ui, sans-serif;
+      }
+      .card {
+        width: min(440px, 100%);
+        background: var(--white);
+        border: 1.5px solid rgba(14, 51, 34, 0.4);
+        border-radius: 22px;
+        box-shadow: 0 18px 38px rgba(14, 51, 34, 0.09);
+        padding: 34px 32px 30px;
+        text-align: center;
+      }
+      .lock {
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        margin: 0 auto 18px;
+        border-radius: 16px;
+        background: #e6f4dc;
+        color: var(--green);
+      }
+      .lock svg { width: 28px; height: 28px; }
+      h1 {
+        margin: 0 0 6px;
+        font-size: 1.7rem;
+        color: var(--ink);
+      }
+      p.sub {
+        margin: 0 0 22px;
+        color: var(--muted);
+        font-size: 0.98rem;
+        line-height: 1.3;
+      }
+      form { display: grid; gap: 12px; }
+      input {
+        font: inherit;
+        padding: 13px 16px;
+        border: 1.5px solid rgba(14, 51, 34, 0.32);
+        border-radius: 12px;
+        background: var(--paper);
+        color: var(--ink);
+        text-align: center;
+      }
+      input:focus {
+        outline: none;
+        border-color: var(--green);
+      }
+      button {
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 13px 16px;
+        border: 0;
+        border-radius: 12px;
+        background: var(--green);
+        color: var(--white);
+        transition: filter 0.15s ease;
+      }
+      button:hover { filter: brightness(1.07); }
+      .error {
+        margin: 0;
+        min-height: 1.2em;
+        color: var(--red);
+        font-size: 0.9rem;
+      }
+      .brand {
+        margin-top: 22px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="lock" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+      </div>
+      <h1>Erfahrungsbericht</h1>
+      <p class="sub">Kanti Wattwil · Smartfeld Edu&nbsp;AI 2026.<br />Bitte Passwort eingeben.</p>
+      <form id="gate">
+        <input
+          id="pw"
+          type="password"
+          inputmode="text"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          placeholder="Passwort"
+          aria-label="Passwort"
+          autofocus
+        />
+        <button type="submit">Öffnen</button>
+        <p class="error" id="err" role="alert"></p>
+      </form>
+      <div class="brand">tutor.new</div>
+    </div>
+
+    <script>
+      // === Simple, intentionally hackable gate ===
+      // Change the password here:
+      const PASSWORD = "wattwil2026";
+
+      const form = document.getElementById("gate");
+      const pw = document.getElementById("pw");
+      const err = document.getElementById("err");
+
+      // Already unlocked this session? Go straight in.
+      if (sessionStorage.getItem("wv-ok") === "1") {
+        location.replace("./deck.html");
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (pw.value === PASSWORD) {
+          sessionStorage.setItem("wv-ok", "1");
+          location.href = "./deck.html";
+        } else {
+          err.textContent = "Falsches Passwort.";
+          pw.value = "";
+          pw.focus();
+        }
+      });
+    </script>
+  </body>
+</html>

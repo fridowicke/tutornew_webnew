@@ -1,0 +1,2571 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <script>
+      // Lightweight gate: bounce back to the password page if not unlocked.
+      if (sessionStorage.getItem("wv-ok") !== "1") {
+        location.replace("./");
+      }
+    </script>
+    <title>tutor.new Erfahrungsbericht | Smartfeld Edu AI</title>
+    <style>
+      @font-face {
+        font-family: "Sour Gummy";
+        src: url("./assets/SourGummy_400Regular.ttf") format("truetype");
+        font-weight: 400;
+      }
+
+      @font-face {
+        font-family: "Sour Gummy";
+        src: url("./assets/SourGummy_700Bold.ttf") format("truetype");
+        font-weight: 700;
+      }
+
+      :root {
+        --paper: #f9f1e8;
+        --line: #e7dcd0;
+        --ink: #0e3322;
+        --muted: #587064;
+        --green: #3a6621;
+        --blue: #1f4c7a;
+        --yellow: #7a5c18;
+        --purple: #5c3d7a;
+        --red: #8b332b;
+        --white: #fffdf9;
+        --shadow: 0 18px 38px rgba(14, 51, 34, 0.09);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Sour Gummy", system-ui, sans-serif;
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      .deck {
+        height: 100vh;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        background:
+          linear-gradient(90deg, rgba(249, 241, 232, 1) 0%, rgba(249, 241, 232, 0.84) 17%, rgba(249, 241, 232, 0.84) 83%, rgba(249, 241, 232, 1) 100%),
+          linear-gradient(var(--paper) 95%, var(--line) 95%);
+        background-size: 100% 100%, 100% 2rem;
+      }
+
+      .deck::-webkit-scrollbar {
+        display: none;
+      }
+
+      .topbar {
+        position: fixed;
+        z-index: 20;
+        top: 38px;
+        left: 50%;
+        width: min(846px, calc(100vw - 44px));
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        border-top: 1px solid rgba(14, 51, 34, 0.14);
+        border-bottom: 1px solid rgba(14, 51, 34, 0.14);
+        pointer-events: none;
+      }
+
+      .brand,
+      .counter {
+        pointer-events: auto;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+
+      .brand {
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .counter {
+        color: var(--muted);
+      }
+
+      .progress {
+        position: fixed;
+        z-index: 21;
+        left: 0;
+        top: 0;
+        height: 4px;
+        width: calc(var(--progress, 0) * 100%);
+        background: var(--green);
+        transition: width 160ms ease;
+      }
+
+      .slide {
+        min-height: 100vh;
+        scroll-snap-align: start;
+        display: grid;
+        place-items: center;
+        padding: 116px clamp(22px, 5vw, 72px) 44px;
+      }
+
+      .slide.dense {
+        padding-top: 98px;
+        padding-bottom: 26px;
+      }
+
+      .stage {
+        width: min(1040px, 100%);
+        min-height: min(560px, calc(100vh - 160px));
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        align-content: center;
+        gap: 24px;
+      }
+
+      .dense .stage {
+        min-height: min(530px, calc(100vh - 124px));
+        gap: 16px;
+      }
+
+      .split {
+        grid-template-columns: 0.98fr 1.02fr;
+        align-items: center;
+        gap: 36px;
+      }
+
+      .title-stage {
+        grid-template-columns: minmax(0, 1.38fr) minmax(280px, 0.62fr);
+        align-items: end;
+        gap: 42px;
+      }
+
+      .title-stage h1 {
+        max-width: 720px;
+        font-size: clamp(2.6rem, 4.4vw, 4.15rem);
+      }
+
+      .title-stage .mark {
+        white-space: nowrap;
+      }
+
+      .three {
+        grid-template-columns: repeat(3, 1fr);
+        align-items: stretch;
+      }
+
+      .kicker {
+        margin: 0 0 14px;
+        color: var(--muted);
+        font-size: clamp(0.86rem, 1.15vw, 1rem);
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        max-width: 900px;
+        line-height: 1.03;
+        letter-spacing: 0;
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: clamp(2.75rem, 5.05vw, 4.85rem);
+      }
+
+      h2 {
+        font-size: clamp(2.65rem, 5.05vw, 4.8rem);
+      }
+
+      .dense h2 {
+        font-size: clamp(2.18rem, 4vw, 3.62rem);
+        line-height: 1.02;
+      }
+
+      .mark {
+        display: inline-block;
+        padding: 0 0.15em 0.03em;
+        background: #d8eaff;
+        border: 1px solid rgba(31, 76, 122, 0.16);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(31, 76, 122, 0.08);
+        transform: rotate(-1.2deg);
+      }
+
+      p {
+        margin: 0;
+        max-width: 760px;
+        color: var(--muted);
+        font-size: clamp(1.12rem, 1.6vw, 1.45rem);
+        line-height: 1.22;
+      }
+
+      .bigline {
+        color: var(--ink);
+        font-size: clamp(1.18rem, 1.65vw, 1.55rem);
+        line-height: 1.22;
+        max-width: 650px;
+        margin-top: 22px;
+      }
+
+      .paper-card {
+        background: var(--white);
+        border: 1.5px solid rgba(14, 51, 34, 0.74);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+        padding: clamp(18px, 2.4vw, 30px);
+      }
+
+      .tag-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+
+      .tag {
+        border: 1.5px solid currentColor;
+        border-radius: 8px;
+        padding: 7px 12px;
+        font-size: clamp(0.94rem, 1.18vw, 1.08rem);
+        background: var(--white);
+      }
+
+      .presenters {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 34px;
+        max-width: 560px;
+      }
+
+      .speaker {
+        display: grid;
+        grid-template-columns: 58px minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        padding: 8px 10px;
+        background: var(--white);
+        border: 1.5px solid rgba(14, 51, 34, 0.78);
+        border-radius: 12px;
+        box-shadow: 0 10px 24px rgba(14, 51, 34, 0.08);
+      }
+
+      .speaker.supporting {
+        border-style: dashed;
+        border-color: rgba(14, 51, 34, 0.46);
+        background: rgba(255, 253, 249, 0.62);
+        box-shadow: none;
+      }
+
+      .speaker.supporting strong {
+        color: rgba(14, 51, 34, 0.82);
+      }
+
+      .speaker.supporting span {
+        color: rgba(88, 112, 100, 0.82);
+      }
+
+      .speaker img {
+        width: 58px;
+        height: 58px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 1.5px solid rgba(14, 51, 34, 0.7);
+        background: var(--paper);
+      }
+
+      .speaker img.cutout {
+        object-fit: contain;
+        background: #e0f0f7;
+        padding: 2px;
+      }
+
+      .speaker strong,
+      .speaker span {
+        display: block;
+      }
+
+      .speaker strong {
+        color: var(--ink);
+        font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+        line-height: 1.02;
+      }
+
+      .speaker span {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: clamp(0.78rem, 0.9vw, 0.88rem);
+      }
+
+      .green {
+        color: var(--green);
+        background: #e6f4dc;
+      }
+
+      .blue {
+        color: var(--blue);
+        background: #e0f0f7;
+      }
+
+      .yellow {
+        color: var(--yellow);
+        background: #fff5d6;
+      }
+
+      .red {
+        color: var(--red);
+        background: #ffe7e2;
+      }
+
+      .purple {
+        color: var(--purple);
+        background: #f3e8f7;
+      }
+
+      .image-frame {
+        overflow: hidden;
+        background: var(--white);
+        border: 4px solid var(--ink);
+        border-radius: 26px;
+        box-shadow: var(--shadow);
+        transform: rotate(-1deg);
+      }
+
+      .image-frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .quote-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .agenda-list {
+        margin: 0;
+        padding-left: 1.25em;
+        display: grid;
+        gap: 9px;
+        font-size: clamp(0.96rem, 1.18vw, 1.12rem);
+        line-height: 1.12;
+      }
+
+      .agenda-list li::marker {
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      .highlight-grid {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .mini-quotes {
+        display: grid;
+        gap: 12px;
+      }
+
+      .punch-quotes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      .punch-card {
+        min-height: 0;
+        display: grid;
+        position: relative;
+        overflow: hidden;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0 0 0 22px;
+        border-left: 2px solid rgba(14, 51, 34, 0.32);
+      }
+
+      .punch-card::before {
+        content: none;
+      }
+
+      .punch-card strong {
+        display: block;
+        color: var(--ink);
+        font-size: clamp(1.38rem, 2vw, 1.95rem);
+        line-height: 1.14;
+      }
+
+      .punch-card span {
+        display: inline-block;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: clamp(0.9rem, 1vw, 0.98rem);
+      }
+
+      .quote-column {
+        display: grid;
+        align-content: start;
+        gap: 22px;
+        padding: 24px;
+        border: 1.5px solid rgba(14, 51, 34, 0.32);
+        border-radius: 22px;
+        background: rgba(255, 253, 249, 0.62);
+      }
+
+      .quote-column .kicker {
+        margin-bottom: 2px;
+      }
+
+      /* Erste Beobachtungen — Zensis Beobachtung (mit Bild) vs. Lernenden-Zitate */
+      .obs-quotes {
+        display: grid;
+        grid-template-columns: 1.04fr 0.96fr;
+        gap: 30px;
+        align-items: stretch;
+      }
+
+      /* Links: Zensi beobachtet — analytische Beobachtung, ihr zugeschrieben */
+      .obs-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 22px 26px 24px;
+        border: 1.5px solid rgba(58, 102, 33, 0.42);
+        border-radius: 22px;
+        background: rgba(230, 244, 220, 0.4);
+      }
+
+      .stat-list {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        gap: 16px;
+      }
+
+      .stat-row {
+        padding: 16px 0;
+      }
+
+      .stat-row + .stat-row {
+        border-top: 1px solid rgba(58, 102, 33, 0.18);
+      }
+
+      .obs-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(58, 102, 33, 0.24);
+      }
+
+      .obs-head img {
+        width: 54px;
+        height: 54px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid rgba(58, 102, 33, 0.62);
+        background: var(--paper);
+      }
+
+      .obs-head strong {
+        display: block;
+        color: var(--green);
+        font-size: clamp(1rem, 1.25vw, 1.18rem);
+        line-height: 1.05;
+      }
+
+      .obs-head span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: clamp(0.8rem, 0.92vw, 0.9rem);
+      }
+
+      .stat-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .stat-row > strong {
+        flex: none;
+        min-width: 92px;
+        color: var(--green);
+        font-size: clamp(1.9rem, 3vw, 2.7rem);
+        line-height: 1;
+        letter-spacing: -0.01em;
+      }
+
+      .stat-row > strong small {
+        font-size: 0.42em;
+        color: var(--muted);
+      }
+
+      .stat-row b {
+        display: block;
+        color: var(--ink);
+        font-weight: 700;
+        font-size: clamp(1rem, 1.3vw, 1.18rem);
+        line-height: 1.12;
+      }
+
+      .stat-row span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: clamp(0.82rem, 0.95vw, 0.92rem);
+      }
+
+      .obs-note {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: clamp(0.74rem, 0.85vw, 0.82rem);
+      }
+
+      /* Rechts: Lernende sagen — echte Zitate als Sprechblasen */
+      .say-panel {
+        display: grid;
+        align-content: start;
+        gap: 18px;
+        padding-top: 2px;
+      }
+
+      .say-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 2px;
+      }
+
+      .say-ic {
+        display: grid;
+        place-items: center;
+        flex: none;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: #e0f0f7;
+        border: 2px solid rgba(31, 76, 122, 0.5);
+      }
+
+      .say-ic svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .say-head strong {
+        display: block;
+        color: var(--blue);
+        font-size: clamp(1rem, 1.25vw, 1.18rem);
+        line-height: 1.05;
+      }
+
+      .say-head span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: clamp(0.8rem, 0.92vw, 0.9rem);
+      }
+
+      .say-bubble {
+        position: relative;
+        margin: 0;
+        padding: 20px 22px 18px 56px;
+        background: var(--white);
+        border: 1.5px solid rgba(31, 76, 122, 0.28);
+        border-radius: 18px 18px 18px 6px;
+        box-shadow: var(--shadow);
+      }
+
+      .say-bubble::before {
+        content: "\201C";
+        position: absolute;
+        left: 16px;
+        top: 12px;
+        font-size: 3rem;
+        line-height: 0.6;
+        color: rgba(31, 76, 122, 0.55);
+      }
+
+      .say-bubble p {
+        margin: 0;
+        color: var(--ink);
+        font-size: clamp(1.22rem, 1.8vw, 1.72rem);
+        line-height: 1.16;
+      }
+
+      .say-bubble cite {
+        display: block;
+        margin-top: 10px;
+        font-style: normal;
+        color: var(--muted);
+        font-size: clamp(0.88rem, 1vw, 0.96rem);
+      }
+
+      .quote {
+        padding: 18px 22px;
+        font-size: clamp(1.08rem, 1.45vw, 1.36rem);
+        line-height: 1.15;
+        transform: rotate(var(--tilt, 0deg));
+      }
+
+      .quote small {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--muted);
+        font-size: 0.7em;
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .flow button,
+      .choice button {
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .step {
+        min-height: 176px;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .step:hover,
+      .step.is-active {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 36px rgba(14, 51, 34, 0.13);
+      }
+
+      .num {
+        display: block;
+        color: var(--green);
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+
+      .step strong,
+      .choice strong {
+        display: block;
+        font-size: clamp(1.18rem, 1.7vw, 1.65rem);
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+
+      .step span,
+      .choice span {
+        color: var(--muted);
+        font-size: clamp(0.92rem, 1.18vw, 1.08rem);
+        line-height: 1.2;
+      }
+
+      .detail {
+        min-height: 92px;
+        padding: 22px 26px;
+        color: var(--ink);
+        font-size: clamp(1.14rem, 1.65vw, 1.55rem);
+        line-height: 1.15;
+      }
+
+      .workshop-grid {
+        display: grid;
+        grid-template-columns: 0.86fr 1.14fr;
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .plain-points {
+        display: grid;
+        align-content: start;
+        gap: 14px;
+      }
+
+      .dense .plain-points {
+        gap: 10px;
+      }
+
+      .plain-point {
+        border-left: 2px solid rgba(14, 51, 34, 0.26);
+        padding: 4px 0 6px 18px;
+        color: var(--ink);
+        font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+        line-height: 1.12;
+      }
+
+      .dense .plain-point {
+        padding-top: 2px;
+        padding-bottom: 3px;
+        font-size: clamp(0.98rem, 1.18vw, 1.16rem);
+      }
+
+      .plain-point span {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 0.82em;
+      }
+
+      .mock-window {
+        background: var(--white);
+        border: 1.5px solid rgba(14, 51, 34, 0.5);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .mock-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 14px 16px;
+        border-bottom: 1px solid rgba(14, 51, 34, 0.12);
+        color: var(--muted);
+        font-size: clamp(0.82rem, 0.95vw, 0.94rem);
+      }
+
+      .mock-body {
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .dense .mock-body {
+        gap: 10px;
+        padding: 14px;
+      }
+
+      .mock-card {
+        display: grid;
+        gap: 6px;
+        padding: 12px 14px;
+        border: 1px solid rgba(14, 51, 34, 0.18);
+        border-radius: 12px;
+        background: rgba(249, 241, 232, 0.52);
+      }
+
+      .dense .mock-head {
+        padding: 12px 14px;
+      }
+
+      .dense .mock-card {
+        padding: 10px 12px;
+      }
+
+      .mock-card strong,
+      .metric strong {
+        color: var(--ink);
+        font-size: clamp(1rem, 1.18vw, 1.12rem);
+        line-height: 1.05;
+      }
+
+      .mock-card span,
+      .metric span,
+      .mock-row span {
+        color: var(--muted);
+        font-size: clamp(0.78rem, 0.9vw, 0.9rem);
+        line-height: 1.1;
+      }
+
+      .mock-arrow {
+        justify-self: center;
+        color: var(--muted);
+        font-size: clamp(1.8rem, 2.3vw, 2.2rem);
+        line-height: 0.8;
+      }
+
+      .unit-title {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .unit-list {
+        display: grid;
+        gap: 10px;
+        padding: 14px;
+      }
+
+      .unit-row {
+        padding: 10px 14px;
+        border: 1px solid rgba(14, 51, 34, 0.16);
+        border-left-width: 3px;
+        border-radius: 12px;
+        background: rgba(249, 241, 232, 0.5);
+      }
+
+      .u-type {
+        display: block;
+        margin-bottom: 4px;
+        font-size: clamp(0.62rem, 0.74vw, 0.72rem);
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .u-title {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        color: var(--ink);
+        font-size: clamp(0.98rem, 1.18vw, 1.12rem);
+        line-height: 1.1;
+      }
+
+      .u-badge {
+        flex: none;
+        padding: 2px 9px;
+        border-radius: 999px;
+        border: 1px solid rgba(58, 102, 33, 0.45);
+        color: var(--green);
+        background: #e6f4dc;
+        font-size: clamp(0.64rem, 0.76vw, 0.74rem);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        text-transform: none;
+      }
+
+      .unit-row.theorie {
+        border-left-color: var(--blue);
+      }
+      .unit-row.theorie .u-type {
+        color: var(--blue);
+      }
+
+      .unit-row.aktivitaet {
+        border-left-color: var(--green);
+      }
+      .unit-row.aktivitaet .u-type {
+        color: var(--green);
+      }
+
+      .unit-row.aufgabe {
+        border-left-color: var(--red);
+      }
+      .unit-row.aufgabe .u-type {
+        color: var(--red);
+      }
+
+      .dashboard-mock {
+        display: grid;
+        grid-template-columns: 0.68fr 1.32fr;
+        gap: 16px;
+      }
+
+      .week-stack {
+        display: grid;
+        gap: 10px;
+      }
+
+      .week-card {
+        border: 1px solid rgba(14, 51, 34, 0.18);
+        border-radius: 12px;
+        padding: 11px 12px;
+        background: rgba(255, 253, 249, 0.72);
+      }
+
+      .week-card.is-active {
+        border-color: rgba(31, 76, 122, 0.35);
+        background: #e0f0f7;
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .metric {
+        border: 1px solid rgba(14, 51, 34, 0.14);
+        border-radius: 12px;
+        padding: 10px;
+        background: rgba(249, 241, 232, 0.5);
+      }
+
+      .dense .metric {
+        padding: 8px 10px;
+      }
+
+      .mock-table {
+        display: grid;
+        gap: 7px;
+      }
+
+      .mock-row {
+        display: grid;
+        grid-template-columns: minmax(90px, 1fr) 86px minmax(110px, 1.2fr);
+        align-items: center;
+        gap: 10px;
+        padding: 9px 10px;
+        border: 1px solid rgba(14, 51, 34, 0.12);
+        border-radius: 10px;
+        background: var(--white);
+      }
+
+      .dense .mock-row {
+        padding: 7px 9px;
+      }
+
+      .score {
+        justify-self: start;
+        border-radius: 999px;
+        padding: 3px 9px;
+        border: 1px solid rgba(14, 51, 34, 0.12);
+        background: #e6f4dc;
+        color: var(--green);
+        font-size: 0.84rem;
+      }
+
+      .score.warn {
+        background: #fff5d6;
+        color: var(--yellow);
+      }
+
+      .iteration-board {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+
+      .iteration-card {
+        min-height: 190px;
+        display: grid;
+        align-content: start;
+        gap: 12px;
+        padding: 16px;
+        border: 1.5px solid rgba(14, 51, 34, 0.42);
+        border-radius: 16px;
+        background: var(--white);
+      }
+
+      .dense .iteration-card {
+        min-height: 166px;
+        padding: 14px;
+      }
+
+      .iteration-card strong {
+        color: var(--ink);
+        font-size: clamp(1.08rem, 1.45vw, 1.34rem);
+        line-height: 1;
+      }
+
+      .iteration-card span {
+        color: var(--muted);
+        font-size: clamp(0.86rem, 1vw, 0.98rem);
+        line-height: 1.14;
+      }
+
+      .mode-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .mode-pill {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        border: 1px solid rgba(14, 51, 34, 0.16);
+        border-radius: 10px;
+        padding: 7px 8px;
+        background: rgba(249, 241, 232, 0.58);
+        color: var(--ink);
+        font-size: 0.86rem;
+        font-weight: 700;
+        line-height: 1.05;
+      }
+
+      .mode-pill svg {
+        width: 17px;
+        height: 17px;
+        flex: none;
+      }
+
+      .mode-pill.paper {
+        color: var(--yellow);
+        border-color: rgba(122, 92, 24, 0.32);
+        background: #fff5d6;
+      }
+
+      .mode-pill.digital {
+        color: var(--blue);
+        border-color: rgba(31, 76, 122, 0.3);
+        background: #e0f0f7;
+      }
+
+      /* Justierungsschlaufen — echter Feedback-Kreislauf */
+      .loop-cycle {
+        display: grid;
+        grid-template-columns: 1fr clamp(120px, 12vw, 184px) 1fr;
+        grid-template-rows: 1fr auto 1fr;
+        grid-template-areas:
+          "tl  atop  tr"
+          "aleft hub aright"
+          "bl  abot  br";
+        gap: 10px;
+        align-items: stretch;
+      }
+
+      .pos-tl { grid-area: tl; }
+      .pos-tr { grid-area: tr; }
+      .pos-bl { grid-area: bl; }
+      .pos-br { grid-area: br; }
+      .pos-hub { grid-area: hub; }
+      .a-top { grid-area: atop; }
+      .a-right { grid-area: aright; }
+      .a-bottom { grid-area: abot; }
+      .a-left { grid-area: aleft; }
+
+      .cyc-card {
+        display: grid;
+        align-content: start;
+        gap: 8px;
+        padding: 14px 15px 14px 16px;
+        border: 1.5px solid rgba(14, 51, 34, 0.36);
+        border-left-width: 4px;
+        border-radius: 14px;
+        background: var(--white);
+      }
+
+      .cyc-card span {
+        color: var(--muted);
+        font-size: clamp(0.84rem, 0.98vw, 0.96rem);
+        line-height: 1.16;
+      }
+
+      .cyc-top {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .cyc-top strong {
+        color: var(--ink);
+        font-size: clamp(1.04rem, 1.4vw, 1.3rem);
+        line-height: 1;
+      }
+
+      .cyc-step {
+        display: inline-grid;
+        place-items: center;
+        flex: none;
+        width: 23px;
+        height: 23px;
+        border-radius: 50%;
+        color: var(--white);
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .cyc-card.blue { border-left-color: var(--blue); }
+      .cyc-card.blue .cyc-step { background: var(--blue); }
+      .cyc-card.yellow { border-left-color: var(--yellow); }
+      .cyc-card.yellow .cyc-step { background: var(--yellow); }
+      .cyc-card.green { border-left-color: var(--green); }
+      .cyc-card.green .cyc-step { background: var(--green); }
+      .cyc-card.red { border-left-color: var(--red); }
+      .cyc-card.red .cyc-step { background: var(--red); }
+
+      .cyc-arrow {
+        display: grid;
+        place-items: center;
+        color: var(--green);
+        font-size: clamp(1.5rem, 2.3vw, 2.1rem);
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .cyc-hub {
+        align-self: center;
+        justify-self: center;
+        display: grid;
+        place-items: center;
+        align-content: center;
+        gap: 5px;
+        width: clamp(120px, 12vw, 184px);
+        aspect-ratio: 1;
+        padding: 12px;
+        text-align: center;
+        border: 2px dashed rgba(58, 102, 33, 0.5);
+        border-radius: 50%;
+        background: rgba(230, 244, 220, 0.5);
+        color: var(--green);
+      }
+
+      .cyc-hub svg {
+        width: clamp(26px, 2.6vw, 32px);
+        height: clamp(26px, 2.6vw, 32px);
+      }
+
+      .cyc-hub strong {
+        color: var(--green);
+        font-size: clamp(0.84rem, 1vw, 1rem);
+        line-height: 1.05;
+      }
+
+      .cyc-hub span {
+        color: var(--muted);
+        font-size: clamp(0.7rem, 0.82vw, 0.8rem);
+        line-height: 1.05;
+      }
+
+      /* Vereinfachter Justierungs-Loop: 3 Schritte, grosse Schrift, Beispiel-Reveal */
+      .floop {
+        display: grid;
+        gap: 18px;
+      }
+
+      .floop-steps {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        align-items: stretch;
+        gap: 14px;
+      }
+
+      .fstep {
+        display: grid;
+        align-content: start;
+        gap: 14px;
+        padding: clamp(24px, 3.2vh, 34px) clamp(20px, 2vw, 28px);
+        border: 1.5px solid rgba(14, 51, 34, 0.22);
+        border-radius: 18px;
+        background: var(--white);
+        transition: box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+      }
+
+      .ficon {
+        display: grid;
+        place-items: center;
+        width: clamp(50px, 5vw, 60px);
+        height: clamp(50px, 5vw, 60px);
+        border-radius: 16px;
+        color: var(--white);
+      }
+
+      .ficon svg {
+        width: 56%;
+        height: 56%;
+      }
+
+      .fstep.c1 .ficon { background: var(--blue); }
+      .fstep.c2 .ficon { background: var(--yellow); }
+      .fstep.c3 .ficon { background: var(--green); }
+
+      .fstep strong {
+        color: var(--ink);
+        font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+        line-height: 1;
+      }
+
+      .farrow {
+        display: grid;
+        place-items: center;
+        color: var(--green);
+        font-size: clamp(2rem, 3.6vw, 3.1rem);
+        font-weight: 700;
+        transition: transform 0.4s ease;
+      }
+
+      .floop.show-example .farrow {
+        transform: scale(1.18);
+      }
+
+      .fswap {
+        display: grid;
+        align-items: start;
+      }
+
+      .fswap > * {
+        grid-area: 1 / 1;
+        margin: 0;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      .f-abstract {
+        color: var(--muted);
+        font-size: clamp(1.1rem, 1.5vw, 1.48rem);
+        line-height: 1.18;
+      }
+
+      .f-example {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      .floop.show-example .f-abstract {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      .floop.show-example .f-example {
+        opacity: 1;
+        transform: none;
+      }
+
+      .floop.show-example .fstep {
+        border-color: rgba(14, 51, 34, 0.42);
+        box-shadow: 0 16px 32px rgba(14, 51, 34, 0.12);
+      }
+
+      .ex-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: clamp(1.04rem, 1.35vw, 1.3rem);
+      }
+
+      .ex-chip svg {
+        width: 22px;
+        height: 22px;
+        flex: none;
+      }
+
+      .fstep.c1 .ex-chip { background: #e0f0f7; color: var(--blue); }
+      .fstep.c2 .ex-chip { background: #fff5d6; color: var(--yellow); }
+
+      .floop-return {
+        position: relative;
+        height: 46px;
+        margin: 2px 9% 12px;
+        border: 2.5px dashed rgba(58, 102, 33, 0.45);
+        border-top: 0;
+        border-radius: 0 0 24px 24px;
+      }
+
+      .floop-cap {
+        position: absolute;
+        left: -7px;
+        top: -9px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 11px solid rgba(58, 102, 33, 0.6);
+      }
+
+      .rlabel {
+        position: absolute;
+        left: 50%;
+        bottom: -13px;
+        transform: translateX(-50%);
+        padding: 0 14px;
+        background: var(--paper);
+        color: var(--green);
+        font-weight: 700;
+        font-size: clamp(1rem, 1.25vw, 1.2rem);
+      }
+
+      .loop {
+        position: relative;
+        min-height: 382px;
+      }
+
+      .loop-item {
+        position: absolute;
+        width: min(270px, 42%);
+      }
+
+      .loop-item:nth-child(1) {
+        left: 8%;
+        top: 10%;
+      }
+
+      .loop-item:nth-child(2) {
+        right: 12%;
+        top: 5%;
+      }
+
+      .loop-item:nth-child(3) {
+        right: 4%;
+        bottom: 6%;
+      }
+
+      .loop-item:nth-child(4) {
+        left: 22%;
+        bottom: 3%;
+      }
+
+      .arrow {
+        position: absolute;
+        color: var(--muted);
+        font-size: clamp(2rem, 4vw, 4rem);
+      }
+
+      .a1 {
+        left: 45%;
+        top: 18%;
+      }
+
+      .a2 {
+        right: 18%;
+        top: 42%;
+      }
+
+      .a3 {
+        left: 53%;
+        bottom: 16%;
+      }
+
+      .a4 {
+        left: 21%;
+        top: 46%;
+      }
+
+      .evidence {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .fact {
+        min-height: 164px;
+      }
+
+      .feedback-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .feedback-list .quote {
+        font-size: clamp(1rem, 1.25vw, 1.18rem);
+      }
+
+      .student-feedback {
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .signal-stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .signal {
+        display: grid;
+        gap: 5px;
+        padding: 13px 16px;
+        border: 1.5px solid rgba(14, 51, 34, 0.36);
+        border-radius: 16px;
+        background: var(--white);
+        box-shadow: 0 12px 26px rgba(14, 51, 34, 0.07);
+      }
+
+      .signal strong {
+        color: var(--ink);
+        font-size: clamp(1.85rem, 3vw, 2.7rem);
+        line-height: 0.96;
+      }
+
+      .signal span {
+        color: var(--muted);
+        font-size: clamp(0.9rem, 1vw, 0.98rem);
+        line-height: 1.12;
+      }
+
+      .quote-board {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-content: space-between;
+        gap: 12px;
+      }
+
+      .student-quote {
+        display: grid;
+        align-content: center;
+        gap: 10px;
+        padding: 18px 20px;
+        border: 1.5px solid rgba(14, 51, 34, 0.32);
+        border-radius: 18px;
+        background: rgba(255, 253, 249, 0.82);
+      }
+
+      .student-quote strong {
+        color: var(--ink);
+        font-size: clamp(1.02rem, 1.34vw, 1.24rem);
+        line-height: 1.08;
+      }
+
+      .student-quote span {
+        color: var(--muted);
+        font-size: clamp(0.8rem, 0.92vw, 0.9rem);
+      }
+
+      .source-note {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: clamp(0.74rem, 0.84vw, 0.82rem);
+      }
+
+      .highlight-slide .stage {
+        gap: 16px;
+      }
+
+      .highlight-slide h2 {
+        font-size: clamp(2.35rem, 4.45vw, 4.25rem);
+      }
+
+      .highlight-slide .paper-card {
+        padding: clamp(14px, 1.8vw, 22px);
+      }
+
+      .highlight-slide .mini-quotes {
+        gap: 8px;
+      }
+
+      .highlight-slide .quote {
+        padding: 9px 12px;
+        font-size: clamp(0.9rem, 1.08vw, 1.02rem);
+        line-height: 1.05;
+      }
+
+      .rule-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .rule {
+        min-height: 126px;
+      }
+
+      .choice {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+
+      .choice button {
+        min-height: 220px;
+      }
+
+      .choice button[aria-pressed="true"] {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 36px rgba(14, 51, 34, 0.13);
+      }
+
+      .linkline {
+        display: inline-flex;
+        max-width: 100%;
+        margin-top: 26px;
+        padding: 9px 14px;
+        border: 1.5px solid var(--blue);
+        border-radius: 8px;
+        color: var(--blue);
+        background: #e0f0f7;
+        font-size: clamp(1rem, 1.5vw, 1.25rem);
+        overflow-wrap: anywhere;
+      }
+
+      /* Gastfolie — Rollen Lehrperson vs. Technik */
+      .slide.guest {
+        background:
+          linear-gradient(180deg, rgba(243, 232, 247, 0.5), rgba(243, 232, 247, 0) 220px);
+      }
+
+      .guest-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 22px;
+        flex-wrap: wrap;
+      }
+
+      .guest-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 18px 8px 14px;
+        border: 1.5px dashed rgba(92, 61, 122, 0.55);
+        border-radius: 999px;
+        background: rgba(243, 232, 247, 0.7);
+      }
+
+      .guest-badge .g-tag {
+        color: var(--purple);
+        font-weight: 700;
+        font-size: 0.78rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .guest-badge img {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1.5px solid rgba(92, 61, 122, 0.5);
+      }
+
+      .guest-badge .g-meta strong {
+        display: block;
+        color: var(--ink);
+        font-size: 0.98rem;
+        line-height: 1;
+      }
+
+      .guest-badge .g-meta span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .role-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .role-card {
+        display: grid;
+        align-content: start;
+        gap: 14px;
+        padding: 24px 26px;
+        border: 1.5px solid rgba(14, 51, 34, 0.28);
+        border-radius: 18px;
+        background: var(--white);
+      }
+
+      .role-card.blue { border-color: rgba(31, 76, 122, 0.45); }
+      .role-card.green { border-color: rgba(58, 102, 33, 0.45); }
+
+      .role-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .role-head svg {
+        width: 30px;
+        height: 30px;
+        flex: none;
+      }
+
+      .role-head strong {
+        font-size: clamp(1.24rem, 1.75vw, 1.65rem);
+        line-height: 1;
+      }
+
+      .role-card.blue .role-head svg,
+      .role-card.blue .role-head strong { color: var(--blue); }
+      .role-card.green .role-head svg,
+      .role-card.green .role-head strong { color: var(--green); }
+
+      .role-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .role-item {
+        color: var(--ink);
+        font-weight: 700;
+        font-size: clamp(1.06rem, 1.35vw, 1.32rem);
+        line-height: 1.12;
+      }
+
+      .role-item span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-weight: 400;
+        font-size: 0.82em;
+        line-height: 1.18;
+      }
+
+      .role-foot {
+        margin: 2px 0 0;
+        padding-top: 12px;
+        border-top: 1px solid rgba(14, 51, 34, 0.12);
+        color: var(--muted);
+        font-size: clamp(0.92rem, 1.08vw, 1.06rem);
+        line-height: 1.2;
+      }
+
+      .role-synthesis {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 20px;
+        padding: 18px 24px;
+        border-radius: 16px;
+        background: var(--green);
+        color: var(--white);
+        font-weight: 700;
+        font-size: clamp(1.05rem, 1.42vw, 1.42rem);
+        line-height: 1.2;
+      }
+
+      .role-synthesis svg {
+        width: 28px;
+        height: 28px;
+        flex: none;
+        color: var(--white);
+      }
+
+      .nav {
+        position: fixed;
+        z-index: 20;
+        right: 26px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: grid;
+        gap: 10px;
+      }
+
+      .nav button {
+        width: 13px;
+        height: 13px;
+        padding: 0;
+        border: 2px solid rgba(14, 51, 34, 0.72);
+        border-radius: 50%;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .nav button.is-active {
+        background: var(--green);
+      }
+
+      /* Learnings — drei Kern-Learnings, je eigener Fokus */
+      .learn-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(26px, 4vw, 52px);
+        align-items: center;
+      }
+
+      .learn-lead {
+        margin: 0;
+        color: var(--ink);
+        font-size: clamp(1.12rem, 1.6vw, 1.6rem);
+        line-height: 1.26;
+      }
+
+      .learn-lead b {
+        color: var(--green);
+      }
+
+      .learn-takeaways {
+        display: grid;
+        gap: 12px;
+        margin-top: clamp(18px, 2.6vh, 30px);
+      }
+
+      .learn-chip {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 12px 16px;
+        border: 1.5px solid rgba(14, 51, 34, 0.26);
+        border-left: 4px solid var(--green);
+        border-radius: 12px;
+        background: var(--white);
+        color: var(--ink);
+        font-weight: 700;
+        font-size: clamp(1rem, 1.2vw, 1.18rem);
+        line-height: 1.1;
+      }
+
+      .learn-chip svg {
+        width: 21px;
+        height: 21px;
+        flex: none;
+        color: var(--green);
+      }
+
+      .learn-closing {
+        margin-top: 20px;
+        padding: 14px 18px;
+        border-left: 3px solid var(--green);
+        color: var(--ink);
+        font-size: clamp(1.04rem, 1.35vw, 1.34rem);
+        line-height: 1.22;
+      }
+
+      .learn-closing b {
+        color: var(--green);
+      }
+
+      /* L1 — Unterricht ⇄ Technik */
+      .adapt-visual {
+        display: grid;
+        justify-items: center;
+        gap: 16px;
+      }
+
+      .adapt-pair {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+      }
+
+      .adapt-node {
+        display: grid;
+        place-items: center;
+        padding: clamp(20px, 3vh, 32px) 14px;
+        border-radius: 16px;
+        border: 2px solid;
+        font-weight: 700;
+        text-align: center;
+        font-size: clamp(1.08rem, 1.5vw, 1.42rem);
+      }
+
+      .adapt-node.blue {
+        color: var(--blue);
+        border-color: rgba(31, 76, 122, 0.5);
+        background: #e0f0f7;
+      }
+
+      .adapt-node.green {
+        color: var(--green);
+        border-color: rgba(58, 102, 33, 0.5);
+        background: #e6f4dc;
+      }
+
+      .adapt-link svg {
+        width: clamp(36px, 4vw, 46px);
+        height: clamp(36px, 4vw, 46px);
+        color: var(--ink);
+      }
+
+      .adapt-caption {
+        margin: 0;
+        color: var(--muted);
+        text-align: center;
+        font-size: clamp(0.92rem, 1.1vw, 1.08rem);
+      }
+
+      /* L2 — einstimmige Abstimmung */
+      .vote-visual {
+        display: grid;
+        gap: 14px;
+      }
+
+      .vote-classes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .vote-class {
+        display: grid;
+        gap: 4px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1.5px solid rgba(14, 51, 34, 0.26);
+        background: var(--white);
+        color: var(--ink);
+        font-weight: 700;
+        font-size: clamp(1rem, 1.2vw, 1.18rem);
+      }
+
+      .vote-class span {
+        color: var(--green);
+        font-size: 0.78em;
+      }
+
+      .vote-class.skeptic span {
+        color: var(--red);
+      }
+
+      .vote-bridge {
+        justify-self: center;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: clamp(0.92rem, 1.1vw, 1.08rem);
+      }
+
+      .vote-bridge svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .vote-result {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 22px;
+        border-radius: 16px;
+        border: 2px solid rgba(58, 102, 33, 0.5);
+        background: rgba(230, 244, 220, 0.55);
+      }
+
+      .vote-result strong {
+        flex: none;
+        color: var(--green);
+        font-size: clamp(2.4rem, 4.2vw, 3.5rem);
+        line-height: 0.95;
+        letter-spacing: -0.01em;
+      }
+
+      .vote-result span {
+        color: var(--ink);
+        font-size: clamp(1rem, 1.2vw, 1.18rem);
+        line-height: 1.16;
+      }
+
+      .vote-result b {
+        color: var(--green);
+      }
+
+      /* L3 — Lehrperson wird verstärkt */
+      .amp-visual {
+        display: grid;
+        gap: 14px;
+      }
+
+      .amp-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .amp-card {
+        display: grid;
+        align-content: start;
+        gap: 7px;
+        padding: 16px;
+        border-radius: 14px;
+        border: 1.5px solid rgba(14, 51, 34, 0.26);
+        background: var(--white);
+      }
+
+      .amp-card svg {
+        width: 26px;
+        height: 26px;
+        color: var(--green);
+      }
+
+      .amp-card strong {
+        color: var(--ink);
+        font-size: clamp(1.02rem, 1.28vw, 1.22rem);
+      }
+
+      .amp-card span {
+        color: var(--muted);
+        font-size: clamp(0.86rem, 1vw, 0.98rem);
+        line-height: 1.16;
+      }
+
+      .amp-result {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 16px 20px;
+        border-radius: 14px;
+        background: var(--green);
+        color: var(--white);
+        font-weight: 700;
+        font-size: clamp(1rem, 1.26vw, 1.24rem);
+        line-height: 1.18;
+      }
+
+      .amp-result svg {
+        width: 26px;
+        height: 26px;
+        flex: none;
+        color: var(--white);
+      }
+
+      @media (max-width: 860px) {
+        body {
+          overflow: auto;
+        }
+
+        .deck {
+          height: auto;
+          overflow-y: visible;
+          scroll-snap-type: none;
+        }
+
+        .topbar,
+        .nav {
+          display: none;
+        }
+
+        .slide {
+          min-height: auto;
+          padding: 42px 18px;
+        }
+
+        .stage,
+        .split,
+        .title-stage,
+        .three,
+        .flow,
+        .evidence,
+        .highlight-grid,
+        .obs-quotes,
+        .presenters,
+        .workshop-grid,
+        .dashboard-mock,
+        .metric-grid,
+        .mock-row,
+        .iteration-board,
+        .mode-pair,
+        .student-feedback,
+        .quote-board,
+        .rule-grid,
+        .learn-split,
+        .vote-classes,
+        .amp-row,
+        .adapt-pair,
+        .role-grid,
+        .choice {
+          grid-template-columns: 1fr;
+        }
+
+        .loop-cycle {
+          grid-template-columns: 1fr;
+          grid-template-areas: none;
+        }
+
+        .loop-cycle .cyc-arrow,
+        .loop-cycle .pos-hub {
+          display: none;
+        }
+
+        .floop-steps {
+          grid-template-columns: 1fr;
+        }
+
+        .floop .farrow,
+        .floop-return {
+          display: none;
+        }
+
+        h1 {
+          font-size: 3.4rem;
+        }
+
+        h2 {
+          font-size: 2.9rem;
+        }
+
+        .speaker {
+          grid-template-columns: 64px minmax(0, 1fr);
+        }
+
+        .speaker img {
+          width: 64px;
+          height: 64px;
+        }
+
+        .loop {
+          min-height: auto;
+          display: grid;
+          gap: 14px;
+        }
+
+        .loop-item {
+          position: static;
+          width: 100%;
+        }
+
+        .arrow {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand">tutor.new</div>
+      <div class="counter"><span id="current">1</span> von <span id="total">8</span></div>
+    </header>
+
+    <nav class="nav" aria-label="Folien">
+      <button class="is-active" type="button" data-target="0" aria-label="Titel"></button>
+      <button type="button" data-target="1" aria-label="Erfahrung"></button>
+      <button type="button" data-target="2" aria-label="Planung"></button>
+      <button type="button" data-target="3" aria-label="Umsetzung"></button>
+      <button type="button" data-target="4" aria-label="Justierung"></button>
+      <button type="button" data-target="5" aria-label="Feedback"></button>
+      <button type="button" data-target="6" aria-label="Learning 1"></button>
+      <button type="button" data-target="7" aria-label="Learning 2"></button>
+      <button type="button" data-target="8" aria-label="Learning 3"></button>
+      <button type="button" data-target="9" aria-label="Gastperspektive"></button>
+    </nav>
+
+    <main class="deck" id="deck">
+      <section class="slide" data-title="Titel">
+        <div class="stage title-stage">
+          <div>
+            <p class="kicker">4. Edu AI-Treffen · Smartfeld · 23.06.2026</p>
+            <h1>Eine Lehrerin. <span class="mark">20 Lehrassistenten.</span></h1>
+            <p class="bigline">Erfahrungsbericht aus neun Wochen Unterricht mit tutor.new an der Kanti Wattwil.</p>
+            <div class="presenters" aria-label="Referierende">
+              <div class="speaker">
+                <img src="./assets/zensi-hopf.jpg" alt="Zensi Hopf" />
+                <div>
+                  <strong>Zensi Hopf</strong>
+                  <span>Kanti Wattwil</span>
+                </div>
+              </div>
+              <div class="speaker supporting">
+                <img class="cutout" src="./assets/friedrich-wicke.png" alt="Friedrich Wicke" />
+                <div>
+                  <strong>Friedrich Wicke</strong>
+                  <span>tutor.new</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="paper-card">
+            <p class="kicker">Vorgehen</p>
+            <ol class="agenda-list">
+              <li>Planung</li>
+              <li>Umsetzung</li>
+              <li>Justierungsschlaufen</li>
+              <li>Feedback der Lernenden</li>
+              <li>Learnings</li>
+              <li>Ausblick: Lehrperson und Technik</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide highlight-slide" data-title="Erfahrung">
+        <div class="stage">
+          <div>
+            <p class="kicker">1. Highlights</p>
+            <h2>Erste Beobachtungen.</h2>
+          </div>
+          <div class="obs-quotes">
+            <div class="obs-panel">
+              <div class="obs-head">
+                <img src="./assets/zensi-hopf.jpg" alt="Zensi Hopf" />
+                <div>
+                  <strong>Zensi misst</strong>
+                  <span>Vorher-/Nachher-Befragung</span>
+                </div>
+              </div>
+              <div class="stat-list">
+                <div class="stat-row">
+                  <strong>+1.5</strong>
+                  <div>
+                    <b>Lernzuwachs</b>
+                    <span>3.1 → 4.6 von 5</span>
+                  </div>
+                </div>
+                <div class="stat-row">
+                  <strong>+1.4</strong>
+                  <div>
+                    <b>Selbstständig lösen</b>
+                    <span>3.2 → 4.6 von 5</span>
+                  </div>
+                </div>
+                <div class="stat-row">
+                  <strong>4.9<small>/5</small></strong>
+                  <div>
+                    <b>„hilft mir beim Lernen"</b>
+                    <span>Zustimmung</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="say-panel">
+              <div class="say-head">
+                <span class="say-ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#1f4c7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+                </span>
+                <div>
+                  <strong>Lernende sagen</strong>
+                  <span>aus den Fokusgruppen</span>
+                </div>
+              </div>
+              <blockquote class="say-bubble">
+                <p>War ein schlechter Bio-Schüler – jetzt sind meine Noten besser.</p>
+              </blockquote>
+              <blockquote class="say-bubble">
+                <p>So oft nachfragen, wie man will.</p>
+              </blockquote>
+              <blockquote class="say-bubble">
+                <p>Bilder generieren, bis ich es verstehe.</p>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dense" data-title="Planung">
+        <div class="stage">
+          <div>
+            <p class="kicker">2. Planung</p>
+            <h2>Die Planung blieb bei <span class="mark">Zensis Stoff.</span></h2>
+          </div>
+          <div class="workshop-grid">
+            <div class="plain-points">
+              <div class="plain-point">
+                Material aus Zensis Inhalten und Lernzielen.
+              </div>
+              <div class="plain-point">
+                Wöchentliche Inhalte geplant.
+              </div>
+            </div>
+            <div class="mock-window">
+              <div class="mock-head">
+                <span class="unit-title">Molekularbiologie Einführung</span>
+                <span>6 Einträge</span>
+              </div>
+              <div class="unit-list">
+                <div class="unit-row theorie">
+                  <span class="u-type">Theorieblatt</span>
+                  <div class="u-title">Aufbau und Zustandsformen der Chromosomen</div>
+                </div>
+                <div class="unit-row aktivitaet">
+                  <span class="u-type">Interaktive Aktivität</span>
+                  <div class="u-title">Zellzyklus Grafik zum Film</div>
+                </div>
+                <div class="unit-row aktivitaet">
+                  <span class="u-type">Interaktive Aktivität</span>
+                  <div class="u-title">
+                    Zellzyklus Video
+                    <span class="u-badge">Videoanalyse bereit</span>
+                  </div>
+                </div>
+                <div class="unit-row aufgabe">
+                  <span class="u-type">Aufgabenblatt</span>
+                  <div class="u-title">Grundbegriffe zum Aufbau des Erbguts</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dense" data-title="Umsetzung">
+        <div class="stage">
+          <div>
+            <p class="kicker">3. Umsetzung</p>
+            <h2>Jede Woche: zuweisen, bearbeiten, <span class="mark">anschauen</span>.</h2>
+          </div>
+          <div class="dashboard-mock">
+            <div class="mock-window">
+              <div class="mock-head">
+                <span>Wochen</span>
+                <span>2GW</span>
+              </div>
+              <div class="mock-body week-stack">
+                <div class="week-card">
+                  <strong>Woche 3</strong><br />
+                  <span>Enzyme · Theorieblatt</span>
+                </div>
+                <div class="week-card is-active">
+                  <strong>Woche 4</strong><br />
+                  <span>Zellteilung · Übungsblatt</span>
+                </div>
+                <div class="week-card">
+                  <strong>Woche 5</strong><br />
+                  <span>Repetition · Prüfungsvorbereitung</span>
+                </div>
+              </div>
+            </div>
+            <div class="mock-window">
+              <div class="mock-head">
+                <span>Woche 4 · Zellteilung</span>
+                <span>Übersicht</span>
+              </div>
+              <div class="mock-body">
+                <div class="metric-grid">
+                  <div class="metric">
+                    <strong>18/21</strong>
+                    <span>bearbeitet</span>
+                  </div>
+                  <div class="metric">
+                    <strong>74%</strong>
+                    <span>Ø Ergebnis</span>
+                  </div>
+                  <div class="metric">
+                    <strong>5</strong>
+                    <span>offene Rückfragen</span>
+                  </div>
+                </div>
+                <div class="mock-table">
+                  <div class="mock-row">
+                    <strong>Ana</strong>
+                    <span class="score">86%</span>
+                    <span>Feedback gelesen</span>
+                  </div>
+                  <div class="mock-row">
+                    <strong>Luca</strong>
+                    <span class="score warn">61%</span>
+                    <span>Mitose vs. Meiose unklar</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Justierung">
+        <div class="stage">
+          <div>
+            <p class="kicker">4. Justierungsschlaufen</p>
+            <h2>Einsetzen. Beobachten. <span class="mark">Anpassen</span>.</h2>
+          </div>
+          <div class="floop" id="floop">
+            <div class="floop-steps">
+              <div class="fstep c1">
+                <span class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1" /><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" /></svg></span>
+                <strong>Einsetzen</strong>
+                <div class="fswap">
+                  <p class="f-abstract">Eine Version geht in die Klasse.</p>
+                  <div class="f-example"><span class="ex-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8" /><path d="M12 16v4" /></svg>Digitale Blätter</span></div>
+                </div>
+              </div>
+              <div class="farrow" aria-hidden="true">→</div>
+              <div class="fstep c2">
+                <span class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" /><circle cx="12" cy="12" r="3" /></svg></span>
+                <strong>Beobachten</strong>
+                <div class="fswap">
+                  <p class="f-abstract">Was hilft, was stört?</p>
+                  <div class="f-example"><span class="ex-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5" /></svg>Lieber Papier!</span></div>
+                </div>
+              </div>
+              <div class="farrow" aria-hidden="true">→</div>
+              <div class="fstep c3">
+                <span class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" /></svg></span>
+                <strong>Anpassen</strong>
+                <div class="fswap">
+                  <p class="f-abstract">tutor.new baut die Änderung.</p>
+                  <div class="f-example">
+                    <div class="mode-pair">
+                      <div class="mode-pill paper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5" /></svg>
+                        Papier
+                      </div>
+                      <div class="mode-pill digital">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8" /><path d="M12 16v4" /></svg>
+                        Digital
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="floop-return" aria-hidden="true">
+              <span class="floop-cap"></span>
+              <span class="rlabel">… und wieder von vorn</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dense" data-title="Feedback">
+        <div class="stage">
+          <div>
+            <p class="kicker">5. Feedback der Lernenden</p>
+            <h2>Die Rückmeldungen waren <span class="mark">sehr positiv</span>.</h2>
+          </div>
+          <div class="student-feedback">
+            <div class="signal-stack">
+              <div class="signal green">
+                <strong>4.87/5</strong>
+                <span>hilft mir beim Lernen</span>
+              </div>
+              <div class="signal blue">
+                <strong>4.80/5</strong>
+                <span>frage ohne Hemmschwelle</span>
+              </div>
+              <div class="signal yellow">
+                <strong>+1.53</strong>
+                <span>subjektiver Lerngewinn</span>
+              </div>
+            </div>
+            <div class="quote-board">
+              <div class="student-quote">
+                <strong>“Individuell im eigenen Tempo.”</strong>
+              </div>
+              <div class="student-quote">
+                <strong>“Fragen ohne Hemmschwelle.”</strong>
+              </div>
+              <div class="student-quote">
+                <strong>“Bilder fördern das Verständnis.”</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Learning1">
+        <div class="stage">
+          <div>
+            <p class="kicker">6. Learnings · 1 von 3</p>
+            <h2>Flexibilität ist <span class="mark">alles</span>.</h2>
+          </div>
+          <div class="learn-split">
+            <div class="learn-text">
+              <p class="learn-lead">Die Technik verändert <b>radikal, was möglich ist</b> – Unterricht und Technik müssen mitwachsen.</p>
+              <div class="learn-takeaways">
+                <div class="learn-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                  Flexibel bleiben
+                </div>
+                <div class="learn-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                  Eng mit Technolog:innen
+                </div>
+                <div class="learn-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                  Offen für Neues
+                </div>
+              </div>
+            </div>
+            <div class="learn-visual">
+              <div class="adapt-visual">
+                <div class="adapt-pair">
+                  <div class="adapt-node blue">Unterricht</div>
+                  <div class="adapt-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7 3 12l5 5" /><path d="M16 7l5 5-5 5" /><path d="M3 12h18" /></svg>
+                  </div>
+                  <div class="adapt-node green">Technik</div>
+                </div>
+                <p class="adapt-caption">Beide passen sich laufend aneinander an.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Learning2">
+        <div class="stage">
+          <div>
+            <p class="kicker">6. Learnings · 2 von 3</p>
+            <h2>Gekommen, um zu <span class="mark">bleiben</span>.</h2>
+          </div>
+          <div class="learn-split">
+            <div class="learn-text">
+              <p class="learn-lead">Zwei Klassen, eine <b>deutlich skeptischer</b>. Eine Frage am Ende: Tutor behalten?</p>
+              <div class="learn-closing"><b>Das ist die Zukunft.</b> Wir gestalten sie mit.</div>
+            </div>
+            <div class="learn-visual">
+              <div class="vote-visual">
+                <div class="vote-classes">
+                  <div class="vote-class">Klasse 2GW<span>eher offen</span></div>
+                  <div class="vote-class skeptic">Klasse 1SW<span>eher skeptisch</span></div>
+                </div>
+                <div class="vote-bridge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14" /><path d="m6 13 6 6 6-6" /></svg>
+                  Zugang behalten?
+                </div>
+                <div class="vote-result">
+                  <strong>100%</strong>
+                  <span><b>einstimmig</b> für den Tutor – auch alle Skeptiker:innen.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Learning3">
+        <div class="stage">
+          <div>
+            <p class="kicker">6. Learnings · 3 von 3</p>
+            <h2>Lehrpersonen werden <span class="mark">wichtiger</span>.</h2>
+          </div>
+          <div class="learn-split">
+            <div class="learn-text">
+              <p class="learn-lead">KI-Tutoren übernehmen viel von früher – und machen die Lehrperson <b>wichtiger, nicht überflüssig</b>.</p>
+            </div>
+            <div class="learn-visual">
+              <div class="amp-visual">
+                <div class="amp-row">
+                  <div class="amp-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+                    <strong>Lernende</strong>
+                    <span>vorbereiteter &amp; sicherer → machen besser mit</span>
+                  </div>
+                  <div class="amp-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5" /></svg>
+                    <strong>Lehrperson</strong>
+                    <span>sieht, was jede:r braucht → gezielter</span>
+                  </div>
+                </div>
+                <div class="amp-result">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+                  Mehr Zeit für echte Lehrer&#8202;⇄&#8202;Schüler-Interaktion.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide guest" data-title="Gast">
+        <div class="stage">
+          <div class="guest-head">
+            <div>
+              <p class="kicker">Gastperspektive · tutor.new</p>
+              <h2>Wer macht was — Lehrperson und <span class="mark">Technik</span>?</h2>
+            </div>
+            <div class="guest-badge">
+              <span class="g-tag">Gastfolie</span>
+              <img src="./assets/friedrich-wicke.jpg" alt="Friedrich Wicke" />
+              <span class="g-meta"><strong>Friedrich Wicke</strong><span>tutor.new</span></span>
+            </div>
+          </div>
+          <div class="role-grid">
+            <div class="role-card blue">
+              <div class="role-head">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5" /></svg>
+                <strong>Lehrpersonen</strong>
+              </div>
+              <div class="role-list">
+                <div class="role-item">Inhalte &amp; fachliche Tiefe</div>
+                <div class="role-item">Innovation im Unterricht</div>
+              </div>
+              <p class="role-foot">Ihre Klasse, ihr Material.</p>
+            </div>
+            <div class="role-card green">
+              <div class="role-head">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="8" rx="2" /><rect x="3" y="13" width="18" height="8" rx="2" /><path d="M7 7h.01M7 17h.01" /></svg>
+                <strong>Technolog:innen</strong>
+              </div>
+              <div class="role-list">
+                <div class="role-item">Exzellente Infrastruktur</div>
+                <div class="role-item">Erkenntnisse aus Millionen Lernenden</div>
+              </div>
+              <p class="role-foot">Verdichtete Erfahrung im Hintergrund.</p>
+            </div>
+          </div>
+          <div class="role-synthesis">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+            Die Technik trägt die Erfahrung von Millionen – damit Lehrpersonen sich auf ihre Klasse konzentrieren.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const deck = document.querySelector("#deck");
+      const slides = [...document.querySelectorAll(".slide")];
+      const navButtons = [...document.querySelectorAll(".nav button")];
+      const current = document.querySelector("#current");
+      const total = document.querySelector("#total");
+      const root = document.documentElement;
+      total.textContent = String(slides.length);
+
+      function goTo(index) {
+        slides[index]?.scrollIntoView({ behavior: "smooth" });
+      }
+
+      const floop = document.querySelector("#floop");
+      const floopIndex = slides.findIndex((slide) => slide.dataset.title === "Justierung");
+      let floopTimer;
+
+      function updateFloop(active) {
+        if (!floop) return;
+        if (active) {
+          if (floop.dataset.armed === "1") return;
+          floop.dataset.armed = "1";
+          clearTimeout(floopTimer);
+          floopTimer = setTimeout(() => floop.classList.add("show-example"), 1200);
+        } else {
+          floop.dataset.armed = "";
+          clearTimeout(floopTimer);
+          floop.classList.remove("show-example");
+        }
+      }
+
+      function setActive(index) {
+        navButtons.forEach((button, i) => button.classList.toggle("is-active", i === index));
+        current.textContent = String(index + 1);
+        root.style.setProperty("--progress", (index + 1) / slides.length);
+        updateFloop(index === floopIndex);
+      }
+
+      navButtons.forEach((button) => {
+        button.addEventListener("click", () => goTo(Number(button.dataset.target)));
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (visible) setActive(slides.indexOf(visible.target));
+        },
+        { root: deck, threshold: [0.55, 0.75] }
+      );
+
+      slides.forEach((slide) => observer.observe(slide));
+
+      if (floop) {
+        const checkFloop = () => {
+          const r = slides[floopIndex].getBoundingClientRect();
+          const h = deck.clientHeight || window.innerHeight;
+          const visible = Math.min(r.bottom, h) - Math.max(r.top, 0);
+          updateFloop(visible > h * 0.6);
+        };
+        deck.addEventListener("scroll", checkFloop, { passive: true });
+        window.addEventListener("resize", checkFloop);
+        checkFloop();
+      }
+
+      document.addEventListener("keydown", (event) => {
+        const active = navButtons.findIndex((button) => button.classList.contains("is-active"));
+        if (event.key === "ArrowDown" || event.key === "PageDown" || event.key === " ") {
+          event.preventDefault();
+          goTo(Math.min(active + 1, slides.length - 1));
+        }
+        if (event.key === "ArrowUp" || event.key === "PageUp") {
+          event.preventDefault();
+          goTo(Math.max(active - 1, 0));
+        }
+      });
+
+      const flow = document.querySelector("#planning-flow");
+      const detail = document.querySelector("#planning-detail");
+      flow?.addEventListener("click", (event) => {
+        const button = event.target.closest("button");
+        if (!button) return;
+        flow.querySelectorAll("button").forEach((item) => item.classList.remove("is-active"));
+        button.classList.add("is-active");
+        detail.textContent = button.dataset.detail;
+      });
+
+    </script>
+  </body>
+</html>

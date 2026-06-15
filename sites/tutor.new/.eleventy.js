@@ -47,6 +47,10 @@ module.exports = function(eleventyConfig) {
   // Shared design-system stylesheet for q-pages (preview)
   eleventyConfig.addPassthroughCopy("q.css");
 
+  // Password-gated presentation(s) under /p — copied verbatim, not templated
+  eleventyConfig.addPassthroughCopy("p");
+  eleventyConfig.ignores.add("p/**");
+
   // Add filter for URL handling
   eleventyConfig.addFilter("url", function(value) {
     return value;
