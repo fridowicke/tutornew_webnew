@@ -2505,19 +2505,19 @@
         width: 100vw;
         min-height: 100vh;
         margin: 0;
-        transform: scale(0.6);
-        transform-origin: top left;
+        transform: scale(0.58);
+        transform-origin: top center;
       }
 
       body.print-mode .print-notes {
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 5vh;
-        bottom: 5vh;
-        right: 2.5%;
-        width: 35%;
-        padding: 14px 16px;
+        left: 3%;
+        right: 3%;
+        top: 61vh;
+        bottom: 3vh;
+        padding: 12px 18px;
         border: 1.5px solid #cbd5e1;
         border-radius: 8px;
         background: #fff;
@@ -2556,9 +2556,13 @@
         body {
           background: #fff !important;
         }
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
       }
 
-      @media (max-width: 860px) {
+      @media screen and (max-width: 860px) {
         body {
           overflow: auto;
         }
@@ -3488,6 +3492,12 @@
         window.print();
       });
       window.addEventListener("afterprint", () => document.body.classList.remove("print-mode"));
+
+      // Headless-/Direkt-Export: ?print=1 schaltet sofort in die Handout-Ansicht
+      if (new URLSearchParams(location.search).has("print")) {
+        preparePrint();
+        document.body.classList.add("print-mode");
+      }
 
       const flow = document.querySelector("#planning-flow");
       const detail = document.querySelector("#planning-detail");
