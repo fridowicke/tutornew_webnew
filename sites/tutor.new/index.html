@@ -48,7 +48,52 @@ scripts: []
     }
 
     .q-hero-trust {
+        display: flex;
+        flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
+        gap: 6px 0;
+        margin-top: 24px;
+    }
+
+    .q-trust-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 2px 0;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--q-body);
+    }
+
+    .q-trust-item:not(:last-child)::after {
+        content: "";
+        width: 1px;
+        height: 14px;
+        margin: 0 20px;
+        background: var(--q-taupe);
+    }
+
+    .q-trust-item strong {
+        font-weight: 800;
+        color: var(--q-green);
+    }
+
+    .q-trust-item svg {
+        flex: 0 0 auto;
+        width: 16px;
+        height: 16px;
+        color: var(--q-orange);
+    }
+
+    @media (max-width: 620px) {
+        .q-hero-trust {
+            gap: 10px 18px;
+        }
+
+        .q-trust-item:not(:last-child)::after {
+            display: none;
+        }
     }
 
     /* ---------- The app window: chat docked to the Lernblatt ---------- */
@@ -1498,225 +1543,9 @@ scripts: []
         color: #fff;
     }
 
-    .q-zensi-stats {
-        display: flex;
-        flex-wrap: wrap;
-        gap: clamp(16px, 2.4vw, 30px);
-    }
-
-    .q-zensi-stat {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        max-width: 210px;
-    }
-
-    .q-zensi-stat strong {
-        font-family: var(--q-display);
-        font-size: 27px;
-        font-weight: 700;
-        line-height: 1;
-        color: var(--q-yellow);
-    }
-
-    .q-zensi-stat strong span {
-        font-size: 15px;
-        font-weight: 700;
-        color: rgba(249, 241, 232, .55);
-    }
-
-    .q-zensi-stat > span {
-        font-size: 12px;
-        line-height: 1.32;
-        color: rgba(249, 241, 232, .82);
-    }
-
-    .q-zensi-src {
-        font-size: 11px;
-        line-height: 1.3;
-        color: rgba(249, 241, 232, .55);
-    }
-
-    /* ---------- Landing sections: pricing, about, FAQ ---------- */
-
-    .q-section {
-        padding: 82px 0;
-    }
-
-    .q-section-head {
-        display: flex;
-        align-items: end;
-        justify-content: space-between;
-        gap: 26px;
-        margin-bottom: 24px;
-    }
-
-    .q-section-head .q-lead {
-        max-width: 440px;
-    }
-
-    .q-price-grid,
-    .q-faq-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-    }
-
-    .q-price-card,
-    .q-faq-item,
-    .q-about-card {
-        background: #fff;
-        border: 1.5px solid var(--q-line);
-        border-radius: 18px;
-        box-shadow: 0 2px 0 rgba(14, 51, 34, .06), 0 16px 34px rgba(14, 51, 34, .08);
-    }
-
-    .q-price-card {
-        display: flex;
-        flex-direction: column;
-        gap: 13px;
-        min-height: 245px;
-        padding: 22px;
-    }
-
-    .q-price-card.is-featured {
-        border-color: var(--q-green);
-        background: var(--q-green-soft);
-        transform: translateY(-5px);
-    }
-
-    .q-price-eyebrow {
-        font-family: var(--q-display);
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--q-orange);
-    }
-
-    .q-price-title {
-        margin: 0;
-        font-family: var(--q-display);
-        font-size: 22px;
-        line-height: 1.1;
-        color: var(--q-green);
-    }
-
-    .q-price-value {
-        display: flex;
-        align-items: baseline;
-        gap: 5px;
-        font-family: var(--q-display);
-        color: var(--q-green);
-    }
-
-    .q-price-value strong {
-        font-size: 34px;
-        line-height: 1;
-    }
-
-    .q-price-value span {
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--q-green-mid);
-    }
-
-    .q-price-card p,
-    .q-faq-item p,
-    .q-about-copy p {
-        margin: 0;
-    }
-
-    .q-price-list {
-        display: grid;
-        gap: 7px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        font-size: 14px;
-        color: var(--q-body);
-    }
-
-    .q-price-list li::before {
-        content: "✓";
-        margin-right: 7px;
-        color: var(--q-orange);
-        font-weight: 800;
-    }
-
-    .q-about-card {
-        display: grid;
-        grid-template-columns: .82fr 1fr;
-        gap: clamp(22px, 4vw, 42px);
-        align-items: center;
-        padding: clamp(22px, 4vw, 42px);
-        background:
-            radial-gradient(78% 90% at 0% 0%, rgba(52, 211, 153, .13), transparent 64%),
-            #fff;
-    }
-
-    .q-about-photo {
-        overflow: hidden;
-        border-radius: 16px;
-        border: 1.5px solid var(--q-line);
-        transform: rotate(-1.5deg);
-        box-shadow: 0 16px 34px rgba(14, 51, 34, .13);
-    }
-
-    .q-about-photo img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        min-height: 300px;
-        object-fit: cover;
-    }
-
-    .q-about-copy {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .q-about-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 4px;
-    }
-
-    .q-faq-item {
-        padding: 22px;
-    }
-
-    .q-faq-item strong {
-        display: block;
-        margin-bottom: 8px;
-        font-family: var(--q-display);
-        font-size: 18px;
-        line-height: 1.15;
-        color: var(--q-green);
-    }
-
     /* ---------- Responsive ---------- */
 
     @media (max-width: 860px) {
-        .q-section {
-            padding: 62px 0;
-        }
-
-        .q-section-head,
-        .q-about-card {
-            display: grid;
-            grid-template-columns: 1fr;
-        }
-
-        .q-price-grid,
-        .q-faq-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .q-price-card.is-featured {
-            transform: none;
-        }
-
         .q-mini-grid {
             grid-template-columns: 1fr;
         }
@@ -1829,11 +1658,6 @@ scripts: []
             <img src="{{ '/quack/quack-avatar.png' | url }}" alt="">
             <span>tutor.new</span>
         </a>
-        <div class="q-nav-links" aria-label="Seitenbereiche">
-            <a href="#preise">Preise</a>
-            <a href="#ueber-uns">Über uns</a>
-            <a href="#faq">FAQ</a>
-        </div>
         <div class="q-nav-actions">
             <a class="q-btn q-btn-ghost" href="{{ '/teachers.html' | url }}">Schulversion</a>
             <a class="q-btn q-btn-primary" href="https://duck.tutor.new">Jetzt gratis lernen</a>
@@ -1991,9 +1815,18 @@ scripts: []
                     <a class="q-btn q-btn-ghost" href="{{ '/teachers.html' | url }}">Schulversion ansehen</a>
                 </div>
                 <div class="q-hero-trust">
-                    <span>100'000+ Lernende</span>
-                    <span>Videocall mit KI-Avatar</span>
-                    <span>97% verbessern ihre Note</span>
+                    <span class="q-trust-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span><strong>100'000+</strong> Lernende</span>
+                    </span>
+                    <span class="q-trust-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        <span>Videocall mit KI-Avatar</span>
+                    </span>
+                    <span class="q-trust-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        <span><strong>97%</strong> verbessern ihre Note</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -2193,130 +2026,12 @@ scripts: []
                         <img class="q-zensi-avatar" src="{{ '/quack/zensi-hopf.jpg' | url }}" alt="Zensi Hopf">
                         <span class="q-zensi-by-text"><strong>Zensi Hopf</strong>Biologielehrerin · Kantonsschule Wattwil</span>
                     </div>
-                    <div class="q-zensi-stats">
-                        <div class="q-zensi-stat">
-                            <strong>4.87<span>/5</span></strong>
-                            <span>«tutor.new hilft mir beim Lernen»</span>
-                        </div>
-                        <div class="q-zensi-stat">
-                            <strong>3.1<span>→</span>4.6</strong>
-                            <span>Lerngewinn: Unterrichtsorganisation</span>
-                        </div>
-                    </div>
-                    <span class="q-zensi-src">Schüler:innen-Befragung, Klasse 2GW · Kantonsschule Wattwil</span>
-                    <a class="q-btn q-btn-cream" href="{{ '/teachers.html' | url }}">Demo ansehen</a>
+                    <a class="q-btn q-btn-cream" href="{{ '/teachers.html' | url }}">Mehr zur Schulversion</a>
                 </div>
             </figure>
         </div>
     </section>
 
-    <!-- ================= PRICING ================= -->
-    <section class="q-section" id="preise">
-        <div class="q-wrap">
-            <div class="q-section-head">
-                <div>
-                    <span class="q-kicker">Preise</span>
-                    <h2 class="q-h2">Wähle, wie du lernen willst.</h2>
-                </div>
-                <p class="q-lead">Starte gratis und entscheide erst dann, welches Paket zu deinem Lernrhythmus passt.</p>
-            </div>
-            <div class="q-price-grid">
-                <article class="q-price-card">
-                    <span class="q-price-eyebrow">Zum Ausprobieren</span>
-                    <h3 class="q-price-title">Prepaid</h3>
-                    <div class="q-price-value"><strong>4€</strong><span>/ Stunde</span></div>
-                    <p>Perfekt, wenn du vor einer Prüfung punktuell Hilfe brauchst.</p>
-                    <ul class="q-price-list">
-                        <li>Keine Laufzeit</li>
-                        <li>Alle Kernfunktionen</li>
-                        <li>Flexibel aufladbar</li>
-                    </ul>
-                </article>
-                <article class="q-price-card is-featured">
-                    <span class="q-price-eyebrow">Beliebt</span>
-                    <h3 class="q-price-title">Standard Abo</h3>
-                    <div class="q-price-value"><strong>2.99€</strong><span>/ Woche</span></div>
-                    <p>Für regelmäßiges Lernen mit Tutor, Mitschrift und Übungen.</p>
-                    <ul class="q-price-list">
-                        <li>Wöchentliche Lernzeit</li>
-                        <li>Karteikarten und Lernpläne</li>
-                        <li>Belohnungssystem inklusive</li>
-                    </ul>
-                </article>
-                <article class="q-price-card">
-                    <span class="q-price-eyebrow">Mehr Motivation</span>
-                    <h3 class="q-price-title">Boost Abo</h3>
-                    <div class="q-price-value"><strong>8.99€</strong><span>/ Woche</span></div>
-                    <p>Für alle, die schneller Fortschritt sehen und mehr Rewards sammeln wollen.</p>
-                    <ul class="q-price-list">
-                        <li>3x mehr Belohnungen</li>
-                        <li>Mehr Lernzeit</li>
-                        <li>Ideal für intensive Phasen</li>
-                    </ul>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= ABOUT ================= -->
-    <section class="q-section" id="ueber-uns">
-        <div class="q-wrap">
-            <div class="q-about-card">
-                <div class="q-about-photo">
-                    <img src="{{ '/guf.jpeg' | url }}" alt="Gero und Friedrich">
-                </div>
-                <div class="q-about-copy">
-                    <span class="q-kicker">Über uns</span>
-                    <h2 class="q-h2">Gebaut von zwei Lehr-Nerds aus Zürich.</h2>
-                    <p class="q-lead">Wir sind Gero und Friedrich, ein Informatiker und ein Mathematiker. Wir haben uns an der ETH Zürich kennengelernt und wollen Lernsoftware bauen, die sich persönlich, geduldig und richtig nützlich anfühlt.</p>
-                    <p>Unser Ziel: hochwertige Nachhilfe für jedes Kind zugänglich machen, unabhängig von Hintergrund, Budget oder Tageszeit.</p>
-                    <div class="q-about-actions">
-                        <a class="q-btn q-btn-ghost" href="{{ '/ueber-uns.html' | url }}">Mehr erfahren</a>
-                        <a class="q-btn q-btn-ghost" href="mailto:friedrich@tutor.new">Kontakt aufnehmen</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= FAQ ================= -->
-    <section class="q-section" id="faq">
-        <div class="q-wrap">
-            <div class="q-section-head">
-                <div>
-                    <span class="q-kicker">FAQ</span>
-                    <h2 class="q-h2">Häufige Fragen.</h2>
-                </div>
-                <p class="q-lead">Kurz und ehrlich beantwortet, damit du schnell entscheiden kannst, ob tutor.new passt.</p>
-            </div>
-            <div class="q-faq-grid">
-                <article class="q-faq-item">
-                    <strong>Ist tutor.new wirklich kostenlos?</strong>
-                    <p>Du kannst tutor.new kostenlos ausprobieren. Für unbegrenzten Zugang und Premium-Funktionen gibt es faire Wochenpakete.</p>
-                </article>
-                <article class="q-faq-item">
-                    <strong>Welche Fächer werden unterstützt?</strong>
-                    <p>Fast alle Schulfächer: von Mathematik und Physik bis Deutsch, Englisch, Geschichte und Biologie.</p>
-                </article>
-                <article class="q-faq-item">
-                    <strong>Kann ich meine Notizen speichern?</strong>
-                    <p>Ja. Erstellte Lernblätter, Notizen und Übungen bleiben in deinem Profil und können später wieder geöffnet werden.</p>
-                </article>
-                <article class="q-faq-item">
-                    <strong>Ist die KI immer richtig?</strong>
-                    <p>Nein, Fehler können passieren. tutor.new ist als Lernbegleiter gebaut und wird laufend verbessert.</p>
-                </article>
-                <article class="q-faq-item">
-                    <strong>Funktioniert tutor.new auch für Schulen?</strong>
-                    <p>Ja. Lehrpersonen können Klassen begleiten, Fortschritt sehen und Aufgaben gezielt verteilen.</p>
-                </article>
-                <article class="q-faq-item">
-                    <strong>Was passiert mit Kinderdaten?</strong>
-                    <p>Datenschutz ist zentral: keine Daten als Geschäftsmodell, keine Nutzung für fremdes KI-Training.</p>
-                </article>
-            </div>
-        </div>
-    </section>
 </main>
 
 <script>
@@ -3268,9 +2983,8 @@ scripts: []
             <div>
                 <h3>Unternehmen</h3>
                 <ul>
-                    <li><a href="#preise">Preise</a></li>
-                    <li><a href="#ueber-uns">Über uns</a></li>
-                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="{{ '/ueber-uns.html' | url }}">Über uns</a></li>
+                    <li><a href="{{ '/faq.html' | url }}">FAQ</a></li>
                 </ul>
             </div>
             <div>

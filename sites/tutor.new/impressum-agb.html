@@ -1,60 +1,41 @@
 ---
-layout: layouts/simple.njk
-title: Impressum, AGB & Datenschutz - tutor.new
+layout: layouts/base.njk
+title: Impressum, AGB & Datenschutz – tutor.new
 lang: de
 permalink: /impressum-agb.html
-pageStyles: |
-    :root {
-        --accent-color: #555; /* Grey accent for this page */
-    }
-
-    a {
-        font-weight: bold;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-        border-bottom: 1px solid var(--accent-color);
-    }
-
-    h2 {
-        font-size: 1.4rem;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .legal-text {
-        font-family: sans-serif; /* More readable for legal text */
-        font-size: 0.9rem;
-        color: #444;
-        background: white;
-        padding: 15px;
-        border: 1px solid #ccc;
-        box-shadow: 2px 2px 0 rgba(14, 51, 34, 0.2);
-    }
+useQ: true
+scripts: []
 ---
 
-<h1 data-i18n="legal_title">Rechtliches</h1>
+{% include "partials/q-header.njk" %}
 
-<h2 id="impressum" data-i18n="legal_imprint_heading">Impressum</h2>
-<div class="legal-text" data-i18n="legal_imprint_content">
-    <p><strong>Sophia Edu Labs GmbH</strong><br>
-    Murwiesenstrasse 43<br>
-    8057 Zürich</p>
-    
-    <p><strong>Kontakt:</strong><br>
-    E-Mail: friedrich@tutor.new</p>
-</div>
+<main class="q-page q-page-narrow">
+    <div class="q-wrap q-prose">
+        <div class="q-page-head">
+            <span class="q-kicker">Rechtliches</span>
+            <h1 data-i18n="legal_title">Rechtliches</h1>
+        </div>
 
-<h2 id="agb" data-i18n="legal_terms_heading">AGB (Terms & Conditions)</h2>
-<div class="legal-text" data-i18n="legal_terms_content">
-    <!-- Content loaded via i18n -->
-</div>
+        <h2 id="impressum" data-i18n="legal_imprint_heading">Impressum</h2>
+        <div class="q-prose-card" data-i18n="legal_imprint_content">
+            <p><strong>Sophia Edu Labs GmbH</strong><br>
+            Murwiesenstrasse 43<br>
+            8057 Zürich</p>
 
-<h2 id="datenschutz" data-i18n="legal_privacy_heading">Datenschutzerklärung</h2>
-<div class="legal-text" data-i18n="legal_privacy_content">
-    <!-- Content loaded via i18n -->
-</div>
+            <p><strong>Kontakt:</strong><br>
+            E-Mail: friedrich@tutor.new</p>
+        </div>
 
+        <h2 id="agb" data-i18n="legal_terms_heading">AGB (Terms &amp; Conditions)</h2>
+        <div class="q-prose-card" data-i18n="legal_terms_content">
+            <!-- Content loaded via i18n -->
+        </div>
 
+        <h2 id="datenschutz" data-i18n="legal_privacy_heading">Datenschutzerklärung</h2>
+        <div class="q-prose-card" data-i18n="legal_privacy_content">
+            <!-- Content loaded via i18n -->
+        </div>
+    </div>
+</main>
+
+{% include "partials/q-footer.njk" %}

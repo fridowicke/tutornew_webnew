@@ -335,25 +335,24 @@ h1.q-h1 {
     margin-top: 4px;
 }
 
-.q-hero-trust {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 18px;
+.q-hero-promise {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0;
+    padding: 9px 15px;
+    border-radius: 999px;
+    background: var(--q-green-soft);
     font-size: 13.5px;
     font-weight: 600;
     color: var(--q-green-mid);
 }
 
-.q-hero-trust span {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.q-hero-trust span::before {
-    content: "✓";
-    font-weight: 800;
-    color: var(--q-orange);
+.q-flags {
+    flex-shrink: 0;
+    font-size: 17px;
+    line-height: 1;
+    white-space: nowrap;
 }
 
 .q-hero-visual {
@@ -373,10 +372,10 @@ h1.q-h1 {
 .q-duck-hero {
     position: absolute;
     z-index: 2;
-    top: -38px;
-    right: 6px;
-    width: 138px;
-    transform: rotate(4deg);
+    top: -64px;
+    right: -22px;
+    width: 118px;
+    transform: rotate(6deg);
     filter: drop-shadow(0 10px 18px rgba(14, 51, 34, .25));
     opacity: 0;
     animation: q-rise .6s ease .4s forwards;
@@ -455,6 +454,27 @@ h1.q-h1 {
     color: #8a9388;
 }
 
+.q-student {
+    margin-top: 15px;
+}
+
+.q-student-top {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    align-items: center;
+    gap: 12px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--q-green);
+}
+
+.q-student-fb {
+    margin: 7px 0 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #8a9388;
+}
+
 .q-meter {
     height: 10px;
     border-radius: 999px;
@@ -501,21 +521,25 @@ h1.q-h1 {
 
 .q-chip-row {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
     margin-top: 15px;
 }
 
 .q-chip {
+    flex: 1 1 0;
+    min-width: 0;
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    padding: 6px 12px;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 10px;
     border-radius: 999px;
     border: 1.5px solid var(--q-line);
     background: #fff;
     font-size: 12.5px;
     font-weight: 650;
+    white-space: nowrap;
     color: var(--q-green);
 }
 
@@ -1303,4 +1327,140 @@ h1.q-h1 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 30px;
     }
+}
+
+/* ===================================================================
+   Content pages (legal, FAQ, steps, simple landings)
+   =================================================================== */
+
+.q-page {
+    padding: clamp(36px, 5vw, 70px) 0 clamp(48px, 6vw, 90px);
+}
+
+.q-page-narrow .q-wrap { max-width: 768px; }
+
+.q-page-head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+.q-page-head h1 {
+    margin: 0;
+    font-family: var(--q-display);
+    font-size: clamp(28px, 3.6vw, 44px);
+    font-weight: 600;
+    line-height: 1.12;
+    color: var(--q-green);
+}
+
+.q-page-head .q-lead { margin: 0; max-width: 620px; }
+
+/* --- prose (legal / long text) --- */
+.q-prose { color: #33433a; }
+.q-prose > * + * { margin-top: 14px; }
+.q-prose h2 {
+    margin: clamp(30px, 4vw, 46px) 0 4px;
+    font-family: var(--q-display);
+    font-size: clamp(19px, 2.1vw, 25px);
+    font-weight: 600;
+    color: var(--q-green);
+}
+.q-prose h3 {
+    margin: 20px 0 2px;
+    font-family: var(--q-display);
+    font-size: 16.5px;
+    font-weight: 600;
+    color: var(--q-green);
+}
+.q-prose p, .q-prose li { font-size: 15.5px; line-height: 1.65; }
+.q-prose ul, .q-prose ol { margin: 0; padding-left: 22px; }
+.q-prose li + li { margin-top: 5px; }
+.q-prose a { color: var(--q-green); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.q-prose strong { color: var(--q-green); }
+
+.q-prose-card {
+    padding: clamp(18px, 2.2vw, 26px);
+    border-radius: 14px;
+    background: #fff;
+    border: 1.5px solid var(--q-line);
+    box-shadow: 0 2px 0 rgba(14, 51, 34, .05);
+}
+
+/* --- FAQ --- */
+.q-faq { display: flex; flex-direction: column; gap: 12px; }
+.q-faq-item {
+    padding: clamp(18px, 2.2vw, 26px) clamp(18px, 2.4vw, 28px);
+    border-radius: 16px;
+    background: #fff;
+    border: 1.5px solid var(--q-line);
+    box-shadow: 0 2px 0 rgba(14, 51, 34, .05);
+}
+.q-faq-q {
+    display: block;
+    margin-bottom: 7px;
+    font-family: var(--q-display);
+    font-size: clamp(16px, 1.8vw, 18.5px);
+    font-weight: 600;
+    color: var(--q-green);
+}
+.q-faq-a { font-size: 15px; line-height: 1.6; color: #4a5a50; }
+
+/* --- numbered steps --- */
+.q-steps { display: grid; gap: clamp(14px, 2vw, 20px); }
+.q-steps-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.q-step {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding: clamp(22px, 2.6vw, 32px);
+    border-radius: 18px;
+    background: #fff;
+    border: 1.5px solid var(--q-line);
+    box-shadow: 0 3px 0 rgba(14, 51, 34, .05);
+}
+.q-step-num {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: var(--q-green-soft);
+    color: var(--q-green);
+    font-family: var(--q-display);
+    font-size: 16px;
+    font-weight: 700;
+}
+.q-step h3 {
+    margin: 4px 0 0;
+    font-family: var(--q-display);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--q-green);
+}
+.q-step p { margin: 0; font-size: 14.5px; line-height: 1.55; color: #4a5a50; }
+
+/* --- contact card --- */
+.q-contact {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 22px;
+    padding: clamp(18px, 2.2vw, 24px);
+    border-radius: 16px;
+    background: var(--q-green);
+    color: var(--q-cream);
+}
+.q-contact img {
+    width: 60px; height: 60px; border-radius: 50%;
+    object-fit: cover; flex: 0 0 auto;
+    border: 2px solid rgba(255, 255, 255, .3);
+}
+.q-contact p { margin: 0; font-size: 15px; line-height: 1.5; }
+.q-contact a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+@media (max-width: 720px) {
+    .q-steps-3 { grid-template-columns: 1fr; }
+    .q-contact { flex-direction: column; align-items: flex-start; }
 }

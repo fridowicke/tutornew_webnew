@@ -1,72 +1,38 @@
 ---
-layout: layouts/simple.njk
-title: Für Schulen — tutor.new
+layout: layouts/base.njk
+title: Für Schulen – tutor.new
+description: tutor.new arbeitet mit Schulen in der ganzen Schweiz zusammen und freut sich über neue Partnerschaften mit Schulen und Lehrpersonen.
 lang: de
 permalink: /schools.html
-description: tutor.new arbeitet mit Schulen in der ganzen Schweiz zusammen und freut sich über neue Partnerschaften mit Schulen und Lehrpersonen.
-pageStyles: |
-    :root {
-        --accent-color: #1f4c7a;
-    }
-
-    a { font-weight: bold; }
-
-    h1 {
-        font-size: 2.3rem;
-        margin-bottom: 1rem;
-        color: var(--accent-color);
-        display: inline-block;
-    }
-
-    .content-section {
-        max-width: 680px;
-    }
-
-    .contact-box {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        max-width: 680px;
-        margin-top: 1.75rem;
-        padding: 1rem;
-        border: 1px solid rgba(31, 76, 122, 0.25);
-        border-radius: 10px;
-        background: #f7fafc;
-    }
-
-    .contact-box img {
-        width: 64px;
-        height: 64px;
-        border-radius: 50%;
-        object-fit: cover;
-        flex: 0 0 auto;
-    }
-
-    .contact-box p {
-        margin: 0;
-    }
-
-    p {
-        line-height: 1.65;
-        margin-bottom: 1rem;
-    }
-
-    @media (max-width: 480px) {
-        h1 { font-size: 1.8rem; }
-        .contact-box {
-            align-items: flex-start;
-        }
-    }
+useQ: true
+scripts: []
 ---
 
-<h1>Für Schulen</h1>
+{% include "partials/q-header.njk" %}
 
-<div class="content-section">
-    <p>Wir arbeiten mit mehreren Schulen in der ganzen Schweiz zusammen und freuen uns über den Austausch mit weiteren Schulen und Lehrpersonen.</p>
-    <p>Am Anfang steht in der Regel ein kurzes Videogespräch. Dabei besprechen wir Ihre Erwartungen, den konkreten Bedarf an Ihrer Schule und mögliche Formen der Zusammenarbeit.</p>
-</div>
+<main class="q-page q-page-narrow">
+    <div class="q-wrap">
+        <div class="q-page-head">
+            <span class="q-kicker">Für Schulen</span>
+            <h1>Bringen wir tutor.new an Ihre Schule.</h1>
+            <p class="q-lead">Wir arbeiten mit mehreren Schulen in der ganzen Schweiz zusammen und freuen uns über den Austausch mit weiteren Schulen und Lehrpersonen.</p>
+        </div>
 
-<div class="contact-box">
-    <p>Für einen Termin oder erste Fragen freuen wir uns über eine Nachricht an <a href="mailto:friedrich@tutor.new?subject=Gespr%C3%A4ch%20zu%20tutor.new%20an%20unserer%20Schule">friedrich@tutor.new</a>.</p>
-    <img src="https://avatars.githubusercontent.com/u/84902954?v=4" alt="Friedrich Wicke">
-</div>
+        <div class="q-prose">
+            <p>Am Anfang steht in der Regel ein kurzes Videogespräch. Dabei besprechen wir Ihre Erwartungen, den konkreten Bedarf an Ihrer Schule und mögliche Formen der Zusammenarbeit.</p>
+            <p>Wie der Tutor im Unterricht aussieht und was Lehrpersonen davon haben, sehen Sie auf der <a href="{{ '/teachers.html' | url }}">Schulversion</a>.</p>
+        </div>
+
+        <div class="q-contact">
+            <img src="https://avatars.githubusercontent.com/u/84902954?v=4" alt="Friedrich Wicke">
+            <p>Für einen Termin oder erste Fragen freuen wir uns über eine Nachricht an <a href="mailto:friedrich@tutor.new?subject=Gespr%C3%A4ch%20zu%20tutor.new%20an%20unserer%20Schule">friedrich@tutor.new</a>. Persönliche Antwort, kein Newsletter.</p>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:13px;margin-top:26px;">
+            <a class="q-btn q-btn-primary" href="mailto:friedrich@tutor.new?subject=Gespr%C3%A4ch%20zu%20tutor.new%20an%20unserer%20Schule">Gespräch vereinbaren</a>
+            <a class="q-btn q-btn-ghost" href="{{ '/teachers.html' | url }}">Schulversion ansehen</a>
+        </div>
+    </div>
+</main>
+
+{% include "partials/q-footer.njk" %}

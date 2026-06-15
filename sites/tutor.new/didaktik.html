@@ -1,172 +1,141 @@
 ---
-layout: layouts/simple.njk
-title: Didaktik - tutor.new
+layout: layouts/base.njk
+title: Didaktik – tutor.new
+description: "Wie tutor.new lernt: ein personalisiertes Lernmodell, dein eigenes Material und forschungsbasierte Didaktik."
 lang: de
 permalink: /didaktik.html
-pageStyles: |
-    :root {
-        --accent-color: #2d6a4f; /* Green accent for didactics */
-    }
-
-    a {
-        font-weight: bold;
-    }
-
-    h1 {
-        font-size: 2.2rem;
-        margin-bottom: 0.5rem;
-        color: var(--accent-color);
-        display: inline-block;
-        transform: rotate(-1deg);
-    }
-
-    .subtitle {
-        font-size: 1.2rem;
-        opacity: 0.7;
-        margin-bottom: 3rem;
-        display: block;
-    }
-
-    .didactics-section {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        margin-bottom: 5rem;
-        text-align: left;
-    }
-
-    .didactics-section:nth-child(even) {
-        flex-direction: row-reverse;
-    }
-
-    .section-text {
-        flex: 1;
-    }
-
-    .section-visual {
-        flex: 0 0 220px; /* Small fixed width for images */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .card-title {
-        font-family: 'Sour Gummy', sans-serif;
-        font-size: 1.6rem;
-        color: var(--accent-color);
-        display: block;
-        margin-bottom: 0.5rem;
-    }
-
-    .card-content {
-        font-size: 1.1rem;
-        line-height: 1.4;
-    }
-
-    .card-image {
-        width: 100%;
-        height: auto;
-        border-radius: 12px;
-        border: 2px solid #eee;
-        box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
-        transform: rotate(1deg);
-    }
-
-    .didactics-section:nth-child(even) .card-image {
-        transform: rotate(-1deg);
-    }
-
-    .tutor-grid {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .tutor-img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid var(--accent-color);
-        box-shadow: 2px 2px 0px rgba(45, 106, 79, 0.1);
-    }
-
-    @media (max-width: 480px) {
-        .didactics-section, .didactics-section:nth-child(even) {
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-            text-align: center;
-        }
-        .section-visual {
-            flex: none;
-            width: 180px;
-            margin: 0 auto;
-        }
-    }
+useQ: true
+scripts: []
 ---
 
-<h1 data-i18n="didactics_title">Unsere Didaktik</h1>
-<span class="subtitle" data-i18n="didactics_subtitle">Wie wir das Lernen revolutionieren</span>
+<style>
+    .dd-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: clamp(28px, 5vw, 64px);
+        align-items: center;
+        padding: clamp(28px, 4vw, 52px) 0;
+    }
 
-<!-- Section 1: Personal learning model -->
-<div class="didactics-section">
-    <div class="section-text">
-        <span class="card-title" data-i18n="didactics_1_title">Personalisiertes Lernmodell</span>
-        <div class="card-content" data-i18n="didactics_1_text">
-            Du wählst einen Tutor. Er verfolgt deine Ziele, Fehler, Stärken und dein Tempo. Jede Sitzung baut auf der letzten auf.
+    .dd-row + .dd-row { border-top: 1.5px solid var(--q-line); }
+
+    .dd-row:nth-child(even) .dd-text { order: 2; }
+
+    .dd-text h2 {
+        margin: 0 0 10px;
+        font-family: var(--q-display);
+        font-size: clamp(21px, 2.3vw, 28px);
+        font-weight: 600;
+        line-height: 1.2;
+        color: var(--q-green);
+    }
+
+    .dd-text p {
+        margin: 0;
+        font-size: 15.5px;
+        line-height: 1.6;
+        color: #33433a;
+    }
+
+    .dd-visual {
+        display: flex;
+        justify-content: center;
+    }
+
+    .dd-visual img {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+        border-radius: 16px;
+        border: 1.5px solid var(--q-line);
+        box-shadow: 0 14px 30px rgba(14, 51, 34, .12);
+    }
+
+    .dd-tutors {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+    }
+
+    .dd-tutors img {
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #fff;
+        box-shadow: 0 6px 14px rgba(14, 51, 34, .16);
+    }
+
+    .dd-row--solo {
+        grid-template-columns: 1fr;
+        max-width: 760px;
+    }
+
+    @media (max-width: 720px) {
+        .dd-row { grid-template-columns: 1fr; gap: 22px; }
+        .dd-row:nth-child(even) .dd-text { order: 0; }
+    }
+</style>
+
+{% include "partials/q-header.njk" %}
+
+<main class="q-page">
+    <div class="q-wrap">
+        <div class="q-page-head">
+            <span class="q-kicker">Didaktik</span>
+            <h1 data-i18n="didactics_title">Wie wir das Lernen revolutionieren.</h1>
+            <p class="q-lead" data-i18n="didactics_subtitle">Kein generischer Lehrplan – sondern ein Tutor, der bei dir ansetzt und mit dir mitwächst.</p>
+        </div>
+
+        <div class="dd-row">
+            <div class="dd-text">
+                <h2 data-i18n="didactics_1_title">Personalisiertes Lernmodell</h2>
+                <p data-i18n="didactics_1_text">Du wählst einen Tutor. Er verfolgt deine Ziele, Fehler, Stärken und dein Tempo. Jede Sitzung baut auf der letzten auf.</p>
+            </div>
+            <div class="dd-visual">
+                <div class="dd-tutors">
+                    <img src="{{ '/tutors/anna.png' | url }}" alt="Anna">
+                    <img src="{{ '/tutors/alex.png' | url }}" alt="Alex">
+                    <img src="{{ '/tutors/maya.png' | url }}" alt="Maya">
+                    <img src="{{ '/tutors/sophia.png' | url }}" alt="Sophia">
+                    <img src="{{ '/tutors/steve.png' | url }}" alt="Steve">
+                </div>
+            </div>
+        </div>
+
+        <div class="dd-row">
+            <div class="dd-text">
+                <h2 data-i18n="didactics_2_title">Arbeite an dem, was du wirklich brauchst</h2>
+                <p data-i18n="didactics_2_text">Lade Schulbücher, Arbeitsblätter, Prüfungen oder Notizen hoch. Der Tutor unterrichtet direkt mit deinem Material. Kein generischer Lehrplan, nur das, was für dich zählt.</p>
+            </div>
+            <div class="dd-visual">
+                <img src="{{ '/didactics_assets/upload_material.png' | url }}" alt="Material hochladen">
+            </div>
+        </div>
+
+        <div class="dd-row">
+            <div class="dd-text">
+                <h2 data-i18n="didactics_3_title">Von der Lektion zur Meisterschaft</h2>
+                <p data-i18n="didactics_3_text">Live-Notizen mit klaren Visualisierungen während der Lektion. Ein-Klick-PDFs nach der Sitzung. Automatisch generierte Übungen und Karteikarten. Übe alles direkt in der App.</p>
+            </div>
+            <div class="dd-visual">
+                <img src="{{ '/didactics_assets/lecture_notes.png' | url }}" alt="Lernnotizen">
+            </div>
+        </div>
+
+        <div class="dd-row dd-row--solo">
+            <div class="dd-text">
+                <h2 data-i18n="didactics_4_title">Forschungsbasierte Didaktik</h2>
+                <p data-i18n="didactics_4_text">Entwickelt mit führenden Bildungsforschern und mitgestaltet von Top-Lehrern. Optimiert für echtes Lernen, nicht nur für Bildschirmzeit.</p>
+            </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:13px;margin-top:clamp(28px,4vw,44px);">
+            <a class="q-btn q-btn-primary" href="https://duck.tutor.new" data-i18n="cta_button_secondary">Kostenlos testen</a>
+            <a class="q-btn q-btn-ghost" href="{{ '/so-funktionierts.html' | url }}">So funktioniert's</a>
         </div>
     </div>
-    <div class="section-visual">
-        <div class="tutor-grid">
-            <img src="{{ '/tutors/anna.png' | url }}" alt="Anna" class="tutor-img">
-            <img src="{{ '/tutors/alex.png' | url }}" alt="Alex" class="tutor-img">
-            <img src="{{ '/tutors/maya.png' | url }}" alt="Maya" class="tutor-img">
-            <img src="{{ '/tutors/sophia.png' | url }}" alt="Sophia" class="tutor-img">
-            <img src="{{ '/tutors/steve.png' | url }}" alt="Steve" class="tutor-img">
-        </div>
-    </div>
-</div>
+</main>
 
-<!-- Section 2: Work on what you actually need -->
-<div class="didactics-section">
-    <div class="section-text">
-        <span class="card-title" data-i18n="didactics_2_title">Arbeite an dem, was du wirklich brauchst</span>
-        <div class="card-content" data-i18n="didactics_2_text">
-            Lade Schulbücher, Arbeitsblätter, Prüfungen oder Notizen hoch. Der Tutor unterrichtet direkt mit deinem Material. Kein generischer Lehrplan, nur das, was für dich zählt.
-        </div>
-    </div>
-    <div class="section-visual">
-        <img src="{{ '/didactics_assets/upload_material.png' | url }}" alt="Upload material" style="width: 100%; height: auto;">
-    </div>
-</div>
-
-<!-- Section 3: From lesson to mastery -->
-<div class="didactics-section">
-    <div class="section-text">
-        <span class="card-title" data-i18n="didactics_3_title">Von der Lektion zur Meisterschaft</span>
-        <div class="card-content" data-i18n="didactics_3_text">
-            Live-Notizen mit klaren Visualisierungen während der Lektion. Ein-Klick-PDFs nach der Sitzung. Automatisch generierte Übungen und Karteikarten. Übe alles direkt in der App.
-        </div>
-    </div>
-    <div class="section-visual">
-        <img src="{{ '/didactics_assets/lecture_notes.png' | url }}" alt="Lecture notes" class="card-image">
-    </div>
-</div>
-
-<!-- Section 4: Research-driven didactics -->
-<div class="didactics-section">
-    <div class="section-text">
-        <span class="card-title" data-i18n="didactics_4_title">Forschungsbasierte Didaktik</span>
-        <div class="card-content" data-i18n="didactics_4_text">
-            Entwickelt mit führenden Bildungsforschern und mitgestaltet von Top-Lehrern. Optimiert für echtes Lernen, nicht nur für Bildschirmzeit.
-        </div>
-    </div>
-</div>
-
-<div style="text-align: center; margin-bottom: 4rem;">
-    <a href="https://duck.tutor.new" class="cta-button-secondary" data-i18n="cta_button_secondary">→ Kostenlos testen</a>
-</div>
-
-
+{% include "partials/q-footer.njk" %}

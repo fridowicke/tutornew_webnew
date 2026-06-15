@@ -1,80 +1,237 @@
 ---
-layout: layouts/simple.njk
-title: Über uns - tutor.new
+layout: layouts/base.njk
+title: Über uns – tutor.new
+description: tutor.new kommt von Gero und Friedrich – zwei Tüftler von der ETH Zürich, die jedem Kind einen Tutor geben wollen, der erklärt, bis es klick macht.
 lang: de
 permalink: /ueber-uns.html
-pageStyles: |
-    :root {
-        --accent-color: #2c5e8a; /* Blue accent for this page */
-    }
-
-    a {
-        font-weight: bold;
-    }
-
-    h1 {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-        color: var(--accent-color);
-        border-bottom: 2px solid var(--accent-color);
-        display: inline-block;
-        transform: rotate(-1deg);
-    }
-
-    p {
-        margin-bottom: 1.5rem;
-    }
-
-    .highlight {
-        background-color: rgba(255, 255, 255, 0.6);
-        padding: 1rem;
-        border-radius: 10px;
-        border: 2px solid var(--accent-color);
-        transform: rotate(1deg);
-        box-shadow: 3px 3px 0px rgba(14, 51, 34, 0.2);
-    }
-
-    .team-image {
-        width: 100%;
-        max-width: 650px;
-        height: auto;
-        border-radius: 15px;
-        margin: 2rem auto;
-        display: block;
-        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-        transform: rotate(-1deg);
-        border: 3px solid var(--accent-color);
-    }
-
-    h2 {
-        font-size: 1.5rem;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        color: var(--accent-color);
-    }
+useQ: true
+scripts: []
 ---
 
-<h1 data-i18n="about_title">Über tutor.new</h1>
+<style>
+    .ab {
+        padding: clamp(40px, 6vw, 84px) 0 clamp(30px, 4vw, 56px);
+    }
 
-<div class="highlight">
-    <p><strong data-i18n="about_intro_heading">Hallo! 👋🏻</strong></p>
-    <p data-i18n="about_intro_text">Wir sind Gero und Friedrich, ein Informatiker und ein Mathematiker. Wir haben uns kennengelernt, als wir beide an der ETH Zürich studierten und schnell gemerkt, dass wir beide Technologie nutzen wollen, um großartige Lernerfahrungen zu schaffen. Das war der Beginn von tutor.new ...</p>
-</div>
+    .ab-head {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+    }
 
-<img src="{{ '/guf.jpeg' | url }}" alt="Gero und Friedrich" class="team-image">
+    .ab-head .q-lead {
+        max-width: 600px;
+    }
 
-<h2 data-i18n="about_history_heading">Unsere Geschichte</h2>
+    /* founders */
+    .ab-founders {
+        padding: clamp(20px, 3vw, 36px) 0 clamp(48px, 6vw, 80px);
+    }
 
-<p data-i18n="about_history_p1">
-    Wir beide hatten schon immer eine Leidenschaft fürs Unterrichten. Während unseres Studiums an der ETH Zürich stellten wir fest, dass viele Studierende nicht kämpften, weil ihnen die Fähigkeiten fehlten, sondern weil sie personalisierte Aufmerksamkeit und Unterstützung brauchten, die traditionelle Bildungssysteme nicht bieten konnten.
-</p>
+    .ab-founders-card {
+        display: grid;
+        grid-template-columns: minmax(0, .82fr) minmax(0, 1fr);
+        gap: clamp(26px, 4vw, 56px);
+        align-items: center;
+        padding: clamp(20px, 2.6vw, 30px);
+        border-radius: 24px;
+        background: #fff;
+        border: 1.5px solid var(--q-line);
+        box-shadow: 0 3px 0 rgba(14, 51, 34, .05);
+    }
 
-<p data-i18n="about_history_p2">
-    Wir erkannten, dass KI-Technologie diese Lücke schließen könnte - intelligente Tutoren schaffen, die sich an den einzigartigen Lernstil, das Tempo und die Bedürfnisse jedes Schülers anpassen. So entstand tutor.new.
-</p>
+    .ab-founders-card img {
+        width: 100%;
+        height: 100%;
+        max-height: 360px;
+        object-fit: cover;
+        border-radius: 16px;
+        display: block;
+    }
 
-<p data-i18n="about_history_p3">
-    Heute sind wir stolz darauf, Schülern aller Bildungsebenen dabei zu helfen, ihre Ziele durch personalisierte KI-Nachhilfe zu erreichen.
-</p>
+    .ab-founders-copy h2 {
+        margin: 0 0 6px;
+        font-family: var(--q-display);
+        font-size: clamp(22px, 2.3vw, 29px);
+        font-weight: 600;
+        color: var(--q-green);
+    }
 
+    .ab-founders-role {
+        margin: 0 0 16px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--q-green-mid);
+    }
 
+    .ab-founders-copy p {
+        margin: 0 0 14px;
+        font-size: 15.5px;
+        line-height: 1.6;
+        color: #2c3a32;
+    }
+
+    .ab-founders-copy p:last-child { margin-bottom: 0; }
+
+    /* beliefs band */
+    .ab-beliefs {
+        background: var(--q-green);
+        color: var(--q-cream);
+        padding: clamp(52px, 6.5vw, 88px) 0;
+    }
+
+    .ab-beliefs-head {
+        max-width: 620px;
+        margin-bottom: clamp(28px, 3.5vw, 44px);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .ab-beliefs-head .q-kicker { color: var(--q-yellow); }
+
+    .ab-beliefs-head h2 {
+        margin: 0;
+        font-family: var(--q-display);
+        font-size: clamp(24px, 2.8vw, 34px);
+        font-weight: 600;
+        line-height: 1.2;
+        color: #fff;
+    }
+
+    .ab-beliefs-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(14px, 1.8vw, 22px);
+    }
+
+    .ab-belief {
+        padding: clamp(22px, 2.4vw, 30px);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, .06);
+        border: 1.5px solid rgba(249, 241, 232, .16);
+    }
+
+    .ab-belief-num {
+        font-family: var(--q-display);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--q-yellow);
+    }
+
+    .ab-belief h3 {
+        margin: 10px 0 8px;
+        font-family: var(--q-display);
+        font-size: 17.5px;
+        font-weight: 600;
+        line-height: 1.25;
+        color: #fff;
+    }
+
+    .ab-belief p {
+        margin: 0;
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: rgba(249, 241, 232, .8);
+    }
+
+    /* cta */
+    .ab-cta {
+        padding: clamp(56px, 7vw, 96px) 0;
+        text-align: center;
+    }
+
+    .ab-cta h2 {
+        margin: 0 0 22px;
+        font-family: var(--q-display);
+        font-size: clamp(26px, 3vw, 38px);
+        font-weight: 600;
+        line-height: 1.18;
+        color: var(--q-green);
+    }
+
+    .ab-cta-ctas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 13px;
+    }
+
+    @media (max-width: 760px) {
+        .ab-founders-card { grid-template-columns: 1fr; }
+        .ab-founders-card img { max-height: 300px; }
+        .ab-beliefs-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+{% include "partials/q-header.njk" %}
+
+<main>
+    <!-- ================= INTRO ================= -->
+    <section class="ab">
+        <div class="q-wrap ab-head">
+            <span class="q-kicker">Über uns</span>
+            <h1 class="q-h1">Der Tutor, den wir uns selbst <span class="q-mark">gewünscht hätten</span>.</h1>
+            <p class="q-lead">tutor.new kommt von zwei Leuten, die beim Lernen und Unterrichten dasselbe gemerkt haben: Niemand bleibt zurück, weil ihm Talent fehlt – sondern weil ihm jemand fehlt, der erklärt, bis es klick macht.</p>
+        </div>
+    </section>
+
+    <!-- ================= FOUNDERS ================= -->
+    <section class="ab-founders">
+        <div class="q-wrap">
+            <div class="ab-founders-card">
+                <img src="{{ '/guf.jpeg' | url }}" alt="Gero und Friedrich, die Gründer von tutor.new">
+                <div class="ab-founders-copy">
+                    <h2>Gero &amp; Friedrich</h2>
+                    <p class="ab-founders-role">Informatiker &amp; Mathematiker · kennengelernt an der ETH Zürich</p>
+                    <p>Im Studium haben wir gesehen, woran Lernen wirklich scheitert: nicht an fehlendem Können, sondern an fehlender Aufmerksamkeit. Eine Lehrperson, dreißig Kinder, ganz unterschiedliches Tempo – da bleibt für die Einzelne kaum Zeit.</p>
+                    <p>Also haben wir angefangen zu bauen: keinen weiteren Lern-Account, sondern einen Tutor, der zuhört, beim eigenen Material ansetzt und sich an jedes Kind anpasst. Das ist tutor.new.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= BELIEFS ================= -->
+    <section class="ab-beliefs">
+        <div class="q-wrap">
+            <div class="ab-beliefs-head">
+                <span class="q-kicker">Woran wir glauben</span>
+                <h2>Drei Überzeugungen, die alles bestimmen, was wir bauen.</h2>
+            </div>
+            <div class="ab-beliefs-grid">
+                <div class="ab-belief">
+                    <span class="ab-belief-num">01</span>
+                    <h3>Jedes Kind kann es.</h3>
+                    <p>Wer feststeckt, braucht selten mehr Talent – sondern jemanden, der den einen Schritt nochmal anders erklärt. Genau dafür ist der Tutor immer da.</p>
+                </div>
+                <div class="ab-belief">
+                    <span class="ab-belief-num">02</span>
+                    <h3>Üben schlägt Zuschauen.</h3>
+                    <p>Echtes Lernen passiert beim Selbermachen – mit sofortigem Feedback, am eigenen Stoff, im eigenen Tempo. Nicht beim passiven Konsumieren.</p>
+                </div>
+                <div class="ab-belief">
+                    <span class="ab-belief-num">03</span>
+                    <h3>Lehrpersonen entlasten.</h3>
+                    <p>Der Tutor übernimmt das Üben und Wiederholen. Die Lehrperson gewinnt Zeit und Überblick – und sitzt wieder neben den Kindern.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="ab-cta">
+        <div class="q-wrap">
+            <h2>Lern mit deinem eigenen Tutor.</h2>
+            <div class="ab-cta-ctas">
+                <a class="q-btn q-btn-primary" href="https://duck.tutor.new">Jetzt gratis lernen</a>
+                <a class="q-btn q-btn-ghost" href="{{ '/teachers.html' | url }}">Schulversion ansehen</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include "partials/q-footer.njk" %}
