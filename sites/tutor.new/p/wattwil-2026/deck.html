@@ -2198,120 +2198,147 @@
         line-height: 1.18;
       }
 
-      .applet {
-        background: var(--white);
-        border: 1.5px solid rgba(14, 51, 34, 0.5);
-        border-radius: 18px;
-        box-shadow: var(--shadow);
+      /* Wissenschaftliches Lab-Applet (bewusst nicht im Deck-Stil) */
+      .applet.lab {
+        font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        box-shadow: 0 16px 34px rgba(15, 23, 42, 0.13);
         overflow: hidden;
       }
 
-      .applet-head {
+      .applet.lab .applet-head {
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 12px;
-        padding: 12px 16px;
-        border-bottom: 1px solid rgba(14, 51, 34, 0.12);
-        color: var(--muted);
-        font-size: clamp(0.84rem, 0.96vw, 0.95rem);
+        padding: 11px 15px;
+        background: #1e293b;
+        color: #e2e8f0;
+        font-size: clamp(0.82rem, 0.95vw, 0.92rem);
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      .applet.lab .applet-tag {
+        padding: 2px 9px;
+        border-radius: 5px;
+        background: rgba(226, 232, 240, 0.16);
+        color: #cbd5e1;
+        font-size: 0.66rem;
         font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
       }
 
-      .applet-tag {
-        padding: 2px 10px;
-        border-radius: 999px;
-        background: #e6f4dc;
-        color: var(--green);
-        font-size: 0.8rem;
+      .applet.lab .applet-body {
+        padding: 12px 14px 14px;
       }
 
-      .applet-body {
-        padding: 14px 16px 16px;
-      }
-
-      #sim {
+      .applet.lab #sim {
         width: 100%;
         height: auto;
-        border-radius: 10px;
-        background: rgba(249, 241, 232, 0.5);
+        border-radius: 6px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
       }
 
-      .sim-readout {
-        display: flex;
-        gap: 24px;
-        margin-top: 10px;
-        color: var(--muted);
-        font-size: clamp(0.86rem, 1vw, 0.98rem);
-      }
-
-      .sim-readout b {
-        color: var(--ink);
-      }
-
-      .applet-controls {
+      .applet.lab .sim-readout {
         display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 8px;
-        margin-top: 12px;
+        margin-top: 10px;
       }
 
-      .applet-controls label {
+      .applet.lab .ro {
         display: grid;
-        grid-template-columns: clamp(82px, 8vw, 104px) 1fr 42px;
+        gap: 1px;
+        padding: 6px 10px;
+        border-radius: 7px;
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+      }
+
+      .applet.lab .ro span {
+        color: #64748b;
+        font-size: 0.66rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .applet.lab .ro b {
+        color: #0f172a;
+        font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        font-size: clamp(0.96rem, 1.1vw, 1.08rem);
+      }
+
+      .applet.lab .applet-controls {
+        display: grid;
+        gap: 7px;
+        margin-top: 11px;
+      }
+
+      .applet.lab .applet-controls label {
+        display: grid;
+        grid-template-columns: clamp(96px, 9vw, 120px) 1fr clamp(60px, 6vw, 74px);
         align-items: center;
         gap: 12px;
-        color: var(--ink);
-        font-weight: 700;
-        font-size: 0.96rem;
+        color: #334155;
+        font-weight: 500;
+        font-size: 0.9rem;
       }
 
-      .applet-controls label > span {
+      .applet.lab .ctl-val {
         text-align: right;
-        color: var(--green);
+        color: #1e293b;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.84rem;
       }
 
-      .applet-controls input[type="range"] {
+      .applet.lab .applet-controls input[type="range"] {
         width: 100%;
-        accent-color: var(--green);
+        accent-color: #2563eb;
       }
 
-      .sim-toggles {
+      .applet.lab .sim-toggles {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: 8px;
-        margin-top: 14px;
+        margin-top: 11px;
       }
 
-      .toggle {
+      .applet.lab .toggle {
         font: inherit;
-        font-weight: 700;
+        font-weight: 500;
         cursor: pointer;
         padding: 7px 13px;
-        border-radius: 999px;
-        border: 1.5px solid rgba(14, 51, 34, 0.3);
-        background: var(--white);
-        color: var(--muted);
-        font-size: 0.86rem;
+        border-radius: 7px;
+        border: 1px solid #cbd5e1;
+        background: #ffffff;
+        color: #475569;
+        font-size: 0.82rem;
       }
 
-      .toggle[aria-pressed="true"] {
-        background: #e6f4dc;
-        border-color: var(--green);
-        color: var(--green);
+      .applet.lab .toggle[aria-pressed="true"] {
+        background: #dbeafe;
+        border-color: #2563eb;
+        color: #1d4ed8;
       }
 
-      .launch {
+      .applet.lab .launch {
         margin-left: auto;
         font: inherit;
-        font-weight: 700;
+        font-weight: 600;
         cursor: pointer;
-        padding: 8px 18px;
-        border-radius: 999px;
+        padding: 8px 16px;
+        border-radius: 7px;
         border: 0;
-        background: var(--green);
-        color: var(--white);
-        font-size: 0.9rem;
+        background: #2563eb;
+        color: #ffffff;
+        font-size: 0.85rem;
       }
 
       /* Notizen-Modus (Export für Zensi) */
@@ -3134,34 +3161,43 @@
                 </div>
               </div>
             </div>
-            <div class="applet" id="applet">
+            <div class="applet lab" id="applet">
               <div class="applet-head">
-                <span>Physik-Modul · Schiefer Wurf</span>
-                <span class="applet-tag">Experiment</span>
+                <span>Projektilbewegung · Simulation</span>
+                <span class="applet-tag">Physik</span>
               </div>
               <div class="applet-body">
-                <svg id="sim" viewBox="0 0 360 220" role="img" aria-label="Physik-Simulation: Schiefer Wurf">
+                <svg id="sim" viewBox="0 0 420 184" role="img" aria-label="Physik-Simulation: schiefer Wurf">
                   <defs>
-                    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-                      <path d="M30 0H0V30" fill="none" stroke="rgba(14,51,34,0.07)" stroke-width="1" />
-                    </pattern>
+                    <marker id="vhead" markerWidth="7" markerHeight="7" refX="4.5" refY="3" orient="auto">
+                      <path d="M0 0 L7 3 L0 6 z" fill="#ea580c" />
+                    </marker>
                   </defs>
-                  <rect x="0" y="0" width="360" height="220" fill="url(#grid)" />
-                  <line x1="0" y1="200" x2="360" y2="200" stroke="rgba(14,51,34,0.35)" stroke-width="2" />
+                  <rect x="44" y="12" width="364" height="142" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+                  <g id="grid"></g>
+                  <g id="ticks"></g>
                   <g id="ghosts"></g>
-                  <path id="simPath" d="" fill="none" stroke="var(--green)" stroke-width="3" stroke-linejoin="round" />
-                  <line id="barrel" x1="34" y1="200" x2="52" y2="182" stroke="var(--ink)" stroke-width="5" stroke-linecap="round" />
-                  <circle cx="34" cy="200" r="6" fill="var(--ink)" />
-                  <circle id="simDot" cx="34" cy="200" r="5.5" fill="var(--red)" />
+                  <line id="apexLine" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3" />
+                  <text id="apexLbl" fill="#475569" font-size="10"></text>
+                  <path id="simPath" d="" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" />
+                  <path id="angleArc" fill="none" stroke="#64748b" stroke-width="1.2" />
+                  <text id="angleLbl" fill="#334155" font-size="11" font-style="italic"></text>
+                  <line id="vvec" stroke="#ea580c" stroke-width="2.5" marker-end="url(#vhead)" />
+                  <line id="barrel" stroke="#334155" stroke-width="7" stroke-linecap="round" />
+                  <circle id="pivot" r="6" fill="#334155" />
+                  <circle id="simDot" r="5" fill="#dc2626" stroke="#7f1d1d" stroke-width="1" />
+                  <text x="226" y="176" text-anchor="middle" fill="#475569" font-size="11">x [m]</text>
+                  <text x="13" y="83" text-anchor="middle" fill="#475569" font-size="11" transform="rotate(-90 13 83)">y [m]</text>
                 </svg>
                 <div class="sim-readout">
-                  <span>Reichweite <b id="roRange">–</b></span>
-                  <span>max. Höhe <b id="roPeak">–</b></span>
+                  <div class="ro"><span>Reichweite</span><b id="roRange">– m</b></div>
+                  <div class="ro"><span>max. Höhe</span><b id="roPeak">– m</b></div>
+                  <div class="ro"><span>Flugzeit</span><b id="roTime">– s</b></div>
                 </div>
                 <div class="applet-controls">
-                  <label>Winkel <input type="range" id="pAngle" min="15" max="80" step="1" value="45" /><span id="vAngle">45°</span></label>
-                  <label>Tempo <input type="range" id="pSpeed" min="8" max="30" step="1" value="22" /><span id="vSpeed">22</span></label>
-                  <label>Schwerkraft <input type="range" id="pG" min="1.6" max="20" step="0.1" value="9.8" /><span id="vG">9.8</span></label>
+                  <label><span class="ctl-name">Winkel θ</span><input type="range" id="pAngle" min="15" max="80" step="1" value="45" /><span class="ctl-val" id="vAngle">45°</span></label>
+                  <label><span class="ctl-name">Tempo v₀</span><input type="range" id="pSpeed" min="8" max="30" step="1" value="22" /><span class="ctl-val" id="vSpeed">22 m/s</span></label>
+                  <label><span class="ctl-name">Schwerkraft g</span><input type="range" id="pG" min="1.6" max="20" step="0.1" value="9.8" /><span class="ctl-val" id="vG">9.8 m/s²</span></label>
                 </div>
                 <div class="sim-toggles">
                   <button type="button" class="toggle" id="tDrag" aria-pressed="false">Luftwiderstand</button>
@@ -3348,25 +3384,40 @@
         detail.textContent = button.dataset.detail;
       });
 
-      // Interaktives Physik-Applet: Schiefer Wurf (Parameter + Toggles)
+      // Wissenschaftliche Physik-Simulation: schiefer Wurf
       const sim = document.querySelector("#sim");
       if (sim) {
         const q = (id) => document.querySelector(id);
         const pAngle = q("#pAngle"), pSpeed = q("#pSpeed"), pG = q("#pG");
         const vAngle = q("#vAngle"), vSpeed = q("#vSpeed"), vG = q("#vG");
-        const simPath = q("#simPath"), simDot = q("#simDot"), barrel = q("#barrel"), ghosts = q("#ghosts");
-        const roRange = q("#roRange"), roPeak = q("#roPeak");
+        const simPath = q("#simPath"), simDot = q("#simDot"), ghosts = q("#ghosts");
+        const gridG = q("#grid"), ticksG = q("#ticks");
+        const barrel = q("#barrel"), pivot = q("#pivot"), vvec = q("#vvec");
+        const angleArc = q("#angleArc"), angleLbl = q("#angleLbl");
+        const apexLine = q("#apexLine"), apexLbl = q("#apexLbl");
+        const roRange = q("#roRange"), roPeak = q("#roPeak"), roTime = q("#roTime");
         const tDrag = q("#tDrag"), tTrail = q("#tTrail"), tLaunch = q("#tLaunch");
-        const SVGNS = "http://www.w3.org/2000/svg";
-        const OX = 34, OY = 200, PLOT_W = 312, PLOT_H = 178;
+        const NS = "http://www.w3.org/2000/svg";
+        const X0 = 44, Y1 = 154, X1 = 408, Y0 = 12, PW = X1 - X0, PH = Y1 - Y0;
         let drag = false, trail = true, anim = null, svgPts = [];
+
+        const el = (tag, attrs) => {
+          const e = document.createElementNS(NS, tag);
+          for (const k in attrs) e.setAttribute(k, attrs[k]);
+          return e;
+        };
+        const niceStep = (v) => {
+          const p = Math.pow(10, Math.floor(Math.log10(v)));
+          const n = v / p;
+          return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10) * p;
+        };
 
         const trajectory = (deg, speed, g, withDrag) => {
           const th = (deg * Math.PI) / 180;
-          let x = 0, y = 0, vx = speed * Math.cos(th), vy = speed * Math.sin(th);
+          let x = 0, y = 0, vx = speed * Math.cos(th), vy = speed * Math.sin(th), t = 0;
           const dt = 0.02, k = 0.022;
           const out = [[0, 0]];
-          for (let i = 0; i < 4000; i++) {
+          for (let i = 0; i < 5000; i++) {
             if (withDrag) {
               const v = Math.hypot(vx, vy);
               vx += -k * v * vx * dt;
@@ -3374,38 +3425,74 @@
             } else {
               vy += -g * dt;
             }
-            x += vx * dt;
-            y += vy * dt;
+            x += vx * dt; y += vy * dt; t += dt;
             if (y < 0) {
               const p = out[out.length - 1];
               const f = p[1] / (p[1] - y);
               out.push([p[0] + (x - p[0]) * f, 0]);
+              t -= dt * (1 - f);
               break;
             }
             out.push([x, y]);
           }
-          return out;
+          return { pts: out, time: t };
+        };
+
+        const drawAxes = (axisX, stepX, axisY, stepY) => {
+          gridG.textContent = ""; ticksG.textContent = "";
+          for (let wx = 0; wx <= axisX + 1e-6; wx += stepX) {
+            const px = X0 + (wx / axisX) * PW;
+            if (wx > 0) gridG.appendChild(el("line", { x1: px, y1: Y0, x2: px, y2: Y1, stroke: "#eef2f7", "stroke-width": 1 }));
+            const t = el("text", { x: px, y: Y1 + 12, "text-anchor": "middle", fill: "#64748b", "font-size": 9 });
+            t.textContent = Math.round(wx); ticksG.appendChild(t);
+          }
+          for (let wy = 0; wy <= axisY + 1e-6; wy += stepY) {
+            const py = Y1 - (wy / axisY) * PH;
+            if (wy > 0) gridG.appendChild(el("line", { x1: X0, y1: py, x2: X1, y2: py, stroke: "#eef2f7", "stroke-width": 1 }));
+            const t = el("text", { x: X0 - 6, y: py + 3, "text-anchor": "end", fill: "#64748b", "font-size": 9 });
+            t.textContent = Math.round(wy); ticksG.appendChild(t);
+          }
         };
 
         const render = (launch) => {
           const angle = +pAngle.value, speed = +pSpeed.value, g = +pG.value;
           vAngle.textContent = angle + "°";
-          vSpeed.textContent = speed;
-          vG.textContent = g.toFixed(1);
-          const pts = trajectory(angle, speed, g, drag);
+          vSpeed.textContent = speed + " m/s";
+          vG.textContent = g.toFixed(1) + " m/s²";
+          const { pts, time } = trajectory(angle, speed, g, drag);
           const maxX = Math.max(...pts.map((p) => p[0]), 1);
           const maxY = Math.max(...pts.map((p) => p[1]), 1);
-          const s = Math.min(PLOT_W / maxX, PLOT_H / maxY);
-          svgPts = pts.map((p) => [OX + p[0] * s, OY - p[1] * s]);
-          simPath.setAttribute(
-            "d",
-            "M " + svgPts.map((p) => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L ")
-          );
+          const stepX = niceStep(maxX / 5), axisX = Math.ceil(maxX / stepX) * stepX;
+          const stepY = niceStep(maxY / 5), axisY = Math.ceil(maxY / stepY) * stepY;
+          drawAxes(axisX, stepX, axisY, stepY);
+          const sx = (wx) => X0 + (wx / axisX) * PW;
+          const sy = (wy) => Y1 - (wy / axisY) * PH;
+          svgPts = pts.map((p) => [sx(p[0]), sy(p[1])]);
+          simPath.setAttribute("d", "M " + svgPts.map((p) => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L "));
           const th = (angle * Math.PI) / 180;
-          barrel.setAttribute("x2", (OX + 26 * Math.cos(th)).toFixed(1));
-          barrel.setAttribute("y2", (OY - 26 * Math.sin(th)).toFixed(1));
-          roRange.textContent = maxX.toFixed(0) + " m";
-          roPeak.textContent = maxY.toFixed(0) + " m";
+          pivot.setAttribute("cx", X0); pivot.setAttribute("cy", Y1);
+          barrel.setAttribute("x1", X0); barrel.setAttribute("y1", Y1);
+          barrel.setAttribute("x2", (X0 + 22 * Math.cos(th)).toFixed(1));
+          barrel.setAttribute("y2", (Y1 - 22 * Math.sin(th)).toFixed(1));
+          const vlen = 16 + speed * 1.1;
+          vvec.setAttribute("x1", X0); vvec.setAttribute("y1", Y1);
+          vvec.setAttribute("x2", (X0 + vlen * Math.cos(th)).toFixed(1));
+          vvec.setAttribute("y2", (Y1 - vlen * Math.sin(th)).toFixed(1));
+          const R = 26;
+          angleArc.setAttribute("d", "M " + (X0 + R) + " " + Y1 + " A " + R + " " + R + " 0 0 0 " + (X0 + R * Math.cos(th)).toFixed(1) + " " + (Y1 - R * Math.sin(th)).toFixed(1));
+          angleLbl.setAttribute("x", (X0 + (R + 9) * Math.cos(th / 2)).toFixed(1));
+          angleLbl.setAttribute("y", (Y1 - (R + 2) * Math.sin(th / 2) + 4).toFixed(1));
+          angleLbl.textContent = "θ";
+          let apex = pts[0];
+          pts.forEach((p) => { if (p[1] > apex[1]) apex = p; });
+          const apY = sy(apex[1]), apX = sx(apex[0]);
+          apexLine.setAttribute("x1", X0); apexLine.setAttribute("y1", apY);
+          apexLine.setAttribute("x2", apX); apexLine.setAttribute("y2", apY);
+          apexLbl.setAttribute("x", X0 + 4); apexLbl.setAttribute("y", apY - 3);
+          apexLbl.textContent = "hₘₐₓ";
+          roRange.textContent = maxX.toFixed(1) + " m";
+          roPeak.textContent = maxY.toFixed(1) + " m";
+          roTime.textContent = time.toFixed(2) + " s";
           cancelAnimationFrame(anim);
           simDot.setAttribute("cx", svgPts[0][0]);
           simDot.setAttribute("cy", svgPts[0][1]);
@@ -3415,36 +3502,22 @@
         const runShot = () => {
           cancelAnimationFrame(anim);
           if (trail) {
-            const ghost = document.createElementNS(SVGNS, "path");
-            ghost.setAttribute("d", simPath.getAttribute("d"));
-            ghost.setAttribute("fill", "none");
-            ghost.setAttribute("stroke", "rgba(58,102,33,0.18)");
-            ghost.setAttribute("stroke-width", "2");
-            ghosts.appendChild(ghost);
+            ghosts.appendChild(el("path", { d: simPath.getAttribute("d"), fill: "none", stroke: "rgba(37,99,235,0.22)", "stroke-width": 1.6 }));
             while (ghosts.childNodes.length > 4) ghosts.removeChild(ghosts.firstChild);
           }
-          const dur = 950, t0 = performance.now();
+          const dur = 1000, t0 = performance.now();
           const step = (now) => {
             const f = Math.min((now - t0) / dur, 1);
             const p = svgPts[Math.floor(f * (svgPts.length - 1))];
-            simDot.setAttribute("cx", p[0]);
-            simDot.setAttribute("cy", p[1]);
+            simDot.setAttribute("cx", p[0]); simDot.setAttribute("cy", p[1]);
             if (f < 1) anim = requestAnimationFrame(step);
           };
           anim = requestAnimationFrame(step);
         };
 
-        [pAngle, pSpeed, pG].forEach((el) => el.addEventListener("input", () => render(false)));
-        tDrag.addEventListener("click", () => {
-          drag = !drag;
-          tDrag.setAttribute("aria-pressed", String(drag));
-          render(false);
-        });
-        tTrail.addEventListener("click", () => {
-          trail = !trail;
-          tTrail.setAttribute("aria-pressed", String(trail));
-          if (!trail) ghosts.innerHTML = "";
-        });
+        [pAngle, pSpeed, pG].forEach((e) => e.addEventListener("input", () => render(false)));
+        tDrag.addEventListener("click", () => { drag = !drag; tDrag.setAttribute("aria-pressed", String(drag)); render(false); });
+        tTrail.addEventListener("click", () => { trail = !trail; tTrail.setAttribute("aria-pressed", String(trail)); if (!trail) ghosts.textContent = ""; });
         tLaunch.addEventListener("click", () => runShot());
         render(false);
       }
