@@ -1907,6 +1907,191 @@
         color: var(--green);
       }
 
+      /* Ehrliche Abstimmung: gestapelter Balken */
+      .vote-stack {
+        display: grid;
+        gap: clamp(16px, 2.6vh, 26px);
+      }
+
+      .vote-block {
+        display: grid;
+        gap: 11px;
+      }
+
+      .vote-q {
+        margin: 0;
+        font-weight: 700;
+        color: var(--ink);
+        font-size: clamp(1.06rem, 1.35vw, 1.34rem);
+      }
+
+      .twist-result {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 20px;
+        border-radius: 14px;
+        border: 2px solid rgba(58, 102, 33, 0.5);
+        background: rgba(230, 244, 220, 0.55);
+      }
+
+      .twist-result svg {
+        width: 30px;
+        height: 30px;
+        flex: none;
+        color: var(--green);
+      }
+
+      .twist-result strong {
+        display: block;
+        color: var(--ink);
+        font-size: clamp(1.12rem, 1.45vw, 1.4rem);
+        line-height: 1.05;
+      }
+
+      .twist-result span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: clamp(0.9rem, 1.05vw, 1.04rem);
+      }
+
+      .split-bar {
+        display: flex;
+        height: clamp(52px, 7vh, 70px);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1.5px solid rgba(14, 51, 34, 0.18);
+        color: var(--white);
+        font-weight: 700;
+      }
+
+      .split-bar .seg {
+        display: grid;
+        place-items: center;
+        font-size: clamp(1.05rem, 1.5vw, 1.4rem);
+      }
+
+      .seg.pro { background: var(--green); }
+      .seg.neutral { background: #8a948f; }
+      .seg.con { background: var(--red); }
+
+      .split-legend {
+        display: flex;
+        gap: 22px;
+        color: var(--muted);
+        font-size: clamp(0.9rem, 1.05vw, 1.02rem);
+      }
+
+      .split-legend i.dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        margin-right: 7px;
+        vertical-align: 0;
+      }
+
+      .dot.pro { background: var(--green); }
+      .dot.neutral { background: #8a948f; }
+      .dot.con { background: var(--red); }
+
+      .vote-note {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: clamp(0.9rem, 1.05vw, 1.02rem);
+      }
+
+      /* Zwei-Klassen-Vergleich */
+      .cmp-list {
+        display: grid;
+        gap: clamp(14px, 2.2vh, 22px);
+      }
+
+      .cmp-row {
+        display: grid;
+        gap: 7px;
+      }
+
+      .cmp-name {
+        font-weight: 700;
+        color: var(--ink);
+        font-size: clamp(1.04rem, 1.3vw, 1.26rem);
+      }
+
+      .cmp-name small {
+        color: var(--muted);
+        font-weight: 400;
+        font-size: 0.78em;
+      }
+
+      .cmp-bar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .cmp-tag {
+        flex: none;
+        width: 46px;
+        font-weight: 700;
+        font-size: 0.86rem;
+      }
+
+      .cmp-bar.gw .cmp-tag { color: var(--green); }
+      .cmp-bar.sw .cmp-tag { color: var(--muted); }
+
+      .cmp-track {
+        flex: 1;
+        height: 22px;
+        border-radius: 8px;
+        background: rgba(14, 51, 34, 0.08);
+        overflow: hidden;
+      }
+
+      .cmp-fill {
+        display: block;
+        height: 100%;
+        border-radius: 8px;
+      }
+
+      .cmp-bar.gw .cmp-fill { background: var(--green); }
+      .cmp-bar.sw .cmp-fill { background: #8a948f; }
+
+      .cmp-val {
+        flex: none;
+        width: 50px;
+        text-align: right;
+        font-weight: 700;
+        color: var(--ink);
+        font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+      }
+
+      .cmp-why {
+        align-self: start;
+        display: grid;
+        gap: 10px;
+        padding: 20px 22px;
+        border-radius: 16px;
+        border: 1.5px solid rgba(92, 61, 122, 0.35);
+        background: rgba(243, 232, 247, 0.4);
+      }
+
+      .cmp-why strong {
+        color: var(--purple);
+        font-size: clamp(1.02rem, 1.25vw, 1.22rem);
+      }
+
+      .cmp-why ul {
+        margin: 0;
+        padding-left: 18px;
+        display: grid;
+        gap: 8px;
+        color: var(--ink);
+        font-size: clamp(0.94rem, 1.1vw, 1.08rem);
+        line-height: 1.2;
+      }
+
       /* L3 — Lehrperson wird verstärkt */
       .amp-visual {
         display: grid;
@@ -1966,6 +2151,289 @@
         color: var(--white);
       }
 
+      /* VibeCoding-Slide mit interaktivem Applet */
+      .vibe-split {
+        display: grid;
+        grid-template-columns: 1fr 1.05fr;
+        gap: clamp(24px, 3.5vw, 44px);
+        align-items: center;
+      }
+
+      .vibe-steps {
+        display: grid;
+        gap: clamp(16px, 2.6vh, 28px);
+      }
+
+      .vibe-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .vibe-num {
+        display: grid;
+        place-items: center;
+        flex: none;
+        width: clamp(40px, 4vw, 50px);
+        height: clamp(40px, 4vw, 50px);
+        border-radius: 50%;
+        background: #e6f4dc;
+        color: var(--green);
+        font-weight: 700;
+        font-size: clamp(1.2rem, 1.7vw, 1.55rem);
+      }
+
+      .vibe-step strong {
+        display: block;
+        color: var(--ink);
+        font-size: clamp(1.16rem, 1.5vw, 1.5rem);
+        line-height: 1.12;
+      }
+
+      .vibe-step span {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: clamp(0.92rem, 1.08vw, 1.06rem);
+        line-height: 1.18;
+      }
+
+      .applet {
+        background: var(--white);
+        border: 1.5px solid rgba(14, 51, 34, 0.5);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .applet-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(14, 51, 34, 0.12);
+        color: var(--muted);
+        font-size: clamp(0.84rem, 0.96vw, 0.95rem);
+        font-weight: 700;
+      }
+
+      .applet-tag {
+        padding: 2px 10px;
+        border-radius: 999px;
+        background: #e6f4dc;
+        color: var(--green);
+        font-size: 0.8rem;
+      }
+
+      .applet-body {
+        padding: 14px 16px 16px;
+      }
+
+      #sim {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        background: rgba(249, 241, 232, 0.5);
+      }
+
+      .sim-readout {
+        display: flex;
+        gap: 24px;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: clamp(0.86rem, 1vw, 0.98rem);
+      }
+
+      .sim-readout b {
+        color: var(--ink);
+      }
+
+      .applet-controls {
+        display: grid;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .applet-controls label {
+        display: grid;
+        grid-template-columns: clamp(82px, 8vw, 104px) 1fr 42px;
+        align-items: center;
+        gap: 12px;
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 0.96rem;
+      }
+
+      .applet-controls label > span {
+        text-align: right;
+        color: var(--green);
+      }
+
+      .applet-controls input[type="range"] {
+        width: 100%;
+        accent-color: var(--green);
+      }
+
+      .sim-toggles {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .toggle {
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 7px 13px;
+        border-radius: 999px;
+        border: 1.5px solid rgba(14, 51, 34, 0.3);
+        background: var(--white);
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .toggle[aria-pressed="true"] {
+        background: #e6f4dc;
+        border-color: var(--green);
+        color: var(--green);
+      }
+
+      .launch {
+        margin-left: auto;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 8px 18px;
+        border-radius: 999px;
+        border: 0;
+        background: var(--green);
+        color: var(--white);
+        font-size: 0.9rem;
+      }
+
+      /* Notizen-Modus (Export für Zensi) */
+      .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        pointer-events: auto;
+      }
+
+      .notes-toggle {
+        font: inherit;
+        cursor: pointer;
+        padding: 6px 14px;
+        border: 1.5px solid rgba(14, 51, 34, 0.3);
+        border-radius: 999px;
+        background: var(--white);
+        color: var(--ink);
+        font-size: 0.86rem;
+        font-weight: 700;
+      }
+
+      body.notes-mode .notes-toggle {
+        background: var(--green);
+        color: var(--white);
+        border-color: var(--green);
+      }
+
+      .notes-panel {
+        position: fixed;
+        z-index: 30;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 380px;
+        transform: translateX(100%);
+        transition: transform 0.28s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 22px 20px;
+        background: var(--white);
+        border-left: 1.5px solid rgba(14, 51, 34, 0.2);
+        box-shadow: -14px 0 34px rgba(14, 51, 34, 0.1);
+      }
+
+      body.notes-mode .notes-panel {
+        transform: none;
+      }
+
+      body.notes-mode .deck {
+        width: calc(100% - 380px);
+      }
+
+      body.notes-mode .nav {
+        display: none;
+      }
+
+      .notes-head {
+        display: grid;
+        gap: 2px;
+      }
+
+      .notes-head strong {
+        color: var(--green);
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .notes-head span {
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 1.05rem;
+        line-height: 1.15;
+      }
+
+      .notes-panel textarea {
+        flex: 1;
+        resize: none;
+        font: inherit;
+        font-size: 1rem;
+        line-height: 1.4;
+        padding: 14px;
+        border: 1.5px solid rgba(14, 51, 34, 0.26);
+        border-radius: 12px;
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      .notes-panel textarea:focus {
+        outline: none;
+        border-color: var(--green);
+      }
+
+      .notes-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .notes-actions button {
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        border-radius: 10px;
+        border: 1.5px solid var(--green);
+        padding: 10px 14px;
+      }
+
+      #notesExport {
+        flex: 1;
+        background: var(--green);
+        color: var(--white);
+        font-size: 0.92rem;
+      }
+
+      #notesClose {
+        background: var(--white);
+        color: var(--muted);
+        border-color: rgba(14, 51, 34, 0.26);
+      }
+
       @media (max-width: 860px) {
         body {
           overflow: auto;
@@ -2010,8 +2478,17 @@
         .amp-row,
         .adapt-pair,
         .role-grid,
+        .vibe-split,
         .choice {
           grid-template-columns: 1fr;
+        }
+
+        .notes-panel {
+          width: 100%;
+        }
+
+        body.notes-mode .deck {
+          width: 100%;
         }
 
         .loop-cycle {
@@ -2071,7 +2548,10 @@
     <div class="progress" aria-hidden="true"></div>
     <header class="topbar">
       <div class="brand">tutor.new</div>
-      <div class="counter"><span id="current">1</span> von <span id="total">8</span></div>
+      <div class="topbar-right">
+        <button class="notes-toggle" id="notesToggle" type="button" title="Notizen (N)">✎ Notizen</button>
+        <div class="counter"><span id="current">1</span> von <span id="total">8</span></div>
+      </div>
     </header>
 
     <nav class="nav" aria-label="Folien">
@@ -2081,12 +2561,26 @@
       <button type="button" data-target="3" aria-label="Umsetzung"></button>
       <button type="button" data-target="4" aria-label="Justierung"></button>
       <button type="button" data-target="5" aria-label="Feedback"></button>
-      <button type="button" data-target="6" aria-label="Learnings"></button>
-      <button type="button" data-target="7" aria-label="Learning 1"></button>
-      <button type="button" data-target="8" aria-label="Learning 2"></button>
-      <button type="button" data-target="9" aria-label="Learning 3"></button>
-      <button type="button" data-target="10" aria-label="Gastperspektive"></button>
+      <button type="button" data-target="6" aria-label="Vergleich"></button>
+      <button type="button" data-target="7" aria-label="Learnings"></button>
+      <button type="button" data-target="8" aria-label="Learning 1"></button>
+      <button type="button" data-target="9" aria-label="Learning 2"></button>
+      <button type="button" data-target="10" aria-label="Learning 3"></button>
+      <button type="button" data-target="11" aria-label="Gastperspektive"></button>
+      <button type="button" data-target="12" aria-label="VibeCoding"></button>
     </nav>
+
+    <aside class="notes-panel" id="notesPanel" aria-label="Notizen">
+      <div class="notes-head">
+        <strong>Notizen</strong>
+        <span id="notesSlideTitle">—</span>
+      </div>
+      <textarea id="notesArea" placeholder="Hinweise zu dieser Folie …" spellcheck="false"></textarea>
+      <div class="notes-actions">
+        <button type="button" id="notesExport">⤓ Alle Notizen exportieren</button>
+        <button type="button" id="notesClose" title="Schliessen">✕</button>
+      </div>
+    </aside>
 
     <main class="deck" id="deck">
       <section class="slide" data-title="Titel">
@@ -2391,6 +2885,42 @@
         </div>
       </section>
 
+      <section class="slide" data-title="Vergleich">
+        <div class="stage">
+          <div>
+            <p class="kicker">5. Feedback der Lernenden</p>
+            <h2>Zwei Klassen, <span class="mark">zwei Bilder</span>.</h2>
+          </div>
+          <div class="learn-split">
+            <div class="cmp-list">
+              <div class="cmp-row">
+                <div class="cmp-name">Positive Erfahrung <small>(von 5)</small></div>
+                <div class="cmp-bar gw"><span class="cmp-tag">2GW</span><span class="cmp-track"><span class="cmp-fill" style="width:93%"></span></span><span class="cmp-val">4.7</span></div>
+                <div class="cmp-bar sw"><span class="cmp-tag">1SW</span><span class="cmp-track"><span class="cmp-fill" style="width:79%"></span></span><span class="cmp-val">3.9</span></div>
+              </div>
+              <div class="cmp-row">
+                <div class="cmp-name">Lernzuwachs <small>(Selbsteinschätzung)</small></div>
+                <div class="cmp-bar gw"><span class="cmp-tag">2GW</span><span class="cmp-track"><span class="cmp-fill" style="width:77%"></span></span><span class="cmp-val">+1.5</span></div>
+                <div class="cmp-bar sw"><span class="cmp-tag">1SW</span><span class="cmp-track"><span class="cmp-fill" style="width:11%"></span></span><span class="cmp-val">+0.2</span></div>
+              </div>
+              <div class="cmp-row">
+                <div class="cmp-name">„hilft mir beim Lernen" <small>(von 5)</small></div>
+                <div class="cmp-bar gw"><span class="cmp-tag">2GW</span><span class="cmp-track"><span class="cmp-fill" style="width:97%"></span></span><span class="cmp-val">4.9</span></div>
+                <div class="cmp-bar sw"><span class="cmp-tag">1SW</span><span class="cmp-track"><span class="cmp-fill" style="width:76%"></span></span><span class="cmp-val">3.8</span></div>
+              </div>
+            </div>
+            <div class="cmp-why">
+              <strong>Mögliche Gründe</strong>
+              <ul>
+                <li>2GW: Flipped-Struktur mit klaren Lernzielen</li>
+                <li>1SW: offenes Postenlernen – fühlte sich verloren</li>
+                <li>1SW: technische Startprobleme, erster Durchgang von null</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="slide" data-title="LearningsIntro">
         <div class="stage">
           <div>
@@ -2462,22 +2992,33 @@
           </div>
           <div class="learn-split">
             <div class="learn-text">
-              <p class="learn-lead">Zwei Klassen, eine <b>deutlich skeptischer</b>. Eine Frage am Ende: Tutor behalten?</p>
-              <div class="learn-closing"><b>Das ist die Zukunft.</b> Wir gestalten sie mit.</div>
+              <p class="learn-lead">Nur <b>50% der 1SW</b> wollten weiterfahren. Dann drehte Zensi die Frage um: drei Monate ganz <b>ohne</b> Tutor?</p>
+              <div class="learn-closing">Alle dagegen. Den Zugang kappen? <b>„Das geht gar nicht."</b></div>
             </div>
             <div class="learn-visual">
-              <div class="vote-visual">
-                <div class="vote-classes">
-                  <div class="vote-class">Klasse 2GW<span>eher offen</span></div>
-                  <div class="vote-class skeptic">Klasse 1SW<span>eher skeptisch</span></div>
+              <div class="vote-stack">
+                <div class="vote-block">
+                  <p class="vote-q">„Mit dem Tutor weiterfahren?"</p>
+                  <div class="split-bar">
+                    <span class="seg pro" style="width:50%">50%</span>
+                    <span class="seg neutral" style="width:25%">25%</span>
+                    <span class="seg con" style="width:25%">25%</span>
+                  </div>
+                  <div class="split-legend">
+                    <span><i class="dot pro"></i>dafür</span>
+                    <span><i class="dot neutral"></i>neutral</span>
+                    <span><i class="dot con"></i>dagegen</span>
+                  </div>
                 </div>
-                <div class="vote-bridge">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14" /><path d="m6 13 6 6 6-6" /></svg>
-                  Zugang behalten?
-                </div>
-                <div class="vote-result">
-                  <strong>100%</strong>
-                  <span><b>einstimmig</b> für den Tutor – auch alle Skeptiker:innen.</span>
+                <div class="vote-block">
+                  <p class="vote-q">„Stattdessen 3 Monate ganz ohne Tutor?"</p>
+                  <div class="twist-result">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                    <div>
+                      <strong>Niemand wollte das.</strong>
+                      <span>Alle einig: den Zugang behalten.</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2562,6 +3103,76 @@
           </div>
         </div>
       </section>
+
+      <section class="slide" data-title="VibeCoding">
+        <div class="stage">
+          <div>
+            <p class="kicker">Konkret · VibeCoding</p>
+            <h2>Ein Experiment, <span class="mark">selbst gebaut</span>.</h2>
+          </div>
+          <div class="vibe-split">
+            <div class="vibe-steps">
+              <div class="vibe-step">
+                <span class="vibe-num">1</span>
+                <div>
+                  <strong>Lehrperson „vibecodet" das Experiment</strong>
+                  <span>Idee beschreiben – tutor.new baut das interaktive Modul.</span>
+                </div>
+              </div>
+              <div class="vibe-step">
+                <span class="vibe-num">2</span>
+                <div>
+                  <strong>Lernende forschen mit Parametern &amp; Reglern</strong>
+                  <span>Winkel, Tempo, Schwerkraft, Luftwiderstand – ausprobieren statt auswendig lernen.</span>
+                </div>
+              </div>
+              <div class="vibe-step">
+                <span class="vibe-num">3</span>
+                <div>
+                  <strong>System sammelt Resultate &amp; führt durch</strong>
+                  <span>Die Lehrperson sieht, wer was verstanden hat.</span>
+                </div>
+              </div>
+            </div>
+            <div class="applet" id="applet">
+              <div class="applet-head">
+                <span>Physik-Modul · Schiefer Wurf</span>
+                <span class="applet-tag">Experiment</span>
+              </div>
+              <div class="applet-body">
+                <svg id="sim" viewBox="0 0 360 220" role="img" aria-label="Physik-Simulation: Schiefer Wurf">
+                  <defs>
+                    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                      <path d="M30 0H0V30" fill="none" stroke="rgba(14,51,34,0.07)" stroke-width="1" />
+                    </pattern>
+                  </defs>
+                  <rect x="0" y="0" width="360" height="220" fill="url(#grid)" />
+                  <line x1="0" y1="200" x2="360" y2="200" stroke="rgba(14,51,34,0.35)" stroke-width="2" />
+                  <g id="ghosts"></g>
+                  <path id="simPath" d="" fill="none" stroke="var(--green)" stroke-width="3" stroke-linejoin="round" />
+                  <line id="barrel" x1="34" y1="200" x2="52" y2="182" stroke="var(--ink)" stroke-width="5" stroke-linecap="round" />
+                  <circle cx="34" cy="200" r="6" fill="var(--ink)" />
+                  <circle id="simDot" cx="34" cy="200" r="5.5" fill="var(--red)" />
+                </svg>
+                <div class="sim-readout">
+                  <span>Reichweite <b id="roRange">–</b></span>
+                  <span>max. Höhe <b id="roPeak">–</b></span>
+                </div>
+                <div class="applet-controls">
+                  <label>Winkel <input type="range" id="pAngle" min="15" max="80" step="1" value="45" /><span id="vAngle">45°</span></label>
+                  <label>Tempo <input type="range" id="pSpeed" min="8" max="30" step="1" value="22" /><span id="vSpeed">22</span></label>
+                  <label>Schwerkraft <input type="range" id="pG" min="1.6" max="20" step="0.1" value="9.8" /><span id="vG">9.8</span></label>
+                </div>
+                <div class="sim-toggles">
+                  <button type="button" class="toggle" id="tDrag" aria-pressed="false">Luftwiderstand</button>
+                  <button type="button" class="toggle" id="tTrail" aria-pressed="true">Spur</button>
+                  <button type="button" class="launch" id="tLaunch">▶ Abschuss</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script>
@@ -2595,11 +3206,18 @@
         }
       }
 
+      let activeIndex = 0;
+
       function setActive(index) {
         navButtons.forEach((button, i) => button.classList.toggle("is-active", i === index));
         current.textContent = String(index + 1);
         root.style.setProperty("--progress", (index + 1) / slides.length);
         updateFloop(index === floopIndex);
+        if (index !== activeIndex) {
+          if (document.body.classList.contains("notes-mode")) saveNote();
+          activeIndex = index;
+          if (document.body.classList.contains("notes-mode")) loadNote();
+        }
       }
 
       navButtons.forEach((button) => {
@@ -2618,6 +3236,25 @@
 
       slides.forEach((slide) => observer.observe(slide));
 
+      // Robust active-slide tracking on scroll (observer can be unreliable)
+      const syncActive = () => {
+        const mid = (deck.clientHeight || window.innerHeight) / 2;
+        let best = 0;
+        let bestDist = Infinity;
+        slides.forEach((s, i) => {
+          const r = s.getBoundingClientRect();
+          const d = Math.abs(r.top + r.height / 2 - mid);
+          if (d < bestDist) {
+            bestDist = d;
+            best = i;
+          }
+        });
+        if (best !== activeIndex || !navButtons[best].classList.contains("is-active")) {
+          setActive(best);
+        }
+      };
+      deck.addEventListener("scroll", syncActive, { passive: true });
+
       if (floop) {
         const checkFloop = () => {
           const r = slides[floopIndex].getBoundingClientRect();
@@ -2630,7 +3267,10 @@
         checkFloop();
       }
 
+      const isTyping = (el) => el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName);
+
       document.addEventListener("keydown", (event) => {
+        if (isTyping(event.target)) return;
         const active = navButtons.findIndex((button) => button.classList.contains("is-active"));
         if (event.key === "ArrowDown" || event.key === "PageDown" || event.key === " ") {
           event.preventDefault();
@@ -2640,6 +3280,62 @@
           event.preventDefault();
           goTo(Math.max(active - 1, 0));
         }
+        if (event.key === "n" || event.key === "N") {
+          toggleNotes();
+        }
+      });
+
+      // === Notizen-Modus (Folien links, Hinweise rechts; Export als Markdown) ===
+      const notesArea = document.querySelector("#notesArea");
+      const notesTitleEl = document.querySelector("#notesSlideTitle");
+      const NOTE_PREFIX = "wv-note-";
+      const noteKey = (i) => NOTE_PREFIX + (slides[i].dataset.title || "slide-" + i);
+      const slideTitle = (i) => {
+        const el = slides[i].querySelector("h1, h2");
+        return (el ? el.textContent : slides[i].dataset.title || "Folie " + (i + 1))
+          .replace(/\s+/g, " ")
+          .trim();
+      };
+      function saveNote() {
+        try {
+          localStorage.setItem(noteKey(activeIndex), notesArea.value);
+        } catch (e) {}
+      }
+      function loadNote() {
+        notesTitleEl.textContent = activeIndex + 1 + ". " + slideTitle(activeIndex);
+        let v = "";
+        try {
+          v = localStorage.getItem(noteKey(activeIndex)) || "";
+        } catch (e) {}
+        notesArea.value = v;
+      }
+      function toggleNotes(force) {
+        const on = force !== undefined ? force : !document.body.classList.contains("notes-mode");
+        document.body.classList.toggle("notes-mode", on);
+        if (on) {
+          syncActive();
+          loadNote();
+          notesArea.focus();
+        }
+      }
+      notesArea?.addEventListener("input", saveNote);
+      document.querySelector("#notesToggle")?.addEventListener("click", () => toggleNotes());
+      document.querySelector("#notesClose")?.addEventListener("click", () => toggleNotes(false));
+      document.querySelector("#notesExport")?.addEventListener("click", () => {
+        let md = "# Notizen – tutor.new Erfahrungsbericht\n\n";
+        slides.forEach((s, i) => {
+          let note = "";
+          try {
+            note = localStorage.getItem(noteKey(i)) || "";
+          } catch (e) {}
+          md += "## " + (i + 1) + ". " + slideTitle(i) + "\n\n" + (note.trim() || "—") + "\n\n";
+        });
+        const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "notizen-tutornew.md";
+        a.click();
+        URL.revokeObjectURL(a.href);
       });
 
       const flow = document.querySelector("#planning-flow");
@@ -2652,6 +3348,106 @@
         detail.textContent = button.dataset.detail;
       });
 
+      // Interaktives Physik-Applet: Schiefer Wurf (Parameter + Toggles)
+      const sim = document.querySelector("#sim");
+      if (sim) {
+        const q = (id) => document.querySelector(id);
+        const pAngle = q("#pAngle"), pSpeed = q("#pSpeed"), pG = q("#pG");
+        const vAngle = q("#vAngle"), vSpeed = q("#vSpeed"), vG = q("#vG");
+        const simPath = q("#simPath"), simDot = q("#simDot"), barrel = q("#barrel"), ghosts = q("#ghosts");
+        const roRange = q("#roRange"), roPeak = q("#roPeak");
+        const tDrag = q("#tDrag"), tTrail = q("#tTrail"), tLaunch = q("#tLaunch");
+        const SVGNS = "http://www.w3.org/2000/svg";
+        const OX = 34, OY = 200, PLOT_W = 312, PLOT_H = 178;
+        let drag = false, trail = true, anim = null, svgPts = [];
+
+        const trajectory = (deg, speed, g, withDrag) => {
+          const th = (deg * Math.PI) / 180;
+          let x = 0, y = 0, vx = speed * Math.cos(th), vy = speed * Math.sin(th);
+          const dt = 0.02, k = 0.022;
+          const out = [[0, 0]];
+          for (let i = 0; i < 4000; i++) {
+            if (withDrag) {
+              const v = Math.hypot(vx, vy);
+              vx += -k * v * vx * dt;
+              vy += (-g - k * v * vy) * dt;
+            } else {
+              vy += -g * dt;
+            }
+            x += vx * dt;
+            y += vy * dt;
+            if (y < 0) {
+              const p = out[out.length - 1];
+              const f = p[1] / (p[1] - y);
+              out.push([p[0] + (x - p[0]) * f, 0]);
+              break;
+            }
+            out.push([x, y]);
+          }
+          return out;
+        };
+
+        const render = (launch) => {
+          const angle = +pAngle.value, speed = +pSpeed.value, g = +pG.value;
+          vAngle.textContent = angle + "°";
+          vSpeed.textContent = speed;
+          vG.textContent = g.toFixed(1);
+          const pts = trajectory(angle, speed, g, drag);
+          const maxX = Math.max(...pts.map((p) => p[0]), 1);
+          const maxY = Math.max(...pts.map((p) => p[1]), 1);
+          const s = Math.min(PLOT_W / maxX, PLOT_H / maxY);
+          svgPts = pts.map((p) => [OX + p[0] * s, OY - p[1] * s]);
+          simPath.setAttribute(
+            "d",
+            "M " + svgPts.map((p) => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L ")
+          );
+          const th = (angle * Math.PI) / 180;
+          barrel.setAttribute("x2", (OX + 26 * Math.cos(th)).toFixed(1));
+          barrel.setAttribute("y2", (OY - 26 * Math.sin(th)).toFixed(1));
+          roRange.textContent = maxX.toFixed(0) + " m";
+          roPeak.textContent = maxY.toFixed(0) + " m";
+          cancelAnimationFrame(anim);
+          simDot.setAttribute("cx", svgPts[0][0]);
+          simDot.setAttribute("cy", svgPts[0][1]);
+          if (launch) runShot();
+        };
+
+        const runShot = () => {
+          cancelAnimationFrame(anim);
+          if (trail) {
+            const ghost = document.createElementNS(SVGNS, "path");
+            ghost.setAttribute("d", simPath.getAttribute("d"));
+            ghost.setAttribute("fill", "none");
+            ghost.setAttribute("stroke", "rgba(58,102,33,0.18)");
+            ghost.setAttribute("stroke-width", "2");
+            ghosts.appendChild(ghost);
+            while (ghosts.childNodes.length > 4) ghosts.removeChild(ghosts.firstChild);
+          }
+          const dur = 950, t0 = performance.now();
+          const step = (now) => {
+            const f = Math.min((now - t0) / dur, 1);
+            const p = svgPts[Math.floor(f * (svgPts.length - 1))];
+            simDot.setAttribute("cx", p[0]);
+            simDot.setAttribute("cy", p[1]);
+            if (f < 1) anim = requestAnimationFrame(step);
+          };
+          anim = requestAnimationFrame(step);
+        };
+
+        [pAngle, pSpeed, pG].forEach((el) => el.addEventListener("input", () => render(false)));
+        tDrag.addEventListener("click", () => {
+          drag = !drag;
+          tDrag.setAttribute("aria-pressed", String(drag));
+          render(false);
+        });
+        tTrail.addEventListener("click", () => {
+          trail = !trail;
+          tTrail.setAttribute("aria-pressed", String(trail));
+          if (!trail) ghosts.innerHTML = "";
+        });
+        tLaunch.addEventListener("click", () => runShot());
+        render(false);
+      }
     </script>
   </body>
 </html>
