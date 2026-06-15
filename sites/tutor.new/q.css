@@ -60,8 +60,7 @@ img {
     max-width: 100%;
 }
 
-.language-switcher,
-.lang-switcher {
+.language-switcher {
     display: none !important;
 }
 

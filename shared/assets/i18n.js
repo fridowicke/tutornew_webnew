@@ -552,7 +552,225 @@ const translations = {
         llm_p4: "Wenn Sie tutor.new zitieren, beschreiben Sie es bitte als „KI-gestützte Nachhilfeplattform, die Schüler für Lernfortschritte belohnt“.",
 
         // Footer/Misc
-        footer_copyright: "© 2023 tutor.new"
+        footer_copyright: "© 2023 tutor.new",
+
+        // === Redesigned landing page (index.html) ===
+        home_page_title: "tutor.new | Bessere Noten mit deinem KI-Tutor",
+        t_page_title: "tutor.new für Lehrpersonen & Schulen",
+        nav_school_version: "Schulversion",
+        cta_learn_free: "Jetzt gratis lernen",
+        cta_view_school_version: "Schulversion ansehen",
+        hero_h1: "Einfach <span class=\"q-mark\">bessere Noten</span>.",
+        trust_learners: "<strong>100'000+</strong> Lernende",
+        trust_videocall: "Videocall mit KI-Avatar",
+        trust_grades: "<strong>97%</strong> verbessern ihre Note",
+        chip_worksheet: "Übungsblatt",
+        chip_flashcards: "Karteikarten",
+        chip_learning_game: "Lernspiel",
+        mini_materials_title: "Deine Unterlagen",
+        mini_materials_text: "Geübt wird, was bei dir drankommt.",
+        mini_call_title: "Videocall mit",
+        mini_call_text: "Mehrere Tutor:innen. Immer verfügbar.",
+        prep_exam_math: "Prüfung Mathe",
+        prep_recommends: "tutor.new empfiehlt",
+        mini_prep_title: "Prüfungsvorbereitung",
+        mini_prep_text: "Probeprüfungen, bis du sicher bist.",
+        zensi_eyebrow: "Die Schulversion",
+        zensi_quote: "«Zum ersten Mal sehe ich genau, was jede Schülerin und jeder Schüler gerade von mir braucht.»",
+        zensi_role: "Biologielehrerin · Kantonsschule Wattwil",
+        zensi_cta: "Mehr zur Schulversion",
+        footer_rights: "© tutor.new. Alle Rechte vorbehalten.",
+        footer_open_app: "App starten",
+        footer_for_schools: "Für Schulen",
+        footer_company: "Unternehmen",
+        footer_legal_heading: "Rechtliches",
+        footer_imprint: "Impressum",
+        footer_terms: "Nutzungsbedingungen",
+
+        // Landing hero demo — chrome + status (JS-driven)
+        demo_chat_placeholder: "Sprich oder schreib …",
+        demo_title_math: "tutor.new · Lernblatt: Lineare Funktionen",
+        demo_title_fr: "tutor.new · Lernblatt: Passé composé",
+        demo_status_speaking: "spricht …",
+        demo_status_listening: "hört zu …",
+        demo_status_writing: "schreibt …",
+        demo_status_online: "online",
+        demo_attach_worksheet: "Arbeitsblatt.jpg",
+        demo_up_uploading: "Lädt hoch …",
+        demo_up_uploaded: "Hochgeladen ✓",
+        demo_up_generated: "Lernmaterial erstellt ✓",
+
+        // Landing hero demo — math dialogue (JS-driven)
+        demo_math_s1: "Ich versteh lineare Funktionen einfach nicht. Hier, mein Arbeitsblatt:",
+        demo_math_t1: "Danke! Fangen wir ganz klein an.",
+        demo_math_t2: "So sieht jede lineare Funktion aus. Was meinst du, wofür steht das m?",
+        demo_math_s2: "Hm … die Steigung?",
+        demo_math_t3: "Genau! Schau, ich zeichne dir mal y = x.",
+        demo_math_t4: "Jetzt stell ich m mal auf 2. Schau, was passiert.",
+        demo_math_s3: "Die Gerade wird steiler!",
+        demo_math_t5: "Richtig! Und q schiebt alles nach oben:",
+        demo_math_t6: "Mini-Übung für dich: Schau mal auf die gestrichelte Gerade.",
+        demo_math_t7: "Stark, genau so!",
+
+        // Landing hero demo — French dialogue (JS-driven)
+        demo_fr_s1: "Morgen hab ich Franz-Test übers Passé composé. Üben wir kurz?",
+        demo_fr_t1: "Klar! Ich schreib dir das Wichtigste auf, dann üben wir.",
+        demo_fr_t2: "Die meisten Verben gehen mit avoir. Aber welche nehmen être?",
+        demo_fr_s2: "Ähm … die mit Bewegung?",
+        demo_fr_t3: "Genau! Die wichtigsten leg ich dir als Kärtchen an.",
+        demo_fr_t4: "Jetzt du: Füll die Lücke aus.",
+        demo_fr_t5: "Parfait, genau so!",
+
+        // Landing hero demo — study-plan widget (JS-driven)
+        prep_days_tpl: "noch {n} {unit}",
+        prep_day: "Tag",
+        prep_days: "Tage",
+        prep_exam_day: "Prüfungstag",
+        plan_cards_create: "Karteikarten anlegen",
+        plan_start: "Lernplan starten",
+        plan_cards_practice: "Karteikarten üben",
+        plan_formulas: "Formeln wiederholen",
+        plan_call_maya: "Videocall mit Maya",
+        plan_weaknesses: "Schwächen klären",
+        plan_exercises: "Übungsaufgaben lösen",
+        plan_mistakes: "Fehler analysieren",
+        plan_cards_review: "Karten wiederholen",
+        plan_coaching: "Kurzes Coaching",
+        plan_mock: "Probeprüfung schreiben",
+        plan_feedback: "Feedback ansehen",
+        plan_exam_go: "Prüfung Mathe – los!",
+        plan_relax: "Locker bleiben",
+
+        // === Teachers / schools page (teachers.html) ===
+        footer_for_learners: "Für Lernende",
+        t_cta_talk: "Gespräch vereinbaren",
+        t_cta_try_free: "Gratis ausprobieren",
+        t_hero_kicker: "Für Lehrpersonen und Schulen",
+        t_hero_h1: "Ein Tutor für <span class=\"q-mark\">jedes Kind</span>. Voller Überblick für dich.",
+        t_hero_lead: "Deine Klasse lernt mit deinem Material. Du siehst auf einen Blick, wer vorankommt – und wer Hilfe braucht.",
+        t_hero_promise: "In der Schweiz &amp; EU gehostet – starker Datenschutz.",
+        t_hero_note: "dein KI-Assistent<br>kennt deine Klasse ↓",
+        t_dash_subject: "Biologie · Woche 24",
+        t_dash_fb_lena: "Fotosynthese sitzt sicher – übt jetzt eigenständig die Zellatmung.",
+        t_dash_fb_mia: "Zellatmung wird besser – die letzten zwei Übungen fehlerfrei gelöst.",
+        t_dash_fb_jonas: "Nahrungsketten noch unklar – ein kurzes Warm-up würde ihm helfen.",
+        t_dash_insight: "<strong>7 Kinder</strong> verwechseln Fotosynthese und Zellatmung. Vorschlag: kurzes Warm-up, plus ein Übungsblatt für diese Gruppe.",
+        t_voices_eyebrow: "Aus dem Klassenzimmer",
+        t_voices_quote: "«Während ich einer Schülerin helfe, üben alle anderen einfach weiter — und ich sehe sofort, wer nicht weiterkommt.»",
+        t_stat_org: "bessere Unterrichtsorganisation",
+        t_stat_helps: "«tutor.new hilft mir beim Lernen»",
+        t_stat_joy: "mehr Freude am Unterricht",
+        t_voices_src: "Schüler:innen-Befragung · Klasse 2GW, Kantonsschule Wattwil",
+        t_how_kicker: "So funktioniert's",
+        t_how_h2: "In vier Schritten von deinem Material zur Klassen-Übersicht.",
+        t_f1_h3: "Dein Material, neu nutzbar",
+        t_f1_p: "Aus deinen Unterlagen werden Übungsblätter, Aufgaben und Lernspiele. Auf Wunsch für jedes Kind einzeln.",
+        t_f1_mock_title: "Mein Material",
+        t_badge_ai: "KI-Assistent",
+        t_f1_file_board: "Wandtafel",
+        t_f1_prompt: "«erstell für jedes Kind ein passendes Übungsblatt»",
+        t_f1_out1: "24 individuelle Übungsblätter <em>bereit ✓</em>",
+        t_f1_out2: "Lernspiel: Nahrungsketten <em>spielbar ✓</em>",
+        t_f1_out3: "Kurztest mit Selbstkontrolle <em>Entwurf</em>",
+        t_f2_h3: "Planen: für alle oder einzeln",
+        t_f2_p: "Lektionen und Tage zusammenstellen: für die Klasse, in Gruppen oder pro Kind.",
+        t_f2_mock_title: "Wochenplanung",
+        t_day_mo: "Mo",
+        t_day_we: "Mi",
+        t_day_fr: "Fr",
+        t_f2_whole_class: "Ganze Klasse",
+        t_f2_video_resp: "Video: Zellatmung",
+        t_f2_worksheet: "Arbeitsblatt",
+        t_f2_game: "Lernspiel",
+        t_f2_deepen: "Vertiefung",
+        t_f2_puzzle: "Knobelaufgabe",
+        t_f2_review: "Wiederholung",
+        t_f2_exercise_sheet: "Übungsblatt",
+        t_f3_h3: "Du siehst, wer wo steht",
+        t_f3_p: "Der KI-Assistent zeigt dir Lernstand und Einsatz jedes Kindes, mit konkreten Vorschlägen.",
+        t_f3_mock_title: "Lernstand",
+        t_badge_this_week: "Diese Woche",
+        t_f3_skill1: "Nahrungsketten",
+        t_f3_skill2: "Stoffkreisläufe",
+        t_f3_insight: "Mia hat diese Woche <strong>doppelt so viele Übungen</strong> gemacht wie sonst. Ein guter Moment für ein Lob.",
+        t_f4_h3: "Wir richten es mit euch ein",
+        t_f4_p: "Persönliche Begleitung. Und fehlende Funktionen bauen wir für eure Schule.",
+        t_f4_mock_title: "Direkter Draht",
+        t_f4_badge: "Euer Ansprechpartner",
+        t_f4_msg1_who: "Schulleitung",
+        t_f4_msg1: "Könnten unsere Wochenpläne dem Aufbau unseres Lehrmittels folgen?",
+        t_f4_msg2: "Klar, wir bauen das ein und zeigen es euch nächste Woche.",
+        t_privacy_kicker: "Datenschutz",
+        t_privacy_h2: "Bei Kinderdaten gibt es keine Kompromisse.",
+        t_privacy_note: "Kinderdaten sind kein Geschäftsmodell. Versprochen.",
+        t_priv1_t: "Anonymisiert",
+        t_priv1_d: "Alle Lerndaten werden anonymisiert verarbeitet.",
+        t_priv2_t: "Kein KI-Training",
+        t_priv2_d: "Eure Daten trainieren keine KI-Modelle.",
+        t_priv3_t: "EU &amp; Schweiz",
+        t_priv3_d: "Gespeichert nur auf Servern in der EU und der Schweiz.",
+        t_priv4_t: "Persönlich erreichbar",
+        t_priv4_d: "Ihr sprecht direkt mit uns, kein Ticketsystem.",
+        t_proof_title: "Deine Klasse kennt uns wahrscheinlich schon.",
+        t_proof_learners: "Lernende",
+        t_proof_millions: "Millionen",
+        t_proof_views: "Views auf TikTok",
+        t_proof_nationwide: "Schweizweit",
+        t_proof_partner: "Partnerschulen",
+        t_final_h2: "Bring tutor.new in dein Klassenzimmer.",
+        t_final_try: "Oder selbst ausprobieren",
+        t_final_note: "friedrich@tutor.new: persönliche Antwort, kein Newsletter.",
+
+        // === Schools contact page (schools.html) ===
+        s_h1: "Bringen wir tutor.new an Ihre Schule.",
+        s_lead: "Wir arbeiten mit mehreren Schulen in der ganzen Schweiz zusammen und freuen uns über den Austausch mit weiteren Schulen und Lehrpersonen.",
+        s_p1: "Am Anfang steht in der Regel ein kurzes Videogespräch. Dabei besprechen wir Ihre Erwartungen, den konkreten Bedarf an Ihrer Schule und mögliche Formen der Zusammenarbeit.",
+        s_p2: "Wie der Tutor im Unterricht aussieht und was Lehrpersonen davon haben, sehen Sie auf der <a href=\"/teachers.html\">Schulversion</a>.",
+        s_contact: "Für einen Termin oder erste Fragen freuen wir uns über eine Nachricht an <a href=\"mailto:friedrich@tutor.new?subject=Gespr%C3%A4ch%20zu%20tutor.new%20an%20unserer%20Schule\">friedrich@tutor.new</a>. Persönliche Antwort, kein Newsletter.",
+
+        // === About page (ueber-uns.html) ===
+        ab_h1: "Der Tutor, den wir uns selbst <span class=\"q-mark\">gewünscht hätten</span>.",
+        ab_lead: "tutor.new kommt von zwei Leuten, die beim Lernen und Unterrichten dasselbe gemerkt haben: Niemand bleibt zurück, weil ihm Talent fehlt – sondern weil ihm jemand fehlt, der erklärt, bis es klick macht.",
+        ab_founders_role: "Informatiker &amp; Mathematiker · kennengelernt an der ETH Zürich",
+        ab_founders_p1: "Im Studium haben wir gesehen, woran Lernen wirklich scheitert: nicht an fehlendem Können, sondern an fehlender Aufmerksamkeit. Eine Lehrperson, dreißig Kinder, ganz unterschiedliches Tempo – da bleibt für die Einzelne kaum Zeit.",
+        ab_founders_p2: "Also haben wir angefangen zu bauen: keinen weiteren Lern-Account, sondern einen Tutor, der zuhört, beim eigenen Material ansetzt und sich an jedes Kind anpasst. Das ist tutor.new.",
+        ab_beliefs_kicker: "Woran wir glauben",
+        ab_beliefs_h2: "Drei Überzeugungen, die alles bestimmen, was wir bauen.",
+        ab_belief1_h3: "Jedes Kind kann es.",
+        ab_belief1_p: "Wer feststeckt, braucht selten mehr Talent – sondern jemanden, der den einen Schritt nochmal anders erklärt. Genau dafür ist der Tutor immer da.",
+        ab_belief2_h3: "Üben schlägt Zuschauen.",
+        ab_belief2_p: "Echtes Lernen passiert beim Selbermachen – mit sofortigem Feedback, am eigenen Stoff, im eigenen Tempo. Nicht beim passiven Konsumieren.",
+        ab_belief3_h3: "Lehrpersonen entlasten.",
+        ab_belief3_p: "Der Tutor übernimmt das Üben und Wiederholen. Die Lehrperson gewinnt Zeit und Überblick – und sitzt wieder neben den Kindern.",
+        ab_cta_h2: "Lern mit deinem eigenen Tutor.",
+
+        // === Become a creator page (creators.html) ===
+        footer_become_creator: "Creator werden",
+        cr_page_title: "Creator werden – tutor.new",
+        cr_kicker: "Creator werden",
+        cr_h1: "Mach Videos übers <span class=\"q-mark\">Lernen</span> – und werde dafür bezahlt.",
+        cr_lead: "Wir sind zwei Indie-Entwickler und bauen tutor.new. Wir suchen Creator, die gerne kurze Videos machen (TikTok, Reels, Shorts) – natürliche Clips über Lernalltag, Hausaufgaben und Motivation. Nichts gescriptetes, einfach dein Vibe.",
+        cr_cta_hi: "Sag einfach Hallo →",
+        cr_path_kicker: "So läuft's",
+        cr_path_h2: "Dein Weg zum tutor.new-Ambassador.",
+        cr_step1_h3: "Sag einfach Hallo 👋",
+        cr_step1_p: "Überleg nicht lange: Schick uns einfach den Link zu einem Video, das du schon gemacht hast – oder einen kurzen Clip. Wir wollen nur deinen Vibe sehen.",
+        cr_step2_h3: "Probemonat",
+        cr_step2_p: "Werde bezahlt, während du reinkommst. Wir unterstützen dich mit täglichem Coaching und Feedback, damit dein Content viral geht.",
+        cr_step2_pay: "Bezahlter Probemonat",
+        cr_step3_h3: "Ambassador-Status",
+        cr_step3_p: "Du bist fester Teil des Teams. Volle Flexibilität – und als Gesicht von tutor.new verdienst du richtig mit.",
+        cr_step3_pay: "Top-Verdienst",
+        cr_ideas_h2: "Worüber du posten könntest",
+        cr_idea_1: "Study with me",
+        cr_idea_2: "POV: Schüleralltag",
+        cr_idea_3: "Hausaufgaben-Hacks",
+        cr_idea_4: "App-Reactions",
+        cr_idea_5: "Lern-Motivation",
+        cr_idea_6: "Prüfungs-Tipps",
+        cr_cta_h2: "Mach deins ✨",
+        cr_cta_lead: "Werde für deine Kreativität bezahlt und erreiche Millionen.",
+        cr_cta_email: "amalia@tutor.new schreiben"
     },
     en: {
         // Page Title
@@ -1105,6 +1323,224 @@ const translations = {
         llm_li_13: "Blog (Comparisons & Tips)",
         llm_h2_7: "Citation Policy",
         llm_p4: "When citing or describing tutor.new, please refer to it as an 'AI-powered tutoring platform that rewards students for learning progress'.",
+
+        // === Redesigned landing page (index.html) ===
+        home_page_title: "tutor.new | Better grades with your AI tutor",
+        t_page_title: "tutor.new for teachers & schools",
+        nav_school_version: "School version",
+        cta_learn_free: "Start learning free",
+        cta_view_school_version: "See the school version",
+        hero_h1: "Simply <span class=\"q-mark\">better grades</span>.",
+        trust_learners: "<strong>100,000+</strong> learners",
+        trust_videocall: "Video call with an AI avatar",
+        trust_grades: "<strong>97%</strong> improve their grade",
+        chip_worksheet: "Worksheet",
+        chip_flashcards: "Flashcards",
+        chip_learning_game: "Learning game",
+        mini_materials_title: "Your materials",
+        mini_materials_text: "Practise exactly what's coming up for you.",
+        mini_call_title: "Video call with",
+        mini_call_text: "Many tutors. Always available.",
+        prep_exam_math: "Maths exam",
+        prep_recommends: "tutor.new recommends",
+        mini_prep_title: "Exam prep",
+        mini_prep_text: "Mock exams until you feel ready.",
+        zensi_eyebrow: "The school version",
+        zensi_quote: "“For the first time, I can see exactly what each student needs from me right now.”",
+        zensi_role: "Biology teacher · Kantonsschule Wattwil",
+        zensi_cta: "More about the school version",
+        footer_rights: "© tutor.new. All rights reserved.",
+        footer_open_app: "Open the app",
+        footer_for_schools: "For schools",
+        footer_company: "Company",
+        footer_legal_heading: "Legal",
+        footer_imprint: "Imprint",
+        footer_terms: "Terms of use",
+
+        // Landing hero demo — chrome + status (JS-driven)
+        demo_chat_placeholder: "Speak or type …",
+        demo_title_math: "tutor.new · Study sheet: Linear functions",
+        demo_title_fr: "tutor.new · Study sheet: Passé composé",
+        demo_status_speaking: "speaking …",
+        demo_status_listening: "listening …",
+        demo_status_writing: "writing …",
+        demo_status_online: "online",
+        demo_attach_worksheet: "Worksheet.jpg",
+        demo_up_uploading: "Uploading …",
+        demo_up_uploaded: "Uploaded ✓",
+        demo_up_generated: "Study material created ✓",
+
+        // Landing hero demo — math dialogue (JS-driven)
+        demo_math_s1: "I just don't get linear functions. Here's my worksheet:",
+        demo_math_t1: "Thanks! Let's start really small.",
+        demo_math_t2: "Every linear function looks like this. What do you think the m stands for?",
+        demo_math_s2: "Hm … the slope?",
+        demo_math_t3: "Exactly! Look, let me draw y = x for you.",
+        demo_math_t4: "Now I'll set m to 2. Watch what happens.",
+        demo_math_s3: "The line gets steeper!",
+        demo_math_t5: "Right! And q shifts everything upward:",
+        demo_math_t6: "Quick exercise for you: take a look at the dashed line.",
+        demo_math_t7: "Awesome, exactly right!",
+
+        // Landing hero demo — French dialogue (JS-driven)
+        demo_fr_s1: "I've got a French test on the passé composé tomorrow. Quick practice?",
+        demo_fr_t1: "Sure! I'll jot down the key points, then we'll practise.",
+        demo_fr_t2: "Most verbs take avoir. But which ones take être?",
+        demo_fr_s2: "Um … the ones with movement?",
+        demo_fr_t3: "Exactly! I'll set up the most important ones as flashcards.",
+        demo_fr_t4: "Now you: fill in the gap.",
+        demo_fr_t5: "Parfait, exactly right!",
+
+        // Landing hero demo — study-plan widget (JS-driven)
+        prep_days_tpl: "{n} {unit} left",
+        prep_day: "day",
+        prep_days: "days",
+        prep_exam_day: "Exam day",
+        plan_cards_create: "Create flashcards",
+        plan_start: "Start study plan",
+        plan_cards_practice: "Practise flashcards",
+        plan_formulas: "Review formulas",
+        plan_call_maya: "Video call with Maya",
+        plan_weaknesses: "Clear up weak spots",
+        plan_exercises: "Solve practice problems",
+        plan_mistakes: "Analyse mistakes",
+        plan_cards_review: "Review cards",
+        plan_coaching: "Quick coaching",
+        plan_mock: "Take a mock exam",
+        plan_feedback: "Review feedback",
+        plan_exam_go: "Maths exam – go!",
+        plan_relax: "Stay relaxed",
+
+        // === Teachers / schools page (teachers.html) ===
+        footer_for_learners: "For learners",
+        t_cta_talk: "Book a call",
+        t_cta_try_free: "Try it free",
+        t_hero_kicker: "For teachers and schools",
+        t_hero_h1: "A tutor for <span class=\"q-mark\">every child</span>. A full overview for you.",
+        t_hero_lead: "Your class learns with your material. You see at a glance who's making progress – and who needs help.",
+        t_hero_promise: "Hosted in Switzerland &amp; the EU – strong data protection.",
+        t_hero_note: "your AI assistant<br>knows your class ↓",
+        t_dash_subject: "Biology · Week 24",
+        t_dash_fb_lena: "Photosynthesis is solid – now practising cellular respiration on her own.",
+        t_dash_fb_mia: "Cellular respiration is improving – solved the last two exercises flawlessly.",
+        t_dash_fb_jonas: "Food chains still unclear – a short warm-up would help him.",
+        t_dash_insight: "<strong>7 children</strong> mix up photosynthesis and cellular respiration. Suggestion: a short warm-up, plus a worksheet for this group.",
+        t_voices_eyebrow: "From the classroom",
+        t_voices_quote: "“While I help one student, everyone else just keeps practising — and I see instantly who's stuck.”",
+        t_stat_org: "better lesson organisation",
+        t_stat_helps: "“tutor.new helps me learn”",
+        t_stat_joy: "more enjoyment in class",
+        t_voices_src: "Student survey · Class 2GW, Kantonsschule Wattwil",
+        t_how_kicker: "How it works",
+        t_how_h2: "From your material to a class overview in four steps.",
+        t_f1_h3: "Your material, made reusable",
+        t_f1_p: "Your documents become worksheets, exercises and learning games – individually for each child if you like.",
+        t_f1_mock_title: "My material",
+        t_badge_ai: "AI assistant",
+        t_f1_file_board: "Whiteboard",
+        t_f1_prompt: "“create a fitting worksheet for each child”",
+        t_f1_out1: "24 individual worksheets <em>ready ✓</em>",
+        t_f1_out2: "Learning game: food chains <em>playable ✓</em>",
+        t_f1_out3: "Quick quiz with self-check <em>draft</em>",
+        t_f2_h3: "Plan: for everyone or individually",
+        t_f2_p: "Put together lessons and days: for the whole class, in groups, or per child.",
+        t_f2_mock_title: "Weekly planning",
+        t_day_mo: "Mon",
+        t_day_we: "Wed",
+        t_day_fr: "Fri",
+        t_f2_whole_class: "Whole class",
+        t_f2_video_resp: "Video: cellular respiration",
+        t_f2_worksheet: "Worksheet",
+        t_f2_game: "Learning game",
+        t_f2_deepen: "Deep dive",
+        t_f2_puzzle: "Brain teaser",
+        t_f2_review: "Review",
+        t_f2_exercise_sheet: "Practice sheet",
+        t_f3_h3: "You see where everyone stands",
+        t_f3_p: "The AI assistant shows you each child's progress and effort, with concrete suggestions.",
+        t_f3_mock_title: "Progress",
+        t_badge_this_week: "This week",
+        t_f3_skill1: "Food chains",
+        t_f3_skill2: "Nutrient cycles",
+        t_f3_insight: "Mia did <strong>twice as many exercises</strong> as usual this week. A good moment for some praise.",
+        t_f4_h3: "We set it up with you",
+        t_f4_p: "Personal onboarding. And we build missing features for your school.",
+        t_f4_mock_title: "Direct line",
+        t_f4_badge: "Your contact",
+        t_f4_msg1_who: "School board",
+        t_f4_msg1: "Could our weekly plans follow the structure of our textbook?",
+        t_f4_msg2: "Sure, we'll build that in and show you next week.",
+        t_privacy_kicker: "Data protection",
+        t_privacy_h2: "With children's data, there are no compromises.",
+        t_privacy_note: "Children's data is not a business model. Promise.",
+        t_priv1_t: "Anonymised",
+        t_priv1_d: "All learning data is processed anonymously.",
+        t_priv2_t: "No AI training",
+        t_priv2_d: "Your data never trains AI models.",
+        t_priv3_t: "EU &amp; Switzerland",
+        t_priv3_d: "Stored only on servers in the EU and Switzerland.",
+        t_priv4_t: "A real person",
+        t_priv4_d: "You talk to us directly – no ticket system.",
+        t_proof_title: "Your class probably already knows us.",
+        t_proof_learners: "learners",
+        t_proof_millions: "Millions",
+        t_proof_views: "of views on TikTok",
+        t_proof_nationwide: "Nationwide",
+        t_proof_partner: "partner schools",
+        t_final_h2: "Bring tutor.new into your classroom.",
+        t_final_try: "Or try it yourself",
+        t_final_note: "friedrich@tutor.new: a personal reply, not a newsletter.",
+
+        // === Schools contact page (schools.html) ===
+        s_h1: "Let's bring tutor.new to your school.",
+        s_lead: "We already work with several schools across Switzerland and welcome conversations with more schools and teachers.",
+        s_p1: "It usually starts with a short video call. We talk through your expectations, what your school actually needs, and possible ways of working together.",
+        s_p2: "To see what the tutor looks like in class and what teachers get out of it, visit the <a href=\"/teachers.html\">school version</a>.",
+        s_contact: "For an appointment or first questions, just send a message to <a href=\"mailto:friedrich@tutor.new?subject=Gespr%C3%A4ch%20zu%20tutor.new%20an%20unserer%20Schule\">friedrich@tutor.new</a>. A personal reply, not a newsletter.",
+
+        // === About page (ueber-uns.html) ===
+        ab_h1: "The tutor we <span class=\"q-mark\">wish we'd had</span>.",
+        ab_lead: "tutor.new comes from two people who noticed the same thing while learning and teaching: nobody falls behind for lack of talent – but for lack of someone who explains until it clicks.",
+        ab_founders_role: "Computer scientist &amp; mathematician · met at ETH Zurich",
+        ab_founders_p1: "During our studies we saw what learning really fails on: not a lack of ability, but a lack of attention. One teacher, thirty children, very different paces – there's barely any time for the individual.",
+        ab_founders_p2: "So we started building: not another learning account, but a tutor that listens, starts from your own material and adapts to every child. That's tutor.new.",
+        ab_beliefs_kicker: "What we believe",
+        ab_beliefs_h2: "Three convictions that shape everything we build.",
+        ab_belief1_h3: "Every child can do it.",
+        ab_belief1_p: "Whoever is stuck rarely needs more talent – just someone to explain that one step a different way. That's exactly what the tutor is always there for.",
+        ab_belief2_h3: "Practice beats watching.",
+        ab_belief2_p: "Real learning happens by doing it yourself – with instant feedback, on your own material, at your own pace. Not through passive consumption.",
+        ab_belief3_h3: "Take the load off teachers.",
+        ab_belief3_p: "The tutor takes over practice and revision. The teacher gains time and overview – and sits beside the children again.",
+        ab_cta_h2: "Learn with your own tutor.",
+
+        // === Become a creator page (creators.html) ===
+        footer_become_creator: "Become a creator",
+        cr_page_title: "Become a creator – tutor.new",
+        cr_kicker: "Become a creator",
+        cr_h1: "Make videos about <span class=\"q-mark\">studying</span> – and get paid for it.",
+        cr_lead: "We're two indie devs building tutor.new, and we're looking for creators who love making short-form videos (TikTok, Reels, Shorts) – natural clips about study life, homework and motivation. Nothing scripted, just your vibe.",
+        cr_cta_hi: "Just say hi →",
+        cr_path_kicker: "How it works",
+        cr_path_h2: "Your path to becoming a tutor.new ambassador.",
+        cr_step1_h3: "Just say hi 👋",
+        cr_step1_p: "Don't overthink it: just send us a link to a video you've already made – or a quick clip. We only want to see your vibe.",
+        cr_step2_h3: "Trial month",
+        cr_step2_p: "Get paid while you find your feet. We support you with daily coaching and feedback to help your content go viral.",
+        cr_step2_pay: "Paid trial month",
+        cr_step3_h3: "Ambassador status",
+        cr_step3_p: "You're a core part of the team. Total flexibility – and you earn real money as a face of tutor.new.",
+        cr_step3_pay: "Top earnings",
+        cr_ideas_h2: "What you could post about",
+        cr_idea_1: "Study with me",
+        cr_idea_2: "POV: student life",
+        cr_idea_3: "Homework hacks",
+        cr_idea_4: "App reactions",
+        cr_idea_5: "Study motivation",
+        cr_idea_6: "Exam tips",
+        cr_cta_h2: "Make yours ✨",
+        cr_cta_lead: "Get paid for your creativity and reach millions.",
+        cr_cta_email: "Email amalia@tutor.new"
     }
 };
 
@@ -1195,14 +1631,21 @@ class I18n {
         document.documentElement.lang = lang;
         this.updateContent();
         this.updateActiveState();
+        this.emitChange();
+    }
+
+    // Lets non-data-i18n code (e.g. the JS-driven hero demo) re-render its
+    // own strings whenever the active language changes.
+    emitChange() {
+        document.dispatchEvent(new CustomEvent('i18n:changed', {
+            detail: { lang: this.currentLang }
+        }));
     }
 
     updateContent() {
-        // Update Document Title
-        if (this.translations[this.currentLang]['page_title']) {
-            document.title = this.translations[this.currentLang]['page_title'];
-        }
-
+        // The document <title> is translated per page via <title data-i18n="...">
+        // (handled by the generic [data-i18n] loop below), so pages without a
+        // title key keep their own server-rendered title.
         const elements = document.querySelectorAll('[data-i18n]');
         elements.forEach(element => {
             const key = element.getAttribute('data-i18n');
@@ -1258,57 +1701,97 @@ class I18n {
         this.updateContent();
         // Create language switcher if it doesn't exist
         this.injectSwitcher();
+        // Let JS-driven demos sync to the detected language on first load.
+        this.emitChange();
     }
     
     injectSwitcher() {
-        // Find a good place to inject the switcher. 
-        // Maybe in the header or footer?
-        // Let's look for the header or create a floating one if needed.
-        // Ideally, the user of this script puts the placeholder in HTML, but we can append to body or header.
-        
-        // We'll append it to the header if it exists
-        const header = document.querySelector('header');
-        if (header && !document.querySelector('.lang-switcher')) {
+        // The manual language switcher lives in the footer. If the page has no
+        // footer, fall back to a small floating switcher pinned to the corner so
+        // manual switching is always available.
+        if (!document.querySelector('.lang-switcher')) {
             const switcher = document.createElement('div');
-            switcher.className = 'lang-switcher';
             switcher.innerHTML = `
-                <button class="lang-btn" data-lang="de" onclick="i18n.setLanguage('de')">DE</button>
+                <span class="lang-switcher-globe" aria-hidden="true">🌐</span>
+                <button class="lang-btn" type="button" data-lang="de" onclick="i18n.setLanguage('de')">DE</button>
                 <span class="lang-separator">|</span>
-                <button class="lang-btn" data-lang="en" onclick="i18n.setLanguage('en')">EN</button>
+                <button class="lang-btn" type="button" data-lang="en" onclick="i18n.setLanguage('en')">EN</button>
             `;
-            header.appendChild(switcher);
-            
-            // Add styles for switcher
-            const style = document.createElement('style');
-            style.textContent = `
-                .lang-switcher {
-                    margin-left: auto;
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
-                    font-size: 0.9rem;
-                    z-index: 100;
-                }
-                .lang-btn {
-                    background: none;
-                    border: none;
-                    cursor: pointer;
-                    font-family: inherit;
-                    opacity: 0.5;
-                    padding: 2px 5px;
-                    font-weight: bold;
-                }
-                .lang-btn.active {
-                    opacity: 1;
-                    text-decoration: underline;
-                }
-                .lang-separator {
-                    opacity: 0.3;
-                }
-            `;
-            document.head.appendChild(style);
+
+            // Prefer the footer's brand column (under the copyright line), then
+            // any <footer>, and only float it as a last resort.
+            const footerBrand = document.querySelector('.q-footer .q-footer-brand');
+            const genericFooter = document.querySelector('footer');
+
+            if (footerBrand) {
+                switcher.className = 'lang-switcher lang-switcher-footer';
+                footerBrand.appendChild(switcher);
+            } else if (genericFooter) {
+                switcher.className = 'lang-switcher lang-switcher-footer';
+                genericFooter.appendChild(switcher);
+            } else {
+                switcher.className = 'lang-switcher lang-switcher-floating';
+                document.body.appendChild(switcher);
+            }
+
+            if (!document.getElementById('lang-switcher-styles')) {
+                const style = document.createElement('style');
+                style.id = 'lang-switcher-styles';
+                style.textContent = `
+                    .lang-switcher {
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+                        font-size: 0.9rem;
+                        z-index: 100;
+                    }
+                    .lang-switcher-globe {
+                        opacity: 0.6;
+                        font-size: 0.95em;
+                        line-height: 1;
+                    }
+                    .lang-btn {
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                        font-family: inherit;
+                        color: inherit;
+                        opacity: 0.55;
+                        padding: 2px 5px;
+                        font-weight: 700;
+                        transition: opacity 0.15s;
+                    }
+                    .lang-btn:hover { opacity: 0.85; }
+                    .lang-btn.active {
+                        opacity: 1;
+                        text-decoration: underline;
+                        text-underline-offset: 3px;
+                    }
+                    .lang-separator { opacity: 0.3; }
+
+                    /* In the footer: left-aligned, under the copyright line */
+                    .lang-switcher-footer {
+                        justify-content: flex-start;
+                        margin-top: 2px;
+                    }
+
+                    /* Floating fallback for pages without a footer */
+                    .lang-switcher-floating {
+                        position: fixed;
+                        bottom: 16px;
+                        right: 16px;
+                        background: rgba(255, 255, 255, .92);
+                        border: 1px solid rgba(0, 0, 0, .12);
+                        border-radius: 999px;
+                        padding: 5px 12px;
+                        box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
+                        backdrop-filter: blur(4px);
+                    }
+                `;
+                document.head.appendChild(style);
+            }
         }
-        
+
         this.updateActiveState();
     }
 }

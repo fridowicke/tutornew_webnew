@@ -23,7 +23,6 @@ module.exports = function(eleventyConfig) {
     "../../shared/assets/didactics_assets": "didactics_assets",
     "../../shared/assets/materials": "materials",
     "../../shared/assets/rewards": "rewards",
-    "../../shared/assets/ugc": "ugc",
     "../../shared/assets/blog": "blog",
   });
 

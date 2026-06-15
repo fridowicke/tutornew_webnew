@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title | default('tutor.new') }}</title>
+    <title{% if titleKey %} data-i18n="{{ titleKey }}"{% endif %}>{{ title | default('tutor.new') }}</title>
     <link rel="icon" type="image/png" href="{{ '/quack/quack-avatar.png' | url }}">
     <link rel="apple-touch-icon" href="{{ '/quack/quack-avatar.png' | url }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
     </style>
     {% endif %}
     {% if useQ %}
-    <link rel="stylesheet" href="{{ '/q.css' | url }}?v=4">
+    <link rel="stylesheet" href="{{ '/q.css' | url }}?v=5">
     {% endif %}
 </head>
 <body>
@@ -39,12 +39,14 @@
         {{ pageScripts | safe }}
     </script>
     {% endif %}
+    <!-- i18n (auto language detection + footer switcher) loads on every page -->
+    <script src="{{ '/i18n.js' | url }}"></script>
     {% if scripts %}
         {% for script in scripts %}
+        {% if '/i18n.js' not in script %}
         <script src="{{ script | url }}"></script>
+        {% endif %}
         {% endfor %}
-    {% else %}
-        <script src="{{ '/i18n.js' | url }}"></script>
     {% endif %}
 </body>
 </html>

@@ -1,6 +1,7 @@
 ---
 layout: layouts/base.njk
 title: tutor.new | Bessere Noten mit deinem KI-Tutor
+titleKey: home_page_title
 description: Sprich mit deinem KI-Tutor - er verwandelt deine Unterlagen in interaktive Lernblätter, Karteikarten und Prüfungsvorbereitung.
 lang: de
 useQ: true
@@ -1659,8 +1660,8 @@ scripts: []
             <span>tutor.new</span>
         </a>
         <div class="q-nav-actions">
-            <a class="q-btn q-btn-ghost" href="{{ '/teachers.html' | url }}">Schulversion</a>
-            <a class="q-btn q-btn-primary" href="https://duck.tutor.new">Jetzt gratis lernen</a>
+            <a class="q-btn q-btn-ghost" href="{{ '/teachers.html' | url }}" data-i18n="nav_school_version">Schulversion</a>
+            <a class="q-btn q-btn-primary" href="https://duck.tutor.new" data-i18n="cta_learn_free">Jetzt gratis lernen</a>
         </div>
     </nav>
 </header>
@@ -1671,7 +1672,7 @@ scripts: []
         <div class="q-wrap">
             <!-- Headline on top -->
             <div class="q-hero-top">
-                <h1 class="q-h1">Einfach <span class="q-mark">bessere Noten</span>.</h1>
+                <h1 class="q-h1" data-i18n="hero_h1">Einfach <span class="q-mark">bessere Noten</span>.</h1>
             </div>
 
             <!-- App demo: chat docked to the Lernblatt -->
@@ -1690,7 +1691,7 @@ scripts: []
                         <div class="sf-chat-log" id="sf-chat-log"></div>
                         <div class="sf-chat-input">
                             <span class="sf-mic">🎤</span>
-                            <span>Sprich oder schreib …</span>
+                            <span data-i18n="demo_chat_placeholder">Sprich oder schreib …</span>
                         </div>
                     </aside>
 
@@ -1811,21 +1812,21 @@ scripts: []
             <!-- Sub-line + CTA below the demo -->
             <div class="q-hero-below">
                 <div class="q-hero-ctas">
-                    <a class="q-btn q-btn-primary" href="https://duck.tutor.new">Jetzt gratis lernen</a>
-                    <a class="q-btn q-btn-ghost" href="{{ '/teachers.html' | url }}">Schulversion ansehen</a>
+                    <a class="q-btn q-btn-primary" href="https://duck.tutor.new" data-i18n="cta_learn_free">Jetzt gratis lernen</a>
+                    <a class="q-btn q-btn-ghost" href="{{ '/teachers.html' | url }}" data-i18n="cta_view_school_version">Schulversion ansehen</a>
                 </div>
                 <div class="q-hero-trust">
                     <span class="q-trust-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        <span><strong>100'000+</strong> Lernende</span>
+                        <span data-i18n="trust_learners"><strong>100'000+</strong> Lernende</span>
                     </span>
                     <span class="q-trust-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-                        <span>Videocall mit KI-Avatar</span>
+                        <span data-i18n="trust_videocall">Videocall mit KI-Avatar</span>
                     </span>
                     <span class="q-trust-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                        <span><strong>97%</strong> verbessern ihre Note</span>
+                        <span data-i18n="trust_grades"><strong>97%</strong> verbessern ihre Note</span>
                     </span>
                 </div>
             </div>
@@ -1860,15 +1861,15 @@ scripts: []
                         <div class="q-up-out">
                             <span class="q-up-chip">
                                 <svg class="q-up-chip-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="13" height="18" rx="2"/><path d="M8.5 8h6M8.5 12h6M8.5 16h3"/></svg>
-                                Übungsblatt
+                                <span data-i18n="chip_worksheet">Übungsblatt</span>
                             </span>
                             <span class="q-up-chip">
                                 <svg class="q-up-chip-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="12" height="10" rx="2"/><path d="M8 5h11a2 2 0 0 1 2 2v9"/></svg>
-                                Karteikarten
+                                <span data-i18n="chip_flashcards">Karteikarten</span>
                             </span>
                             <span class="q-up-chip">
                                 <svg class="q-up-chip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 9h8a4 4 0 0 1 3.9 4.9l-.4 1.7A2.3 2.3 0 0 1 15 16l-1-1h-4l-1 1a2.3 2.3 0 0 1-4.5-.4l-.4-1.7A4 4 0 0 1 8 9Z"/><path d="M6.5 12h2.4M7.7 10.8v2.4"/><path d="M15 11.5h.01M16.5 13h.01"/></svg>
-                                Lernspiel
+                                <span data-i18n="chip_learning_game">Lernspiel</span>
                             </span>
                         </div>
 
@@ -1877,8 +1878,8 @@ scripts: []
                     </div>
                 </div>
                 <div class="q-mini-text">
-                    <strong>Deine Unterlagen</strong>
-                    <span>Geübt wird, was bei dir drankommt.</span>
+                    <strong data-i18n="mini_materials_title">Deine Unterlagen</strong>
+                    <span data-i18n="mini_materials_text">Geübt wird, was bei dir drankommt.</span>
                 </div>
             </div>
             <div class="q-mini-card">
@@ -1916,15 +1917,15 @@ scripts: []
                     </span>
                 </div>
                 <div class="q-mini-text">
-                    <strong>Videocall mit <span id="q-mini-tutor-name">Maya</span></strong>
-                    <span>Mehrere Tutor:innen. Immer verfügbar.</span>
+                    <strong><span data-i18n="mini_call_title">Videocall mit</span> <span id="q-mini-tutor-name">Maya</span></strong>
+                    <span data-i18n="mini_call_text">Mehrere Tutor:innen. Immer verfügbar.</span>
                 </div>
             </div>
             <div class="q-mini-card">
                 <div class="q-mini-visual q-exam" aria-hidden="true">
                     <div class="q-prep">
                         <div class="q-prep-head">
-                            <span>Prüfung Mathe</span>
+                            <span data-i18n="prep_exam_math">Prüfung Mathe</span>
                             <em class="q-prep-days">noch <b>6</b> Tage</em>
                         </div>
 
@@ -1941,7 +1942,7 @@ scripts: []
                         <div class="q-rec">
                             <span class="q-rec-label">
                                 <svg class="q-prep-spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.7 6.1 6.1 1.7-6.1 1.7L12 18l-1.7-6.2L4.2 9.8l6.1-1.7z"/></svg>
-                                tutor.new empfiehlt
+                                <span data-i18n="prep_recommends">tutor.new empfiehlt</span>
                             </span>
                             <div class="q-rec-list">
                                 <span class="q-rec-item" data-ico="cards">
@@ -1965,8 +1966,8 @@ scripts: []
                     </div>
                 </div>
                 <div class="q-mini-text">
-                    <strong>Prüfungsvorbereitung</strong>
-                    <span>Probeprüfungen, bis du sicher bist.</span>
+                    <strong data-i18n="mini_prep_title">Prüfungsvorbereitung</strong>
+                    <span data-i18n="mini_prep_text">Probeprüfungen, bis du sicher bist.</span>
                 </div>
             </div>
         </div>
@@ -2020,13 +2021,13 @@ scripts: []
                 </div>
 
                 <div class="q-zensi-copy">
-                    <span class="q-zensi-eyebrow">Die Schulversion</span>
-                    <blockquote>«Zum ersten Mal sehe ich genau, was jede Schülerin und jeder Schüler gerade von mir braucht.»</blockquote>
+                    <span class="q-zensi-eyebrow" data-i18n="zensi_eyebrow">Die Schulversion</span>
+                    <blockquote data-i18n="zensi_quote">«Zum ersten Mal sehe ich genau, was jede Schülerin und jeder Schüler gerade von mir braucht.»</blockquote>
                     <div class="q-zensi-by">
                         <img class="q-zensi-avatar" src="{{ '/quack/zensi-hopf.jpg' | url }}" alt="Zensi Hopf">
-                        <span class="q-zensi-by-text"><strong>Zensi Hopf</strong>Biologielehrerin · Kantonsschule Wattwil</span>
+                        <span class="q-zensi-by-text"><strong>Zensi Hopf</strong><span data-i18n="zensi_role">Biologielehrerin · Kantonsschule Wattwil</span></span>
                     </div>
-                    <a class="q-btn q-btn-cream" href="{{ '/teachers.html' | url }}">Mehr zur Schulversion</a>
+                    <a class="q-btn q-btn-cream" href="{{ '/teachers.html' | url }}" data-i18n="zensi_cta">Mehr zur Schulversion</a>
                 </div>
             </figure>
         </div>
@@ -2047,12 +2048,14 @@ scripts: []
         if (!up) return;
         const card = up.closest('.q-mini-card');
         const status = up.querySelector('.q-up-status');
-        // [phase, hold-ms-before-next] — last step has 0 (stay there)
+        // Language-aware status string with a German fallback.
+        const T = (key, fallback) => (window.i18n && window.i18n.t(key) !== key) ? window.i18n.t(key) : fallback;
+        // [phase, hold-ms-before-next, i18n-key, german-fallback] — last step has 0 (stay there)
         const phases = [
-            ['drop',     1500, ''],
-            ['upload',   2200, 'Lädt hoch …'],
-            ['done',     1200, 'Hochgeladen ✓'],
-            ['generate', 0,    'Lernmaterial erstellt ✓']
+            ['drop',     1500, null,                 ''],
+            ['upload',   2200, 'demo_up_uploading',  'Lädt hoch …'],
+            ['done',     1200, 'demo_up_uploaded',   'Hochgeladen ✓'],
+            ['generate', 0,    'demo_up_generated',  'Lernmaterial erstellt ✓']
         ];
 
         let timer = null;
@@ -2071,9 +2074,9 @@ scripts: []
             up.classList.remove('q-up-noanim');
         };
         const play = (idx) => {
-            const [phase, hold, text] = phases[idx];
+            const [phase, hold, key, fallback] = phases[idx];
             up.dataset.phase = phase;
-            status.textContent = text;
+            status.textContent = key ? T(key, fallback) : '';
             if (hold > 0) timer = window.setTimeout(() => play(idx + 1), hold);
         };
         const start = () => {
@@ -2102,16 +2105,18 @@ scripts: []
         const daysWrap = el.querySelector('.q-prep-days');
         const recItems = Array.from(el.querySelectorAll('.q-rec-item'));
         const EXAM = cells.length - 1;
+        // Language-aware string with a German fallback.
+        const T = (key, fallback) => (window.i18n && window.i18n.t(key) !== key) ? window.i18n.t(key) : fallback;
 
         // two recommendations from tutor.new per calendar day (last day = the exam)
         const plan = [
-            [ { ico: 'cards', t: 'Karteikarten anlegen' }, { ico: 'exam', t: 'Lernplan starten' } ],
-            [ { ico: 'cards', t: 'Karteikarten üben' },    { ico: 'exam', t: 'Formeln wiederholen' } ],
-            [ { ico: 'call',  t: 'Videocall mit Maya' },   { ico: 'cards', t: 'Schwächen klären' } ],
-            [ { ico: 'exam',  t: 'Übungsaufgaben lösen' }, { ico: 'cards', t: 'Fehler analysieren' } ],
-            [ { ico: 'cards', t: 'Karten wiederholen' },   { ico: 'call', t: 'Kurzes Coaching' } ],
-            [ { ico: 'exam',  t: 'Probeprüfung schreiben' }, { ico: 'exam', t: 'Feedback ansehen' } ],
-            [ { ico: 'exam',  t: 'Prüfung Mathe – los!' }, { ico: 'call', t: 'Locker bleiben' } ]
+            [ { ico: 'cards', k: 'plan_cards_create', t: 'Karteikarten anlegen' }, { ico: 'exam', k: 'plan_start', t: 'Lernplan starten' } ],
+            [ { ico: 'cards', k: 'plan_cards_practice', t: 'Karteikarten üben' },    { ico: 'exam', k: 'plan_formulas', t: 'Formeln wiederholen' } ],
+            [ { ico: 'call',  k: 'plan_call_maya', t: 'Videocall mit Maya' },   { ico: 'cards', k: 'plan_weaknesses', t: 'Schwächen klären' } ],
+            [ { ico: 'exam',  k: 'plan_exercises', t: 'Übungsaufgaben lösen' }, { ico: 'cards', k: 'plan_mistakes', t: 'Fehler analysieren' } ],
+            [ { ico: 'cards', k: 'plan_cards_review', t: 'Karten wiederholen' },   { ico: 'call', k: 'plan_coaching', t: 'Kurzes Coaching' } ],
+            [ { ico: 'exam',  k: 'plan_mock', t: 'Probeprüfung schreiben' }, { ico: 'exam', k: 'plan_feedback', t: 'Feedback ansehen' } ],
+            [ { ico: 'exam',  k: 'plan_exam_go', t: 'Prüfung Mathe – los!' }, { ico: 'call', k: 'plan_relax', t: 'Locker bleiben' } ]
         ];
 
         const apply = (today) => {
@@ -2120,15 +2125,24 @@ scripts: []
                 c.classList.toggle('is-today', k === today);
             });
             const left = EXAM - today;
-            daysWrap.innerHTML = left > 0
-                ? 'noch <b>' + left + '</b> ' + (left === 1 ? 'Tag' : 'Tage')
-                : '<b>Prüfungstag</b>';
+            if (left > 0) {
+                const unit = left === 1 ? T('prep_day', 'Tag') : T('prep_days', 'Tage');
+                // Template carries the word order: "noch {n} {unit}" / "{n} {unit} left"
+                daysWrap.innerHTML = T('prep_days_tpl', 'noch {n} {unit}')
+                    .replace('{n}', '<b>' + left + '</b>')
+                    .replace('{unit}', unit);
+            } else {
+                daysWrap.innerHTML = '<b>' + T('prep_exam_day', 'Prüfungstag') + '</b>';
+            }
             plan[today].forEach((item, idx) => {
                 if (!recItems[idx]) return;
                 recItems[idx].dataset.ico = item.ico;
-                recItems[idx].querySelector('.q-rec-text').textContent = item.t;
+                recItems[idx].querySelector('.q-rec-text').textContent = T(item.k, item.t);
             });
         };
+
+        // Re-render when the language is detected/switched.
+        document.addEventListener('i18n:changed', () => apply(today));
 
         let timer = null, today = 0, switches = 0;
         const step = () => {
@@ -2329,14 +2343,17 @@ scripts: []
         const mayaSrc = "/tutors/maya.png";
         if (!app || !log) return;
 
+        // Language-aware string with a German fallback.
+        const T = (key, fallback) => (window.i18n && window.i18n.t(key) !== key) ? window.i18n.t(key) : fallback;
+
         // Two alternating sessions: math, then French.
         const editors = {
             math: document.getElementById('sf-editor-math'),
             fr: document.getElementById('sf-editor-fr')
         };
         const titles = {
-            math: 'tutor.new · Lernblatt: Lineare Funktionen',
-            fr: 'tutor.new · Lernblatt: Passé composé'
+            math: () => T('demo_title_math', 'tutor.new · Lernblatt: Lineare Funktionen'),
+            fr: () => T('demo_title_fr', 'tutor.new · Lernblatt: Passé composé')
         };
         let active = 'math';
 
@@ -2411,17 +2428,17 @@ scripts: []
             await scrollChatDown();
 
             row.classList.add('is-speaking');
-            status.textContent = who === 'tutor' ? 'spricht …' : 'hört zu …';
+            status.textContent = who === 'tutor' ? T('demo_status_speaking', 'spricht …') : T('demo_status_listening', 'hört zu …');
             window.sfMayaSpeaking = (who === 'tutor');
             const speakMs = Math.min(900 + text.length * 24, 2400);
             if (who === 'tutor' && window.sfSpeak) window.sfSpeak(text, speakMs);
-            if (who === 'tutor' && window.sfSmile && /Genau|Richtig|Stark|Parfait|Klar/.test(text)) window.sfSmile();
+            if (who === 'tutor' && window.sfSmile && /Genau|Richtig|Stark|Parfait|Klar|Exactly|Right|Great|Perfect|Spot on/i.test(text)) window.sfSmile();
             if (who === 'tutor' && window.sfBrows && text.indexOf('?') >= 0) window.sfBrows();
             await sleep(speakMs);
             window.sfMayaSpeaking = false;
             row.classList.remove('is-speaking');
             row.classList.add('is-done');
-            status.textContent = 'online';
+            status.textContent = T('demo_status_online', 'online');
             await sleep(150);
             await scrollChatDown();
         };
@@ -2487,7 +2504,7 @@ scripts: []
 
         // Maya writes on the sheet: caret marks the spot, text types in.
         const write = async (name, caretPos) => {
-            status.textContent = 'schreibt …';
+            status.textContent = T('demo_status_writing', 'schreibt …');
             window.sfMayaWriting = true;
             const caret = caretOf();
             if (caretPos && window.innerWidth > 720) {
@@ -2523,42 +2540,42 @@ scripts: []
 
         // Session 1 — math: the visualization is built, then modified.
         const playMath = async () => {
-            await say('student', 'Ich versteh lineare Funktionen einfach nicht. Hier, mein Arbeitsblatt:');
+            await say('student', T('demo_math_s1', 'Ich versteh lineare Funktionen einfach nicht. Hier, mein Arbeitsblatt:'));
             await sleep(450);
-            await attach('Arbeitsblatt.jpg');
+            await attach(T('demo_attach_worksheet', 'Arbeitsblatt.jpg'));
             await gap();
-            await say('tutor', 'Danke! Fangen wir ganz klein an.');
+            await say('tutor', T('demo_math_t1', 'Danke! Fangen wir ganz klein an.'));
             await gap(450);
             await write('title', [40, 126]);
             await sleep(250);
             await write('def', [108, 174]);
             await gap();
 
-            await say('tutor', 'So sieht jede lineare Funktion aus. Was meinst du, wofür steht das m?');
+            await say('tutor', T('demo_math_t2', 'So sieht jede lineare Funktion aus. Was meinst du, wofür steht das m?'));
             await gap(950);
-            await say('student', 'Hm … die Steigung?');
+            await say('student', T('demo_math_s2', 'Hm … die Steigung?'));
             await gap();
-            await say('tutor', 'Genau! Schau, ich zeichne dir mal y = x.');
+            await say('tutor', T('demo_math_t3', 'Genau! Schau, ich zeichne dir mal y = x.'));
             await gap(450);
             await write('graph', null);
             await draw('sf-g1');
             await gap();
 
-            await say('tutor', 'Jetzt stell ich m mal auf 2. Schau, was passiert.');
+            await say('tutor', T('demo_math_t4', 'Jetzt stell ich m mal auf 2. Schau, was passiert.'));
             await gap(450);
             await setChip('sf-chip-m', 'm = 2');
             await draw('sf-g2');
             await gap();
-            await say('student', 'Die Gerade wird steiler!');
+            await say('student', T('demo_math_s3', 'Die Gerade wird steiler!'));
             await gap();
 
-            await say('tutor', 'Richtig! Und q schiebt alles nach oben:');
+            await say('tutor', T('demo_math_t5', 'Richtig! Und q schiebt alles nach oben:'));
             await gap(450);
             await setChip('sf-chip-q', 'q = +1');
             await draw('sf-g3');
             await gap();
 
-            await say('tutor', 'Mini-Übung für dich: Schau mal auf die gestrichelte Gerade.');
+            await say('tutor', T('demo_math_t6', 'Mini-Übung für dich: Schau mal auf die gestrichelte Gerade.'));
             await gap(450);
             await scrollCanvas(S(140, 150));
             await write('exercise', [418, 184]);
@@ -2566,7 +2583,7 @@ scripts: []
 
             await say('student', 'y = 2x + 1?');
             await gap();
-            await say('tutor', 'Stark, genau so!');
+            await say('tutor', T('demo_math_t7', 'Stark, genau so!'));
             await gap(450);
             await scrollCanvas(S(250, 260));
             await write('merke', [528, 148]);
@@ -2575,25 +2592,25 @@ scripts: []
 
         // Session 2 — French: vocab cards and a gap-fill exercise.
         const playFrench = async () => {
-            await say('student', 'Morgen hab ich Franz-Test übers Passé composé. Üben wir kurz?');
+            await say('student', T('demo_fr_s1', 'Morgen hab ich Franz-Test übers Passé composé. Üben wir kurz?'));
             await gap();
-            await say('tutor', 'Klar! Ich schreib dir das Wichtigste auf, dann üben wir.');
+            await say('tutor', T('demo_fr_t1', 'Klar! Ich schreib dir das Wichtigste auf, dann üben wir.'));
             await gap(450);
             await write('title', [40, 126]);
             await sleep(250);
             await write('rule', [108, 174]);
             await gap();
 
-            await say('tutor', 'Die meisten Verben gehen mit avoir. Aber welche nehmen être?');
+            await say('tutor', T('demo_fr_t2', 'Die meisten Verben gehen mit avoir. Aber welche nehmen être?'));
             await gap(950);
-            await say('student', 'Ähm … die mit Bewegung?');
+            await say('student', T('demo_fr_s2', 'Ähm … die mit Bewegung?'));
             await gap();
-            await say('tutor', 'Genau! Die wichtigsten leg ich dir als Kärtchen an.');
+            await say('tutor', T('demo_fr_t3', 'Genau! Die wichtigsten leg ich dir als Kärtchen an.'));
             await gap(450);
             await write('cards', [192, 174]);
             await gap();
 
-            await say('tutor', 'Jetzt du: Füll die Lücke aus.');
+            await say('tutor', T('demo_fr_t4', 'Jetzt du: Füll die Lücke aus.'));
             await gap(450);
             await scrollCanvas(S(0, 60));
             await write('exercise', [292, 184]);
@@ -2601,7 +2618,7 @@ scripts: []
 
             await say('student', 'je suis allé?');
             await gap();
-            await say('tutor', 'Parfait, genau so!');
+            await say('tutor', T('demo_fr_t5', 'Parfait, genau so!'));
             await gap(450);
             await scrollCanvas(S(100, 130));
             await write('merke', [392, 148]);
@@ -2611,11 +2628,14 @@ scripts: []
         const plays = { math: playMath, fr: playFrench };
         const order = ['math', 'fr'];
 
+        // Keep the document-window title in sync when the language is detected/switched.
+        document.addEventListener('i18n:changed', () => { docTitle.textContent = titles[active](); });
+
         const switchTo = (key) => {
             active = key;
             app.classList.toggle('is-fr', key === 'fr');
             Object.entries(editors).forEach(([k, ed]) => ed.classList.toggle('is-active', k === key));
-            docTitle.textContent = titles[key];
+            docTitle.textContent = titles[key]();
             scroller.scrollTop = 0;
         };
 
@@ -2637,32 +2657,44 @@ scripts: []
             await sleep(600);
         };
 
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            Object.values(blocksOf.math).forEach(b => b.classList.add('is-on'));
-            document.querySelectorAll('.sf-fn').forEach(g => g.classList.add('is-drawn'));
-            document.getElementById('sf-chip-m').textContent = 'm = 2';
-            const chipQ = document.getElementById('sf-chip-q');
-            chipQ.textContent = 'q = +1';
-            chipQ.classList.remove('is-hidden');
-            [
-                ['student', 'y = 2x + 1?'],
-                ['tutor', 'Stark, genau so!']
-            ].forEach(([who, text]) => {
-                const row = buildRow(who, text);
-                row.classList.add('is-in', 'is-done');
-                log.appendChild(row);
-            });
-            return;
-        }
+        // The conversation builds its bubbles from i18n strings, so it must not
+        // start until i18n has loaded and detected the language — otherwise the
+        // first cycle renders in the German fallback even for English visitors.
+        let booted = false;
+        const boot = () => {
+            if (booted) return;
+            booted = true;
 
-        (async () => {
-            let i = 0;
-            while (true) {
-                await plays[order[i]]();
-                i = (i + 1) % order.length;
-                await reset(order[i]);
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                Object.values(blocksOf.math).forEach(b => b.classList.add('is-on'));
+                document.querySelectorAll('.sf-fn').forEach(g => g.classList.add('is-drawn'));
+                document.getElementById('sf-chip-m').textContent = 'm = 2';
+                const chipQ = document.getElementById('sf-chip-q');
+                chipQ.textContent = 'q = +1';
+                chipQ.classList.remove('is-hidden');
+                [
+                    ['student', 'y = 2x + 1?'],
+                    ['tutor', T('demo_math_t7', 'Stark, genau so!')]
+                ].forEach(([who, text]) => {
+                    const row = buildRow(who, text);
+                    row.classList.add('is-in', 'is-done');
+                    log.appendChild(row);
+                });
+                return;
             }
-        })();
+
+            (async () => {
+                let i = 0;
+                while (true) {
+                    await plays[order[i]]();
+                    i = (i + 1) % order.length;
+                    await reset(order[i]);
+                }
+            })();
+        };
+
+        if (window.i18n) boot();
+        else document.addEventListener('i18n:changed', boot, { once: true });
     })();
 </script>
 
@@ -2969,30 +3001,31 @@ scripts: []
                 <img src="{{ '/quack/quack-avatar.png' | url }}" alt="">
                 <span>tutor.new</span>
             </div>
-            <p>© tutor.new. Alle Rechte vorbehalten.</p>
+            <p data-i18n="footer_rights">© tutor.new. Alle Rechte vorbehalten.</p>
         </div>
         <div class="q-footer-cols">
             <div>
                 <h3>tutor.new</h3>
                 <ul>
-                    <li><a href="https://duck.tutor.new">App starten</a></li>
-                    <li><a href="{{ '/teachers.html' | url }}">Schulversion</a></li>
-                    <li><a href="{{ '/schools.html' | url }}">Für Schulen</a></li>
+                    <li><a href="https://duck.tutor.new" data-i18n="footer_open_app">App starten</a></li>
+                    <li><a href="{{ '/teachers.html' | url }}" data-i18n="nav_school_version">Schulversion</a></li>
+                    <li><a href="{{ '/schools.html' | url }}" data-i18n="footer_for_schools">Für Schulen</a></li>
                 </ul>
             </div>
             <div>
-                <h3>Unternehmen</h3>
+                <h3 data-i18n="footer_company">Unternehmen</h3>
                 <ul>
-                    <li><a href="{{ '/ueber-uns.html' | url }}">Über uns</a></li>
-                    <li><a href="{{ '/faq.html' | url }}">FAQ</a></li>
+                    <li><a href="{{ '/ueber-uns.html' | url }}" data-i18n="nav_about">Über uns</a></li>
+                    <li><a href="{{ '/faq.html' | url }}" data-i18n="nav_faq">FAQ</a></li>
+                    <li><a href="{{ '/creators.html' | url }}" data-i18n="footer_become_creator">Creator werden</a></li>
                 </ul>
             </div>
             <div>
-                <h3>Rechtliches</h3>
+                <h3 data-i18n="footer_legal_heading">Rechtliches</h3>
                 <ul>
-                    <li><a href="{{ '/impressum-agb.html' | url }}">Impressum</a></li>
-                    <li><a href="{{ '/terms.html' | url }}">Nutzungsbedingungen</a></li>
-                    <li><a href="{{ '/privacy/' | url }}">Datenschutz</a></li>
+                    <li><a href="{{ '/impressum-agb.html' | url }}" data-i18n="footer_imprint">Impressum</a></li>
+                    <li><a href="{{ '/terms.html' | url }}" data-i18n="footer_terms">Nutzungsbedingungen</a></li>
+                    <li><a href="{{ '/privacy/' | url }}" data-i18n="nav_privacy">Datenschutz</a></li>
                 </ul>
             </div>
         </div>

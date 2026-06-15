@@ -1,6 +1,7 @@
 ---
 layout: layouts/base.njk
 title: tutor.new für Lehrpersonen & Schulen
+titleKey: t_page_title
 description: Ein Tutor für jedes Kind. Übersicht für dich. Datenschutzkonform in EU und Schweiz.
 lang: de
 permalink: /teachers.html
@@ -230,7 +231,7 @@ scripts: []
             <span>tutor.new</span>
         </a>
         <div class="q-nav-actions">
-            <a class="q-btn q-btn-primary" href="mailto:friedrich@tutor.new?subject=tutor.new%20an%20unserer%20Schule">Gespräch vereinbaren</a>
+            <a class="q-btn q-btn-primary" href="mailto:friedrich@tutor.new?subject=tutor.new%20an%20unserer%20Schule" data-i18n="t_cta_talk">Gespräch vereinbaren</a>
         </div>
     </nav>
 </header>
@@ -240,27 +241,27 @@ scripts: []
     <section class="q-hero">
         <div class="q-wrap q-hero-grid">
             <div class="q-hero-copy">
-                <span class="q-kicker">Für Lehrpersonen und Schulen</span>
-                <h1 class="q-h1">Ein Tutor für <span class="q-mark">jedes Kind</span>. Voller Überblick für dich.</h1>
-                <p class="q-lead">Deine Klasse lernt mit deinem Material. Du siehst auf einen Blick, wer vorankommt – und wer Hilfe braucht.</p>
+                <span class="q-kicker" data-i18n="t_hero_kicker">Für Lehrpersonen und Schulen</span>
+                <h1 class="q-h1" data-i18n="t_hero_h1">Ein Tutor für <span class="q-mark">jedes Kind</span>. Voller Überblick für dich.</h1>
+                <p class="q-lead" data-i18n="t_hero_lead">Deine Klasse lernt mit deinem Material. Du siehst auf einen Blick, wer vorankommt – und wer Hilfe braucht.</p>
                 <div class="q-hero-ctas">
-                    <a class="q-btn q-btn-primary" href="mailto:friedrich@tutor.new?subject=tutor.new%20an%20unserer%20Schule">Gespräch vereinbaren</a>
-                    <a class="q-btn q-btn-ghost" href="https://duck.tutor.new">Gratis ausprobieren</a>
+                    <a class="q-btn q-btn-primary" href="mailto:friedrich@tutor.new?subject=tutor.new%20an%20unserer%20Schule" data-i18n="t_cta_talk">Gespräch vereinbaren</a>
+                    <a class="q-btn q-btn-ghost" href="https://duck.tutor.new" data-i18n="t_cta_try_free">Gratis ausprobieren</a>
                 </div>
                 <p class="q-hero-promise">
                     <span class="q-flags" aria-hidden="true">🇨🇭&#8202;🇪🇺</span>
-                    In der Schweiz &amp; EU gehostet – starker Datenschutz.
+                    <span data-i18n="t_hero_promise">In der Schweiz &amp; EU gehostet – starker Datenschutz.</span>
                 </p>
             </div>
 
             <div class="q-hero-visual" aria-hidden="true">
-                <span class="q-hand q-hero-note">dein KI-Assistent<br>kennt deine Klasse ↓</span>
+                <span class="q-hand q-hero-note" data-i18n="t_hero_note">dein KI-Assistent<br>kennt deine Klasse ↓</span>
                 <img class="q-duck-hero" src="{{ '/quack/quack-laptop.png' | url }}" alt="">
                 <div class="q-card q-dash">
                     <div class="q-dash-head">
                         <div>
                             <strong>Klasse 8b</strong>
-                            <em>Biologie · Woche 24</em>
+                            <em data-i18n="t_dash_subject">Biologie · Woche 24</em>
                         </div>
                     </div>
                     <div class="q-student">
@@ -268,25 +269,25 @@ scripts: []
                             <span>Lena</span>
                             <span class="q-meter"><i style="width: 88%"></i></span>
                         </div>
-                        <p class="q-student-fb">Fotosynthese sitzt sicher – übt jetzt eigenständig die Zellatmung.</p>
+                        <p class="q-student-fb" data-i18n="t_dash_fb_lena">Fotosynthese sitzt sicher – übt jetzt eigenständig die Zellatmung.</p>
                     </div>
                     <div class="q-student">
                         <div class="q-student-top">
                             <span>Mia</span>
                             <span class="q-meter is-mid"><i style="width: 61%"></i></span>
                         </div>
-                        <p class="q-student-fb">Zellatmung wird besser – die letzten zwei Übungen fehlerfrei gelöst.</p>
+                        <p class="q-student-fb" data-i18n="t_dash_fb_mia">Zellatmung wird besser – die letzten zwei Übungen fehlerfrei gelöst.</p>
                     </div>
                     <div class="q-student">
                         <div class="q-student-top">
                             <span>Jonas</span>
                             <span class="q-meter is-low"><i style="width: 34%"></i></span>
                         </div>
-                        <p class="q-student-fb">Nahrungsketten noch unklar – ein kurzes Warm-up würde ihm helfen.</p>
+                        <p class="q-student-fb" data-i18n="t_dash_fb_jonas">Nahrungsketten noch unklar – ein kurzes Warm-up würde ihm helfen.</p>
                     </div>
                     <div class="q-insight">
                         <img src="{{ '/quack/quack-avatar.png' | url }}" alt="">
-                        <p><strong>7 Kinder</strong> verwechseln Fotosynthese und Zellatmung. Vorschlag: kurzes Warm-up, plus ein Übungsblatt für diese Gruppe.</p>
+                        <p data-i18n="t_dash_insight"><strong>7 Kinder</strong> verwechseln Fotosynthese und Zellatmung. Vorschlag: kurzes Warm-up, plus ein Übungsblatt für diese Gruppe.</p>
                     </div>
                 </div>
             </div>
@@ -307,28 +308,28 @@ scripts: []
         <div class="q-wrap">
             <figure class="q-voices-card">
                 <div class="q-voices-quote">
-                    <span class="q-voices-eyebrow">Aus dem Klassenzimmer</span>
-                    <blockquote>«Während ich einer Schülerin helfe, üben alle anderen einfach weiter — und ich sehe sofort, wer nicht weiterkommt.»</blockquote>
+                    <span class="q-voices-eyebrow" data-i18n="t_voices_eyebrow">Aus dem Klassenzimmer</span>
+                    <blockquote data-i18n="t_voices_quote">«Während ich einer Schülerin helfe, üben alle anderen einfach weiter — und ich sehe sofort, wer nicht weiterkommt.»</blockquote>
                     <figcaption class="q-voices-author">
                         <img src="{{ '/quack/zensi-hopf.jpg' | url }}" alt="Zensi Hopf">
-                        <span><strong>Zensi Hopf</strong>Biologielehrerin · Kantonsschule Wattwil</span>
+                        <span><strong>Zensi Hopf</strong><span data-i18n="zensi_role">Biologielehrerin · Kantonsschule Wattwil</span></span>
                     </figcaption>
                 </div>
                 <div class="q-voices-stats">
                     <div class="q-voices-stat">
                         <strong><span class="q-up" aria-hidden="true">↑</span>+50<i>%</i></strong>
-                        <span>bessere Unterrichtsorganisation</span>
+                        <span data-i18n="t_stat_org">bessere Unterrichtsorganisation</span>
                     </div>
                     <div class="q-voices-stat">
                         <strong>97<i>%</i></strong>
                         <div class="q-voices-bar"><i style="width: 97%"></i></div>
-                        <span>«tutor.new hilft mir beim Lernen»</span>
+                        <span data-i18n="t_stat_helps">«tutor.new hilft mir beim Lernen»</span>
                     </div>
                     <div class="q-voices-stat">
                         <strong><span class="q-up" aria-hidden="true">↑</span>+64<i>%</i></strong>
-                        <span>mehr Freude am Unterricht</span>
+                        <span data-i18n="t_stat_joy">mehr Freude am Unterricht</span>
                     </div>
-                    <p class="q-voices-src">Schüler:innen-Befragung · Klasse 2GW, Kantonsschule Wattwil</p>
+                    <p class="q-voices-src" data-i18n="t_voices_src">Schüler:innen-Befragung · Klasse 2GW, Kantonsschule Wattwil</p>
                 </div>
             </figure>
         </div>
@@ -338,28 +339,28 @@ scripts: []
     <section id="funktionen" class="q-features" style="padding: 50px 0 50px;">
         <div class="q-wrap">
             <div class="q-section-head">
-                <span class="q-kicker">So funktioniert's</span>
-                <h2 class="q-h2">In vier Schritten von deinem Material zur Klassen-Übersicht.</h2>
+                <span class="q-kicker" data-i18n="t_how_kicker">So funktioniert's</span>
+                <h2 class="q-h2" data-i18n="t_how_h2">In vier Schritten von deinem Material zur Klassen-Übersicht.</h2>
             </div>
             <article class="q-feature" style="border-top: none;">
                 <div class="q-feature-copy">
                     <span class="q-feature-num">01</span>
-                    <h3 class="q-h3">Dein Material, neu nutzbar</h3>
-                    <p>Aus deinen Unterlagen werden Übungsblätter, Aufgaben und Lernspiele. Auf Wunsch für jedes Kind einzeln.</p>
+                    <h3 class="q-h3" data-i18n="t_f1_h3">Dein Material, neu nutzbar</h3>
+                    <p data-i18n="t_f1_p">Aus deinen Unterlagen werden Übungsblätter, Aufgaben und Lernspiele. Auf Wunsch für jedes Kind einzeln.</p>
                 </div>
                 <div class="q-feature-visual">
                     <div class="q-card q-mock">
-                        <div class="q-mock-title"><span>Mein Material</span><span class="q-badge">KI-Assistent</span></div>
+                        <div class="q-mock-title"><span data-i18n="t_f1_mock_title">Mein Material</span><span class="q-badge" data-i18n="t_badge_ai">KI-Assistent</span></div>
                         <div class="q-files">
                             <span class="q-file">Oekosysteme_Theorie</span>
                             <span class="q-file is-doc">Wochenplan_24</span>
-                            <span class="q-file is-img">Wandtafel</span>
+                            <span class="q-file is-img" data-i18n="t_f1_file_board">Wandtafel</span>
                         </div>
-                        <div class="q-arrow-divider">«erstell für jedes Kind ein passendes Übungsblatt»</div>
+                        <div class="q-arrow-divider" data-i18n="t_f1_prompt">«erstell für jedes Kind ein passendes Übungsblatt»</div>
                         <div class="q-out">
-                            <span class="q-out-item">24 individuelle Übungsblätter <em>bereit ✓</em></span>
-                            <span class="q-out-item">Lernspiel: Nahrungsketten <em>spielbar ✓</em></span>
-                            <span class="q-out-item">Kurztest mit Selbstkontrolle <em>Entwurf</em></span>
+                            <span class="q-out-item" data-i18n="t_f1_out1">24 individuelle Übungsblätter <em>bereit ✓</em></span>
+                            <span class="q-out-item" data-i18n="t_f1_out2">Lernspiel: Nahrungsketten <em>spielbar ✓</em></span>
+                            <span class="q-out-item" data-i18n="t_f1_out3">Kurztest mit Selbstkontrolle <em>Entwurf</em></span>
                         </div>
                     </div>
                 </div>
@@ -368,28 +369,28 @@ scripts: []
             <article class="q-feature">
                 <div class="q-feature-copy">
                     <span class="q-feature-num">02</span>
-                    <h3 class="q-h3">Planen: für alle oder einzeln</h3>
-                    <p>Lektionen und Tage zusammenstellen: für die Klasse, in Gruppen oder pro Kind.</p>
+                    <h3 class="q-h3" data-i18n="t_f2_h3">Planen: für alle oder einzeln</h3>
+                    <p data-i18n="t_f2_p">Lektionen und Tage zusammenstellen: für die Klasse, in Gruppen oder pro Kind.</p>
                 </div>
                 <div class="q-feature-visual">
                     <div class="q-card q-mock">
-                        <div class="q-mock-title"><span>Wochenplanung</span><span class="q-badge">Klasse 8b</span></div>
+                        <div class="q-mock-title"><span data-i18n="t_f2_mock_title">Wochenplanung</span><span class="q-badge">Klasse 8b</span></div>
                         <div class="q-plan">
                             <span class="q-plan-cell is-head"></span>
-                            <span class="q-plan-cell is-head">Mo</span>
-                            <span class="q-plan-cell is-head">Mi</span>
-                            <span class="q-plan-cell is-head">Fr</span>
-                            <span class="q-plan-cell is-row">Ganze Klasse</span>
-                            <span class="q-plan-cell is-video">Video: Zellatmung</span>
-                            <span class="q-plan-cell is-sheet">Arbeitsblatt</span>
-                            <span class="q-plan-cell is-game">Lernspiel</span>
+                            <span class="q-plan-cell is-head" data-i18n="t_day_mo">Mo</span>
+                            <span class="q-plan-cell is-head" data-i18n="t_day_we">Mi</span>
+                            <span class="q-plan-cell is-head" data-i18n="t_day_fr">Fr</span>
+                            <span class="q-plan-cell is-row" data-i18n="t_f2_whole_class">Ganze Klasse</span>
+                            <span class="q-plan-cell is-video" data-i18n="t_f2_video_resp">Video: Zellatmung</span>
+                            <span class="q-plan-cell is-sheet" data-i18n="t_f2_worksheet">Arbeitsblatt</span>
+                            <span class="q-plan-cell is-game" data-i18n="t_f2_game">Lernspiel</span>
                             <span class="q-plan-cell is-row">Gruppe A</span>
-                            <span class="q-plan-cell is-sheet">Vertiefung</span>
+                            <span class="q-plan-cell is-sheet" data-i18n="t_f2_deepen">Vertiefung</span>
                             <span class="q-plan-cell"></span>
-                            <span class="q-plan-cell is-game">Knobelaufgabe</span>
+                            <span class="q-plan-cell is-game" data-i18n="t_f2_puzzle">Knobelaufgabe</span>
                             <span class="q-plan-cell is-row">Jonas</span>
-                            <span class="q-plan-cell is-video">Wiederholung</span>
-                            <span class="q-plan-cell is-sheet">Übungsblatt</span>
+                            <span class="q-plan-cell is-video" data-i18n="t_f2_review">Wiederholung</span>
+                            <span class="q-plan-cell is-sheet" data-i18n="t_f2_exercise_sheet">Übungsblatt</span>
                             <span class="q-plan-cell"></span>
                         </div>
                     </div>
@@ -400,25 +401,25 @@ scripts: []
             <article class="q-feature">
                 <div class="q-feature-copy">
                     <span class="q-feature-num">03</span>
-                    <h3 class="q-h3">Du siehst, wer wo steht</h3>
-                    <p>Der KI-Assistent zeigt dir Lernstand und Einsatz jedes Kindes, mit konkreten Vorschlägen.</p>
+                    <h3 class="q-h3" data-i18n="t_f3_h3">Du siehst, wer wo steht</h3>
+                    <p data-i18n="t_f3_p">Der KI-Assistent zeigt dir Lernstand und Einsatz jedes Kindes, mit konkreten Vorschlägen.</p>
                 </div>
                 <div class="q-feature-visual">
                     <div class="q-card q-mock">
-                        <div class="q-mock-title"><span>Lernstand</span><span class="q-badge">Diese Woche</span></div>
+                        <div class="q-mock-title"><span data-i18n="t_f3_mock_title">Lernstand</span><span class="q-badge" data-i18n="t_badge_this_week">Diese Woche</span></div>
                         <div class="q-skill">
-                            <span>Nahrungsketten</span>
+                            <span data-i18n="t_f3_skill1">Nahrungsketten</span>
                             <span class="q-meter"><i style="width: 78%"></i></span>
                             <em>78%</em>
                         </div>
                         <div class="q-skill">
-                            <span>Stoffkreisläufe</span>
+                            <span data-i18n="t_f3_skill2">Stoffkreisläufe</span>
                             <span class="q-meter is-low"><i style="width: 44%"></i></span>
                             <em>44%</em>
                         </div>
                         <div class="q-insight">
                             <img src="{{ '/quack/quack-avatar.png' | url }}" alt="">
-                            <p>Mia hat diese Woche <strong>doppelt so viele Übungen</strong> gemacht wie sonst. Ein guter Moment für ein Lob.</p>
+                            <p data-i18n="t_f3_insight">Mia hat diese Woche <strong>doppelt so viele Übungen</strong> gemacht wie sonst. Ein guter Moment für ein Lob.</p>
                         </div>
                     </div>
                 </div>
@@ -427,15 +428,15 @@ scripts: []
             <article class="q-feature">
                 <div class="q-feature-copy">
                     <span class="q-feature-num">04</span>
-                    <h3 class="q-h3">Wir richten es mit euch ein</h3>
-                    <p>Persönliche Begleitung. Und fehlende Funktionen bauen wir für eure Schule.</p>
+                    <h3 class="q-h3" data-i18n="t_f4_h3">Wir richten es mit euch ein</h3>
+                    <p data-i18n="t_f4_p">Persönliche Begleitung. Und fehlende Funktionen bauen wir für eure Schule.</p>
                 </div>
                 <div class="q-feature-visual">
                     <div class="q-card q-mock">
-                        <div class="q-mock-title"><span>Direkter Draht</span><span class="q-badge">Euer Ansprechpartner</span></div>
+                        <div class="q-mock-title"><span data-i18n="t_f4_mock_title">Direkter Draht</span><span class="q-badge" data-i18n="t_f4_badge">Euer Ansprechpartner</span></div>
                         <div class="q-support-chat">
-                            <div class="q-msg"><em>Schulleitung</em>Könnten unsere Wochenpläne dem Aufbau unseres Lehrmittels folgen?</div>
-                            <div class="q-msg is-us"><em>tutor.new</em>Klar, wir bauen das ein und zeigen es euch nächste Woche.</div>
+                            <div class="q-msg"><em data-i18n="t_f4_msg1_who">Schulleitung</em><span data-i18n="t_f4_msg1">Könnten unsere Wochenpläne dem Aufbau unseres Lehrmittels folgen?</span></div>
+                            <div class="q-msg is-us"><em>tutor.new</em><span data-i18n="t_f4_msg2">Klar, wir bauen das ein und zeigen es euch nächste Woche.</span></div>
                         </div>
                     </div>
                 </div>
@@ -448,11 +449,11 @@ scripts: []
         <div class="q-wrap">
             <div class="q-privacy-card">
                 <div class="q-privacy-copy">
-                    <span class="q-kicker">Datenschutz</span>
-                    <h2 class="q-h2">Bei Kinderdaten gibt es keine Kompromisse.</h2>
+                    <span class="q-kicker" data-i18n="t_privacy_kicker">Datenschutz</span>
+                    <h2 class="q-h2" data-i18n="t_privacy_h2">Bei Kinderdaten gibt es keine Kompromisse.</h2>
                     <div class="q-privacy-duck" aria-hidden="true">
                         <img src="{{ '/quack/quack-thinks.png' | url }}" alt="">
-                        <span class="q-hand q-privacy-note">Kinderdaten sind kein Geschäftsmodell. Versprochen.</span>
+                        <span class="q-hand q-privacy-note" data-i18n="t_privacy_note">Kinderdaten sind kein Geschäftsmodell. Versprochen.</span>
                     </div>
                 </div>
                 <div class="q-privacy-list">
@@ -465,9 +466,9 @@ scripts: []
                                 <line x1="4.5" y1="19.5" x2="19.5" y2="4.5"/>
                             </svg>
                         </span>
-                            <strong>Anonymisiert</strong>
+                            <strong data-i18n="t_priv1_t">Anonymisiert</strong>
                         </div>
-                        <span>Alle Lerndaten werden anonymisiert verarbeitet.</span>
+                        <span data-i18n="t_priv1_d">Alle Lerndaten werden anonymisiert verarbeitet.</span>
                     </div>
                     <div class="q-privacy-item">
                         <div class="q-privacy-item-head">
@@ -477,9 +478,9 @@ scripts: []
                                 <line x1="4.5" y1="19.5" x2="19.5" y2="4.5"/>
                             </svg>
                         </span>
-                            <strong>Kein KI-Training</strong>
+                            <strong data-i18n="t_priv2_t">Kein KI-Training</strong>
                         </div>
-                        <span>Eure Daten trainieren keine KI-Modelle.</span>
+                        <span data-i18n="t_priv2_d">Eure Daten trainieren keine KI-Modelle.</span>
                     </div>
                     <div class="q-privacy-item">
                         <div class="q-privacy-item-head">
@@ -490,9 +491,9 @@ scripts: []
                                 <line x1="9" y1="11.5" x2="15" y2="11.5"/>
                             </svg>
                         </span>
-                            <strong>EU &amp; Schweiz</strong>
+                            <strong data-i18n="t_priv3_t">EU &amp; Schweiz</strong>
                         </div>
-                        <span>Gespeichert nur auf Servern in der EU und der Schweiz.</span>
+                        <span data-i18n="t_priv3_d">Gespeichert nur auf Servern in der EU und der Schweiz.</span>
                     </div>
                     <div class="q-privacy-item">
                         <div class="q-privacy-item-head">
@@ -503,9 +504,9 @@ scripts: []
                                 <line x1="9" y1="13.5" x2="13" y2="13.5"/>
                             </svg>
                         </span>
-                            <strong>Persönlich erreichbar</strong>
+                            <strong data-i18n="t_priv4_t">Persönlich erreichbar</strong>
                         </div>
-                        <span>Ihr sprecht direkt mit uns, kein Ticketsystem.</span>
+                        <span data-i18n="t_priv4_d">Ihr sprecht direkt mit uns, kein Ticketsystem.</span>
                     </div>
                 </div>
             </div>
@@ -515,18 +516,18 @@ scripts: []
     <!-- ================= PROOF STRIP ================= -->
     <section class="q-proof">
         <div class="q-wrap q-proof-grid">
-            <h2 class="q-proof-title">Deine Klasse kennt uns wahrscheinlich schon.</h2>
+            <h2 class="q-proof-title" data-i18n="t_proof_title">Deine Klasse kennt uns wahrscheinlich schon.</h2>
             <div class="q-stat">
                 <strong>100'000+</strong>
-                <span>Lernende</span>
+                <span data-i18n="t_proof_learners">Lernende</span>
             </div>
             <div class="q-stat">
-                <strong>Millionen</strong>
-                <span>Views auf TikTok</span>
+                <strong data-i18n="t_proof_millions">Millionen</strong>
+                <span data-i18n="t_proof_views">Views auf TikTok</span>
             </div>
             <div class="q-stat">
-                <strong>Schweizweit</strong>
-                <span>Partnerschulen</span>
+                <strong data-i18n="t_proof_nationwide">Schweizweit</strong>
+                <span data-i18n="t_proof_partner">Partnerschulen</span>
             </div>
         </div>
     </section>
@@ -535,12 +536,12 @@ scripts: []
     <section class="q-final">
         <div class="q-wrap">
             <img src="{{ '/quack/quack-laptop.png' | url }}" alt="" aria-hidden="true">
-            <h2 class="q-h2">Bring tutor.new in dein Klassenzimmer.</h2>
+            <h2 class="q-h2" data-i18n="t_final_h2">Bring tutor.new in dein Klassenzimmer.</h2>
             <div class="q-final-ctas">
-                <a class="q-btn q-btn-primary" href="mailto:friedrich@tutor.new?subject=tutor.new%20an%20unserer%20Schule">Gespräch vereinbaren</a>
-                <a class="q-btn q-btn-ghost" href="https://duck.tutor.new">Oder selbst ausprobieren</a>
+                <a class="q-btn q-btn-primary" href="mailto:friedrich@tutor.new?subject=tutor.new%20an%20unserer%20Schule" data-i18n="t_cta_talk">Gespräch vereinbaren</a>
+                <a class="q-btn q-btn-ghost" href="https://duck.tutor.new" data-i18n="t_final_try">Oder selbst ausprobieren</a>
             </div>
-            <p class="q-final-note">friedrich@tutor.new: persönliche Antwort, kein Newsletter.</p>
+            <p class="q-final-note" data-i18n="t_final_note">friedrich@tutor.new: persönliche Antwort, kein Newsletter.</p>
         </div>
     </section>
 </main>
@@ -552,30 +553,31 @@ scripts: []
                 <img src="{{ '/quack/quack-avatar.png' | url }}" alt="">
                 <span>tutor.new</span>
             </div>
-            <p>© tutor.new. Alle Rechte vorbehalten.</p>
+            <p data-i18n="footer_rights">© tutor.new. Alle Rechte vorbehalten.</p>
         </div>
         <div class="q-footer-cols">
             <div>
                 <h3>tutor.new</h3>
                 <ul>
-                    <li><a href="https://duck.tutor.new">App starten</a></li>
-                    <li><a href="{{ '/' | url }}">Für Lernende</a></li>
-                    <li><a href="{{ '/schools.html' | url }}">Für Schulen</a></li>
+                    <li><a href="https://duck.tutor.new" data-i18n="footer_open_app">App starten</a></li>
+                    <li><a href="{{ '/' | url }}" data-i18n="footer_for_learners">Für Lernende</a></li>
+                    <li><a href="{{ '/schools.html' | url }}" data-i18n="footer_for_schools">Für Schulen</a></li>
                 </ul>
             </div>
             <div>
-                <h3>Unternehmen</h3>
+                <h3 data-i18n="footer_company">Unternehmen</h3>
                 <ul>
-                    <li><a href="{{ '/ueber-uns.html' | url }}">Über uns</a></li>
-                    <li><a href="{{ '/faq.html' | url }}">FAQ</a></li>
+                    <li><a href="{{ '/ueber-uns.html' | url }}" data-i18n="nav_about">Über uns</a></li>
+                    <li><a href="{{ '/faq.html' | url }}" data-i18n="nav_faq">FAQ</a></li>
+                    <li><a href="{{ '/creators.html' | url }}" data-i18n="footer_become_creator">Creator werden</a></li>
                 </ul>
             </div>
             <div>
-                <h3>Rechtliches</h3>
+                <h3 data-i18n="footer_legal_heading">Rechtliches</h3>
                 <ul>
-                    <li><a href="{{ '/impressum-agb.html' | url }}">Impressum</a></li>
-                    <li><a href="{{ '/terms.html' | url }}">Nutzungsbedingungen</a></li>
-                    <li><a href="{{ '/privacy/' | url }}">Datenschutz</a></li>
+                    <li><a href="{{ '/impressum-agb.html' | url }}" data-i18n="footer_imprint">Impressum</a></li>
+                    <li><a href="{{ '/terms.html' | url }}" data-i18n="footer_terms">Nutzungsbedingungen</a></li>
+                    <li><a href="{{ '/privacy/' | url }}" data-i18n="nav_privacy">Datenschutz</a></li>
                 </ul>
             </div>
         </div>
