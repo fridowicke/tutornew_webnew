@@ -563,7 +563,7 @@
       .say-panel {
         display: grid;
         align-content: start;
-        gap: 18px;
+        gap: 11px;
         padding-top: 2px;
       }
 
@@ -607,19 +607,19 @@
       .say-bubble {
         position: relative;
         margin: 0;
-        padding: 20px 22px 18px 56px;
+        padding: 12px 16px 12px 48px;
         background: var(--white);
         border: 1.5px solid rgba(31, 76, 122, 0.28);
-        border-radius: 18px 18px 18px 6px;
+        border-radius: 16px 16px 16px 6px;
         box-shadow: var(--shadow);
       }
 
       .say-bubble::before {
         content: "\201C";
         position: absolute;
-        left: 16px;
-        top: 12px;
-        font-size: 3rem;
+        left: 14px;
+        top: 8px;
+        font-size: 2.3rem;
         line-height: 0.6;
         color: rgba(31, 76, 122, 0.55);
       }
@@ -627,16 +627,17 @@
       .say-bubble p {
         margin: 0;
         color: var(--ink);
-        font-size: clamp(1.22rem, 1.8vw, 1.72rem);
-        line-height: 1.16;
+        font-size: clamp(1.06rem, 1.42vw, 1.4rem);
+        line-height: 1.14;
       }
 
       .say-bubble cite {
         display: block;
-        margin-top: 10px;
+        margin-top: 4px;
         font-style: normal;
+        font-weight: 700;
         color: var(--muted);
-        font-size: clamp(0.88rem, 1vw, 0.96rem);
+        font-size: clamp(0.78rem, 0.9vw, 0.88rem);
       }
 
       .quote {
@@ -933,9 +934,9 @@
 
       .mock-row {
         display: grid;
-        grid-template-columns: minmax(90px, 1fr) 86px minmax(110px, 1.2fr);
+        grid-template-columns: minmax(54px, auto) 1fr;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
         padding: 9px 10px;
         border: 1px solid rgba(14, 51, 34, 0.12);
         border-radius: 10px;
@@ -1533,8 +1534,8 @@
       }
 
       .guest-id img {
-        width: clamp(64px, 6.5vw, 84px);
-        height: clamp(64px, 6.5vw, 84px);
+        width: clamp(54px, 5vw, 68px);
+        height: clamp(54px, 5vw, 68px);
         border-radius: 50%;
         object-fit: cover;
         border: 3px solid var(--purple);
@@ -1714,12 +1715,22 @@
         max-width: 880px;
       }
 
+      .learn-announce.five {
+        gap: clamp(10px, 1.7vh, 18px);
+        max-width: 1000px;
+      }
+
       .la-item {
         display: flex;
         align-items: center;
         gap: 20px;
         padding-bottom: clamp(14px, 2.4vh, 26px);
         border-bottom: 1px solid rgba(14, 51, 34, 0.16);
+      }
+
+      .learn-announce.five .la-item {
+        padding-bottom: clamp(10px, 1.7vh, 18px);
+        gap: 18px;
       }
 
       .la-item:last-child {
@@ -1740,10 +1751,28 @@
         font-size: clamp(1.5rem, 2.4vw, 2.1rem);
       }
 
+      .learn-announce.five .la-num {
+        width: clamp(40px, 3.6vw, 50px);
+        height: clamp(40px, 3.6vw, 50px);
+        font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+      }
+
       .la-item strong {
         color: var(--ink);
         font-size: clamp(1.5rem, 2.6vw, 2.5rem);
         line-height: 1.04;
+      }
+
+      .learn-announce.five .la-item strong {
+        font-size: clamp(1.2rem, 2vw, 1.85rem);
+      }
+
+      .la-sub {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: clamp(0.86rem, 1.05vw, 1.04rem);
+        line-height: 1.15;
       }
 
       .learn-chip {
@@ -2092,6 +2121,182 @@
         line-height: 1.2;
       }
 
+      /* Prüfungsnoten-Panel (Vergleich) */
+      .grade-panel {
+        align-self: center;
+        display: grid;
+        gap: 12px;
+        padding: 20px 24px;
+        border-radius: 16px;
+        border: 2px solid rgba(58, 102, 33, 0.5);
+        background: rgba(230, 244, 220, 0.55);
+      }
+
+      .gp-title {
+        color: var(--green);
+        font-size: clamp(1.04rem, 1.3vw, 1.28rem);
+        line-height: 1.15;
+      }
+
+      .grade-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .grade-row .g-cls {
+        flex: none;
+        width: 46px;
+        font-weight: 700;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .grade-row .g-from {
+        color: var(--muted);
+        font-size: clamp(1.1rem, 1.5vw, 1.45rem);
+      }
+
+      .grade-row .g-arr {
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      .grade-row .g-to {
+        color: var(--green);
+        font-weight: 700;
+        font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+        line-height: 1;
+      }
+
+      .gp-note {
+        color: var(--muted);
+        font-size: clamp(0.82rem, 0.95vw, 0.92rem);
+      }
+
+      .cmp-foot {
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: clamp(0.9rem, 1.05vw, 1.04rem);
+        line-height: 1.25;
+      }
+
+      .cmp-foot b {
+        color: var(--ink);
+      }
+
+      /* Feedback: geschätzt / kritisch */
+      .fb-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(20px, 3vw, 40px);
+      }
+
+      .fb-col {
+        display: grid;
+        align-content: start;
+        gap: 12px;
+        padding: 20px 22px;
+        border-radius: 16px;
+        border: 1.5px solid rgba(14, 51, 34, 0.18);
+        background: var(--white);
+      }
+
+      .fb-col.positive { border-color: rgba(58, 102, 33, 0.4); }
+      .fb-col.critical { border-color: rgba(139, 51, 43, 0.4); }
+
+      .fb-h {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        font-size: clamp(1.1rem, 1.4vw, 1.34rem);
+      }
+
+      .fb-h svg { width: 22px; height: 22px; }
+      .fb-col.positive .fb-h { color: var(--green); }
+      .fb-col.critical .fb-h { color: var(--red); }
+
+      .fb-col ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 11px;
+      }
+
+      .fb-col li {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--ink);
+        font-size: clamp(0.98rem, 1.18vw, 1.16rem);
+        line-height: 1.18;
+        padding-bottom: 9px;
+        border-bottom: 1px solid rgba(14, 51, 34, 0.1);
+      }
+
+      .fb-col li:last-child { border-bottom: 0; padding-bottom: 0; }
+
+      .fb-col li span {
+        flex: none;
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 0.72em;
+        white-space: nowrap;
+      }
+
+      .fb-source {
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: clamp(0.84rem, 0.95vw, 0.94rem);
+      }
+
+      /* Umsetzung: Stolperstellen-Hinweis */
+      .mock-insight {
+        display: grid;
+        gap: 3px;
+        padding: 11px 14px;
+        border-radius: 10px;
+        border: 1px solid rgba(122, 92, 24, 0.3);
+        background: #fff5d6;
+      }
+
+      .mock-insight strong {
+        color: var(--yellow);
+        font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+      }
+
+      .mock-insight span {
+        color: var(--ink);
+        font-size: clamp(0.82rem, 0.95vw, 0.94rem);
+        line-height: 1.15;
+      }
+
+      /* VibeCoding: weitere Ideen */
+      .vibe-ideas {
+        margin-top: 2px;
+        padding: 9px 14px;
+        border-left: 3px solid var(--green);
+        background: rgba(230, 244, 220, 0.4);
+        border-radius: 0 10px 10px 0;
+      }
+
+      .vibe-ideas strong {
+        display: block;
+        color: var(--green);
+        font-size: clamp(0.92rem, 1.1vw, 1.06rem);
+      }
+
+      .vibe-ideas span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: clamp(0.84rem, 0.98vw, 0.98rem);
+        line-height: 1.2;
+      }
+
       /* L3 — Lehrperson wird verstärkt */
       .amp-visual {
         display: grid;
@@ -2161,7 +2366,7 @@
 
       .vibe-steps {
         display: grid;
-        gap: clamp(16px, 2.6vh, 28px);
+        gap: clamp(12px, 1.8vh, 20px);
       }
 
       .vibe-step {
@@ -2233,7 +2438,7 @@
       }
 
       .applet.lab .applet-body {
-        padding: 12px 14px 14px;
+        padding: 10px 14px 12px;
       }
 
       .applet.lab #sim {
@@ -2276,8 +2481,8 @@
 
       .applet.lab .applet-controls {
         display: grid;
-        gap: 7px;
-        margin-top: 11px;
+        gap: 6px;
+        margin-top: 9px;
       }
 
       .applet.lab .applet-controls label {
@@ -2307,7 +2512,7 @@
         flex-wrap: wrap;
         align-items: center;
         gap: 8px;
-        margin-top: 11px;
+        margin-top: 9px;
       }
 
       .applet.lab .toggle {
@@ -2606,6 +2811,7 @@
         .amp-row,
         .adapt-pair,
         .role-grid,
+        .fb-split,
         .vibe-split,
         .choice {
           grid-template-columns: 1fr;
@@ -2738,6 +2944,7 @@
           <div class="paper-card">
             <p class="kicker">Vorgehen</p>
             <ol class="agenda-list">
+              <li>Highlights</li>
               <li>Planung</li>
               <li>Umsetzung</li>
               <li>Justierungsschlaufen</li>
@@ -2760,7 +2967,7 @@
               <div class="obs-head">
                 <img src="./assets/zensi-hopf.jpg" alt="Zensi Hopf" />
                 <div>
-                  <strong>Zensi misst</strong>
+                  <strong>Zensi misst · Klasse 2GW</strong>
                   <span>Vorher-/Nachher-Befragung</span>
                 </div>
               </div>
@@ -2773,20 +2980,21 @@
                   </div>
                 </div>
                 <div class="stat-row">
-                  <strong>+1.4</strong>
+                  <strong>+1.3</strong>
                   <div>
-                    <b>Selbstständig lösen</b>
-                    <span>3.2 → 4.6 von 5</span>
+                    <b>„kann etwas in Biologie"</b>
+                    <span>2.7 → 4.0 von 5</span>
                   </div>
                 </div>
                 <div class="stat-row">
-                  <strong>4.9<small>/5</small></strong>
+                  <strong>4.6<small>/5</small></strong>
                   <div>
-                    <b>„hilft mir beim Lernen"</b>
-                    <span>Zustimmung</span>
+                    <b>„gute Phase"</b>
+                    <span>Rückblick der Lernenden</span>
                   </div>
                 </div>
               </div>
+              <p class="obs-note">In der 1SW blieben die Werte fast gleich – mehr dazu später.</p>
             </div>
             <div class="say-panel">
               <div class="say-head">
@@ -2795,17 +3003,24 @@
                 </span>
                 <div>
                   <strong>Lernende sagen</strong>
-                  <span>aus den Fokusgruppen</span>
+                  <span>aus den Fokusinterviews</span>
                 </div>
               </div>
               <blockquote class="say-bubble">
                 <p>War ein schlechter Bio-Schüler – jetzt sind meine Noten besser.</p>
-              </blockquote>
-              <blockquote class="say-bubble">
-                <p>So oft nachfragen, wie man will.</p>
+                <cite>2GW</cite>
               </blockquote>
               <blockquote class="say-bubble">
                 <p>Bilder generieren, bis ich es verstehe.</p>
+                <cite>2GW</cite>
+              </blockquote>
+              <blockquote class="say-bubble">
+                <p>So oft nachfragen, wie man will.</p>
+                <cite>1SW</cite>
+              </blockquote>
+              <blockquote class="say-bubble">
+                <p>Fragen ohne Hemmschwelle – im eigenen Tempo.</p>
+                <cite>1SW</cite>
               </blockquote>
             </div>
           </div>
@@ -2873,7 +3088,7 @@
               <div class="mock-body week-stack">
                 <div class="week-card">
                   <strong>Woche 3</strong><br />
-                  <span>Enzyme · Theorieblatt</span>
+                  <span>Zellteilung · Theorieblatt</span>
                 </div>
                 <div class="week-card is-active">
                   <strong>Woche 4</strong><br />
@@ -2894,27 +3109,29 @@
                 <div class="metric-grid">
                   <div class="metric">
                     <strong>18/21</strong>
-                    <span>bearbeitet</span>
+                    <span>SuS haben bearbeitet</span>
                   </div>
                   <div class="metric">
-                    <strong>74%</strong>
-                    <span>Ø Ergebnis</span>
+                    <strong>13</strong>
+                    <span>Feedback gelesen</span>
                   </div>
                   <div class="metric">
                     <strong>5</strong>
                     <span>offene Rückfragen</span>
                   </div>
                 </div>
+                <div class="mock-insight">
+                  <strong>Häufige Stolperstelle</strong>
+                  <span>Mitose ⇄ Meiose wird oft verwechselt → im Unterricht aufgegriffen.</span>
+                </div>
                 <div class="mock-table">
                   <div class="mock-row">
                     <strong>Ana</strong>
-                    <span class="score">86%</span>
-                    <span>Feedback gelesen</span>
+                    <span>Feedback gelesen &amp; besprochen</span>
                   </div>
                   <div class="mock-row">
                     <strong>Luca</strong>
-                    <span class="score warn">61%</span>
-                    <span>Mitose vs. Meiose unklar</span>
+                    <span>Mitose vs. Meiose noch unklar</span>
                   </div>
                 </div>
               </div>
@@ -2981,35 +3198,35 @@
         <div class="stage">
           <div>
             <p class="kicker">5. Feedback der Lernenden</p>
-            <h2>Die Rückmeldungen waren <span class="mark">sehr positiv</span>.</h2>
+            <h2>Geschätzt – und <span class="mark">ehrlich kritisiert</span>.</h2>
           </div>
-          <div class="student-feedback">
-            <div class="signal-stack">
-              <div class="signal green">
-                <strong>4.87/5</strong>
-                <span>hilft mir beim Lernen</span>
+          <div class="fb-split">
+            <div class="fb-col positive">
+              <div class="fb-h">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                Geschätzt
               </div>
-              <div class="signal blue">
-                <strong>4.80/5</strong>
-                <span>frage ohne Hemmschwelle</span>
-              </div>
-              <div class="signal yellow">
-                <strong>+1.53</strong>
-                <span>subjektiver Lerngewinn</span>
-              </div>
+              <ul>
+                <li>1:1-Erklärungen ohne Wartezeit <span>1SW · 2GW</span></li>
+                <li>Fragen ohne Hemmschwelle, eigenes Tempo <span>1SW · 2GW</span></li>
+                <li>Grafiken &amp; Bilder fördern das Verständnis <span>2GW</span></li>
+                <li>Effizientes Repetieren vor Prüfungen <span>2GW</span></li>
+              </ul>
             </div>
-            <div class="quote-board">
-              <div class="student-quote">
-                <strong>“Individuell im eigenen Tempo.”</strong>
+            <div class="fb-col critical">
+              <div class="fb-h">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4" /><path d="M12 17h.01" /><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" /></svg>
+                Kritisch
               </div>
-              <div class="student-quote">
-                <strong>“Fragen ohne Hemmschwelle.”</strong>
-              </div>
-              <div class="student-quote">
-                <strong>“Bilder fördern das Verständnis.”</strong>
-              </div>
+              <ul>
+                <li>Tutor zu wenig hartnäckig – zu schnell zufrieden <span>1SW · 2GW</span></li>
+                <li>Feedback zu wohlwollend, zu wenig direkt <span>2GW</span></li>
+                <li>Technik: Probeprüfungen &amp; Abstürze <span>1SW</span></li>
+                <li>Gefahr der Monotonie / „Tunnellernen" <span>1SW · 2GW</span></li>
+              </ul>
             </div>
           </div>
+          <p class="fb-source">Quelle: Fokusinterviews (Smartfeld) &amp; Vorher-/Nachher-Fragebogen</p>
         </div>
       </section>
 
@@ -3037,15 +3254,24 @@
                 <div class="cmp-bar sw"><span class="cmp-tag">1SW</span><span class="cmp-track"><span class="cmp-fill" style="width:76%"></span></span><span class="cmp-val">3.8</span></div>
               </div>
             </div>
-            <div class="cmp-why">
-              <strong>Mögliche Gründe</strong>
-              <ul>
-                <li>2GW: Flipped-Struktur mit klaren Lernzielen</li>
-                <li>1SW: offenes Postenlernen – fühlte sich verloren</li>
-                <li>1SW: technische Startprobleme, erster Durchgang von null</li>
-              </ul>
+            <div class="grade-panel">
+              <strong class="gp-title">Aber: die Prüfungsnoten stiegen in beiden Klassen</strong>
+              <div class="grade-row">
+                <span class="g-cls">1SW</span>
+                <span class="g-from">4.33</span>
+                <span class="g-arr">→</span>
+                <span class="g-to">4.8</span>
+              </div>
+              <div class="grade-row">
+                <span class="g-cls">2GW</span>
+                <span class="g-from">4.1</span>
+                <span class="g-arr">→</span>
+                <span class="g-to">4.8</span>
+              </div>
+              <span class="gp-note">Schnitt HS25 (schriftlich) → FS26 (mündlich)</span>
             </div>
           </div>
+          <p class="cmp-foot"><b>Mögliche Gründe:</b> 2GW mit Flipped-Struktur &amp; klaren Lernzielen · 1SW offenes Postenlernen, technischer Start von null.</p>
         </div>
       </section>
 
@@ -3053,20 +3279,34 @@
         <div class="stage">
           <div>
             <p class="kicker">6. Learnings</p>
-            <h2>Drei <span class="mark">Learnings</span>.</h2>
+            <h2>Fünf <span class="mark">Learnings</span>.</h2>
           </div>
-          <div class="learn-announce">
+          <div class="learn-announce five">
             <div class="la-item">
               <span class="la-num">1</span>
-              <strong>Flexibilität ist alles</strong>
+              <div class="la-body">
+                <strong>Flexibilität ist alles</strong>
+                <span class="la-sub">Immer wieder justieren · Einsatz wo und wann?</span>
+              </div>
             </div>
             <div class="la-item">
               <span class="la-num">2</span>
-              <strong>Gekommen, um zu bleiben</strong>
+              <div class="la-body"><strong>SuS finden ihre eigenen Lernstrategien</strong></div>
             </div>
             <div class="la-item">
               <span class="la-num">3</span>
-              <strong>Lehrpersonen werden wichtiger</strong>
+              <div class="la-body"><strong>Sehr häufiges Reden übers Lernen</strong></div>
+            </div>
+            <div class="la-item">
+              <span class="la-num">4</span>
+              <div class="la-body"><strong>Tutor kam, um zu bleiben</strong></div>
+            </div>
+            <div class="la-item">
+              <span class="la-num">5</span>
+              <div class="la-body">
+                <strong>Lehrperson wird noch wichtiger</strong>
+                <span class="la-sub">Zeit für Langsamere · viele Möglichkeiten für starke SuS · orchestriert &amp; justiert den Unterricht</span>
+              </div>
             </div>
           </div>
         </div>
@@ -3075,24 +3315,24 @@
       <section class="slide" data-title="Learning1">
         <div class="stage">
           <div>
-            <p class="kicker">6. Learnings · 1 von 3</p>
+            <p class="kicker">6. Learnings · Flexibilität</p>
             <h2>Flexibilität ist <span class="mark">alles</span>.</h2>
           </div>
           <div class="learn-split">
             <div class="learn-text">
-              <p class="learn-lead">Die Technik verändert <b>radikal, was möglich ist</b> – Unterricht und Technik müssen mitwachsen.</p>
+              <p class="learn-lead">Es geht alles <b>so schnell</b> – ständig ist mehr möglich, mit den gleichen Inhalten. Unterricht und Technik müssen mitwachsen.</p>
               <div class="learn-takeaways">
                 <div class="learn-chip">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-                  Flexibel bleiben
+                  Immer wieder justieren
                 </div>
                 <div class="learn-chip">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-                  Eng mit Technolog:innen
+                  Einsatz: wo und wann?
                 </div>
                 <div class="learn-chip">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-                  Offen für Neues
+                  Auch SuS-Ideen aufnehmen
                 </div>
               </div>
             </div>
@@ -3115,12 +3355,12 @@
       <section class="slide" data-title="Learning2">
         <div class="stage">
           <div>
-            <p class="kicker">6. Learnings · 2 von 3</p>
-            <h2>Gekommen, um zu <span class="mark">bleiben</span>.</h2>
+            <p class="kicker">6. Learnings · Bleiben</p>
+            <h2>Tutor kam, um zu <span class="mark">bleiben</span>.</h2>
           </div>
           <div class="learn-split">
             <div class="learn-text">
-              <p class="learn-lead">Nur <b>50% der 1SW</b> wollten weiterfahren. Dann drehte Zensi die Frage um: drei Monate ganz <b>ohne</b> Tutor?</p>
+              <p class="learn-lead">In der 2GW wollten <b>alle</b> weiterfahren. In der skeptischeren 1SW nur 50% – bis Zensi die Frage umdrehte: drei Monate ganz <b>ohne</b> Tutor?</p>
               <div class="learn-closing">Alle dagegen. Den Zugang kappen? <b>„Das geht gar nicht."</b></div>
             </div>
             <div class="learn-visual">
@@ -3157,30 +3397,30 @@
       <section class="slide" data-title="Learning3">
         <div class="stage">
           <div>
-            <p class="kicker">6. Learnings · 3 von 3</p>
-            <h2>Lehrpersonen werden <span class="mark">wichtiger</span>.</h2>
+            <p class="kicker">6. Learnings · Lehrperson</p>
+            <h2>Lehrperson wird noch <span class="mark">wichtiger</span>.</h2>
           </div>
           <div class="learn-split">
             <div class="learn-text">
-              <p class="learn-lead">KI-Tutoren übernehmen viel von früher – und machen die Lehrperson <b>wichtiger, nicht überflüssig</b>.</p>
+              <p class="learn-lead">Die Lehrperson sieht durch die Analysen genau, <b>wo Stolpersteine</b> auftauchen – und ist gefragter denn je, wenn SuS besser lernen wollen.</p>
             </div>
             <div class="learn-visual">
               <div class="amp-visual">
                 <div class="amp-row">
                   <div class="amp-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
-                    <strong>Lernende</strong>
-                    <span>vorbereiteter &amp; sicherer → machen besser mit</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9" /><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" /></svg>
+                    <strong>Zeit für Langsamere</strong>
+                    <span>gezielt dort unterstützen, wo es klemmt</span>
                   </div>
                   <div class="amp-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5" /></svg>
-                    <strong>Lehrperson</strong>
-                    <span>sieht, was jede:r braucht → gezielter</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z" /></svg>
+                    <strong>Mehr für starke SuS</strong>
+                    <span>viele Möglichkeiten, weiterzugehen</span>
                   </div>
                 </div>
                 <div class="amp-result">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
-                  Mehr Zeit für echte Lehrer&#8202;⇄&#8202;Schüler-Interaktion.
+                  Die Lehrperson orchestriert &amp; justiert den Unterricht.
                 </div>
               </div>
             </div>
@@ -3209,9 +3449,10 @@
               </div>
               <div class="role-list">
                 <div class="role-item">Inhalte &amp; fachliche Tiefe</div>
-                <div class="role-item">Innovation im Unterricht</div>
+                <div class="role-item">Unterricht justieren &amp; optimieren</div>
+                <div class="role-item">Zeit für Schwächere, mehr für Starke</div>
               </div>
-              <p class="role-foot">Ihre Klasse, ihr Material.</p>
+              <p class="role-foot">Voll auf Unterricht &amp; Lernen konzentrieren.</p>
             </div>
             <div class="role-card green">
               <div class="role-head">
@@ -3268,6 +3509,10 @@
                   <span>Die Lehrperson sieht, wer was verstanden hat.</span>
                 </div>
               </div>
+              <div class="vibe-ideas">
+                <strong>Weitere Ideen</strong>
+                <span>Mündliche Prüfungen &amp; Sprachfunktion simulieren · Übungsprüfungen im Stil der Lehrperson · SuS schreiben eigene kleine Programme.</span>
+              </div>
             </div>
             <div class="applet lab" id="applet">
               <div class="applet-head">
@@ -3275,13 +3520,13 @@
                 <span class="applet-tag">Physik</span>
               </div>
               <div class="applet-body">
-                <svg id="sim" viewBox="0 0 420 184" role="img" aria-label="Physik-Simulation: schiefer Wurf">
+                <svg id="sim" viewBox="0 0 420 166" role="img" aria-label="Physik-Simulation: schiefer Wurf">
                   <defs>
                     <marker id="vhead" markerWidth="7" markerHeight="7" refX="4.5" refY="3" orient="auto">
                       <path d="M0 0 L7 3 L0 6 z" fill="#ea580c" />
                     </marker>
                   </defs>
-                  <rect x="44" y="12" width="364" height="142" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+                  <rect x="44" y="10" width="364" height="126" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
                   <g id="grid"></g>
                   <g id="ticks"></g>
                   <g id="ghosts"></g>
@@ -3294,8 +3539,8 @@
                   <line id="barrel" stroke="#334155" stroke-width="7" stroke-linecap="round" />
                   <circle id="pivot" r="6" fill="#334155" />
                   <circle id="simDot" r="5" fill="#dc2626" stroke="#7f1d1d" stroke-width="1" />
-                  <text x="226" y="176" text-anchor="middle" fill="#475569" font-size="11">x [m]</text>
-                  <text x="13" y="83" text-anchor="middle" fill="#475569" font-size="11" transform="rotate(-90 13 83)">y [m]</text>
+                  <text x="226" y="158" text-anchor="middle" fill="#475569" font-size="11">x [m]</text>
+                  <text x="13" y="74" text-anchor="middle" fill="#475569" font-size="11" transform="rotate(-90 13 74)">y [m]</text>
                 </svg>
                 <div class="sim-readout">
                   <div class="ro"><span>Reichweite</span><b id="roRange">– m</b></div>
@@ -3523,7 +3768,7 @@
         const roRange = q("#roRange"), roPeak = q("#roPeak"), roTime = q("#roTime");
         const tDrag = q("#tDrag"), tTrail = q("#tTrail"), tLaunch = q("#tLaunch");
         const NS = "http://www.w3.org/2000/svg";
-        const X0 = 44, Y1 = 154, X1 = 408, Y0 = 12, PW = X1 - X0, PH = Y1 - Y0;
+        const X0 = 44, Y1 = 136, X1 = 408, Y0 = 10, PW = X1 - X0, PH = Y1 - Y0;
         let drag = false, trail = true, anim = null, svgPts = [];
 
         const el = (tag, attrs) => {
