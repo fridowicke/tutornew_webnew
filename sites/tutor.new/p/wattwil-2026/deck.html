@@ -2274,6 +2274,122 @@
         line-height: 1.15;
       }
 
+      /* Umsetzung: SuS × Tage Wochenraster */
+      .weekgrid {
+        display: grid;
+        grid-template-columns: 0.82fr repeat(5, 1fr);
+        background: var(--white);
+      }
+
+      .wg-cell {
+        border-right: 1px solid rgba(14, 51, 34, 0.1);
+        border-bottom: 1px solid rgba(14, 51, 34, 0.1);
+        padding: 7px 9px;
+        min-height: 30px;
+      }
+
+      .wg-cell:nth-child(6n) {
+        border-right: 0;
+      }
+
+      .wg-head {
+        font-weight: 700;
+        color: var(--muted);
+        font-size: clamp(0.78rem, 0.92vw, 0.9rem);
+        background: rgba(249, 241, 232, 0.5);
+      }
+
+      .wg-head.active {
+        color: var(--blue);
+        background: #e0f0f7;
+      }
+
+      .wg-name {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        color: var(--ink);
+        font-size: clamp(0.82rem, 0.96vw, 0.96rem);
+      }
+
+      .wg-cell.active {
+        background: rgba(31, 76, 122, 0.05);
+      }
+
+      .wg-task {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 7px;
+      }
+
+      .wg-task + .wg-task {
+        margin-top: 5px;
+      }
+
+      .tt {
+        padding: 1px 7px;
+        border-radius: 6px;
+        font-size: clamp(0.66rem, 0.78vw, 0.74rem);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .tt.akt {
+        background: #e6f4dc;
+        color: var(--green);
+      }
+
+      .tt.auf {
+        background: #e0f0f7;
+        color: var(--blue);
+      }
+
+      .sc {
+        font-size: clamp(0.78rem, 0.92vw, 0.9rem);
+        font-weight: 700;
+      }
+
+      .sc.good { color: var(--green); }
+      .sc.warn { color: var(--red); }
+
+      .misskonzepte {
+        display: grid;
+        gap: 7px;
+        padding: 13px 16px 14px;
+        border-top: 1.5px solid rgba(122, 92, 24, 0.28);
+        background: #fff5d6;
+      }
+
+      .misskonzepte strong {
+        color: var(--yellow);
+        font-size: clamp(0.92rem, 1.08vw, 1.06rem);
+      }
+
+      .misskonzepte ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 6px;
+      }
+
+      .misskonzepte li {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--ink);
+        font-size: clamp(0.86rem, 1vw, 1rem);
+      }
+
+      .misskonzepte li span {
+        flex: none;
+        font-weight: 700;
+        color: var(--yellow);
+        font-size: 0.86em;
+      }
+
       /* VibeCoding: weitere Ideen */
       .vibe-ideas {
         margin-top: 2px;
@@ -3079,62 +3195,65 @@
             <p class="kicker">3. Umsetzung</p>
             <h2>Jede Woche: zuweisen, bearbeiten, <span class="mark">anschauen</span>.</h2>
           </div>
-          <div class="dashboard-mock">
-            <div class="mock-window">
-              <div class="mock-head">
-                <span>Wochen</span>
-                <span>2GW</span>
-              </div>
-              <div class="mock-body week-stack">
-                <div class="week-card">
-                  <strong>Woche 3</strong><br />
-                  <span>Zellteilung · Theorieblatt</span>
-                </div>
-                <div class="week-card is-active">
-                  <strong>Woche 4</strong><br />
-                  <span>Zellteilung · Übungsblatt</span>
-                </div>
-                <div class="week-card">
-                  <strong>Woche 5</strong><br />
-                  <span>Repetition · Prüfungsvorbereitung</span>
-                </div>
-              </div>
+          <div class="mock-window">
+            <div class="mock-head">
+              <span>Klasse 2GW · Bau der DNA</span>
+              <span>Woche 24</span>
             </div>
-            <div class="mock-window">
-              <div class="mock-head">
-                <span>Woche 4 · Zellteilung</span>
-                <span>Übersicht</span>
+            <div class="weekgrid">
+              <div class="wg-cell wg-head wg-corner">SuS</div>
+              <div class="wg-cell wg-head">Mo 15</div>
+              <div class="wg-cell wg-head">Di 16</div>
+              <div class="wg-cell wg-head active">Mi 17</div>
+              <div class="wg-cell wg-head">Do 18</div>
+              <div class="wg-cell wg-head">Fr 19</div>
+
+              <div class="wg-cell wg-name">SuS 01</div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell active">
+                <div class="wg-task"><span class="tt akt">Gruppenarbeit</span><b class="sc good">88%</b></div>
+                <div class="wg-task"><span class="tt auf">Aufgabenblatt</span><b class="sc good">92%</b></div>
               </div>
-              <div class="mock-body">
-                <div class="metric-grid">
-                  <div class="metric">
-                    <strong>18/21</strong>
-                    <span>SuS haben bearbeitet</span>
-                  </div>
-                  <div class="metric">
-                    <strong>13</strong>
-                    <span>Feedback gelesen</span>
-                  </div>
-                  <div class="metric">
-                    <strong>5</strong>
-                    <span>offene Rückfragen</span>
-                  </div>
-                </div>
-                <div class="mock-insight">
-                  <strong>Häufige Stolperstelle</strong>
-                  <span>Mitose ⇄ Meiose wird oft verwechselt → im Unterricht aufgegriffen.</span>
-                </div>
-                <div class="mock-table">
-                  <div class="mock-row">
-                    <strong>Ana</strong>
-                    <span>Feedback gelesen &amp; besprochen</span>
-                  </div>
-                  <div class="mock-row">
-                    <strong>Luca</strong>
-                    <span>Mitose vs. Meiose noch unklar</span>
-                  </div>
-                </div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell"></div>
+
+              <div class="wg-cell wg-name">SuS 02</div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell active">
+                <div class="wg-task"><span class="tt akt">Gruppenarbeit</span><b class="sc warn">64%</b></div>
+                <div class="wg-task"><span class="tt auf">Aufgabenblatt</span><b class="sc good">79%</b></div>
               </div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell"></div>
+
+              <div class="wg-cell wg-name">SuS 03</div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell active">
+                <div class="wg-task"><span class="tt akt">Gruppenarbeit</span><b class="sc good">95%</b></div>
+                <div class="wg-task"><span class="tt auf">Aufgabenblatt</span><b class="sc good">90%</b></div>
+              </div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell"></div>
+
+              <div class="wg-cell wg-name">SuS 04</div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell active">
+                <div class="wg-task"><span class="tt akt">Gruppenarbeit</span><b class="sc warn">52%</b></div>
+                <div class="wg-task"><span class="tt auf">Aufgabenblatt</span><b class="sc warn">61%</b></div>
+              </div>
+              <div class="wg-cell"></div>
+              <div class="wg-cell"></div>
+            </div>
+            <div class="misskonzepte">
+              <strong>Häufige Misskonzepte</strong>
+              <ul>
+                <li>Mitose ⇄ Meiose verwechselt <span>8 SuS</span></li>
+                <li>Replikation: Leserichtung 5'→3' unklar <span>5 SuS</span></li>
+              </ul>
             </div>
           </div>
         </div>
