@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <script>
+      if (sessionStorage.getItem("ki-workshop-ok") !== "1") {
+        location.replace("./");
+      }
+    </script>
+    <title>KI im Klassenzimmer | tutor.new</title>
+    <style>
+      @font-face {
+        font-family: "Sour Gummy";
+        src: url("./assets/SourGummy_400Regular.ttf") format("truetype");
+        font-weight: 400;
+      }
+
+      @font-face {
+        font-family: "Sour Gummy";
+        src: url("./assets/SourGummy_700Bold.ttf") format("truetype");
+        font-weight: 700;
+      }
+
+      :root {
+        --paper: #f9f1e8;
+        --line: #e7dcd0;
+        --ink: #0e3322;
+        --muted: #587064;
+        --green: #3a6621;
+        --blue: #1f4c7a;
+        --red: #8b332b;
+        --white: #fffdf9;
+        --shadow: 0 18px 38px rgba(14, 51, 34, 0.09);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Sour Gummy", system-ui, sans-serif;
+        letter-spacing: 0;
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .progress {
+        position: fixed;
+        z-index: 30;
+        top: 0;
+        left: 0;
+        height: 4px;
+        width: calc(var(--progress, 0.25) * 100%);
+        background: var(--green);
+        transition: width 160ms ease;
+      }
+
+      .topbar {
+        position: fixed;
+        z-index: 24;
+        top: 38px;
+        left: 50%;
+        width: min(1500px, calc(100vw - 72px));
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        border-top: 1px solid rgba(14, 51, 34, 0.14);
+        border-bottom: 1px solid rgba(14, 51, 34, 0.14);
+        pointer-events: none;
+      }
+
+      .brand,
+      .counter {
+        pointer-events: auto;
+      }
+
+      .brand {
+        font-weight: 700;
+      }
+
+      .counter {
+        color: var(--muted);
+      }
+
+      .deck {
+        height: 100vh;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        background:
+          linear-gradient(90deg, rgba(249, 241, 232, 1) 0%, rgba(249, 241, 232, 0.84) 17%, rgba(249, 241, 232, 0.84) 83%, rgba(249, 241, 232, 1) 100%),
+          linear-gradient(var(--paper) 95%, var(--line) 95%);
+        background-size: 100% 100%, 100% 2rem;
+      }
+
+      .deck::-webkit-scrollbar {
+        display: none;
+      }
+
+      .slide {
+        min-height: 100vh;
+        scroll-snap-align: start;
+        display: grid;
+        place-items: center;
+        padding: 100px clamp(28px, 5vw, 92px) 38px;
+      }
+
+      .stage {
+        width: min(1500px, 100%);
+        min-height: min(760px, calc(100vh - 132px));
+        display: grid;
+        align-content: center;
+        gap: clamp(28px, 3.8vh, 50px);
+      }
+
+      .split {
+        grid-template-columns: minmax(0, 0.86fr) minmax(520px, 1.14fr);
+        align-items: center;
+        gap: clamp(38px, 6vw, 86px);
+      }
+
+      .goal-stage {
+        grid-template-rows: auto minmax(0, 1fr);
+      }
+
+      .outlook-stage {
+        grid-template-rows: auto minmax(0, 1fr);
+        align-items: stretch;
+      }
+
+      .kicker {
+        margin: 0 0 14px;
+        max-width: 1500px;
+        color: var(--muted);
+        font-size: clamp(1.35rem, 1.8vw, 1.75rem);
+        font-weight: 700;
+        line-height: 1.12;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1,
+      h2 {
+        max-width: 1280px;
+        color: var(--ink);
+        font-weight: 700;
+        line-height: 1.03;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        font-size: clamp(3.35rem, 5.4vw, 6rem);
+      }
+
+      h2 {
+        font-size: clamp(3.1rem, 4.8vw, 5.35rem);
+      }
+
+      h3 {
+        color: var(--ink);
+        font-size: clamp(1.9rem, 2.7vw, 2.75rem);
+        line-height: 1.08;
+      }
+
+      p,
+      li {
+        color: var(--muted);
+        font-size: clamp(1.24rem, 1.65vw, 1.58rem);
+        line-height: 1.24;
+      }
+
+      .bigline {
+        max-width: 760px;
+        color: var(--muted);
+        font-size: clamp(1.45rem, 2vw, 1.98rem);
+        line-height: 1.25;
+      }
+
+      .two-sides {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(30px, 4vw, 44px);
+        margin-top: 4px;
+        align-self: stretch;
+      }
+
+      .paper-card {
+        min-height: clamp(320px, 34vh, 420px);
+        padding: clamp(34px, 4vw, 56px);
+        border: 1.5px solid rgba(14, 51, 34, 0.42);
+        border-radius: 22px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .paper-card.students {
+        border-color: rgba(31, 76, 122, 0.42);
+      }
+
+      .paper-card.teachers {
+        border-color: rgba(58, 102, 33, 0.42);
+      }
+
+      .label {
+        display: inline-block;
+        margin-bottom: clamp(24px, 3vh, 36px);
+        padding: 9px 16px;
+        border-radius: 8px;
+        background: #e0f0f7;
+        color: var(--blue);
+        font-size: clamp(1rem, 1.2vw, 1.2rem);
+        font-weight: 700;
+      }
+
+      .teachers .label {
+        background: #e6f4dc;
+        color: var(--green);
+      }
+
+      .goal-points {
+        display: grid;
+        gap: clamp(16px, 2vh, 22px);
+      }
+
+      .goal-point {
+        display: grid;
+        grid-template-columns: 72px minmax(0, 1fr);
+        align-items: center;
+        gap: 20px;
+        padding: 18px 20px;
+        border: 1.5px solid rgba(31, 76, 122, 0.16);
+        border-radius: 18px;
+        background: rgba(224, 240, 247, 0.28);
+      }
+
+      .teachers .goal-point {
+        border-color: rgba(58, 102, 33, 0.16);
+        background: rgba(230, 244, 220, 0.28);
+      }
+
+      .point-icon {
+        width: 62px;
+        height: 62px;
+        padding: 12px;
+        border: 2px solid currentColor;
+        border-radius: 14px;
+        color: var(--blue);
+        background: rgba(255, 253, 249, 0.72);
+        flex: none;
+      }
+
+      .point-icon * {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        vector-effect: non-scaling-stroke;
+      }
+
+      .point-icon.red {
+        color: var(--red);
+      }
+
+      .point-icon.green {
+        color: var(--green);
+      }
+
+      .point-icon.blue {
+        color: var(--blue);
+      }
+
+      .goal-icon {
+        width: 62px;
+        height: 62px;
+        border: 2px solid currentColor;
+        border-radius: 14px;
+        position: relative;
+        color: var(--blue);
+      }
+
+      .teachers .goal-icon {
+        color: var(--green);
+      }
+
+      .goal-icon::before {
+        content: "";
+        position: absolute;
+        inset: 14px;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .goal-icon.gap::after {
+        content: "";
+        position: absolute;
+        left: 13px;
+        right: 13px;
+        bottom: 12px;
+        height: 3px;
+        background: currentColor;
+      }
+
+      .goal-icon.think::after {
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 34px;
+        width: 30px;
+        height: 14px;
+        border-left: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+      }
+
+      .goal-icon.loop::after {
+        content: "";
+        position: absolute;
+        top: 29px;
+        right: -14px;
+        width: 26px;
+        height: 3px;
+        background: currentColor;
+      }
+
+      .goal-point strong {
+        display: block;
+        color: var(--ink);
+        font-size: clamp(1.65rem, 2.1vw, 2.25rem);
+        line-height: 1.08;
+        min-width: 0;
+        overflow-wrap: break-word;
+      }
+
+      .student-stage {
+        grid-template-rows: auto minmax(0, 1fr);
+      }
+
+      .student-stage .kicker,
+      .teacher-stage .kicker {
+        font-size: clamp(1.35rem, 1.8vw, 1.75rem);
+      }
+
+      .student-demo,
+      .teacher-demo {
+        display: grid;
+        grid-template-columns: minmax(0, 1.22fr) minmax(380px, 0.78fr);
+        gap: clamp(34px, 5vw, 64px);
+        align-items: center;
+      }
+
+      .teacher-stage {
+        grid-template-rows: auto minmax(0, 1fr);
+      }
+
+      .teacher-demo {
+        grid-template-columns: minmax(0, 1.08fr) minmax(380px, 0.92fr);
+      }
+
+      .student-visual img {
+        aspect-ratio: 2.05 / 1;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .student-bullets,
+      .teacher-bullets {
+        display: grid;
+        gap: 18px;
+      }
+
+      .student-bullet,
+      .teacher-bullet {
+        display: grid;
+        grid-template-columns: 62px minmax(0, 1fr);
+        align-items: center;
+        gap: 18px;
+        padding: 20px 22px;
+        border: 1.5px solid rgba(31, 76, 122, 0.2);
+        border-radius: 18px;
+        background: rgba(224, 240, 247, 0.35);
+        color: var(--ink);
+        font-size: clamp(1.5rem, 1.9vw, 2rem);
+        font-weight: 700;
+        line-height: 1.08;
+      }
+
+      .teacher-bullet {
+        border-color: rgba(58, 102, 33, 0.2);
+        background: rgba(230, 244, 220, 0.35);
+      }
+
+      .student-bullet .point-icon,
+      .teacher-bullet .point-icon {
+        width: 56px;
+        height: 56px;
+      }
+
+      .teacher-bullet .point-icon {
+        color: var(--green);
+      }
+
+      .teacher-bullet .point-icon,
+      .teachers .point-icon {
+        color: var(--green);
+      }
+
+      .visual-frame {
+        overflow: hidden;
+        border: 4px solid var(--ink);
+        border-radius: 26px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+        transform: rotate(-1deg);
+        align-self: center;
+      }
+
+      .visual-frame img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+      }
+
+      .video-frame img {
+        object-position: center;
+      }
+
+      .teacher-board {
+        display: grid;
+        grid-template-columns: 0.88fr 1.12fr;
+        gap: 18px;
+        padding: 24px;
+        border: 4px solid var(--ink);
+        border-radius: 26px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+        transform: rotate(0.8deg);
+      }
+
+      .scores {
+        display: grid;
+        gap: 10px;
+        align-content: start;
+      }
+
+      .score-row {
+        display: grid;
+        grid-template-columns: 78px 1fr 54px;
+        gap: 12px;
+        align-items: center;
+        padding: 14px;
+        border: 1.5px solid rgba(14, 51, 34, 0.18);
+        border-radius: 12px;
+        background: #fffdf9;
+        font-size: clamp(0.98rem, 1.15vw, 1.15rem);
+      }
+
+      .score-row b,
+      .score-row span {
+        color: var(--ink);
+      }
+
+      .bar {
+        height: 10px;
+        overflow: hidden;
+        border-radius: 99px;
+        background: #eadfce;
+      }
+
+      .bar i {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--green);
+      }
+
+      .worksheet {
+        min-height: 440px;
+        padding: 24px;
+        border: 1.5px solid rgba(14, 51, 34, 0.2);
+        border-radius: 16px;
+        background:
+          radial-gradient(circle at 1px 1px, rgba(14, 51, 34, 0.18) 1px, transparent 0) 0 0 / 18px 18px,
+          #fffdf9;
+      }
+
+      .worksheet h3 {
+        padding-bottom: 16px;
+        border-bottom: 4px solid var(--green);
+        font-size: clamp(1.35rem, 1.9vw, 1.95rem);
+      }
+
+      .note {
+        margin-top: 18px;
+        padding: 16px;
+        border: 1.5px solid rgba(14, 51, 34, 0.16);
+        border-radius: 12px;
+        background: rgba(249, 241, 232, 0.78);
+      }
+
+      .note b {
+        display: block;
+        color: var(--ink);
+        font-size: clamp(1.05rem, 1.18vw, 1.18rem);
+      }
+
+      .note span {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: clamp(0.98rem, 1.08vw, 1.08rem);
+        line-height: 1.18;
+      }
+
+      .future-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(22px, 3vw, 32px);
+      }
+
+      .future-grid .paper-card {
+        min-height: clamp(260px, 28vh, 330px);
+      }
+
+      .outlook-stage .future-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(22px, 3vw, 34px);
+        align-self: stretch;
+      }
+
+      .outlook-stage h2 {
+        max-width: none;
+      }
+
+      .outlook-stage .paper-card {
+        min-height: clamp(255px, 27vh, 325px);
+        display: flex;
+        justify-content: flex-start;
+        gap: 18px;
+        padding: clamp(28px, 3.2vw, 42px);
+      }
+
+      .outlook-stage .icon {
+        margin-bottom: clamp(34px, 4vh, 50px);
+      }
+
+      .outlook-stage .point-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 6px;
+      }
+
+      .outlook-stage .bullets {
+        margin-top: 4px;
+        display: grid;
+        gap: 12px;
+        padding-left: 1.1em;
+        list-style: disc;
+      }
+
+      .icon {
+        width: 72px;
+        height: 72px;
+        margin-bottom: clamp(42px, 5vh, 64px);
+        border: 2px solid currentColor;
+        border-radius: 14px;
+        color: var(--green);
+        position: relative;
+      }
+
+      .icon::before {
+        content: "";
+        position: absolute;
+        inset: 18px;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+      }
+
+      .icon.student {
+        color: var(--blue);
+      }
+
+      .icon.teacher::after {
+        content: "";
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        bottom: 14px;
+        height: 3px;
+        background: currentColor;
+      }
+
+      .icon.student::after {
+        content: "";
+        position: absolute;
+        left: 17px;
+        top: 38px;
+        width: 36px;
+        height: 15px;
+        border-left: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+      }
+
+      .icon.coach {
+        color: var(--red);
+      }
+
+      .icon.coach::after {
+        content: "";
+        position: absolute;
+        top: 34px;
+        right: -20px;
+        width: 34px;
+        height: 3px;
+        background: currentColor;
+      }
+
+      .bullets {
+        margin: 24px 0 0;
+        padding-left: 1.1em;
+        display: grid;
+        gap: 12px;
+      }
+
+      .bullets li::marker {
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      @media (max-width: 880px) {
+        .slide {
+          padding: 102px 22px 72px;
+        }
+
+        h1 {
+          font-size: clamp(3.1rem, 13vw, 4.8rem);
+        }
+
+        h2 {
+          font-size: clamp(2.8rem, 11.5vw, 4.4rem);
+        }
+
+        .kicker,
+        .student-stage .kicker,
+        .teacher-stage .kicker {
+          font-size: clamp(1.18rem, 5vw, 1.55rem);
+        }
+
+        h3 {
+          font-size: clamp(1.55rem, 7vw, 2.35rem);
+        }
+
+        p,
+        li,
+        .bigline {
+          font-size: clamp(1.12rem, 5.5vw, 1.72rem);
+        }
+
+        .paper-card {
+          min-height: 0;
+          padding: 34px;
+        }
+
+        .goal-point {
+          grid-template-columns: 58px minmax(0, 1fr);
+          gap: 14px;
+          padding: 16px;
+        }
+
+        .goal-point strong {
+          font-size: clamp(1.18rem, 5.2vw, 1.52rem);
+        }
+
+        .goal-icon {
+          width: 52px;
+          height: 52px;
+        }
+
+        .goal-point .point-icon,
+        .student-bullet .point-icon,
+        .teacher-bullet .point-icon {
+          width: 52px;
+          height: 52px;
+          padding: 10px;
+        }
+
+        .goal-icon::before {
+          inset: 12px;
+        }
+
+        .stage,
+        .split,
+        .student-demo,
+        .teacher-demo,
+        .outlook-stage,
+        .two-sides,
+        .future-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stage {
+          min-height: auto;
+        }
+
+        .teacher-board {
+          grid-template-columns: 1fr;
+        }
+
+        .student-bullet,
+        .teacher-bullet {
+          grid-template-columns: 56px minmax(0, 1fr);
+          font-size: clamp(1.1rem, 5vw, 1.45rem);
+          padding: 16px;
+        }
+
+        .outlook-stage .future-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .outlook-stage .paper-card {
+          display: flex;
+          gap: 0;
+        }
+
+        .outlook-stage .icon {
+          margin-bottom: 28px;
+        }
+
+        .outlook-stage .point-icon {
+          margin-bottom: 28px;
+        }
+
+        .outlook-stage .bullets {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .topbar {
+          top: 22px;
+          width: min(846px, calc(100vw - 34px));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg class="icon-sprite" aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden">
+      <symbol id="icon-heart" viewBox="0 0 24 24">
+        <path d="M12 20s-7-4.4-9.1-8.2C1.3 8.8 3.1 5 6.5 5c2 0 3.3 1.1 5.5 3.4C14.2 6.1 15.5 5 17.5 5c3.4 0 5.2 3.8 3.6 6.8C19 15.6 12 20 12 20Z" />
+      </symbol>
+      <symbol id="icon-shield-check" viewBox="0 0 24 24">
+        <path d="M12 3 19 6v5.2c0 4.4-2.8 7.6-7 9.8-4.2-2.2-7-5.4-7-9.8V6l7-3Z" />
+        <path d="m8.8 12.2 2.1 2.1 4.5-5" />
+      </symbol>
+      <symbol id="icon-lightbulb" viewBox="0 0 24 24">
+        <path d="M9 18h6" />
+        <path d="M10 22h4" />
+        <path d="M8.2 14.5a6 6 0 1 1 7.6 0c-.7.5-.8 1.4-.8 2H9c0-.6-.1-1.5-.8-2Z" />
+      </symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M12 7.5V12l3.3 2" />
+        <path d="M4.5 19.5 19.5 4.5" />
+      </symbol>
+      <symbol id="icon-users" viewBox="0 0 24 24">
+        <circle cx="9" cy="8" r="3" />
+        <path d="M3.5 19c.8-3.4 2.8-5 5.5-5s4.7 1.6 5.5 5" />
+        <circle cx="17" cy="10" r="2.4" />
+        <path d="M15.2 14.8c2.3.2 4 1.6 4.8 4.2" />
+      </symbol>
+      <symbol id="icon-refresh" viewBox="0 0 24 24">
+        <path d="M20 7v5h-5" />
+        <path d="M4 17v-5h5" />
+        <path d="M18.2 12A6.4 6.4 0 0 0 7.1 7.5L4 12" />
+        <path d="M5.8 12a6.4 6.4 0 0 0 11.1 4.5L20 12" />
+      </symbol>
+      <symbol id="icon-steps" viewBox="0 0 24 24">
+        <path d="M4 18h4v-4h4v-4h4V6h4" />
+        <path d="M4 21h16" />
+      </symbol>
+      <symbol id="icon-pen-check" viewBox="0 0 24 24">
+        <path d="M4 19h8" />
+        <path d="M5 15 16.5 3.5l4 4L9 19H5v-4Z" />
+        <path d="m14.5 17.5 2.1 2.1 4.1-4.6" />
+      </symbol>
+      <symbol id="icon-layers" viewBox="0 0 24 24">
+        <path d="m12 3 8 4.5-8 4.5-8-4.5L12 3Z" />
+        <path d="m4 12 8 4.5 8-4.5" />
+        <path d="m4 16.5 8 4.5 8-4.5" />
+      </symbol>
+      <symbol id="icon-file-edit" viewBox="0 0 24 24">
+        <path d="M6 3h8l4 4v14H6V3Z" />
+        <path d="M14 3v5h5" />
+        <path d="M9 16.5 15.4 10l2.1 2.1-6.4 6.4H9v-2Z" />
+      </symbol>
+      <symbol id="icon-search-user" viewBox="0 0 24 24">
+        <circle cx="10" cy="8.5" r="2.8" />
+        <path d="M4.8 17c.8-3 2.6-4.4 5.2-4.4 1.7 0 3 .6 4 1.8" />
+        <circle cx="17" cy="17" r="3" />
+        <path d="m19.2 19.2 2.3 2.3" />
+      </symbol>
+      <symbol id="icon-message-check" viewBox="0 0 24 24">
+        <path d="M4 5h16v11H8l-4 4V5Z" />
+        <path d="m9 10.8 2 2 4-4.4" />
+      </symbol>
+      <symbol id="icon-compass" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" />
+      </symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24">
+        <path d="M5 4h7a4 4 0 0 1 4 4v12H9a4 4 0 0 0-4 0V4Z" />
+        <path d="M16 8h3v12a4 4 0 0 0-3 0" />
+      </symbol>
+      <symbol id="icon-graduation" viewBox="0 0 24 24">
+        <path d="m3 8 9-4 9 4-9 4-9-4Z" />
+        <path d="M7 10.2v4.6c1.3 1.4 3 2.2 5 2.2s3.7-.8 5-2.2v-4.6" />
+        <path d="M21 8v6" />
+      </symbol>
+    </svg>
+    <div class="progress" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="brand">tutor.new</div>
+      <div class="counter"><span id="current">1</span> von <span id="total">4</span></div>
+    </header>
+
+    <main class="deck" id="deck">
+      <section class="slide" data-title="Soll">
+        <div class="stage goal-stage">
+          <div>
+            <p class="kicker">1 · Zielbild für Lernende und Lehrpersonen</p>
+            <h1>Wie soll KI die Schule verbessern?</h1>
+          </div>
+
+          <div class="two-sides">
+            <article class="paper-card students">
+              <span class="label">LERNENDE</span>
+              <div class="goal-points">
+                <div class="goal-point">
+                  <svg class="point-icon" aria-hidden="true"><use href="#icon-heart"></use></svg>
+                  <strong>Mehr Lust auf Lernen</strong>
+                </div>
+                <div class="goal-point">
+                  <svg class="point-icon" aria-hidden="true"><use href="#icon-shield-check"></use></svg>
+                  <strong>Selbstbewusstsein statt Wissenslücken</strong>
+                </div>
+                <div class="goal-point">
+                  <svg class="point-icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg>
+                  <strong>Eigenständiges Denken</strong>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper-card teachers">
+              <span class="label">LEHRPERSONEN</span>
+              <div class="goal-points">
+                <div class="goal-point">
+                  <svg class="point-icon" aria-hidden="true"><use href="#icon-clock"></use></svg>
+                  <strong>Weniger Routinearbeit</strong>
+                </div>
+                <div class="goal-point">
+                  <svg class="point-icon" aria-hidden="true"><use href="#icon-users"></use></svg>
+                  <strong>Besseres Betreuen der Schüler:innen</strong>
+                </div>
+                <div class="goal-point">
+                  <svg class="point-icon" aria-hidden="true"><use href="#icon-refresh"></use></svg>
+                  <strong>Ständige Weiterentwicklung</strong>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Umsetzung Lernende">
+        <div class="stage student-stage">
+          <div>
+            <p class="kicker">2 · So machen wir es für Lernende</p>
+            <h2>Persönlich unterstützt vom KI-Tutor.</h2>
+          </div>
+
+          <div class="student-demo">
+            <div class="visual-frame student-visual">
+              <img src="./assets/screenshot_visual.webp" alt="Tutor.new Lernblatt mit KI-Tutorin und Aufgabe" />
+            </div>
+
+            <div class="student-bullets" aria-label="Nutzen für Lernende">
+              <div class="student-bullet">
+                <svg class="point-icon" aria-hidden="true"><use href="#icon-steps"></use></svg>
+                <span>Schrittweises Arbeiten im Videocall</span>
+              </div>
+              <div class="student-bullet">
+                <svg class="point-icon" aria-hidden="true"><use href="#icon-pen-check"></use></svg>
+                <span>Schriftlich gearbeitet - digital korrigiert</span>
+              </div>
+              <div class="student-bullet">
+                <svg class="point-icon" aria-hidden="true"><use href="#icon-layers"></use></svg>
+                <span>Personalisierte Lernmaterialien</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Umsetzung Lehrpersonen">
+        <div class="stage teacher-stage">
+          <div>
+            <p class="kicker">3 · So machen wir es für Lehrpersonen</p>
+            <h2>Weniger Arbeit. Mehr individueller Unterricht.</h2>
+          </div>
+
+          <div class="teacher-demo">
+            <div class="teacher-board" aria-label="Arbeitsblatt mit Lernständen">
+              <div class="scores">
+                <div class="score-row">
+                  <b>Amina</b>
+                  <span class="bar"><i style="width: 88%"></i></span>
+                  <span>88%</span>
+                </div>
+                <div class="score-row">
+                  <b>Jonas</b>
+                  <span class="bar"><i style="width: 72%"></i></span>
+                  <span>72%</span>
+                </div>
+                <div class="score-row">
+                  <b>Lea</b>
+                  <span class="bar"><i style="width: 61%"></i></span>
+                  <span>61%</span>
+                </div>
+                <div class="score-row">
+                  <b>Noah</b>
+                  <span class="bar"><i style="width: 46%; background: var(--red)"></i></span>
+                  <span>46%</span>
+                </div>
+                <div class="score-row">
+                  <b>Elif</b>
+                  <span class="bar"><i style="width: 79%"></i></span>
+                  <span>79%</span>
+                </div>
+              </div>
+
+              <div class="worksheet">
+                <h3>Arbeitsblatt: Lineare Funktionen</h3>
+                <div class="note">
+                  <b>Häufige Frage</b>
+                  <span>Was bedeutet q in y = m · x + q?</span>
+                </div>
+                <div class="note">
+                  <b>Vorschlag</b>
+                  <span>Kurzer Einstieg mit zwei Graphen. Danach Partnerübung.</span>
+                </div>
+                <div class="note">
+                  <b>Material-Hinweis</b>
+                  <span>Zusatzaufgabe zur y-Achse für Noah und Lea.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="teacher-bullets" aria-label="Nutzen für Lehrpersonen">
+              <div class="teacher-bullet">
+                <svg class="point-icon" aria-hidden="true"><use href="#icon-file-edit"></use></svg>
+                <span>Material vorbereiten und anpassen</span>
+              </div>
+              <div class="teacher-bullet">
+                <svg class="point-icon" aria-hidden="true"><use href="#icon-search-user"></use></svg>
+                <span>Einblick in Bedürfnisse der Schüler:innen</span>
+              </div>
+              <div class="teacher-bullet">
+                <svg class="point-icon" aria-hidden="true"><use href="#icon-message-check"></use></svg>
+                <span>Feedback zum eigenen Unterricht erhalten</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Rolle der Lehrperson">
+        <div class="stage outlook-stage">
+          <div>
+            <p class="kicker">4 · 10-Jahres-Ausblick: Rolle der Lehrperson</p>
+            <h2>Lehrpersonen werden wichtiger.</h2>
+          </div>
+
+          <div class="future-grid">
+            <article class="paper-card">
+              <svg class="point-icon red" aria-hidden="true"><use href="#icon-users"></use></svg>
+              <h3>Starke persönliche Interaktion</h3>
+              <ul class="bullets">
+                <li>KI nimmt Routinearbeit ab</li>
+                <li>Bessere Infos zu Bedürfnissen</li>
+                <li>Mehr Zeit für Betreuung</li>
+              </ul>
+            </article>
+
+            <article class="paper-card">
+              <svg class="point-icon green" aria-hidden="true"><use href="#icon-refresh"></use></svg>
+              <h3>Lehrpersonen werden effektiver</h3>
+              <ul class="bullets">
+                <li>Besseres Material</li>
+                <li>Daten aus dem Klassenzimmer</li>
+                <li>Vorschläge für nächste Schritte</li>
+              </ul>
+            </article>
+
+            <article class="paper-card">
+              <svg class="point-icon blue" aria-hidden="true"><use href="#icon-lightbulb"></use></svg>
+              <h3>Mehr kreativer Freiraum</h3>
+              <ul class="bullets">
+                <li>Schüler:innen sind besser betreut</li>
+                <li>KI übernimmt viele Aufgaben</li>
+                <li>Mehr Raum für Projekte</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const deck = document.querySelector("#deck");
+      const slides = [...document.querySelectorAll(".slide")];
+      const current = document.querySelector("#current");
+      const total = document.querySelector("#total");
+      const root = document.documentElement;
+      let activeIndex = 0;
+
+      total.textContent = String(slides.length);
+
+      function goTo(index) {
+        slides[index]?.scrollIntoView({ behavior: "smooth" });
+      }
+
+      function setActive(index) {
+        activeIndex = index;
+        current.textContent = String(index + 1);
+        root.style.setProperty("--progress", (index + 1) / slides.length);
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (visible) setActive(slides.indexOf(visible.target));
+        },
+        { root: deck, threshold: [0.55, 0.75] }
+      );
+
+      slides.forEach((slide) => observer.observe(slide));
+
+      function syncActive() {
+        const mid = (deck.clientHeight || window.innerHeight) / 2;
+        let best = 0;
+        let bestDist = Infinity;
+        slides.forEach((slide, i) => {
+          const rect = slide.getBoundingClientRect();
+          const dist = Math.abs(rect.top + rect.height / 2 - mid);
+          if (dist < bestDist) {
+            best = i;
+            bestDist = dist;
+          }
+        });
+        setActive(best);
+      }
+
+      deck.addEventListener("scroll", syncActive, { passive: true });
+      window.addEventListener("resize", syncActive);
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown" || event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+          event.preventDefault();
+          goTo(Math.min(activeIndex + 1, slides.length - 1));
+        }
+        if (event.key === "ArrowUp" || event.key === "ArrowLeft" || event.key === "PageUp") {
+          event.preventDefault();
+          goTo(Math.max(activeIndex - 1, 0));
+        }
+      });
+
+      setActive(0);
+    </script>
+  </body>
+</html>
