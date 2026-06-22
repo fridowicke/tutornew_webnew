@@ -1138,24 +1138,54 @@ class I18n {
     constructor() {
         this.translations = translations;
         
-        // Detect language
         const savedLang = localStorage.getItem('language');
         if (savedLang) {
             this.currentLang = savedLang;
         } else {
-            // Detect from browser
-            const browserLang = (navigator.language || navigator.userLanguage).toLowerCase();
-            // If it's German (de, de-at, de-ch, de-li, de-lu)
-            if (browserLang.startsWith('de')) {
-                this.currentLang = 'de';
-            } else {
-                // Default to English for everyone else
-                this.currentLang = 'en';
-            }
+            this.currentLang = this.isDachVisitor() ? 'de' : 'en';
         }
         
         this.currentLocale = this.detectLocale();
         document.documentElement.lang = this.currentLang;
+    }
+
+    getBrowserLanguageCodes() {
+        const languages = Array.isArray(navigator.languages) && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || navigator.userLanguage || ''];
+
+        return languages
+            .filter(Boolean)
+            .map(language => language.toLowerCase());
+    }
+
+    getRegionFromLanguageCode(languageCode) {
+        const parts = languageCode.split('-');
+        return parts.length > 1 ? parts[1] : '';
+    }
+
+    getTimeZone() {
+        try {
+            return Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        } catch (error) {
+            return '';
+        }
+    }
+
+    isDachVisitor() {
+        const dachRegions = ['ch', 'de', 'at'];
+        const dachTimeZones = ['Europe/Zurich', 'Europe/Berlin', 'Europe/Vienna', 'Europe/Busingen'];
+        const languageCodes = this.getBrowserLanguageCodes();
+
+        const hasDachGermanLocale = languageCodes.some(languageCode => {
+            const region = this.getRegionFromLanguageCode(languageCode);
+            return languageCode.startsWith('de-') && dachRegions.includes(region);
+        });
+
+        if (hasDachGermanLocale) return true;
+
+        const hasGermanLanguagePreference = languageCodes.some(languageCode => languageCode === 'de');
+        return hasGermanLanguagePreference && dachTimeZones.includes(this.getTimeZone());
     }
 
     detectLocale() {
@@ -1164,7 +1194,7 @@ class I18n {
         if (savedLocale) return savedLocale;
 
         // Detect from browser
-        const browserLang = navigator.language || navigator.userLanguage;
+        const browserLang = this.getBrowserLanguageCodes()[0] || '';
         const langCode = browserLang.toLowerCase();
         
         // UK locales
@@ -1177,10 +1207,9 @@ class I18n {
             return 'us';
         }
         
-        // European countries (excluding UK)
-        const europeanCountries = ['de', 'fr', 'it', 'es', 'nl', 'pl', 'pt', 'ro', 'hu', 'cs', 'sk', 'sl', 'bg', 'hr', 'el', 'fi', 'sv', 'da', 'no', 'et', 'lv', 'lt'];
-        const langBase = langCode.split('-')[0];
-        if (europeanCountries.includes(langBase)) {
+        const europeanRegions = ['de', 'at', 'ch', 'fr', 'it', 'es', 'nl', 'be', 'pl', 'pt', 'ro', 'hu', 'cz', 'sk', 'si', 'bg', 'hr', 'gr', 'fi', 'se', 'dk', 'no', 'ee', 'lv', 'lt', 'ie'];
+        const region = this.getRegionFromLanguageCode(langCode);
+        if (europeanRegions.includes(region) || this.isDachVisitor()) {
             return 'eu';
         }
         

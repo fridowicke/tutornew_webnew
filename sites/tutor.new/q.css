@@ -19,7 +19,7 @@
     --q-orange: #f97316;
     --q-yellow: #ffd66e;
     --q-font: "Noto Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-    --q-display: "Sour Gummy", "Noto Sans", sans-serif;
+    --q-display: "Noto Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
     --q-hand: "Caveat", cursive;
 }
 
@@ -352,6 +352,10 @@ h1.q-h1 {
     font-size: 17px;
     line-height: 1;
     white-space: nowrap;
+}
+
+html[lang="en"] .q-flags {
+    display: none;
 }
 
 .q-hero-visual {

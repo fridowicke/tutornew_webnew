@@ -577,6 +577,13 @@ const translations = {
         mini_prep_text: "Probeprüfungen, bis du sicher bist.",
         zensi_eyebrow: "Die Schulversion",
         zensi_quote: "«Zum ersten Mal sehe ich genau, was jede Schülerin und jeder Schüler gerade von mir braucht.»",
+        zensi_dash_title: "Klasse 2b · Biologie",
+        zensi_dash_live: "live · 24 aktiv",
+        zensi_dash_lena: "Photosynthese · Aufg. 4/5",
+        zensi_dash_jonas: "Zellteilung · Aufg. 3/5",
+        zensi_dash_tim: "braucht Hilfe · Zellatmung",
+        zensi_dash_aylin: "Genetik · fertig ✓",
+        zensi_dash_noah: "Ökosystem · Aufg. 3/5",
         zensi_role: "Biologielehrerin · Kantonsschule Wattwil",
         zensi_cta: "Mehr zur Schulversion",
         footer_rights: "© tutor.new. Alle Rechte vorbehalten.",
@@ -595,6 +602,18 @@ const translations = {
         demo_status_listening: "hört zu …",
         demo_status_writing: "schreibt …",
         demo_status_online: "online",
+        demo_sheet_topic_label: "Thema",
+        demo_sheet_math_topic: "Lineare Funktionen",
+        demo_sheet_math_def: "m: Steigung · q: y-Achsenabschnitt",
+        demo_sheet_exercise_label: "Übung:",
+        demo_sheet_math_exercise: "Welche Gleichung hat die gestrichelte Gerade?",
+        demo_sheet_note_label: "Merke:",
+        demo_sheet_math_note_1: "m macht die Gerade steiler, q verschiebt sie nach oben.",
+        demo_sheet_math_note_2: "Deine Lösung: y = 2x + 1 ✓",
+        demo_sheet_fr_def: "z. B. j'ai mangé · je suis allé",
+        demo_sheet_fr_exercise: "Füll die Lücke: Hier, je ____ allé au lac.",
+        demo_sheet_fr_note_1: "Bewegungsverben (aller, venir, partir …) nehmen être.",
+        demo_sheet_fr_note_2: "Deine Lösung: je suis allé ✓",
         demo_attach_worksheet: "Arbeitsblatt.jpg",
         demo_up_uploading: "Lädt hoch …",
         demo_up_uploaded: "Hochgeladen ✓",
@@ -1329,7 +1348,7 @@ const translations = {
         t_page_title: "tutor.new for teachers & schools",
         nav_school_version: "School version",
         cta_learn_free: "Start learning free",
-        cta_view_school_version: "See the school version",
+        cta_view_school_version: "For schools",
         hero_h1: "Simply <span class=\"q-mark\">better grades</span>.",
         trust_learners: "<strong>100,000+</strong> learners",
         trust_videocall: "Video call with an AI avatar",
@@ -1347,6 +1366,13 @@ const translations = {
         mini_prep_text: "Mock exams until you feel ready.",
         zensi_eyebrow: "The school version",
         zensi_quote: "“For the first time, I can see exactly what each student needs from me right now.”",
+        zensi_dash_title: "Class 2b · Biology",
+        zensi_dash_live: "live · 24 active",
+        zensi_dash_lena: "Photosynthesis · Task 4/5",
+        zensi_dash_jonas: "Cell division · Task 3/5",
+        zensi_dash_tim: "needs help · Cellular respiration",
+        zensi_dash_aylin: "Genetics · done ✓",
+        zensi_dash_noah: "Ecosystem · Task 3/5",
         zensi_role: "Biology teacher · Kantonsschule Wattwil",
         zensi_cta: "More about the school version",
         footer_rights: "© tutor.new. All rights reserved.",
@@ -1365,6 +1391,18 @@ const translations = {
         demo_status_listening: "listening …",
         demo_status_writing: "writing …",
         demo_status_online: "online",
+        demo_sheet_topic_label: "Topic",
+        demo_sheet_math_topic: "Linear functions",
+        demo_sheet_math_def: "m: slope · q: y-intercept",
+        demo_sheet_exercise_label: "Exercise:",
+        demo_sheet_math_exercise: "Which equation matches the dashed line?",
+        demo_sheet_note_label: "Remember:",
+        demo_sheet_math_note_1: "m makes the line steeper, q shifts it upward.",
+        demo_sheet_math_note_2: "Your answer: y = 2x + 1 ✓",
+        demo_sheet_fr_def: "e.g. j'ai mangé · je suis allé",
+        demo_sheet_fr_exercise: "Fill the gap: Hier, je ____ allé au lac.",
+        demo_sheet_fr_note_1: "Movement verbs (aller, venir, partir …) take être.",
+        demo_sheet_fr_note_2: "Your answer: je suis allé ✓",
         demo_attach_worksheet: "Worksheet.jpg",
         demo_up_uploading: "Uploading …",
         demo_up_uploaded: "Uploaded ✓",
@@ -1418,7 +1456,7 @@ const translations = {
         t_hero_kicker: "For teachers and schools",
         t_hero_h1: "A tutor for <span class=\"q-mark\">every child</span>. A full overview for you.",
         t_hero_lead: "Your class learns with your material. You see at a glance who's making progress – and who needs help.",
-        t_hero_promise: "Hosted in Switzerland &amp; the EU – strong data protection.",
+        t_hero_promise: "Highest privacy standards, with custom deployments for each school’s needs.",
         t_hero_note: "your AI assistant<br>knows your class ↓",
         t_dash_subject: "Biology · Week 24",
         t_dash_fb_lena: "Photosynthesis is solid – now practising cellular respiration on her own.",
@@ -1477,8 +1515,8 @@ const translations = {
         t_priv1_d: "All learning data is processed anonymously.",
         t_priv2_t: "No AI training",
         t_priv2_d: "Your data never trains AI models.",
-        t_priv3_t: "EU &amp; Switzerland",
-        t_priv3_d: "Stored only on servers in the EU and Switzerland.",
+        t_priv3_t: "Custom deployments",
+        t_priv3_d: "Setups tailored to each school's privacy and infrastructure needs.",
         t_priv4_t: "A real person",
         t_priv4_d: "You talk to us directly – no ticket system.",
         t_proof_title: "Your class probably already knows us.",
@@ -1548,24 +1586,54 @@ class I18n {
     constructor() {
         this.translations = translations;
         
-        // Detect language
         const savedLang = localStorage.getItem('language');
         if (savedLang) {
             this.currentLang = savedLang;
         } else {
-            // Detect from browser
-            const browserLang = (navigator.language || navigator.userLanguage).toLowerCase();
-            // If it's German (de, de-at, de-ch, de-li, de-lu)
-            if (browserLang.startsWith('de')) {
-                this.currentLang = 'de';
-            } else {
-                // Default to English for everyone else
-                this.currentLang = 'en';
-            }
+            this.currentLang = this.isDachVisitor() ? 'de' : 'en';
         }
         
         this.currentLocale = this.detectLocale();
         document.documentElement.lang = this.currentLang;
+    }
+
+    getBrowserLanguageCodes() {
+        const languages = Array.isArray(navigator.languages) && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || navigator.userLanguage || ''];
+
+        return languages
+            .filter(Boolean)
+            .map(language => language.toLowerCase());
+    }
+
+    getRegionFromLanguageCode(languageCode) {
+        const parts = languageCode.split('-');
+        return parts.length > 1 ? parts[1] : '';
+    }
+
+    getTimeZone() {
+        try {
+            return Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        } catch (error) {
+            return '';
+        }
+    }
+
+    isDachVisitor() {
+        const dachRegions = ['ch', 'de', 'at'];
+        const dachTimeZones = ['Europe/Zurich', 'Europe/Berlin', 'Europe/Vienna', 'Europe/Busingen'];
+        const languageCodes = this.getBrowserLanguageCodes();
+
+        const hasDachGermanLocale = languageCodes.some(languageCode => {
+            const region = this.getRegionFromLanguageCode(languageCode);
+            return languageCode.startsWith('de-') && dachRegions.includes(region);
+        });
+
+        if (hasDachGermanLocale) return true;
+
+        const hasGermanLanguagePreference = languageCodes.some(languageCode => languageCode === 'de');
+        return hasGermanLanguagePreference && dachTimeZones.includes(this.getTimeZone());
     }
 
     detectLocale() {
@@ -1574,7 +1642,7 @@ class I18n {
         if (savedLocale) return savedLocale;
 
         // Detect from browser
-        const browserLang = navigator.language || navigator.userLanguage;
+        const browserLang = this.getBrowserLanguageCodes()[0] || '';
         const langCode = browserLang.toLowerCase();
         
         // UK locales
@@ -1587,10 +1655,9 @@ class I18n {
             return 'us';
         }
         
-        // European countries (excluding UK)
-        const europeanCountries = ['de', 'fr', 'it', 'es', 'nl', 'pl', 'pt', 'ro', 'hu', 'cs', 'sk', 'sl', 'bg', 'hr', 'el', 'fi', 'sv', 'da', 'no', 'et', 'lv', 'lt'];
-        const langBase = langCode.split('-')[0];
-        if (europeanCountries.includes(langBase)) {
+        const europeanRegions = ['de', 'at', 'ch', 'fr', 'it', 'es', 'nl', 'be', 'pl', 'pt', 'ro', 'hu', 'cz', 'sk', 'si', 'bg', 'hr', 'gr', 'fi', 'se', 'dk', 'no', 'ee', 'lv', 'lt', 'ie'];
+        const region = this.getRegionFromLanguageCode(langCode);
+        if (europeanRegions.includes(region) || this.isDachVisitor()) {
             return 'eu';
         }
         
