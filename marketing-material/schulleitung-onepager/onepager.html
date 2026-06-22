@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="fonts_embedded.css">
+<link rel="stylesheet" href="images.css">
+<style>
+  :root{
+    --cream:#f9f1e8; --beige:#f6ecdf; --taupe:#ebdecb;
+    --green:#0e3322; --green-mid:#1d5b3c; --green-soft:#e9f1ea;
+    --body:#36473c; --line:#ddd2c0;
+    --font:"Noto Sans",ui-sans-serif,system-ui,sans-serif;
+    --display:"Sour Gummy","Noto Sans",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  @page{ size:A4; margin:0; }
+  html,body{ background:#fff; }
+  body{
+    font-family:var(--font); color:var(--body);
+    font-size:10.4px; line-height:1.5;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .page{
+    width:210mm; min-height:295mm; margin:0 auto;
+    background:
+      repeating-linear-gradient(transparent 0 26px, rgba(14,51,34,.032) 26px 27px),
+      var(--cream);
+    padding:13mm 15mm 10mm;
+    display:flex; flex-direction:column;
+  }
+  strong{ color:var(--green); font-weight:700; }
+  h2.sec{ font-family:var(--display); font-weight:700; color:var(--green); font-size:13px;
+    line-height:1; border-bottom:1px solid var(--line); padding-bottom:5px; margin-bottom:7px; }
+  h2.sec .n{ color:var(--green-mid); margin-right:6px; }
+  p{ margin-bottom:5px; }
+  p:last-child{ margin-bottom:0; }
+
+  /* masthead */
+  .masthead{ display:flex; align-items:center; justify-content:space-between;
+    border-bottom:2px solid var(--green); padding-bottom:7px; }
+  .brand{ display:flex; align-items:center; gap:9px; }
+  .brand .duck{ width:29px; height:29px; border-radius:9px; border:2px solid var(--green);
+    background:var(--img-avatar) center/cover; flex:0 0 auto; }
+  .brand .name{ font-family:var(--display); font-weight:700; font-size:16px; color:var(--green); }
+  .doc-label{ text-align:right; font-size:8px; letter-spacing:.04em; color:var(--green-mid);
+    text-transform:uppercase; line-height:1.35; }
+  .doc-label b{ display:block; font-family:var(--display); font-size:9px; color:var(--green); letter-spacing:.03em; }
+
+  /* hero */
+  .hero{ display:grid; grid-template-columns:1fr 82mm; gap:17px; align-items:center;
+    margin-top:12px; padding-bottom:13px; border-bottom:1px solid var(--line); }
+  .hero h1{ font-family:var(--display); font-weight:700; color:var(--green);
+    font-size:24px; line-height:1.08; letter-spacing:-.01em; }
+  .hero .lede{ font-size:11px; margin-top:6px; }
+  .shot{ width:100%; height:44mm; background:var(--img-hero) center/contain no-repeat; }
+  .shot-cap{ font-size:8px; color:var(--green-mid); text-align:center; margin-top:2px; }
+
+  /* main two columns */
+  .main{ display:grid; grid-template-columns:1.42fr 1fr; gap:18px; margin-top:13px; }
+  .col-r{ display:flex; flex-direction:column; gap:12px; }
+
+  /* stats */
+  .stats{ border:1px solid var(--line); border-radius:9px; background:#fff; overflow:hidden; }
+  .stat{ display:flex; align-items:baseline; gap:10px; padding:10px 13px; }
+  .stat + .stat{ border-top:1px solid var(--line); }
+  .stat b{ font-family:var(--display); font-weight:700; font-size:20px; color:var(--green); line-height:1; flex:0 0 auto; min-width:70px; }
+  .stat b i{ font-style:normal; font-size:.55em; }
+  .stat span{ font-size:9px; line-height:1.25; }
+
+  /* founders / contact card */
+  .who{ display:flex; gap:10px; align-items:center; border:1px solid var(--line); border-radius:9px;
+    background:#fff; padding:9px 10px; }
+  .who .ph{ width:27mm; height:27mm; border-radius:8px; flex:0 0 auto;
+    background:var(--img-founders) center 30%/cover; border:2px solid #fff; box-shadow:0 2px 5px rgba(14,51,34,.14); }
+  .who .t b{ color:var(--green); font-size:10.4px; }
+  .who .t em{ font-style:normal; color:var(--green-mid); font-size:9px; display:block; margin:2px 0 5px; }
+  .who .t span{ font-size:9px; }
+
+  /* quote */
+  .quote{ border-left:3px solid var(--taupe); padding-left:13px; }
+  .quote blockquote{ font-family:var(--display); font-weight:600; color:var(--green); font-size:10.6px; line-height:1.34; border:0; margin:0; }
+  .quote .by{ display:flex; align-items:center; gap:9px; margin-top:8px; }
+  .quote .by .ph{ width:15mm; height:15mm; border-radius:50%; flex:0 0 auto;
+    background:var(--img-zensi) center 16%/cover; border:2px solid #fff; box-shadow:0 1px 4px rgba(14,51,34,.16); }
+  .quote .by b{ color:var(--green); font-size:9.4px; display:block; }
+  .quote .by span{ font-size:8.4px; color:var(--green-mid); }
+
+  /* pilot full width */
+  .pilot{ margin-top:14px; background:var(--green-soft); border:1px solid #cfe0d2; border-left:3px solid var(--green);
+    border-radius:7px; padding:12px 15px; }
+  .pilot h2.sec{ border-bottom:none; padding-bottom:0; margin-bottom:5px; }
+  .pilot .cols{ columns:2; column-gap:20px; }
+  .pilot .cols p{ margin:0; }
+  .pilot .price{ display:inline-block; background:#fff; border:1px solid #cfe0d2; border-radius:6px;
+    padding:2px 9px; font-family:var(--display); font-weight:700; color:var(--green); }
+
+  /* contact + press */
+  .contact{ margin-top:14px; display:grid; grid-template-columns:1fr auto; gap:18px; align-items:center;
+    border-top:1px solid var(--line); padding-top:12px; }
+  .contact p{ margin:0; font-size:10.4px; }
+  .contact .eth{ font-family:var(--display); font-weight:700; color:var(--green); }
+  .press{ display:flex; flex-direction:column; align-items:flex-end; gap:5px; }
+  .press .lbl{ font-size:7.6px; letter-spacing:.08em; text-transform:uppercase; color:var(--green-mid); }
+  .press .marks{ display:flex; align-items:center; gap:15px; }
+  .logo-srf{ display:inline-flex; align-items:center; font-family:var(--font); font-weight:800; font-size:11px;
+    letter-spacing:-.01em; color:#fff; background:#c8102e; padding:3px 7px 4px; border-radius:2px; line-height:1; }
+  .logo-nzz{ font-family:"Kerkis",Georgia,serif; font-weight:700; font-size:16px; letter-spacing:.04em; color:#111; }
+  .logo-ta{ display:inline-block; width:106px; height:20px; background:var(--img-ta-logo) left center/contain no-repeat; }
+
+  /* footer */
+  .foot{ display:flex; align-items:center; justify-content:space-between; gap:12px;
+    border-top:2px solid var(--green); padding-top:10px; margin-top:auto; }
+  .foot .c{ font-size:9.4px; }
+  .foot .c b{ font-family:var(--display); font-size:10.4px; color:var(--green); }
+  .foot .duck2{ width:34px; height:34px; background:var(--img-laptop) center/contain no-repeat; flex:0 0 auto; }
+  .flags{ font-size:9.5px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <div class="brand">
+      <div class="duck"></div>
+      <div class="name">tutor.new</div>
+    </div>
+    <div class="doc-label">
+      <b>Information für Schulleitungen</b>
+      Ein KI-Tutor für jedes Kind · ETH-Start-up
+    </div>
+  </div>
+
+  <div class="hero">
+    <div>
+      <h1>tutor.new an Ihrer Schule</h1>
+      <p class="lede">Personalisiertes Lernen, das Lehrpersonen entlastet — am eigenen Material, im eigenen Tempo, mit vollem Überblick für die Schule.</p>
+    </div>
+    <div>
+      <div class="shot"></div>
+      <div class="shot-cap">Lernblatt in der App — die Tutorin Maya erklärt im Dialog.</div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="col-l">
+      <section>
+        <h2 class="sec"><span class="n">01</span>Was ist tutor.new?</h2>
+        <p>tutor.new ist eine KI-gestützte Nachhilfe im Videocall: Schülerinnen und Schüler arbeiten mit einem KI-Avatar in einem gemeinsamen Arbeitsheft, in dem beide schreiben, zeichnen und rechnen. Die Interaktionen der KI stärken gezielt Motivation und Selbstbewusstsein der Lernenden, wodurch die App über TikTok auf über 100.000 regelmäßige Nutzer gewachsen ist. Inhaltlich werden auf Grundlage hochgeladener Materialien und vorheriger Stunden maßgeschneiderte Erklärungen und Aufgaben erstellt, die die Lernenden mit leichter Begleitung der Tutoren schrittweise lösen.</p>
+      </section>
+      <section style="margin-top:9px;">
+        <h2 class="sec"><span class="n">02</span>tutor.new an Schulen</h2>
+        <p>Weil immer mehr Lehrpersonen danach fragten, arbeiten wir seit einem Jahr mit Schulen zusammen, um Unterricht im Licht der neuen technischen Möglichkeiten neu zu denken. Oberste Priorität ist dabei, optimal auf die individuellen Bedürfnisse der Schüler:innen einzugehen. Genau diese Personalisierung schafft dann Raum für mehr und hochwertigere Interaktionen — zwischen Lehrpersonen und Lernenden und unter den Lernenden selbst.</p>
+        <p>In der Praxis plant und koordiniert die Lehrperson ihren Unterricht in der Plattform, ausgehend von ihrem bestehenden Material. Die KI macht dazu Vorschläge und passt die Materialien an oder erweitert sie. Die Schüler:innen erhalten personalisiertes Feedback zu ihren Arbeiten sowie Hilfestellungen und Anleitungen der Tutoren. Die Lehrpersonen gewinnen Einblick in Leistung, Bedürfnisse und Fehlvorstellungen ihrer Schüler:innen und erhalten datenbasierte Empfehlungen, um ihren Unterricht zu verbessern.</p>
+      </section>
+    </div>
+
+    <div class="col-r">
+      <div class="stats">
+        <div class="stat"><b>100.000<i>+</i></b><span>regelmäßige Nutzer — über TikTok gewachsen</span></div>
+        <div class="stat"><b>3</b><span>laufende Pilotprojekte an Schulen</span></div>
+        <div class="stat"><b>Ø +0,6</b><span>Notenverbesserung im Pilot</span></div>
+      </div>
+      <div class="who">
+        <div class="ph"></div>
+        <div class="t">
+          <b>Gero Embser &amp; Friedrich Wicke</b>
+          <em>Gründer · ETH Zürich</em>
+          <span>Ein Start-up der ETH Zürich mit Schweizer Wurzeln.</span>
+        </div>
+      </div>
+      <div class="quote">
+        <blockquote>«Während ich einer Schülerin helfe, üben alle anderen einfach weiter — und ich sehe sofort, wer nicht weiterkommt.»</blockquote>
+        <div class="by">
+          <div class="ph"></div>
+          <div><b>Zensi Hopf</b><span>Biologielehrerin · KS Wattwil</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pilot">
+    <h2 class="sec"><span class="n">03</span>Pilotprojekt</h2>
+    <div class="cols">
+      <p>Für den Einstieg bieten wir Schulen ein Pilotprojekt an, das über 8 bis 12 Wochen mit einer bis fünf Lehrpersonen läuft. In dieser Zeit arbeiten wir eng mit den Lehrpersonen zusammen, schulen sie und stehen ihnen laufend zur Seite; die Software passen wir an die Bedürfnisse der Schule an, ergänzen fehlende Funktionen und halten die Datenschutzvorgaben strikt ein. Vor und nach dem Piloten führen wir Assessments und Befragungen durch, um die Wirkung messbar zu machen. Die Pilotphase kostet <span class="price">CHF 1'000</span>, wobei wir in manchen Fällen einen Teil dieser Gebühr erlassen können. Ziel ist herauszufinden, ob unsere Visionen zusammenpassen und ob eine breitere und tiefere Zusammenarbeit gewünscht ist.</p>
+    </div>
+  </div>
+
+  <div class="contact">
+    <p><span class="eth">tutor.new ist ein Start-up der ETH Zürich.</span> Haben Sie Fragen — oder eine Medienanfrage? Schreiben Sie jederzeit an <strong>friedrich@tutor.new</strong>; Sie erhalten eine persönliche Antwort. Daten werden ausschliesslich in der Schweiz und der EU gespeichert.</p>
+    <div class="press">
+      <span class="lbl">Bekannt aus</span>
+      <span class="marks">
+        <span class="logo-srf">SRF</span>
+        <span class="logo-nzz">NZZ</span>
+        <span class="logo-ta" role="img" aria-label="Tages-Anzeiger"></span>
+      </span>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="c"><b>Kontakt &amp; nächster Schritt:</b> Friedrich Wicke · friedrich@tutor.new · duck.tutor.new &nbsp;·&nbsp; <span class="flags">🇨🇭&#8202;🇪🇺</span> Hosting in der Schweiz &amp; EU</div>
+    <div class="duck2"></div>
+  </div>
+
+</div>
+</body>
+</html>

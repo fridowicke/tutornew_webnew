@@ -6,3 +6,4 @@ _legacy/
 .DS_Store
 *.log
 .gstack/
+marketing-material/**/cp/
