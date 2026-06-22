@@ -1,26 +1,49 @@
-/* tutor.new "friendly schoolbook" design system (matches the webapp).
-   Loaded only by pages with `useQ: true` front matter. */
+/* tutor.new design system — professional blue-forward brand.
+   Loaded only by pages with `useQ: true` front matter.
+
+   NOTE: the design-token NAMES below are kept from the previous theme
+   (--q-green, --q-cream, …) so that every page referencing them keeps
+   working with zero markup changes — only the VALUES were reworked from
+   the old green/cream "schoolbook" look to a navy + blue + red + white
+   brand. Brand-named aliases are provided first; the legacy names map
+   onto them. */
 
 :root {
-    --q-cream: #f9f1e8;
-    --q-beige: #f6ecdf;
-    --q-taupe: #ebdecb;
-    --q-green: #0e3322;
-    --q-green-mid: #1d5b3c;
-    --q-green-soft: #e2efe4;
-    --q-body: #3c5246;
-    --q-line: #e7dccb;
+    /* --- Brand --- */
+    --q-navy: #12275b;        /* deep brand navy — headings, dark bands, footer */
+    --q-blue: #2563eb;        /* primary blue — buttons, links, accents */
+    --q-blue-dark: #1d4ed8;   /* hover / active blue */
+    --q-blue-soft: #eaf1ff;   /* tinted blue surface */
+    --q-red: #e11d2a;         /* highlight red on light surfaces */
+    --q-red-bright: #ff5d62;  /* highlight red on navy / dark surfaces */
+
+    /* --- Surfaces & ink --- */
+    --q-cream: #ffffff;       /* page background (was beige) */
+    --q-beige: #f2f6fc;       /* light blue-gray surface */
+    --q-taupe: #d8e2f1;       /* dividers / soft borders */
+    --q-line: #e6ecf6;        /* hairline borders */
     --q-card: #ffffff;
+    --q-body: #3a4a63;        /* body text (blue-slate) */
+    --q-muted: #5a6b82;       /* muted / secondary text */
+
+    /* --- Legacy aliases (old green theme → new blue brand) --- */
+    --q-green: var(--q-navy);
+    --q-green-mid: var(--q-blue);
+    --q-green-soft: var(--q-blue-soft);
+
+    /* --- Semantic / data-viz accents (used in the in-page mockups) --- */
     --q-sky: #0ea5e9;
-    --q-rose: #f43f5e;
-    --q-amber: #eab308;
-    --q-indigo: #6366f1;
-    --q-emerald: #34d399;
-    --q-orange: #f97316;
-    --q-yellow: #ffd66e;
-    --q-font: "Noto Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-    --q-display: "Sour Gummy", "Noto Sans", sans-serif;
-    --q-hand: "Caveat", cursive;
+    --q-rose: var(--q-red);
+    --q-amber: #f59e0b;
+    --q-indigo: #4f46e5;
+    --q-emerald: #0891b2;   /* success / progress → cool teal (kept blue-family, not green) */
+    --q-orange: var(--q-red);          /* kickers → red highlight */
+    --q-yellow: var(--q-red-bright);   /* stat numbers / footer headings on navy → red */
+
+    /* --- Type --- */
+    --q-font: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --q-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, sans-serif;
+    --q-hand: "Plus Jakarta Sans", "Inter", sans-serif;
 }
 
 html {
@@ -30,13 +53,13 @@ html {
 body {
     margin: 0 !important;
     display: block !important;
-    background:
-        repeating-linear-gradient(transparent 0 35px, rgba(14, 51, 34, .045) 35px 36px),
-        var(--q-cream) !important;
+    background: var(--q-cream) !important;
     color: var(--q-body) !important;
     font-family: var(--q-font) !important;
     font-size: 16px !important;
     line-height: 1.6 !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body::before {
@@ -78,10 +101,10 @@ img {
     display: block !important;
     margin: 0 !important;
     padding: 0 !important;
-    background: rgba(249, 241, 232, .94);
+    background: rgba(255, 255, 255, .92);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 2px solid var(--q-taupe);
+    border-bottom: 1px solid var(--q-line);
 }
 
 .q-nav {
@@ -152,20 +175,20 @@ img {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    min-height: 40px;
-    padding: 0 17px;
-    border-radius: 12px;
+    min-height: 42px;
+    padding: 0 19px;
+    border-radius: 10px;
     font-family: var(--q-display);
     font-size: 14px !important;
     font-weight: 600 !important;
     letter-spacing: .01em;
     white-space: nowrap;
-    border: 2px solid var(--q-green);
-    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    border: 1.5px solid transparent;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
 }
 
 .q-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 .q-btn:active {
@@ -173,27 +196,33 @@ img {
 }
 
 .q-btn-primary {
-    background: var(--q-green) !important;
+    background: var(--q-blue) !important;
     color: #fff !important;
-    box-shadow: 0 3px 0 rgba(14, 51, 34, .28);
+    box-shadow: 0 1px 2px rgba(18, 39, 91, .18), 0 8px 20px rgba(37, 99, 235, .26);
 }
 
 .q-btn-primary:hover {
-    background: var(--q-green-mid) !important;
-    box-shadow: 0 6px 0 rgba(14, 51, 34, .25);
+    background: var(--q-blue-dark) !important;
+    box-shadow: 0 2px 4px rgba(18, 39, 91, .2), 0 12px 26px rgba(37, 99, 235, .32);
 }
 
 .q-btn-ghost {
     background: #fff !important;
-    color: var(--q-green) !important;
-    box-shadow: 0 3px 0 rgba(14, 51, 34, .12);
+    color: var(--q-navy) !important;
+    border-color: var(--q-line);
+    box-shadow: 0 1px 2px rgba(18, 39, 91, .06);
+}
+
+.q-btn-ghost:hover {
+    border-color: var(--q-blue);
+    background: var(--q-blue-soft) !important;
 }
 
 .q-btn-cream {
-    background: var(--q-cream) !important;
-    color: var(--q-green) !important;
-    border-color: var(--q-cream);
-    box-shadow: 0 4px 0 rgba(0, 0, 0, .25);
+    background: #fff !important;
+    color: var(--q-navy) !important;
+    border-color: var(--q-line);
+    box-shadow: 0 1px 2px rgba(18, 39, 91, .08), 0 8px 18px rgba(18, 39, 91, .1);
 }
 
 /* ---------- Typography ---------- */
@@ -262,10 +291,10 @@ h1.q-h1 {
     bottom: 4px;
     width: 104%;
     height: 10px;
-    background: rgba(234, 179, 8, .45);
+    background: rgba(225, 29, 42, .16);
     border-radius: 4px;
     z-index: -1;
-    transform: rotate(-.6deg);
+    transform: none;
 }
 
 .q-hand {
@@ -365,7 +394,7 @@ h1.q-h1 {
     background: var(--q-card);
     border: 1.5px solid var(--q-line);
     border-radius: 16px;
-    box-shadow: 0 2px 0 rgba(14, 51, 34, .06), 0 18px 44px rgba(14, 51, 34, .10);
+    box-shadow: 0 1px 2px rgba(18, 39, 91, .05), 0 18px 44px rgba(18, 39, 91, .09);
 }
 
 .q-duck-hero {
@@ -374,8 +403,8 @@ h1.q-h1 {
     top: -64px;
     right: -22px;
     width: 118px;
-    transform: rotate(6deg);
-    filter: drop-shadow(0 10px 18px rgba(14, 51, 34, .25));
+    transform: none;
+    filter: drop-shadow(0 10px 18px rgba(18, 39, 91, .25));
     opacity: 0;
     animation: q-rise .6s ease .4s forwards;
 }
@@ -385,7 +414,7 @@ h1.q-h1 {
     z-index: 3;
     left: -8px;
     top: -6px;
-    transform: rotate(-5deg);
+    transform: none;
     text-align: center;
     line-height: 1.1;
 }
@@ -395,7 +424,7 @@ h1.q-h1 {
     z-index: 1;
     width: min(470px, 100%);
     padding: 20px 22px;
-    transform: rotate(-1deg);
+    transform: none;
 }
 
 .q-dash-head {
@@ -404,7 +433,7 @@ h1.q-h1 {
     justify-content: space-between;
     gap: 12px;
     padding-bottom: 13px;
-    border-bottom: 2px dashed var(--q-taupe);
+    border-bottom: 1.5px solid var(--q-line);
 }
 
 .q-dash-head strong {
@@ -418,7 +447,7 @@ h1.q-h1 {
 .q-dash-head em {
     font-style: normal;
     font-size: 12.5px;
-    color: #8a9388;
+    color: #5a6b82;
 }
 
 .q-badge {
@@ -450,7 +479,7 @@ h1.q-h1 {
     font-size: 12.5px;
     font-weight: 700;
     text-align: right;
-    color: #8a9388;
+    color: #5a6b82;
 }
 
 .q-student {
@@ -471,7 +500,7 @@ h1.q-h1 {
     margin: 7px 0 0;
     font-size: 12px;
     line-height: 1.4;
-    color: #8a9388;
+    color: #5a6b82;
 }
 
 .q-meter {
@@ -558,8 +587,8 @@ h1.q-h1 {
 .q-sheet {
     padding: 16px 19px;
     background:
-        radial-gradient(circle, #d8cdbb 1px, transparent 1px) 0 0 / 18px 18px,
-        #fffdf9;
+        radial-gradient(circle, #cfdbec 1px, transparent 1px) 0 0 / 18px 18px,
+        #ffffff;
 }
 
 .q-sheet-head {
@@ -568,7 +597,7 @@ h1.q-h1 {
     gap: 9px;
     padding-bottom: 9px;
     margin-bottom: 11px;
-    border-bottom: 2px dashed var(--q-taupe);
+    border-bottom: 1.5px solid var(--q-line);
     font-family: var(--q-display);
     font-size: 13px;
     font-weight: 600;
@@ -606,7 +635,7 @@ h1.q-h1 {
     padding: 10px 13px;
     border-radius: 13px 13px 13px 4px;
     background: var(--q-green-soft);
-    border: 1.5px solid #c5dec9;
+    border: 1.5px solid #cfe0ff;
     color: var(--q-green);
     font-size: 13px;
     font-weight: 600;
@@ -620,7 +649,7 @@ h1.q-h1 {
     gap: 8px;
     margin-top: 15px;
     padding-top: 13px;
-    border-top: 2px dashed var(--q-taupe);
+    border-top: 1.5px solid var(--q-line);
 }
 
 .q-task-chips em {
@@ -679,7 +708,7 @@ h1.q-h1 {
     margin-top: 6px;
     font-size: 13.5px;
     line-height: 1.45;
-    color: rgba(249, 241, 232, .78);
+    color: rgba(226, 234, 248, .72);
 }
 
 /* ---------- Sections ---------- */
@@ -698,7 +727,7 @@ h1.q-h1 {
     gap: clamp(32px, 5vw, 76px);
     align-items: center;
     padding: clamp(36px, 5vw, 58px) 0;
-    border-top: 2px dashed var(--q-taupe);
+    border-top: 1.5px solid var(--q-line);
 }
 
 .q-feature:nth-child(even) .q-feature-copy { order: 2; }
@@ -724,7 +753,7 @@ h1.q-h1 {
     font-family: var(--q-display);
     font-size: 17px;
     font-weight: 700;
-    transform: rotate(-4deg);
+    transform: none;
 }
 
 .q-feature-copy p {
@@ -743,11 +772,11 @@ h1.q-h1 {
 .q-mock {
     width: min(450px, 100%);
     padding: 19px 21px;
-    transform: rotate(.8deg);
+    transform: none;
 }
 
 .q-feature:nth-child(even) .q-mock {
-    transform: rotate(-.8deg);
+    transform: none;
 }
 
 .q-mock-title {
@@ -767,8 +796,8 @@ h1.q-h1 {
     right: -14px;
     bottom: -30px;
     width: 120px;
-    transform: rotate(-5deg);
-    filter: drop-shadow(0 10px 16px rgba(14, 51, 34, .22));
+    transform: none;
+    filter: drop-shadow(0 10px 16px rgba(18, 39, 91, .22));
     z-index: 2;
 }
 
@@ -870,7 +899,7 @@ h1.q-h1 {
     background: var(--q-cream);
     border: 1.5px solid var(--q-line);
     font-weight: 650;
-    color: #8a9388;
+    color: #5a6b82;
     min-height: 18px;
 }
 
@@ -896,7 +925,7 @@ h1.q-h1 {
 
 .q-plan-cell.is-video { background: #e3f3fd; border-color: #bfe3f8; border-left: 4px solid var(--q-sky); color: #0c6da0; }
 .q-plan-cell.is-game { background: #fdf3dc; border-color: #f3e1ae; border-left: 4px solid var(--q-amber); color: #8d6a08; }
-.q-plan-cell.is-sheet { background: var(--q-green-soft); border-color: #c5dec9; border-left: 4px solid var(--q-emerald); color: var(--q-green); }
+.q-plan-cell.is-sheet { background: var(--q-green-soft); border-color: #cfe0ff; border-left: 4px solid var(--q-emerald); color: var(--q-green); }
 
 .q-support-chat {
     display: flex;
@@ -919,7 +948,7 @@ h1.q-h1 {
     align-self: flex-end;
     border-radius: 14px 14px 4px 14px;
     background: var(--q-green-soft);
-    border-color: #c5dec9;
+    border-color: #cfe0ff;
 }
 
 .q-msg em {
@@ -940,23 +969,14 @@ h1.q-h1 {
     position: relative;
     background: #fff;
     border: 1.5px solid var(--q-line);
-    border-radius: 6px;
-    padding: 14px 14px 16px;
-    box-shadow: 0 3px 0 rgba(14, 51, 34, .07), 0 16px 36px rgba(14, 51, 34, .12);
-    transform: rotate(-2deg);
+    border-radius: 14px;
+    padding: 16px 16px 18px;
+    box-shadow: 0 1px 2px rgba(18, 39, 91, .06), 0 18px 40px rgba(18, 39, 91, .1);
+    transform: none;
 }
 
 .q-polaroid::before {
-    content: "";
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    width: 86px;
-    height: 24px;
-    transform: translateX(-50%) rotate(-2deg);
-    background: rgba(235, 222, 203, .8);
-    border-left: 1px dashed rgba(14, 51, 34, .15);
-    border-right: 1px dashed rgba(14, 51, 34, .15);
+    content: none;
 }
 
 .q-polaroid-photo {
@@ -965,7 +985,7 @@ h1.q-h1 {
     aspect-ratio: 4 / 5;
     border-radius: 4px;
     background:
-        radial-gradient(circle, #d8cdbb 1px, transparent 1px) 0 0 / 18px 18px,
+        radial-gradient(circle, #cfdbec 1px, transparent 1px) 0 0 / 18px 18px,
         var(--q-beige);
     overflow: hidden;
 }
@@ -997,7 +1017,7 @@ h1.q-h1 {
     font-family: var(--q-font);
     font-size: 12.5px;
     font-weight: 600;
-    color: #8a9388;
+    color: #5a6b82;
     margin-top: 3px;
 }
 
@@ -1009,27 +1029,18 @@ h1.q-h1 {
     padding: 30px 26px 24px;
     background: #fff;
     border: 1.5px solid var(--q-line);
-    border-radius: 6px;
-    box-shadow: 0 3px 0 rgba(14, 51, 34, .07), 0 16px 36px rgba(14, 51, 34, .10);
-    transform: rotate(-1.4deg);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(18, 39, 91, .06), 0 18px 40px rgba(18, 39, 91, .1);
+    transform: none;
     margin: 0;
 }
 
 .q-quote:nth-child(2) {
-    transform: rotate(1.2deg) translateY(10px);
+    transform: translateY(10px);
 }
 
 .q-quote::before {
-    content: "";
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    width: 86px;
-    height: 24px;
-    transform: translateX(-50%) rotate(-2deg);
-    background: rgba(235, 222, 203, .8);
-    border-left: 1px dashed rgba(14, 51, 34, .15);
-    border-right: 1px dashed rgba(14, 51, 34, .15);
+    content: none;
 }
 
 .q-quote blockquote {
@@ -1047,7 +1058,7 @@ h1.q-h1 {
     flex-direction: column;
     gap: 2px;
     padding-top: 13px;
-    border-top: 2px dashed var(--q-taupe);
+    border-top: 1.5px solid var(--q-line);
 }
 
 .q-quote figcaption strong {
@@ -1059,7 +1070,7 @@ h1.q-h1 {
 
 .q-quote figcaption span {
     font-size: 13px;
-    color: #8a9388;
+    color: #5a6b82;
 }
 
 /* ---------- Privacy ---------- */
@@ -1100,7 +1111,7 @@ h1.q-h1 {
     border-radius: 15px;
     background: #fff;
     border: 1.5px solid var(--q-taupe);
-    box-shadow: 0 2px 0 rgba(14, 51, 34, .05);
+    box-shadow: 0 1px 2px rgba(18, 39, 91, .05);
 }
 
 .q-privacy-item strong {
@@ -1135,8 +1146,8 @@ h1.q-h1 {
 
 .q-final img {
     width: 120px;
-    filter: drop-shadow(0 10px 18px rgba(14, 51, 34, .22));
-    transform: rotate(-3deg);
+    filter: drop-shadow(0 10px 18px rgba(18, 39, 91, .22));
+    transform: none;
 }
 
 .q-final p {
@@ -1163,7 +1174,7 @@ h1.q-h1 {
 
 .q-footer {
     background: var(--q-green);
-    color: rgba(249, 241, 232, .8);
+    color: rgba(226, 234, 248, .82);
     padding: 44px 0 38px;
 }
 
@@ -1191,7 +1202,7 @@ h1.q-h1 {
     width: 30px;
     height: 30px;
     border-radius: 9px;
-    border-color: rgba(249, 241, 232, .65);
+    border-color: rgba(255, 255, 255, .55);
 }
 
 .q-footer-brand p {
@@ -1225,7 +1236,7 @@ h1.q-h1 {
 
 .q-footer ul a {
     font-size: 14.5px;
-    color: rgba(249, 241, 232, .8) !important;
+    color: rgba(226, 234, 248, .82) !important;
 }
 
 .q-footer ul a:hover {
@@ -1357,7 +1368,7 @@ h1.q-h1 {
 .q-page-head .q-lead { margin: 0; max-width: 620px; }
 
 /* --- prose (legal / long text) --- */
-.q-prose { color: #33433a; }
+.q-prose { color: #33415c; }
 .q-prose > * + * { margin-top: 14px; }
 .q-prose h2 {
     margin: clamp(30px, 4vw, 46px) 0 4px;
@@ -1384,7 +1395,7 @@ h1.q-h1 {
     border-radius: 14px;
     background: #fff;
     border: 1.5px solid var(--q-line);
-    box-shadow: 0 2px 0 rgba(14, 51, 34, .05);
+    box-shadow: 0 1px 2px rgba(18, 39, 91, .05);
 }
 
 /* --- FAQ --- */
@@ -1394,7 +1405,7 @@ h1.q-h1 {
     border-radius: 16px;
     background: #fff;
     border: 1.5px solid var(--q-line);
-    box-shadow: 0 2px 0 rgba(14, 51, 34, .05);
+    box-shadow: 0 1px 2px rgba(18, 39, 91, .05);
 }
 .q-faq-q {
     display: block;
@@ -1404,7 +1415,7 @@ h1.q-h1 {
     font-weight: 600;
     color: var(--q-green);
 }
-.q-faq-a { font-size: 15px; line-height: 1.6; color: #4a5a50; }
+.q-faq-a { font-size: 15px; line-height: 1.6; color: #4a5870; }
 
 /* --- numbered steps --- */
 .q-steps { display: grid; gap: clamp(14px, 2vw, 20px); }
@@ -1417,7 +1428,7 @@ h1.q-h1 {
     border-radius: 18px;
     background: #fff;
     border: 1.5px solid var(--q-line);
-    box-shadow: 0 3px 0 rgba(14, 51, 34, .05);
+    box-shadow: 0 1px 3px rgba(18, 39, 91, .06);
 }
 .q-step-num {
     display: grid;
@@ -1438,7 +1449,7 @@ h1.q-h1 {
     font-weight: 600;
     color: var(--q-green);
 }
-.q-step p { margin: 0; font-size: 14.5px; line-height: 1.55; color: #4a5a50; }
+.q-step p { margin: 0; font-size: 14.5px; line-height: 1.55; color: #4a5870; }
 
 /* --- contact card --- */
 .q-contact {

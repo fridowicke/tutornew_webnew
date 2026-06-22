@@ -1,7 +1,7 @@
 :root {
-    --bg-color: #f9f1e8;
-    --text-color: #0e3322;
-    --main-accent: #0e3322;
+    --bg-color: #ffffff;
+    --text-color: #1f2b45;
+    --main-accent: #2563eb;
     /* --accent-color is defined in individual pages or defaults to main-accent */
     --accent-color: var(--main-accent);
 }
@@ -9,7 +9,7 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Sour Gummy', sans-serif;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -17,14 +17,15 @@ body {
     display: flex;
     justify-content: center;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
     width: 100%;
     max-width: 650px;
     padding: 40px 20px;
-    background-image: linear-gradient(var(--bg-color) 95%, #e6ddd4 95%);
-    background-size: 100% 2rem; /* Notebook lines effect */
+    background-color: var(--bg-color);
     box-sizing: border-box;
     position: relative; /* Ensure menu positioning works relative to container/page */
 }
@@ -86,7 +87,7 @@ a {
     text-decoration: none;
     font-size: 1.1rem;
     padding: 5px 10px;
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    border-radius: 8px;
     border: 2px solid transparent;
     transition: transform 0.2s ease;
     display: inline-block;
@@ -98,42 +99,37 @@ a {
     color: #1f4c7a; /* Darker Blue */
     background-color: #e0f0f7;
     border-color: #1f4c7a;
-    transform: rotate(-1deg);
 }
 
 .link-how {
-    color: #3a6621; /* Darker Green */
-    background-color: #e6f4dc;
-    border-color: #3a6621;
-    transform: rotate(1deg);
+    color: #1d4ed8; /* Brand blue */
+    background-color: #e8f0fe;
+    border-color: #1d4ed8;
 }
 
 .link-faq {
-    color: #7a5c18; /* Darker Yellow/Orange/Brown */
-    background-color: #fff5d6;
-    border-color: #7a5c18;
-    transform: rotate(-0.5deg);
+    color: #b91c1c; /* Brand red */
+    background-color: #fdecec;
+    border-color: #b91c1c;
 }
 
 .link-legal {
     color: #333; /* Darker Grey */
     background-color: #ededed;
     border-color: #555;
-    transform: rotate(0.5deg);
 }
 
 .link-privacy {
     color: #5c3d7a; /* Purple */
     background-color: #f3e8f7;
     border-color: #5c3d7a;
-    transform: rotate(-0.8deg);
 }
 
 /* CTAs */
 .cta-button-large {
     display: inline-block;
     background: none;
-    color: #0e3322; /* Main green from theme */
+    color: #12275b; /* Brand navy */
     padding: 0;
     font-size: 2.8rem;
     text-decoration: none;
@@ -143,13 +139,13 @@ a {
     transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    font-family: 'Sour Gummy', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
     letter-spacing: -0.5px;
     position: relative;
     z-index: 2;
     text-shadow: 
         2px 2px 0 #cce5ff,
-        4px 4px 0 rgba(14, 51, 34, 0.15);
+        4px 4px 0 rgba(18, 39, 91, 0.15);
 }
 
 .cta-button-large::before {
@@ -170,10 +166,10 @@ a {
 }
 
 .cta-button-large:hover {
-    color: #3a6621; /* Darker green on hover */
+    color: #1d4ed8; /* Brand blue on hover */
     text-shadow: 
         3px 3px 0 #cce5ff,
-        6px 6px 0 rgba(14, 51, 34, 0.2);
+        6px 6px 0 rgba(18, 39, 91, 0.2);
     transform: translateY(-2px);
 }
 
@@ -194,7 +190,7 @@ a {
     transform: rotate(1deg);
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     margin-bottom: 0.5rem;
-    box-shadow: 2px 2px 0px rgba(14, 51, 34, 0.1);
+    box-shadow: 2px 2px 0px rgba(18, 39, 91, 0.1);
     position: relative;
     animation: gentle-bounce 3s ease-in-out infinite;
 }
@@ -227,8 +223,8 @@ a {
 
 .cta-sticker:hover {
     transform: rotate(-2deg) translateY(-6px);
-    background-color: #f0f9e8;
-    box-shadow: 4px 4px 0px rgba(14, 51, 34, 0.2);
+    background-color: #eef3ff;
+    box-shadow: 4px 4px 0px rgba(18, 39, 91, 0.2);
     animation: none;
 }
 
@@ -298,7 +294,7 @@ a {
     font-weight: 900;
     border: none;
     transition: all 0.2s ease;
-    font-family: 'Sour Gummy', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
     letter-spacing: -0.5px;
     position: relative;
     z-index: 2;
@@ -352,9 +348,8 @@ a {
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-color: #f9f1e8; /* Solid background */
-        background-image: linear-gradient(#f9f1e8 95%, #e6ddd4 95%);
-        background-size: 100% 2rem;
+        background-color: #ffffff; /* Solid background */
+        background-image: none;
         z-index: 99999; /* Highest possible */
         flex-direction: column;
         align-items: center;
@@ -371,7 +366,7 @@ a {
         font-size: 0.875rem;
         opacity: 0.7;
         cursor: pointer;
-        font-family: 'Sour Gummy', sans-serif;
+        font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
     }
 
     .mobile-menu-links {
