@@ -2781,6 +2781,7 @@
         pointer-events: auto;
       }
 
+      .present-toggle,
       .notes-toggle {
         font: inherit;
         cursor: pointer;
@@ -2791,6 +2792,58 @@
         color: var(--ink);
         font-size: 0.86rem;
         font-weight: 700;
+      }
+
+      .present-toggle {
+        background: var(--ink);
+        color: var(--white);
+        border-color: var(--ink);
+      }
+
+      body.presentation-mode .present-toggle {
+        background: var(--green);
+        border-color: var(--green);
+      }
+
+      body.presentation-mode .topbar {
+        display: none;
+      }
+
+      body.presentation-mode .slide {
+        padding: 34px clamp(22px, 3vw, 52px) 28px;
+      }
+
+      body.presentation-mode .slide.dense {
+        padding-top: 28px;
+        padding-bottom: 22px;
+      }
+
+      body.presentation-mode .stage {
+        width: min(1240px, 100%);
+        min-height: min(680px, calc(100vh - 62px));
+        gap: 18px;
+      }
+
+      body.presentation-mode .dense .stage {
+        min-height: min(650px, calc(100vh - 50px));
+      }
+
+      body.presentation-mode h1,
+      body.presentation-mode h2 {
+        font-size: clamp(3.15rem, 5.8vw, 5.7rem);
+      }
+
+      body.presentation-mode .dense h2 {
+        font-size: clamp(2.6rem, 4.7vw, 4.6rem);
+      }
+
+      body.presentation-mode .notes-toggle,
+      body.presentation-mode .notes-panel {
+        display: none;
+      }
+
+      body.presentation-mode.notes-mode .deck {
+        width: 100%;
       }
 
       body.notes-mode .notes-toggle {
@@ -3110,6 +3163,7 @@
     <header class="topbar">
       <div class="brand">tutor.new</div>
       <div class="topbar-right">
+        <button class="present-toggle" id="presentToggle" type="button" title="Präsentationsmodus (F)">⛶ Präsentieren</button>
         <button class="notes-toggle" id="notesToggle" type="button" title="Notizen (N)">✎ Notizen</button>
         <div class="counter"><span id="current">1</span> von <span id="total">8</span></div>
       </div>
@@ -3879,6 +3933,7 @@
       const navButtons = [...document.querySelectorAll(".nav button")];
       const current = document.querySelector("#current");
       const total = document.querySelector("#total");
+      const presentToggle = document.querySelector("#presentToggle");
       const root = document.documentElement;
       total.textContent = String(slides.length);
 
@@ -3981,6 +4036,9 @@
         if (event.key === "n" || event.key === "N") {
           toggleNotes();
         }
+        if (event.key === "f" || event.key === "F") {
+          togglePresentation();
+        }
       });
 
       // === Notizen-Modus (Folien links, Hinweise rechts; Export als Markdown) ===
@@ -4008,6 +4066,7 @@
         notesArea.value = v;
       }
       function toggleNotes(force) {
+        if (document.body.classList.contains("presentation-mode") && force !== false) return;
         const on = force !== undefined ? force : !document.body.classList.contains("notes-mode");
         document.body.classList.toggle("notes-mode", on);
         if (on) {
@@ -4019,6 +4078,38 @@
       notesArea?.addEventListener("input", saveNote);
       document.querySelector("#notesToggle")?.addEventListener("click", () => toggleNotes());
       document.querySelector("#notesClose")?.addEventListener("click", () => toggleNotes(false));
+
+      function setPresentationMode(on) {
+        document.body.classList.toggle("presentation-mode", on);
+        presentToggle.textContent = on ? "⛶ Präsentation" : "⛶ Präsentieren";
+        presentToggle.setAttribute("aria-pressed", String(on));
+        if (on) toggleNotes(false);
+        requestAnimationFrame(syncActive);
+      }
+
+      async function togglePresentation() {
+        const on = !document.body.classList.contains("presentation-mode");
+        if (on) {
+          setPresentationMode(true);
+          if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+            try {
+              await document.documentElement.requestFullscreen();
+            } catch (e) {}
+          }
+        } else {
+          setPresentationMode(false);
+          if (document.fullscreenElement && document.exitFullscreen) {
+            try {
+              await document.exitFullscreen();
+            } catch (e) {}
+          }
+        }
+      }
+
+      presentToggle?.addEventListener("click", () => togglePresentation());
+      document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement) setPresentationMode(false);
+      });
       // Pro Folie ein (zunächst verstecktes) Notizfeld für den PDF-Druck
       slides.forEach((s) => {
         const aside = document.createElement("aside");
