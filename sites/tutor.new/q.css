@@ -796,7 +796,7 @@ html[lang="en"] .q-flags {
 }
 
 .q-file::before {
-    content: "PDF";
+    content: attr(data-label);
     padding: 2px 6px;
     border-radius: 6px;
     background: var(--q-rose);
@@ -805,8 +805,8 @@ html[lang="en"] .q-flags {
     font-weight: 800;
 }
 
-.q-file.is-doc::before { content: "DOC"; background: var(--q-sky); }
-.q-file.is-img::before { content: "FOTO"; background: var(--q-orange); }
+.q-file.is-doc::before { background: var(--q-sky); }
+.q-file.is-img::before { background: var(--q-orange); }
 
 .q-arrow-divider {
     display: flex;
