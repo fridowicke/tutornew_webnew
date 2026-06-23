@@ -2199,11 +2199,12 @@
 
       .cmp-val {
         flex: none;
-        width: 50px;
+        width: clamp(64px, 7vw, 92px);
         text-align: right;
+        white-space: nowrap;
         font-weight: 700;
         color: var(--ink);
-        font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+        font-size: clamp(0.92rem, 1.05vw, 1.06rem);
       }
 
       .cmp-why {
@@ -3480,9 +3481,9 @@
                 <div class="cmp-bar sw"><span class="cmp-tag">1SW</span><span class="cmp-track"><span class="cmp-fill" style="width:79%"></span></span><span class="cmp-val">3.9</span></div>
               </div>
               <div class="cmp-row">
-                <div class="cmp-name">Lernzuwachs <small>(Selbsteinschätzung)</small></div>
-                <div class="cmp-bar gw"><span class="cmp-tag">2GW</span><span class="cmp-track"><span class="cmp-fill" style="width:77%"></span></span><span class="cmp-val">+1.5</span></div>
-                <div class="cmp-bar sw"><span class="cmp-tag">1SW</span><span class="cmp-track"><span class="cmp-fill" style="width:11%"></span></span><span class="cmp-val">+0.2</span></div>
+                <div class="cmp-name">Lernzuwachs <small>(Selbsteinschätzung · Skala 1–5)</small></div>
+                <div class="cmp-bar gw"><span class="cmp-tag">2GW</span><span class="cmp-track"><span class="cmp-fill" style="width:77%"></span></span><span class="cmp-val">3.1 → 4.6</span></div>
+                <div class="cmp-bar sw"><span class="cmp-tag">1SW</span><span class="cmp-track"><span class="cmp-fill" style="width:11%"></span></span><span class="cmp-val">3.4 → 3.6</span></div>
               </div>
               <div class="cmp-row">
                 <div class="cmp-name">„hilft mir beim Lernen" <small>(von 5)</small></div>
